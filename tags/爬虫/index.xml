@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on Winglet&#39;s Blog</title>
-        <link>https://blog.winglet.com/post/</link>
-        <description>Recent content in Posts on Winglet&#39;s Blog</description>
+        <title>爬虫 on Winglet&#39;s Blog</title>
+        <link>https://blog.winglet.com/tags/%E7%88%AC%E8%99%AB/</link>
+        <description>Recent content in 爬虫 on Winglet&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Winglet</copyright>
-        <lastBuildDate>Tue, 16 Jan 2024 17:48:22 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 16 Jan 2024 17:48:22 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/tags/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>爬取豆瓣图书信息</title>
         <link>https://blog.winglet.com/p/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E5%9B%BE%E4%B9%A6%E4%BF%A1%E6%81%AF/</link>
         <pubDate>Tue, 16 Jan 2024 17:48:22 +0800</pubDate>
@@ -110,16 +110,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;​	运行之后，常常会出现403码，估计还是访问太快导致的，不过当时要求只是一定量的数据即可，所以有些数据没爬到就算了。&lt;/p&gt;
 &lt;p&gt;​	本来想长篇大论的详细说说代码是怎么写的，但里面知识点挺多的，全说的话不知道该怎么讲。还是后面有时间写个基础爬虫的文章算了。&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>Hello World</title>
-        <link>https://blog.winglet.com/p/hello-world/</link>
-        <pubDate>Mon, 15 Jan 2024 11:46:02 +0800</pubDate>
-        
-        <guid>https://blog.winglet.com/p/hello-world/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/2.jpg" alt="Featured image of post Hello World" /&gt;&lt;pre&gt;&lt;code&gt;ok，我的2024年第一篇博客就此展开，回顾一下我的2023年，这一年里我领到了校赛证书，互联网+证书，认识了一群大佬，并且通过我舍友介绍去挣了大学第一桶金。不过总的来看，这一年还是一个摆烂的一年。不过这两年走过来，我也有了一定的方向，希望2024年我能坚持学习下去。完成2024年的目标。
-&lt;/code&gt;&lt;/pre&gt;
 </description>
         </item>
         
