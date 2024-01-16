@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on Winglet&#39;s Blog</title>
+        <link>https://blog.winglet.com/post/</link>
+        <description>Recent content in Posts on Winglet&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Winglet</copyright>
+        <lastBuildDate>Mon, 15 Jan 2024 11:46:02 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hello World</title>
+        <link>https://blog.winglet.com/p/hello-world/</link>
+        <pubDate>Mon, 15 Jan 2024 11:46:02 +0800</pubDate>
+        
+        <guid>https://blog.winglet.com/p/hello-world/</guid>
+        <description>&lt;img src="https://raw.githubusercontent.com/wingllllet/pic_bed/img/img/3efe3e714374aadf042788bfd8f3e4a71373037.jpg" alt="Featured image of post Hello World" /&gt;&lt;pre&gt;&lt;code&gt;ok我的2024年第一篇博客就此展开。
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

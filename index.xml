@@ -7,7 +7,17 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Winglet</copyright>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.winglet.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 15 Jan 2024 11:46:02 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hello World</title>
+        <link>https://blog.winglet.com/p/hello-world/</link>
+        <pubDate>Mon, 15 Jan 2024 11:46:02 +0800</pubDate>
+        
+        <guid>https://blog.winglet.com/p/hello-world/</guid>
+        <description>&lt;img src="https://raw.githubusercontent.com/wingllllet/pic_bed/img/img/3efe3e714374aadf042788bfd8f3e4a71373037.jpg" alt="Featured image of post Hello World" /&gt;&lt;pre&gt;&lt;code&gt;ok我的2024年第一篇博客就此展开。
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        </item>
+        <item>
         <title>Archives</title>
         <link>https://blog.winglet.com/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
@@ -49,7 +59,7 @@
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://blog.winglet.com/%E5%85%B3%E4%BA%8E/</guid>
-        <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
+        <description>&lt;p&gt;Welcome to my blog&lt;/p&gt;
 </description>
         </item>
         
