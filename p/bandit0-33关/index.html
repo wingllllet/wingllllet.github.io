@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='前言 ​	搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。
+介绍 ​	bandit是over the wire推出的一个为提升linux基础的系统靶场，目前共有33关，适合小白学习和增强linux命令操作。靶场网址：https://overthewire.org/wargames/bandit/
+wp level 0 题目描述 此级别的目标是让您使用 SSH 登录游戏。您需要连接的主机是 bandit.labs.overthewire.org，端口为 2220。用户名是bandit0，密码是bandit0。登录后，转到第 1 级页面，了解如何通过第 1 级。
+解决方法 ssh bandit0@bandit.labs.overthewire.org -p 2220 level 0 题目描述 下一级的密码存储在 主目录中名为**readme的文件中。**使用此密码通过 SSH 登录 bandit1。每当您找到某个关卡的密码时，请使用 SSH（在端口 2220 上）登录该关卡并继续游戏。
+解决方法 ls cat readme readme: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL level 1 题目描述 下一级的密码存储在 主目录中名为**-的文件中**
+解决方法 ls cat ./- 因为-在shell中是一个特殊字符，如果我们想要它只把它看作为一个字符，我们需要在前面加上./这就是告诉bash shell不需要解释为特殊字符
+readme: rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi level 2 题目描述 下一级的密码存储在主目录中名为space的文件中
+解决方法 ls -al cat &amp;#34;spaces in this filename&amp;#34; cat spaces/ in/ this/ filename 在bash shell中空格会将命令隔开，也就将文件名不会视为一个整体'>
+<title>Bandit0 33关</title>
+
+<link rel='canonical' href='https://blog.winglet.com/p/bandit0-33%E5%85%B3/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Bandit0 33关'>
+<meta property='og:description' content='前言 ​	搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。
+介绍 ​	bandit是over the wire推出的一个为提升linux基础的系统靶场，目前共有33关，适合小白学习和增强linux命令操作。靶场网址：https://overthewire.org/wargames/bandit/
+wp level 0 题目描述 此级别的目标是让您使用 SSH 登录游戏。您需要连接的主机是 bandit.labs.overthewire.org，端口为 2220。用户名是bandit0，密码是bandit0。登录后，转到第 1 级页面，了解如何通过第 1 级。
+解决方法 ssh bandit0@bandit.labs.overthewire.org -p 2220 level 0 题目描述 下一级的密码存储在 主目录中名为**readme的文件中。**使用此密码通过 SSH 登录 bandit1。每当您找到某个关卡的密码时，请使用 SSH（在端口 2220 上）登录该关卡并继续游戏。
+解决方法 ls cat readme readme: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL level 1 题目描述 下一级的密码存储在 主目录中名为**-的文件中**
+解决方法 ls cat ./- 因为-在shell中是一个特殊字符，如果我们想要它只把它看作为一个字符，我们需要在前面加上./这就是告诉bash shell不需要解释为特殊字符
+readme: rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi level 2 题目描述 下一级的密码存储在主目录中名为space的文件中
+解决方法 ls -al cat &amp;#34;spaces in this filename&amp;#34; cat spaces/ in/ this/ filename 在bash shell中空格会将命令隔开，也就将文件名不会视为一个整体'>
+<meta property='og:url' content='https://blog.winglet.com/p/bandit0-33%E5%85%B3/'>
+<meta property='og:site_name' content='Winglet&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2024-01-18T20:13:41&#43;08:00'/><meta property='article:modified_time' content='2024-01-18T20:13:41&#43;08:00'/><meta property='og:image' content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240118.png' />
+<meta name="twitter:title" content="Bandit0 33关">
+<meta name="twitter:description" content="前言 ​	搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。
+介绍 ​	bandit是over the wire推出的一个为提升linux基础的系统靶场，目前共有33关，适合小白学习和增强linux命令操作。靶场网址：https://overthewire.org/wargames/bandit/
+wp level 0 题目描述 此级别的目标是让您使用 SSH 登录游戏。您需要连接的主机是 bandit.labs.overthewire.org，端口为 2220。用户名是bandit0，密码是bandit0。登录后，转到第 1 级页面，了解如何通过第 1 级。
+解决方法 ssh bandit0@bandit.labs.overthewire.org -p 2220 level 0 题目描述 下一级的密码存储在 主目录中名为**readme的文件中。**使用此密码通过 SSH 登录 bandit1。每当您找到某个关卡的密码时，请使用 SSH（在端口 2220 上）登录该关卡并继续游戏。
+解决方法 ls cat readme readme: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL level 1 题目描述 下一级的密码存储在 主目录中名为**-的文件中**
+解决方法 ls cat ./- 因为-在shell中是一个特殊字符，如果我们想要它只把它看作为一个字符，我们需要在前面加上./这就是告诉bash shell不需要解释为特殊字符
+readme: rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi level 2 题目描述 下一级的密码存储在主目录中名为space的文件中
+解决方法 ls -al cat &amp;#34;spaces in this filename&amp;#34; cat spaces/ in/ this/ filename 在bash shell中空格会将命令隔开，也就将文件名不会视为一个整体"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240118.png' />
+    <link rel="shortcut icon" href="img/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/2.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
+            <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/wingllllet'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#介绍">介绍</a></li>
+    <li><a href="#wp">wp</a>
+      <ol>
+        <li><a href="#level-0">level 0</a>
+          <ol>
+            <li><a href="#题目描述">题目描述</a></li>
+            <li><a href="#解决方法">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-0-1">level 0</a>
+          <ol>
+            <li><a href="#题目描述-1">题目描述</a></li>
+            <li><a href="#解决方法-1">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-1">level 1</a>
+          <ol>
+            <li><a href="#题目描述-2">题目描述</a></li>
+            <li><a href="#解决方法-2">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-2">level 2</a>
+          <ol>
+            <li><a href="#题目描述-3">题目描述</a></li>
+            <li><a href="#解决方法-3">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-3">level 3</a>
+          <ol>
+            <li><a href="#题目描述-4">题目描述</a></li>
+            <li><a href="#解决方法-4">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-4">level 4</a>
+          <ol>
+            <li><a href="#题目描述-5">题目描述</a></li>
+            <li><a href="#解决方法-5">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-5">level 5</a>
+          <ol>
+            <li><a href="#题目描述-6">题目描述</a></li>
+            <li><a href="#解决方法-6">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-6">level 6</a>
+          <ol>
+            <li><a href="#题目描述-7">题目描述</a></li>
+            <li><a href="#解决方法-7">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-7">level 7</a>
+          <ol>
+            <li><a href="#题目描述-8">题目描述</a></li>
+            <li><a href="#解决方法-8">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-8">level 8</a>
+          <ol>
+            <li><a href="#题目描述-9">题目描述</a></li>
+            <li><a href="#解决方法-9">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-9">level 9</a>
+          <ol>
+            <li><a href="#题目描述-10">题目描述</a></li>
+            <li><a href="#解决方法-10">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-10">level 10</a>
+          <ol>
+            <li><a href="#题目描述-11">题目描述</a></li>
+            <li><a href="#解决方法-11">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-11">level 11</a>
+          <ol>
+            <li><a href="#题目描述-12">题目描述</a></li>
+            <li><a href="#解决方法-12">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-12">level 12</a>
+          <ol>
+            <li><a href="#题目描述-13">题目描述</a></li>
+            <li><a href="#解决方法-13">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-13">level 13</a>
+          <ol>
+            <li><a href="#题目描述-14">题目描述</a></li>
+            <li><a href="#解决方法-14">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-14">level 14</a>
+          <ol>
+            <li><a href="#题目描述-15">题目描述</a></li>
+            <li><a href="#解决方法-15">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-15">level 15</a>
+          <ol>
+            <li><a href="#题目描述-16">题目描述</a></li>
+            <li><a href="#解决方法-16">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-16">level 16</a>
+          <ol>
+            <li><a href="#题目描述-17">题目描述</a></li>
+            <li><a href="#解决方法-17">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-17">level 17</a>
+          <ol>
+            <li><a href="#题目描述-18">题目描述</a></li>
+            <li><a href="#解决方法-18">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-18">level 18</a>
+          <ol>
+            <li><a href="#题目描述-19">题目描述</a></li>
+            <li><a href="#解决方法-19">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-19">level 19</a>
+          <ol>
+            <li><a href="#题目描述-20">题目描述</a></li>
+            <li><a href="#解决方法-20">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-20">level 20</a>
+          <ol>
+            <li><a href="#题目描述-21">题目描述</a></li>
+            <li><a href="#解决方法-21">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-21">level 21</a>
+          <ol>
+            <li><a href="#题目描述-22">题目描述</a></li>
+            <li><a href="#解决方法-22">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-22">level 22</a>
+          <ol>
+            <li><a href="#题目描述-23">题目描述</a></li>
+            <li><a href="#解决方法-23">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-23">level 23</a>
+          <ol>
+            <li><a href="#题目描述-24">题目描述</a></li>
+            <li><a href="#解决方法-24">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-24">level 24</a>
+          <ol>
+            <li><a href="#题目描述-25">题目描述</a></li>
+            <li><a href="#解决方法-25">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-25">level 25</a>
+          <ol>
+            <li><a href="#题目描述-26">题目描述</a></li>
+            <li><a href="#解决方法-26">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-26">level 26</a>
+          <ol>
+            <li><a href="#题目描述-27">题目描述</a></li>
+            <li><a href="#解决方法-27">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-27">level 27</a>
+          <ol>
+            <li><a href="#题目描述-28">题目描述</a></li>
+            <li><a href="#解决方法-28">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-28">level 28</a>
+          <ol>
+            <li><a href="#题目描述-29">题目描述</a></li>
+            <li><a href="#解决方法-29">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-29">level 29</a>
+          <ol>
+            <li><a href="#题目描述-30">题目描述</a></li>
+            <li><a href="#解决方法-30">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-30">level 30</a>
+          <ol>
+            <li><a href="#题目描述-31">题目描述</a></li>
+            <li><a href="#解决方法-31">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-31">level 31</a>
+          <ol>
+            <li><a href="#题目描述-32">题目描述</a></li>
+            <li><a href="#解决方法-32">解决方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#level-32">level 32</a>
+          <ol>
+            <li><a href="#题目描述-33">题目描述</a></li>
+            <li><a href="#解决方法-33">解决方法</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/bandit0-33%E5%85%B3/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240118.png" loading="lazy" alt="Featured image of post Bandit0 33关" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E9%9D%B6%E5%9C%BA/" >
+                靶场
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/bandit0-33%E5%85%B3/">Bandit0 33关</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 18, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 7 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言</h2>
+<p>​	搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。</p>
+<h2 id="介绍">介绍</h2>
+<p>​	bandit是<strong>over the wire</strong>推出的一个为提升linux基础的系统靶场，目前共有33关，适合小白学习和增强linux命令操作。靶场网址：https://overthewire.org/wargames/bandit/</p>
+<h2 id="wp">wp</h2>
+<h3 id="level-0">level 0</h3>
+<h4 id="题目描述">题目描述</h4>
+<p>此级别的目标是让您使用 SSH 登录游戏。您需要连接的主机是 <strong>bandit.labs.overthewire.org</strong>，端口为 2220。用户名是<strong>bandit0</strong>，密码是<strong>bandit0</strong>。登录后，转到<a class="link" href="https://overthewire.org/wargames/bandit/bandit1.html"  target="_blank" rel="noopener"
+    >第 1 级</a>页面，了解如何通过第 1 级。</p>
+<h4 id="解决方法">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh bandit0@bandit.labs.overthewire.org -p <span class="m">2220</span>
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231122204334321.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231122204334321"
+	
+	
+></p>
+<h3 id="level-0-1">level 0</h3>
+<h4 id="题目描述-1">题目描述</h4>
+<p>下一级的密码存储在 主目录中名为**readme的文件中。**使用此密码通过 SSH 登录 bandit1。每当您找到某个关卡的密码时，请使用 SSH（在端口 2220 上）登录该关卡并继续游戏。</p>
+<h4 id="解决方法-1">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">cat readme
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231122204458642.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231122204458642"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
+</span></span></code></pre></div><h3 id="level-1">level 1</h3>
+<h4 id="题目描述-2">题目描述</h4>
+<p>下一级的密码存储在 主目录中名为**-的文件中**</p>
+<h4 id="解决方法-2">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">cat ./-
+</span></span></code></pre></div><p>因为<code>-</code>在shell中是一个特殊字符，如果我们想要它只把它看作为一个字符，我们需要在前面加上<code>./</code>这就是告诉bash shell不需要解释为特殊字符</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231122210433226.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231122210433226"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
+</span></span></code></pre></div><h3 id="level-2">level 2</h3>
+<h4 id="题目描述-3">题目描述</h4>
+<p>下一级的密码存储在主目录中名为<strong>space的文件中</strong></p>
+<h4 id="解决方法-3">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls -al
+</span></span><span class="line"><span class="cl">cat <span class="s2">&#34;spaces in this filename&#34;</span>
+</span></span><span class="line"><span class="cl">cat spaces/ in/ this/ filename
+</span></span></code></pre></div><p>在bash shell中空格会将命令隔开，也就将文件名不会视为一个整体</p>
+<p>，这里我们有两种方法解决，第一种就是用双引号包裹，让它认为这是一个整体，第二种就是用<code>\ </code>让它把空格符也作为普通字符并拼接起来。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231122210808164.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231122210808164"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">readme：
+</span></span><span class="line"><span class="cl">	aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
+</span></span></code></pre></div><h3 id="level-3">level 3</h3>
+<h4 id="题目描述-4">题目描述</h4>
+<p>下一级的密码存储在 <strong>inhere</strong>目录中的隐藏文件中。</p>
+<h4 id="解决方法-4">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> inhere
+</span></span><span class="line"><span class="cl">ls -al
+</span></span><span class="line"><span class="cl">cat .hidden
+</span></span></code></pre></div><p>当文件名的前面加上<code>.</code>后，它就会变为隐藏文件，这时我们只用<code>ls</code>命令是看不见该文件的存在的，所以我们需要加参数<code>-al</code>这样就可以显示当前目录下的所有文件。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231122211312859.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231122211312859"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
+</span></span></code></pre></div><h3 id="level-4">level 4</h3>
+<h4 id="题目描述-5">题目描述</h4>
+<p>下一级的密码存储在<strong>inhere</strong>目录中唯一人类可读的文件中。提示：如果您的终端出现问题，请尝试“重置”命令。</p>
+<h4 id="解决方法-5">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> inhere
+</span></span><span class="line"><span class="cl">file ./*
+</span></span><span class="line"><span class="cl">cat ./-file07
+</span></span></code></pre></div><p>在inhere目录下，有很多文件，这些文件里面只有<code>file07</code>里面才有真正的内容，我们可以一个一个打开文件，查看里面的内容，或者使用<code>file ./*</code> ， 对当前目录下的所有文件进行文件类型的检测。</p>
+<p>这样我们就能知道哪个文件里面</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231123205614130.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231123205614130"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+</span></span></code></pre></div><h3 id="level-5">level 5</h3>
+<h4 id="题目描述-6">题目描述</h4>
+<p>下一级的密码存储在<strong>inhere</strong>目录下的某个文件中，并具有以下所有属性：</p>
+<ul>
+<li>人类可读的</li>
+<li>大小为 1033 字节</li>
+<li>不可执行</li>
+</ul>
+<h4 id="解决方法-6">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> inhere
+</span></span><span class="line"><span class="cl">find . -type f -size 1033c
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> maybehere07
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">cat .file2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">find . -type f -size  文件大小单元
+</span></span><span class="line"><span class="cl">f:   类型为文件
+</span></span><span class="line"><span class="cl">b  --  块 <span class="o">(</span>512字节<span class="o">)</span>
+</span></span><span class="line"><span class="cl">c  --  字节
+</span></span><span class="line"><span class="cl">w  --  字 <span class="o">(</span>2字节<span class="o">)</span>
+</span></span><span class="line"><span class="cl">k  --  千字节 
+</span></span><span class="line"><span class="cl">M  --  兆字节
+</span></span><span class="line"><span class="cl">G  --  吉字节
+</span></span></code></pre></div><ul>
+<li>&ldquo;find&rdquo; 是一个命令行工具，用于在文件系统中搜索文件和目录。</li>
+<li>&ldquo;.&rdquo; 表示当前目录，作为搜索的起始点。</li>
+<li>&ldquo;-type f&rdquo; 是一个条件选项，用于指定只搜索普通文件（排除目录和其他特殊文件）。</li>
+<li>&ldquo;-size 1033c&rdquo; 是一个条件选项，用于指定搜索文件大小为 1033 字节。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231123211728650.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231123211728650"
+	
+	
+></p>
+<h3 id="level-6">level 6</h3>
+<h4 id="题目描述-7">题目描述</h4>
+<p>下一级的密码存储<strong>在服务器上的某个位置</strong>，并具有以下所有属性：</p>
+<ul>
+<li>由用户 bandit7 拥有</li>
+<li>归强盗6集团所有</li>
+<li>大小为 33 字节</li>
+</ul>
+<h4 id="解决方法-7">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">find / -user bandit7 -group bandit6 -size 33c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/:  从根目录找起
+</span></span><span class="line"><span class="cl">-user:  文件由用户uname所有（允许使用数字用户 ID）
+</span></span><span class="line"><span class="cl">-group: 文件属于组gname（允许使用数字组 ID）
+</span></span></code></pre></div><p>找到一堆无权限文件，但那些都不重要</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231123212612719.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231123212612719"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
+</span></span></code></pre></div><h3 id="level-7">level 7</h3>
+<h4 id="题目描述-8">题目描述</h4>
+<p>下一级的密码存储在文件<strong>data.txt中****millionth</strong> 单词旁边</p>
+<h4 id="解决方法-8">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">grep millionth data.txt
+</span></span></code></pre></div><p>执行命令 &ldquo;grep millionth data.txt&rdquo; 会在 &ldquo;data.txt&rdquo; 文件中搜索包含 &ldquo;millionth&rdquo; 的文本行，并将匹配到的行输出到终端。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231123213253471.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231123213253471"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	 TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+</span></span></code></pre></div><h3 id="level-8">level 8</h3>
+<h4 id="题目描述-9">题目描述</h4>
+<p>下一级的密码存储在文件<strong>data.txt</strong>中 ，并且是唯一只出现一次的文本行</p>
+<h4 id="解决方法-9">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sort data.txt <span class="p">|</span> uniq -u 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sort -- 是一个命令行工具，用于对文本文件进行排序。
+</span></span><span class="line"><span class="cl"><span class="p">|</span> --  是管道符号，用于将前一个命令的输出作为后一个命令的输入。
+</span></span><span class="line"><span class="cl">uniq -- 是一个命令行工具，用于查找和删除连续重复的行。
+</span></span><span class="line"><span class="cl">-u -- 是 <span class="s2">&#34;uniq&#34;</span> 命令的选项，用于仅输出不重复的行
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231123214456482.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231123214456482"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+</span></span></code></pre></div><h3 id="level-9">level 9</h3>
+<h4 id="题目描述-10">题目描述</h4>
+<p>下一级的密码存储在文件<strong>data.txt</strong>中 ，位于少数几个人类可读的字符串之一中，前面有几个“=”字符。</p>
+<h4 id="解决方法-10">解决方法</h4>
+<p>这里的data.txt是一个二进制文件，用grep是没法查找了，所以我们要把这个文件里的数据转为可打印字符。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">strings data.txt <span class="p">|</span> <span class="nv">grep</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">strings -- 是一个命令行工具，用于从二进制文件中提取可打印的字符串。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231123215850550.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231123215850550"
+	
+	
+></p>
+<p>这里我们还有别的办法，我们也可以用<code>xxd</code>命令，它可以把该文件内容作为16进制输出，这样我们也可以用<code>grep</code>命令查找</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+</span></span></code></pre></div><h3 id="level-10">level 10</h3>
+<h4 id="题目描述-11">题目描述</h4>
+<p>下一级的密码存储在文件<strong>data.txt</strong>中，其中包含base64编码的数据</p>
+<h4 id="解决方法-11">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat data.txt <span class="p">|</span> base64 -d
+</span></span><span class="line"><span class="cl">base -d data.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-d -- base64的命令选项，可以把base64编码解密并输出
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231123220309053.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231123220309053"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+</span></span></code></pre></div><h3 id="level-11">level 11</h3>
+<h4 id="题目描述-12">题目描述</h4>
+<p>下一级的密码存储在文件<strong>data.txt</strong>中，其中所有小写 (az) 和大写 (AZ) 字母均已旋转 13 个位置</p>
+<h4 id="解决方法-12">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat data.txt <span class="p">|</span> tr <span class="s2">&#34;a-zA-Z&#34;</span> <span class="s2">&#34;n-za-mN-ZA-M&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">tr -- 字符替换操作
+</span></span><span class="line"><span class="cl">a-zA-Z -- 表示要替换的字符范围
+</span></span><span class="line"><span class="cl">n-za-mN-ZA-M -- 将字符按照偏移量为13的逆序进行替换
+</span></span></code></pre></div><p>这关也可以把文件内容复制出来，然后找个凯撒解密工具解决。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231123221614848.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231123221614848"
+	
+	
+></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231123221631754.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231123221631754"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+</span></span></code></pre></div><h3 id="level-12">level 12</h3>
+<h4 id="题目描述-13">题目描述</h4>
+<p>下一级的密码存储在文件<strong>data.txt</strong>中，该文件是经过反复压缩的文件的十六进制转储。对于此级别，在 /tmp 下创建一个目录可能会很有用，您可以在其中使用 mkdir 进行工作。例如：mkdir /tmp/myname123。然后使用 cp 复制数据文件，并使用 mv 重命名它（阅读手册页！）</p>
+<h4 id="解决方法-13">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/winglet
+</span></span><span class="line"><span class="cl">cp data.txt /tmp/winglet
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/winglet
+</span></span><span class="line"><span class="cl">xxd -r data.txt &gt; data.bin
+</span></span><span class="line"><span class="cl">file data.bin
+</span></span><span class="line"><span class="cl">mv data.bin data.gz
+</span></span><span class="line"><span class="cl">gzip -d data.gz
+</span></span><span class="line"><span class="cl">file data
+</span></span><span class="line"><span class="cl">mv data data.bz
+</span></span><span class="line"><span class="cl">gzip -d data.bz
+</span></span><span class="line"><span class="cl">file data
+</span></span><span class="line"><span class="cl">mv data data.gz
+</span></span><span class="line"><span class="cl">gzip -d data.gz
+</span></span><span class="line"><span class="cl">file data
+</span></span><span class="line"><span class="cl">mv data data.tar
+</span></span><span class="line"><span class="cl">tar vxf data.tar
+</span></span><span class="line"><span class="cl">file data5.bin
+</span></span><span class="line"><span class="cl">mv data5.bin data.tar
+</span></span><span class="line"><span class="cl">tar vxf data.tar
+</span></span><span class="line"><span class="cl">file data6.bin
+</span></span><span class="line"><span class="cl">mv data6.bin data.bz
+</span></span><span class="line"><span class="cl">bzip2 -d data.bz
+</span></span><span class="line"><span class="cl">file data
+</span></span><span class="line"><span class="cl">mv data data.tar
+</span></span><span class="line"><span class="cl">tar vxf data.tar
+</span></span><span class="line"><span class="cl">file data8.bin
+</span></span><span class="line"><span class="cl">mv data8.bin data.gz
+</span></span><span class="line"><span class="cl">gzip -d data.gz
+</span></span><span class="line"><span class="cl">file data.gz
+</span></span><span class="line"><span class="cl">file data
+</span></span><span class="line"><span class="cl">cat data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">xxd  --  用于在十六进制和其他进制之间进行转换，并以不同的格式显示文件的内容
+</span></span><span class="line"><span class="cl">-r --  xxd的选项  将十六进制转换为二进制格式。
+</span></span><span class="line"><span class="cl">bzip2  --  一个常用的压缩和解压缩工具
+</span></span><span class="line"><span class="cl">-d  -- bzip2的一个选项 解压缩文件，恢复为原始文件
+</span></span><span class="line"><span class="cl">gzip  --  一个常用的压缩和解压缩工具
+</span></span><span class="line"><span class="cl">-d  -- gzip的一个选项 解压缩文件，恢复为原始文件
+</span></span><span class="line"><span class="cl">tar  --  一个常用的归档工具
+</span></span><span class="line"><span class="cl">-x  --  提取归档文件
+</span></span><span class="line"><span class="cl">-v  --  显示详细的操作信息。
+</span></span><span class="line"><span class="cl">-f  --  指定归档文件的名称。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231125135043865.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231125135043865"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
+</span></span></code></pre></div><h3 id="level-13">level 13</h3>
+<h4 id="题目描述-14">题目描述</h4>
+<p>下一级的密码存储在 <strong>/etc/bandit_pass/bandit14 中，并且只能由用户 bandit14 读取</strong>。对于此级别，您不会获得下一个密码，但您会获得可用于登录下一个级别的 SSH 私钥。 <strong>注意：</strong> <strong>localhost</strong>是指您正在使用的计算机的主机名</p>
+<h4 id="解决方法-14">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">cat sshkey.private
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sshkey.private: 
+</span></span><span class="line"><span class="cl">-----BEGIN RSA PRIVATE KEY-----
+</span></span><span class="line"><span class="cl">MIIEpAIBAAKCAQEAxkkOE83W2cOT7IWhFc9aPaaQmQDdgzuXCv+ppZHa++buSkN+
+</span></span><span class="line"><span class="cl">gg0tcr7Fw8NLGa5+Uzec2rEg0WmeevB13AIoYp0MZyETq46t+jk9puNwZwIt9XgB
+</span></span><span class="line"><span class="cl">ZufGtZEwWbFWw/vVLNwOXBe4UWStGRWzgPpEeSv5Tb1VjLZIBdGphTIK22Amz6Zb
+</span></span><span class="line"><span class="cl">ThMsiMnyJafEwJ/T8PQO3myS91vUHEuoOMAzoUID4kN0MEZ3+XahyK0HJVq68KsV
+</span></span><span class="line"><span class="cl">ObefXG1vvA3GAJ29kxJaqvRfgYnqZryWN7w3CHjNU4c/2Jkp+n8L0SnxaNA+WYA7
+</span></span><span class="line"><span class="cl">jiPyTF0is8uzMlYQ4l1Lzh/8/MpvhCQF8r22dwIDAQABAoIBAQC6dWBjhyEOzjeA
+</span></span><span class="line"><span class="cl">J3j/RWmap9M5zfJ/wb2bfidNpwbB8rsJ4sZIDZQ7XuIh4LfygoAQSS+bBw3RXvzE
+</span></span><span class="line"><span class="cl">pvJt3SmU8hIDuLsCjL1VnBY5pY7Bju8g8aR/3FyjyNAqx/TLfzlLYfOu7i9Jet67
+</span></span><span class="line"><span class="cl">xAh0tONG/u8FB5I3LAI2Vp6OviwvdWeC4nOxCthldpuPKNLA8rmMMVRTKQ+7T2VS
+</span></span><span class="line"><span class="cl">nXmwYckKUcUgzoVSpiNZaS0zUDypdpy2+tRH3MQa5kqN1YKjvF8RC47woOYCktsD
+</span></span><span class="line"><span class="cl">o3FFpGNFec9Taa3Msy+DfQQhHKZFKIL3bJDONtmrVvtYK40/yeU4aZ/HA2DQzwhe
+</span></span><span class="line"><span class="cl">ol1AfiEhAoGBAOnVjosBkm7sblK+n4IEwPxs8sOmhPnTDUy5WGrpSCrXOmsVIBUf
+</span></span><span class="line"><span class="cl">laL3ZGLx3xCIwtCnEucB9DvN2HZkupc/h6hTKUYLqXuyLD8njTrbRhLgbC9QrKrS
+</span></span><span class="line"><span class="cl">M1F2fSTxVqPtZDlDMwjNR04xHA/fKh8bXXyTMqOHNJTHHNhbh3McdURjAoGBANkU
+</span></span><span class="line"><span class="cl">1hqfnw7+aXncJ9bjysr1ZWbqOE5Nd8AFgfwaKuGTTVX2NsUQnCMWdOp+wFak40JH
+</span></span><span class="line"><span class="cl">PKWkJNdBG+ex0H9JNQsTK3X5PBMAS8AfX0GrKeuwKWA6erytVTqjOfLYcdp5+z9s
+</span></span><span class="line"><span class="cl">8DtVCxDuVsM+i4X8UqIGOlvGbtKEVokHPFXP1q/dAoGAcHg5YX7WEehCgCYTzpO+
+</span></span><span class="line"><span class="cl">xysX8ScM2qS6xuZ3MqUWAxUWkh7NGZvhe0sGy9iOdANzwKw7mUUFViaCMR/t54W1
+</span></span><span class="line"><span class="cl">GC83sOs3D7n5Mj8x3NdO8xFit7dT9a245TvaoYQ7KgmqpSg/ScKCw4c3eiLava+J
+</span></span><span class="line"><span class="cl">3btnJeSIU+8ZXq9XjPRpKwUCgYA7z6LiOQKxNeXH3qHXcnHok855maUj5fJNpPbY
+</span></span><span class="line"><span class="cl">iDkyZ8ySF8GlcFsky8Yw6fWCqfG3zDrohJ5l9JmEsBh7SadkwsZhvecQcS9t4vby
+</span></span><span class="line"><span class="cl">9/8X4jS0P8ibfcKS4nBP+dT81kkkg5Z5MohXBORA7VWx+ACohcDEkprsQ+w32xeD
+</span></span><span class="line"><span class="cl">qT1EvQKBgQDKm8ws2ByvSUVs9GjTilCajFqLJ0eVYzRPaY6f++Gv/UVfAPV4c+S0
+</span></span><span class="line"><span class="cl">kAWpXbv5tbkkzbS0eaLPTKgLzavXtQoTtKwrjpolHKIHUz6Wu+n4abfAIRFubOdN
+</span></span><span class="line"><span class="cl">/+aLoRQ0yBDRbdXMsZN/jvY44eM+xRLdRVyMmdPtP8belRi2E2aEzA==
+</span></span><span class="line"><span class="cl">-----END RSA PRIVATE KEY-----
+</span></span></code></pre></div><p>将这个私钥复制后，在桌面新建一个空白文件，并把该内容输入进去，之后利用他连接<code>bandit14</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod <span class="m">600</span> id_rsa
+</span></span><span class="line"><span class="cl">ssh -i id_rsa bandit14@bandit.labs.overthewire.org -p <span class="m">2220</span>
+</span></span><span class="line"><span class="cl">cat /etc/bandit_pass/bamdit14
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+</span></span></code></pre></div><h3 id="level-14">level 14</h3>
+<h4 id="题目描述-15">题目描述</h4>
+<p>将当前级别的密码提交到<strong>localhost 的 30000 端口</strong>即可获取下一级的密码。</p>
+<h4 id="解决方法-15">解决方法</h4>
+<ol>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nc localhost <span class="m">30000</span>
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231125141022189.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231125141022189"
+	
+	
+></p>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">echo</span> fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq <span class="p">|</span> nc localhost <span class="m">30000</span>
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231125141241978.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231125141241978"
+	
+	
+></p>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">telnet localhost <span class="m">30000</span>
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231125141254692.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231125141254692"
+	
+	
+></p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc  --  是一个网络工具，用于在网络上进行数据传输。它可以用于创建 TCP 或 UDP 连接、发送和接收数据，以及进行端口扫描等操作。
+</span></span><span class="line"><span class="cl">nc &lt;目标主机&gt; &lt;目标端口&gt; &lt; 文件  --  发送文件
+</span></span><span class="line"><span class="cl">telnet  --  一种用于远程登录和网络通信的协议和工具
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+</span></span></code></pre></div><h3 id="level-15">level 15</h3>
+<h4 id="题目描述-16">题目描述</h4>
+<p>通过使用 SSL 加密将当前级别的密码提交到<strong>localhost 的 30001 端口，可以检索下一级的密码。</strong></p>
+<p><strong>有用的注释：获得“HEARTBEATING”和“Read R BLOCK”？使用 -ign_eof 并阅读联机帮助页中的“连接命令”部分。除了“R”和“Q”之外，“B”命令也适用于该命令的此版本&hellip;&hellip;</strong></p>
+<h4 id="解决方法-16">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">openssl s_client -connect localhost:30001
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">openssl  --  一个开源的加密工具包，提供了一组用于处理加密、解密、签名、验证等操作的命令行工具
+</span></span><span class="line"><span class="cl">ssl协议  --  一种用于在计算机网络上进行安全通信的协议。SSL的目标是通过使用加密和身份验证机制，确保在客户端和服务器之间传输的数据的保密性、完整性和可信性。
+</span></span><span class="line"><span class="cl">s_client  --  用于在命令行中模拟 SSL/TLS 客户端的行为
+</span></span><span class="line"><span class="cl">-connect  --  指定要连接的主机和端口
+</span></span><span class="line"><span class="cl">example：  openssl s_client -connect example.com:443
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126125731137.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126125731137"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	JQttfApK4SeyHwDlI9SXGR50qclOAil1
+</span></span></code></pre></div><h3 id="level-16">level 16</h3>
+<h4 id="题目描述-17">题目描述</h4>
+<p>可以通过将当前级别的密码提交到<strong>本地主机上 31000 到 32000 范围内的端口来</strong>检索下一个级别的凭据。首先找出服务器正在监听哪些端口。然后找出哪些使用 SSL，哪些不使用 SSL。只有一台服务器会提供下一个凭据，其他服务器只会将您发送给它的任何内容发送回给您。</p>
+<h4 id="解决方法-17">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nmap -sV -T4 lcoalhost -p 31000-32000
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-sV  --  使用版本探测功能，尝试确定目标主机上运行的服务和其版本信息。
+</span></span><span class="line"><span class="cl">-T4  --  设置扫描速度为“快速”模式，以更高的速度执行扫描。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126165003436.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126165003436"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">openssl s_client -connect localhost:31790
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126165127597.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126165127597"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod <span class="m">600</span> id_rsa
+</span></span><span class="line"><span class="cl">ssh -i id_rsa bandit17@bandit.labs.overthewire.org -p <span class="m">2220</span>
+</span></span><span class="line"><span class="cl">cat /etc/bandit_pass/bandit14
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
+</span></span></code></pre></div><h3 id="level-17">level 17</h3>
+<h4 id="题目描述-18">题目描述</h4>
+<p>主目录中有2个文件：<strong>passwords.old和passwords.new</strong>。下一级的密码位于 <strong>passwords.new中，并且是****passwords.old 和password.new</strong>之间唯一已更改的行</p>
+<p><strong>注意：如果您已解决此级别并看到“再见！” 当尝试登录 bandit18 时，这与下一个级别 bandit19 有关</strong></p>
+<h4 id="解决方法-18">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">diff passwords.new password.old
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">diff  --  用于比较文件和目录之间的差异
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126165620713.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126165620713"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
+</span></span></code></pre></div><h3 id="level-18">level 18</h3>
+<h4 id="题目描述-19">题目描述</h4>
+<p>下一级的密码存储在主目录中的自述<strong>文件中。<strong>不幸的是，有人修改了</strong>.bashrc</strong> ，以便在您使用 SSH 登录时将您注销。</p>
+<h4 id="解决方法-19">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /etc/shells
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/etc/shells  --   是一个位于 Unix/Linux 系统中的文件路径，它包含了系统中可用的登录 shell 列表。这个文件用于指定哪些用户 shell 可以用于登录系统。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126171429224.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126171429224"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh bandit18@bandit.labs.overthewire.org -p <span class="m">2220</span> -t /bin/sh
+</span></span><span class="line"><span class="cl">cat readme
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/bin/sh  --  Sh 是一种最早出现的 Unix Shell，它由 Stephen Bourne 开发。Sh 是许多 Unix 系统默认的标准 Shell。它提供了基本的命令行解释功能，允许用户执行命令、运行脚本和控制系统。Sh 在功能和语法方面相对简单，缺乏一些现代 Shell 的高级特性。
+</span></span><span class="line"><span class="cl">/bin/bash  --  Bash 是 Sh 的增强版本，由 Brian Fox 开发。Bash 在功能和语法上扩展了 Sh，提供了更多的特性和工具。Bash 兼容 Sh，因此可以执行 Sh 脚本，并且可以使用更多的命令和语法扩展。Bash 是许多 Linux 系统默认的 Shell，并且也广泛用于其他 Unix 系统。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126171754268.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126171754268"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	awhqfNnAbc1naukrpqDYcF95h7HoMTrC
+</span></span></code></pre></div><h3 id="level-19">level 19</h3>
+<h4 id="题目描述-20">题目描述</h4>
+<p>要访问下一个级别，您应该使用主目录中的 setuid 二进制文件。不带参数执行它以了解如何使用它。使用 setuid 二进制文件后，可以在通常的位置 (/etc/bandit_pass) 找到此级别的密码。</p>
+<h4 id="解决方法-20">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">./bandit20-do cat /etc/bandit_pass/bandit20
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126172303647.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126172303647"
+	
+	
+></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126172921896.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126172921896"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SUID (Set User ID) 和 SGID (Set Group ID) 是 Unix/Linux 系统中的两个特殊权限位，用于设置可执行文件的权限。
+</span></span></code></pre></div><p>在这里该文件的拥有者是<code>bandit20</code>然后<code>bandit19</code>拥有使用权，当该文件具有suid权限的时候，这就意味着普通用户在执行该文件的时候，会以文件所有者的身份执行，为不是以执行者自己的身份。</p>
+<p>设置suid权限的母的是允许欧通用户以特权用户的身份去执行某些特定的命令或程序，而在这种情况下，bandit19可以用bandit20的身份执行命令。</p>
+<p>而这个二进制文件的功能是自定义的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	VxCazJaVykI6W36BkBU0mJTCM8rR95XT
+</span></span></code></pre></div><h3 id="level-20">level 20</h3>
+<h4 id="题目描述-21">题目描述</h4>
+<p>主目录中有一个 setuid 二进制文件，它执行以下操作：它在您指定为命令行参数的端口上建立到本地主机的连接。然后，它从连接中读取一行文本，并将其与上一级别 (bandit20) 中的密码进行比较。如果密码正确，则会传送下一级（bandit21）的密码。</p>
+<p>**注意：**尝试连接到您自己的网络守护程序，看看它是否按您的想法工作</p>
+<h4 id="解决方法-21">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nc -lv -p <span class="m">0</span> &lt; /etc/bandit_pass/bandit20 <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nc  --  它是一个网络工具，用于在不同主机之间进行数据传输和网络连接
+</span></span><span class="line"><span class="cl">-lv  --  参数用于指定 nc 命令以监听模式运行，并打印接收到的数据。
+</span></span><span class="line"><span class="cl">-p  --  参数用于指定监听端口。在这个示例中，端口号被设置为 0，代表随机选择一个可用的端口进行监听。
+</span></span><span class="line"><span class="cl">&lt;  --  将/etc/bandit_pass/bandit20文件的内容作为输入提供给前面的命令
+</span></span><span class="line"><span class="cl"><span class="p">&amp;</span>  --  符号用于将命令放入后台执行，以便继续在终端中执行其他命令。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126181123078.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126181123078"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">./suconnect <span class="m">23333</span>
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126181207087.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126181207087"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
+</span></span></code></pre></div><h3 id="level-21">level 21</h3>
+<h4 id="题目描述-22">题目描述</h4>
+<p>程序从 基于时间的作业调度程序**cron定期自动运行。<strong>查看</strong>/etc/cron.d/**中的配置并查看正在执行什么命令。</p>
+<h4 id="解决方法-22">解决方法</h4>
+<p><strong>cron</strong> 是一个在 Unix/Linux 系统上用于执行预定任务的定时任务调度器。它允许用户创建和管理定期执行的任务，这些任务可以是脚本、命令或任何可执行程序。Cron 基于 crontab（cron table）文件来定义和配置这些任务。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /etc/cron.d
+</span></span><span class="line"><span class="cl">ls 
+</span></span><span class="line"><span class="cl">cat cronjob_bandit22
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126182227452.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126182227452"
+	
+	
+></p>
+<p>这样我们就知道，程序在定时执行<code>/usr/bin/cronjob_bandit22.sh</code>文件的内容。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /usr/bin/cronjob_bandit22.sh
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126182338235.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126182338235"
+	
+	
+></p>
+<p>以此可知，他把密码放在了<code>/tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126182430849.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126182430849"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
+</span></span></code></pre></div><h3 id="level-22">level 22</h3>
+<h4 id="题目描述-23">题目描述</h4>
+<p>程序从 基于时间的作业调度程序**cron定期自动运行。<strong>查看</strong>/etc/cron.d/**中的配置并查看正在执行什么命令。</p>
+<p>**注意：**查看其他人编写的 shell 脚本是一项非常有用的技能。此级别的脚本有意使之易于阅读。如果您在理解它的作用时遇到问题，请尝试执行它以查看它打印的调试信息。</p>
+<h4 id="解决方法-23">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /etc/cron.d/cronjob_bandit23
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126182920239.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126182920239"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /usr/bin/cronjob_bandit23.sh
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126182950869.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126182950869"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">echo</span> I am user bandit23 <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f <span class="m">1</span>
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126183848453.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126183848453"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /tmp/8169b67bd894ddbb4412f91573b38db3
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126183900905.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231126183900905"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
+</span></span></code></pre></div><h3 id="level-23">level 23</h3>
+<h4 id="题目描述-24">题目描述</h4>
+<p>程序从 基于时间的作业调度程序**cron定期自动运行。<strong>查看</strong>/etc/cron.d/**中的配置并查看正在执行什么命令。</p>
+<p>**注意：**此级别要求您创建自己的第一个 shell 脚本。这是非常大的一步，当你通过这个关卡时，你应该为自己感到自豪！</p>
+<p>**注意 2：**请记住，您的 shell 脚本一旦执行就会被删除，因此您可能需要保留一份副本&hellip;&hellip;</p>
+<h4 id="解决方法-24">解决方法</h4>
+<p>根据描述先查看<code>/etc/cron.d</code>文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /etc/cron.d
+</span></span><span class="line"><span class="cl">ls
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240103213309803.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240103213309803"
+	
+	
+></p>
+<p>查看与<code>bandit24</code>有关的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat cronjob_bandit24
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240103213452090.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240103213452090"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cron是一个用于在Linux和类Unix系统上执行预定任务的工具。/etc/crontab文件是系统范围的cron配置文件，其中包含了各个用户的定时任务。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cron作业的条目，它会在每次系统启动时以bandit24用户身份执行/usr/bin/cronjob_bandit24.sh脚本，并将输出重定向到/dev/null。
+</span></span></code></pre></div><p>查看<code>bandit24.sh</code>内容</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /usr/bin/cronjob_bandit24.sh
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cronjob_bandit24.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取当前用户名，因为该文件运行权限是bandit24，所以该变量存储 bandit24</span>
+</span></span><span class="line"><span class="cl"><span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入目录</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /var/spool/<span class="nv">$myname</span>/foo 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打印信息</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Executing and deleting all scripts in /var/spool/</span><span class="nv">$myname</span><span class="s2">/foo:&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 遍历目录中的所有文件和目录（包括隐藏文件和目录）</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> i in * .*<span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查文件或目录是否不是当前目录（&#34;.&#34;）或父目录（&#34;..&#34;）</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;.&#34;</span> -a <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;..&#34;</span> <span class="o">]</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    	<span class="c1"># 打印信息</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;Handling </span><span class="nv">$i</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 使用 stat 命令获取文件的所有者，并将其存储在 owner 变量中</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">owner</span><span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span>stat --format <span class="s2">&#34;%U&#34;</span> ./<span class="nv">$i</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 判断用户是否bandit23</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">owner</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">=</span> <span class="s2">&#34;bandit23&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        	<span class="c1"># 如果是bandit23则使用 timeout 在60秒内执行该文件</span>
+</span></span><span class="line"><span class="cl">            timeout -s <span class="m">9</span> <span class="m">60</span> ./<span class="nv">$i</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 删除文件</span>
+</span></span><span class="line"><span class="cl">        rm -f ./<span class="nv">$i</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">根据上面的代码信息我们可以知道，如果我们用bandit23用户创建一个脚本文件并存入 /bandit24/foo/ 目录内的话，是可以在60秒内执行的，所以我们可以创建一个脚本，让它可以获取bandit24的密码。那么我们的思路就是在tmp目录下创建一个目录，并在里面创建脚本，因为tmp目录下我们是有写文件权限的，然后脚本内容就是把bandit24的密码存入一个文件里。
+</span></span></code></pre></div><p>创建脚本</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir /tmp/rand
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/rand
+</span></span><span class="line"><span class="cl">vim script.sh
+</span></span><span class="line"><span class="cl">cp script.sh /var/spool/bandit24
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">script.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">cat /etc/bandit_pass/bandit24 &gt; /tmp/rand/password
+</span></span></code></pre></div><p>这时我们还需要，给tmp/rand一个任何用户都能写文件的权限，不然，bandit24在运行脚本时，会因为没有权限导致不能写文件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod <span class="m">777</span> -R /tmp/rand
+</span></span></code></pre></div><p>接下来就是等一会儿</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240103215547461.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240103215547461"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat password
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240103215610603.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240103215610603"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
+</span></span></code></pre></div><h3 id="level-24">level 24</h3>
+<h4 id="题目描述-25">题目描述</h4>
+<p>守护程序正在侦听端口 30002，如果给定 bandit24 的密码和秘密数字 4 位 pincode，它将为您提供 bandit25 的密码。除非通过所有 10000 个组合（称为暴力破解），否则无法检索 pin 码。
+您不需要每次都创建新连接</p>
+<h4 id="解决方法-25">解决方法</h4>
+<p>根据描述可以知道我们这次要进行爆破了，脚本内容如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> i in <span class="o">{</span>5000..9999<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar </span><span class="nv">$i</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span> <span class="p">|</span> nc localhost <span class="m">30002</span>
+</span></span></code></pre></div><p>创建文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir /tmp/randit24
+</span></span><span class="line"><span class="cl">vim rand.sh
+</span></span><span class="line"><span class="cl">./rand.sh
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240103221736440.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240103221736440"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
+</span></span></code></pre></div><h3 id="level-25">level 25</h3>
+<h4 id="题目描述-26">题目描述</h4>
+<p>从 bandit25 登录 bandit26 应该相当容易……用户 bandit26 的 shell 不是**/bin/bash**，而是其他东西。了解它是什么、它是如何工作的以及如何摆脱它。</p>
+<h4 id="解决方法-26">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls 
+</span></span><span class="line"><span class="cl">cat bandit26
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231201194445758.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231201194445758"
+	
+	
+></p>
+<p>使用这个key尝试登录bandit26</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod <span class="m">600</span> id_rsa
+</span></span><span class="line"><span class="cl">ssh -i id_rsa bandit26@bandit.labs.overthewire.org -p <span class="m">2220</span>
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231201194911755.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231201194911755"
+	
+	
+></p>
+<p>连接失败，我们知道<code>bandit26</code>用户使用的<code>shell</code>不是默认<code>/bin/bash</code></p>
+<p>所以可以查看一下默认shell信息</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /etc/passwd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/etc/passwd  --  一个在类Unix操作系统中存储用户账户信息的文件。它是一个文本文件，每一行代表一个用户账户，并使用冒号（:）分隔不同的字段。它包含了系统中所有用户名、组ID、用户主目录、默认shell等信息。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231201205844882.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231201205844882"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1. bandit26  --  用户名，表示用户的登录名
+</span></span><span class="line"><span class="cl">2. x  --  密码字段，以前曾在此处存储用户密码，但现在已经被单独存储在/etc/shadow文件中，并以占位符 x 表示
+</span></span><span class="line"><span class="cl">3. 11026  --  用户ID(UID)，是系统为每个用户分配的唯一数字标识符
+</span></span><span class="line"><span class="cl">4. 11026  --  组ID(GID)，是用户所属的组的唯一数字标识符
+</span></span><span class="line"><span class="cl">5. bandit level 26  --  用户的注释字段，用于描述用户的一些额外信息，例如用户的姓名或角色
+</span></span><span class="line"><span class="cl">6. /home/bandit26  --  用户主目录，表示用户登录后所在的初始目录
+</span></span><span class="line"><span class="cl">7. /usr/bin/showtext  --  默认shell, 指定用户登录后使用的命令行解释器
+</span></span></code></pre></div><p>查看默认shell</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /usr/bin/showtext
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231201214716429.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231201214716429"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">exec</span> more ~/text.txt  --  这行代码使用<span class="s1">&#39;exec&#39;</span>命令来代替当前进程并执行 more ~/text.txt 命令。more 命令用于逐页显示文件内容，这里将显示用户的主目录下的 text.txt 文件
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">核心：注销的原因是exit <span class="m">0</span> 行，该行在显示 text.txt 文件中的所有文本后立即执行。
+</span></span><span class="line"><span class="cl">	 如果需要在终端上显示的内容量大于终端的大小，more 工具就会进入交互模式，知道我们退出为止。所以只要我们不查看文件的所有内容，就不会直接退出程序。
+</span></span></code></pre></div><p>所以我们可以先缩小终端尺寸，然后再以bandit26身份登录，这样就不会注销，并且能处于更多的交互模式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh -i bandit26.sshkey bandit26@localhost -p <span class="m">2220</span>
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231201220505422.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231201220505422"
+	
+	
+></p>
+<p>然后我们可以按&rsquo;v&rsquo;进入vim编辑器，在vim中有一个命令模式，可以执行系统命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">:set shell=/bin/bash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#显式地将外部shell设置为bash，以确保在执行外部命令时使用bash解释器
+</span></span></code></pre></div><p>接下来我们再执行下一个命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">:shell
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在当前vim会话中启动一个新的子shell终端</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在vim中执行 :shell 命令时，vim会暂时编辑会话并打开一个新的shell终端，可以在这个shell终端中执行任何命令</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个功能可以在不离开Vim的情况下执行一些临时的命令或查看其他文件，然后回到编辑会话继续工作</span>
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231201221003439.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231201221003439"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /etc/bandit_pass/bandit26
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231201221102447.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231201221102447"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
+</span></span></code></pre></div><h3 id="level-26">level 26</h3>
+<h4 id="题目描述-27">题目描述</h4>
+<p>干得好，得到一个外壳！现在赶快获取 bandit27 的密码吧！</p>
+<h4 id="解决方法-27">解决方法</h4>
+<p>在<code>bandit26</code>中有一个<code>bandit27-do</code>的二进制文件，查看属性</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202102736782.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202102736782"
+	
+	
+></p>
+<p>可以发现设置了suid权限，所以我们在使用这个文件时她便具有文件所有者相应的权限。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">./bandit27-do cat /etc/badnit_pass/bandit27
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202102903280.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202102903280"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS 
+</span></span></code></pre></div><h3 id="level-27">level 27</h3>
+<h4 id="题目描述-28">题目描述</h4>
+<p><code>ssh://bandit27-git@localhost/home/bandit27-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit27-git</code>与用户的密码相同<code>bandit27</code>。</p>
+<p>克隆存储库并找到下一级的密码。</p>
+<h4 id="解决方法-28">解决方法</h4>
+<p>在<code>/home</code>目录下有一个<code>bandit27-git</code>文件，但是我们没有访问权限，所以我们可以在<code>tmp</code>目录下新建一个文件夹，然后克隆仓库</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit27-git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/bandit27-git
+</span></span><span class="line"><span class="cl">git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> repo
+</span></span><span class="line"><span class="cl">cat README
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git clone  --  是一个Git命令，用于将远程Git仓库复制（克隆）到本地计算机上。它创建一个与远程仓库相同的副本，使你能够在本地进行代码的修改、提交和其他操作，而不会影响到远程仓库。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202104112299.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202104112299"
+	
+	
+></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202104059481.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202104059481"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	AVanL161y9rsbcJIsFHuw35rjaOM19nR
+</span></span></code></pre></div><h3 id="level-28">level 28</h3>
+<h4 id="题目描述-29">题目描述</h4>
+<p><code>ssh://bandit28-git@localhost/home/bandit28-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit28-git</code>与用户的密码相同<code>bandit28</code>。</p>
+<p>克隆存储库并找到下一级的密码。</p>
+<h4 id="解决方法-29">解决方法</h4>
+<p>前面的方法一样</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit28
+</span></span><span class="line"><span class="cl">git clone ssh://bandit-git@localhost:2220/home/bandit28-git/repo
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> repo
+</span></span></code></pre></div><p>但是这里的<code>README.md</code>文件里的没有下一级的密码。我们可以查看文件更新日志</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git log   --  命令将显示按时间顺序列出的提交记录，包括每个提交的作者、提交日期、提交信息和唯一的提交哈希值
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202110114913.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202110114913"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">提交 14f754b3ba6531a2b89df6ccae6446e8969a41f3 (HEAD -&gt; master, origin/master, origin/HEAD)
+</span></span><span class="line"><span class="cl">作者：Morla Porla morla@overthewire.org
+</span></span><span class="line"><span class="cl">日期：2023年10月5日 06:19:41 +0000
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">修复信息泄漏
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">提交 f08b9cc63fa1a4602fb065257633c2dae6e5651b
+</span></span><span class="line"><span class="cl">作者：Morla Porla morla@overthewire.org
+</span></span><span class="line"><span class="cl">日期：2023年10月5日 06:19:41 +0000
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">添加缺失的数据
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">提交 a645bcc508c63f081234911d2f631f87cf469258
+</span></span><span class="line"><span class="cl">作者：Ben Dover noone@overthewire.org
+</span></span><span class="line"><span class="cl">日期：2023年10月5日 06:19:41 +0000
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">README.md 的初始提交
+</span></span></code></pre></div><p>这里我们要用的是第二个。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout f08b9cc63fa1a4602fb065257633c2dae6e5651b
+</span></span><span class="line"><span class="cl">cat README.md
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git checkout  --  用于切换到不同的分支、恢复文件的特定版本或创建新的分支。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202110240268.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202110240268"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S
+</span></span></code></pre></div><h3 id="level-29">level 29</h3>
+<h4 id="题目描述-30">题目描述</h4>
+<p><code>ssh://bandit29-git@localhost/home/bandit29-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit29-git</code>与用户的密码相同<code>bandit29</code>。</p>
+<p>克隆存储库并找到下一级的密码。</p>
+<h4 id="解决方法-30">解决方法</h4>
+<p>前面方法一致</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit29
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/bandit29
+</span></span><span class="line"><span class="cl">git clone ssh://bandit29-git@localhost:2220/home/bandit29-git/repo
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> repo
+</span></span><span class="line"><span class="cl">cat README.md
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202111301970.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202111301970"
+	
+	
+></p>
+<p>在这里<code>production</code>可能是一个分支，所以我们可以查看所有分支</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git branch -a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git branch  --  命令将列出仓库中所有的本地分支。当前活动的分支会以星号标记。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202111437442.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202111437442"
+	
+	
+></p>
+<p>然后我们查看<code>dev</code>分支，切换到<code>dev</code>分支</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout remotes/origin/dev
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202111947621.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202111947621"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme：
+</span></span><span class="line"><span class="cl">	xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
+</span></span></code></pre></div><h3 id="level-30">level 30</h3>
+<h4 id="题目描述-31">题目描述</h4>
+<p><code>ssh://bandit30-git@localhost/home/bandit30-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit30-git</code>与用户的密码相同<code>bandit30</code>。</p>
+<p>克隆存储库并找到下一级的密码。</p>
+<h4 id="解决方法-31">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit30
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/bandit30
+</span></span><span class="line"><span class="cl">git clone ssh://bandit30-git@localhost:2220/home/bandit30-git/repo
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> repo
+</span></span><span class="line"><span class="cl">cat README.md
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202113118665.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202113118665"
+	
+	
+></p>
+<p>文件中无有用内容，并且查看了日志和分支也没有有用部分，这时我们还可以查看标签</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git tag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git tag  --  用于管理和查看标签（tag）
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202113428068.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202113428068"
+	
+	
+></p>
+<p>查看里面内容</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git show secret
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git show  --  这将显示特定标签的详细信息，包括提交哈希、作者、日期和注释等。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202113522179.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202113522179"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt
+</span></span></code></pre></div><h3 id="level-31">level 31</h3>
+<h4 id="题目描述-32">题目描述</h4>
+<p><code>ssh://bandit31-git@localhost/home/bandit31-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit31-git</code>与用户的密码相同<code>bandit31</code>。</p>
+<p>克隆存储库并找到下一级的密码。</p>
+<h4 id="解决方法-32">解决方法</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit31
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/bandit31
+</span></span><span class="line"><span class="cl">git clone ssh://bandit31-git@localhost:2220/home/bandit31-git/repo
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> repo
+</span></span><span class="line"><span class="cl">cat README.md
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202115517698.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202115517698"
+	
+	
+></p>
+<p>要求发送文件到远程仓库</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ls
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202115645606.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202115645606"
+	
+	
+></p>
+<p><code>.gitignore</code> 文件里面记录的是不能被储存的文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat .gitignore
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202120005883.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202120005883"
+	
+	
+></p>
+<p>也就是说只要是后缀为<code>txt</code>的文件，都不会被推送到远程仓库，所以我们要先将它删除，然后再推胸文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">rm .gitignore
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;May I come in?&#34;</span> &gt; key.txt
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;task&#34;</span>
+</span></span><span class="line"><span class="cl">git push origin master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git add .  --  将所有文件添加到暂存区，<span class="s2">&#34;.&#34;</span> 代表所有文件
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;task&#34;</span>  --  将暂存区的文件更新到本地仓库，-m指定提交消息，如果未指定此消息，则将打开默认文本编辑器
+</span></span><span class="line"><span class="cl">git push origin master  --  将本地的 master 分支推送到远程仓库（通常是 origin）的 master分支。
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202120509227.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202120509227"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	rmCBvG56y58BXzv98yZGdO7ATVL5dW8y
+</span></span></code></pre></div><h3 id="level-32">level 32</h3>
+<h4 id="题目描述-33">题目描述</h4>
+<p>经历了所有这些<code>git</code>事情之后，是时候进行另一次逃脱了。<strong>祝你好运</strong></p>
+<h4 id="解决方法-33">解决方法</h4>
+<p>登录进去后</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202134021451.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202134021451"
+	
+	
+></p>
+<p>可以发现，在这个shell中输入的命令都会转为大写，这也就导致了命令出错</p>
+<p>所以该shell的内容基本是</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sh -c <span class="s2">&#34;&lt;user-input&gt;&#34;</span>
+</span></span></code></pre></div><p>这里要将一个特殊的变量<code>$0</code>，它表示当前脚本的名称或路径</p>
+<p>创建一个<code>script.sh</code>文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">script.sh 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$0</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><p>接着我们运行它</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202134636027.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202134636027"
+	
+	
+></p>
+<p>它所储存的就是当前正在执行的文件</p>
+<p>而如果我们直接打印 $0, 则表明当前使用的是zsh shell</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202134849030.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202134849030"
+	
+	
+></p>
+<p>但如果我们只输入一个 $0 就会生成一个新的shell，相当与我们直接运行zsh shell</p>
+<p>所以我们就可以在upper shell中只输入一个 $0 来执行一个新的shell</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202135109641.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202135109641"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nv">$0</span>
+</span></span><span class="line"><span class="cl">cat /etc/bandit_pass/bandit33
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202135144300.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231202135144300"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
+</span></span><span class="line"><span class="cl">	odHo63fHiFqcWWJG9rLiLDtPm45KzUKy
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/linux/">linux</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["/source/Sticker-100/"],"locale":{"admin":"👻屑博主","placeholder":"🎉留下你的脚印."},"requiredMeta":["name","email","url"]});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Winglet
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

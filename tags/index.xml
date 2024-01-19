@@ -7,7 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Winglet</copyright>
-        <lastBuildDate>Tue, 16 Jan 2024 17:48:22 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 18 Jan 2024 20:13:41 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>linux</title>
+        <link>https://blog.winglet.com/tags/linux/</link>
+        <pubDate>Thu, 18 Jan 2024 20:13:41 +0800</pubDate>
+        
+        <guid>https://blog.winglet.com/tags/linux/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>爬虫</title>
         <link>https://blog.winglet.com/tags/%E7%88%AC%E8%99%AB/</link>
         <pubDate>Tue, 16 Jan 2024 17:48:22 +0800</pubDate>
