@@ -8,12 +8,12 @@
         <language>zh-cn</language>
         <copyright>Winglet</copyright>
         <lastBuildDate>Thu, 18 Jan 2024 20:13:41 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/categories/%E9%9D%B6%E5%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Bandit0 33关</title>
+        <title>Bandit0-33关</title>
         <link>https://blog.winglet.com/p/bandit0-33%E5%85%B3/</link>
         <pubDate>Thu, 18 Jan 2024 20:13:41 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/bandit0-33%E5%85%B3/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240118.png" alt="Featured image of post Bandit0 33关" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240118.png" alt="Featured image of post Bandit0-33关" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;​	搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。&lt;/p&gt;
 &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
 &lt;p&gt;​	bandit是&lt;strong&gt;over the wire&lt;/strong&gt;推出的一个为提升linux基础的系统靶场，目前共有33关，适合小白学习和增强linux命令操作。靶场网址：https://overthewire.org/wargames/bandit/&lt;/p&gt;
