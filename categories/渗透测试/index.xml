@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>渗透测试 on Winglet&#39;s Blog</title>
+        <link>https://blog.winglet.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link>
+        <description>Recent content in 渗透测试 on Winglet&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Winglet</copyright>
+        <lastBuildDate>Thu, 18 Jan 2024 17:02:45 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Craser渗透测试笔记[更新中]</title>
+        <link>https://blog.winglet.com/p/craser%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0%E6%9B%B4%E6%96%B0%E4%B8%AD/</link>
+        <pubDate>Thu, 18 Jan 2024 17:02:45 +0800</pubDate>
+        
+        <guid>https://blog.winglet.com/p/craser%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0%E6%9B%B4%E6%96%B0%E4%B8%AD/</guid>
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240121_165102.gif" alt="Featured image of post Craser渗透测试笔记[更新中]" /&gt;&lt;h2 id=&#34;基础知识&#34;&gt;基础知识&lt;/h2&gt;
+&lt;h3 id=&#34;渗透测试介绍&#34;&gt;渗透测试介绍&lt;/h3&gt;
+&lt;h3 id=&#34;渗透测试注意事项补充&#34;&gt;渗透测试注意事项（补充）&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;不能进行恶意攻击&lt;/li&gt;
+&lt;li&gt;没有获得书面授权时，不能攻击任何目标&lt;/li&gt;
+&lt;li&gt;遵守国家安全法法规&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;渗透测试流程&#34;&gt;渗透测试流程&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;确定目标，信息收集&lt;/li&gt;
+&lt;li&gt;漏洞探测，漏洞验证&lt;/li&gt;
+&lt;li&gt;获取所需，信息分析&lt;/li&gt;
+&lt;li&gt;编写报告，信息整理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安全术语了解&#34;&gt;安全术语（了解）&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;脚本 (asp、php、jsp)&lt;/li&gt;
+&lt;li&gt;html (xml、js、css)&lt;/li&gt;
+&lt;li&gt;cms (B/S)&lt;/li&gt;
+&lt;li&gt;肉鸡、抓鸡、ddos、cc&lt;/li&gt;
+&lt;li&gt;事件型漏洞、通用型漏洞&lt;/li&gt;
+&lt;li&gt;web服务器、web容器、中间件&lt;/li&gt;
+&lt;li&gt;src平台、0day&lt;/li&gt;
+&lt;li&gt;黑盒白盒测试&lt;/li&gt;
+&lt;li&gt;嗅探、rookit、社工&lt;/li&gt;
+&lt;li&gt;poc、expcve&lt;/li&gt;
+&lt;li&gt;一句话、小马、大马、webshell、提权、后门、跳板、rookit&lt;/li&gt;
+&lt;li&gt;MD5/加盐 (salt)&lt;/li&gt;
+&lt;li&gt;源码打包、脱库、爆库&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;安全测试环境配置&#34;&gt;安全测试环境配置&lt;/h3&gt;
+&lt;h4 id=&#34;配置虚拟机&#34;&gt;配置虚拟机&lt;/h4&gt;
+&lt;h5 id=&#34;安装wmware&#34;&gt;安装wmware&lt;/h5&gt;
+&lt;h5 id=&#34;配置虚拟机网络&#34;&gt;配置虚拟机网络&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119111948609.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240119111948609&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;nat模式：自动获取ip，以物理机为路由器&lt;/li&gt;
+&lt;li&gt;桥接模式：自动获取，以物理机的路由器为路由器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;虚拟机通信：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;网卡一致&lt;/li&gt;
+&lt;li&gt;ip网段一致&lt;/li&gt;
+&lt;li&gt;如果不通可以关闭防火墙&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kali: 192.168.114.129
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;win10: 192.168.114.145
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240119.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;20240119&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119114111256.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240119114111256&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;修改虚拟机网段&#34;&gt;修改虚拟机网段&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119114957637.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240119114957637&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;**ps:**windows系统可以通过&lt;code&gt;win+R&lt;/code&gt;并输入&lt;code&gt;uac&lt;/code&gt;来修改用户控制系统&lt;/p&gt;
+&lt;h3 id=&#34;搭建windows-server&#34;&gt;搭建windows server&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;下载地址：&lt;/strong&gt; &lt;a class=&#34;link&#34; href=&#34;https://msdn.itellyou.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MSDN, 我告诉你 - 做一个安静的工具站 (itellyou.cn)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;操作系统：&lt;/strong&gt; windows server 2012&lt;/p&gt;
+&lt;h4 id=&#34;搭建网站asp&#34;&gt;搭建网站(.asp)&lt;/h4&gt;
+&lt;p&gt;当服务器搭建多个站（旁站）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不同端口，ip域名都相同&lt;/li&gt;
+&lt;li&gt;相同端口（80）IP不同，也可以&lt;/li&gt;
+&lt;li&gt;相同端口，相同ip，不同域名&lt;/li&gt;
+&lt;li&gt;目录建站&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;创建角色和功能&#34;&gt;&lt;strong&gt;创建角色和功能&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;前面默认选择，在“服务器角色”这里选择如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119125219000.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240119125219000&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来，由于要搭建动态语言脚本，所以在&amp;quot;角色服务&amp;quot;里选择如下（里面的子选项一定也是选中状态）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119125454585.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240119125454585&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来就是等待安装&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119125623180.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240119125623180&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h5 id=&#34;部署网站&#34;&gt;部署网站&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;win+R&lt;/code&gt;并输入&lt;code&gt;inetmgr&lt;/code&gt;打开IIS控制台&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240120112008110.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240120112008110&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后我们新建一个网站目录&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240120112448684.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240120112448684&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;**ps：**这里也可以通过自己添加ip来绑定其他更多ip&lt;/p&gt;
+&lt;p&gt;接下来我们只需要把一个网站源码放到该目录，然后进行以下修改&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121144141794.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240121144141794&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121144413790.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240121144413790&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121144517269.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240121144517269&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来我们就可以直接访问网站，&lt;code&gt;ip:80&lt;/code&gt;。如果还是无法访问的话，在&lt;code&gt;默认文档&lt;/code&gt;中添加源码的展示文件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121144620853.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240121144620853&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h5 id=&#34;绑定域名&#34;&gt;绑定域名&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121145356805.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240121145356805&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;但是如果我们去访问&lt;code&gt;www.baidu.com&lt;/code&gt;的话，它会转到百度的页面，这里我们需要修改系统的host解析(优先级高于dns解析)，位置在&lt;code&gt;C:\Windows\System32\Drivers\etc\host&lt;/code&gt;,并在结尾出添加&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;192.168.114.138   www.baidu.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;判断网站是不是基于iis搭建&#34;&gt;判断网站是不是基于IIS搭建&lt;/h5&gt;
+&lt;p&gt;用搜索引擎语法&lt;code&gt;inurl=asp?id=&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121151818208.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240121151818208&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;搭建网站php&#34;&gt;搭建网站(.php)&lt;/h4&gt;
+&lt;p&gt;下载&lt;code&gt;phpstudy&lt;/code&gt;,选择这个版本&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121153449094.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240121153449094&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来我们在&lt;code&gt;windows 10&lt;/code&gt;系统搭建一下。下载后解压并运行程序可得到该界面&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121153612601.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240121153612601&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h5 id=&#34;配置系统处理中&#34;&gt;配置系统（处理中）&lt;/h5&gt;
+&lt;p&gt;接下来我们要配置系统，如果你发现windows 10系统没有IIS服务，可以在&lt;code&gt;控制面板-&amp;gt;程序-&amp;gt;启用或关闭windows功能&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121153849011.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240121153849011&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来我们还要打开&lt;code&gt;FastCgi&lt;/code&gt;模块&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121154255257.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240121154255257&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
