@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>疑难杂症 on Winglet&#39;s Blog</title>
+        <link>https://blog.winglet.com/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</link>
+        <description>Recent content in 疑难杂症 on Winglet&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Winglet</copyright>
+        <lastBuildDate>Mon, 22 Jan 2024 17:45:52 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>部署aspcms之数据库错误解决方法</title>
+        <link>https://blog.winglet.com/p/%E9%83%A8%E7%BD%B2aspcms%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>
+        <pubDate>Mon, 22 Jan 2024 17:45:52 +0800</pubDate>
+        
+        <guid>https://blog.winglet.com/p/%E9%83%A8%E7%BD%B2aspcms%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/640.png" alt="Featured image of post 部署aspcms之数据库错误解决方法" /&gt;&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
+&lt;p&gt;决定写这么一个分类，主要是记录一下我平时在做些东西时遇到的各种奇奇怪怪的问题，以及我是怎么用莫名方法解决的。然后以后我再遇到同样问题的时候也可能有办法解决。&lt;/p&gt;
+&lt;h3 id=&#34;问题&#34;&gt;问题&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/d558ef4a47d5352366a617e42a36b57.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;d558ef4a47d5352366a617e42a36b57&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;解决方法&#34;&gt;解决方法&lt;/h3&gt;
+&lt;p&gt;可能不适用所有人&lt;/p&gt;
+&lt;p&gt;找到mysql目录,位置在&lt;code&gt;C:\Program Files\MySQL&lt;/code&gt;，然后右键&lt;code&gt;MySQL&lt;/code&gt;选择属性，修改用户权限&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240122182854107.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240122182854107&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;具体修改哪个不清楚，反正你开个虚拟机然后赋予所有用户所有权限就行。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
