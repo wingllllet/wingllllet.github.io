@@ -1354,22 +1354,22 @@
         <pubDate>Thu, 18 Jan 2024 17:02:45 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/craser%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0%E6%9B%B4%E6%96%B0%E4%B8%AD/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240121_165102.gif" alt="Featured image of post Craser渗透测试笔记[更新中]" /&gt;&lt;h2 id=&#34;基础知识&#34;&gt;基础知识&lt;/h2&gt;
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240121_165102.gif" alt="Featured image of post Craser渗透测试笔记[更新中]" /&gt;&lt;h2 id=&#34;一渗透基础知识&#34;&gt;一、渗透基础知识&lt;/h2&gt;
 &lt;h3 id=&#34;渗透测试介绍&#34;&gt;渗透测试介绍&lt;/h3&gt;
-&lt;h3 id=&#34;渗透测试注意事项补充&#34;&gt;渗透测试注意事项（补充）&lt;/h3&gt;
+&lt;h4 id=&#34;渗透测试注意事项补充&#34;&gt;渗透测试注意事项（补充）&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;不能进行恶意攻击&lt;/li&gt;
 &lt;li&gt;没有获得书面授权时，不能攻击任何目标&lt;/li&gt;
 &lt;li&gt;遵守国家安全法法规&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;渗透测试流程&#34;&gt;渗透测试流程&lt;/h3&gt;
+&lt;h4 id=&#34;渗透测试流程&#34;&gt;渗透测试流程&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;确定目标，信息收集&lt;/li&gt;
 &lt;li&gt;漏洞探测，漏洞验证&lt;/li&gt;
 &lt;li&gt;获取所需，信息分析&lt;/li&gt;
 &lt;li&gt;编写报告，信息整理&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;安全术语了解&#34;&gt;安全术语（了解）&lt;/h3&gt;
+&lt;h4 id=&#34;安全术语了解&#34;&gt;安全术语（了解）&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;脚本 (asp、php、jsp)&lt;/li&gt;
 &lt;li&gt;html (xml、js、css)&lt;/li&gt;
@@ -1385,6 +1385,44 @@
 &lt;li&gt;MD5/加盐 (salt)&lt;/li&gt;
 &lt;li&gt;源码打包、脱库、爆库&lt;/li&gt;
 &lt;/ol&gt;
+&lt;h3 id=&#34;httphttps协议&#34;&gt;HTTP/HTTPS协议&lt;/h3&gt;
+&lt;h4 id=&#34;http-url&#34;&gt;HTTP URL&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;统一资源定位符(URL时一种特殊类型的URI，包含了用于查找某个资源足够的信息)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;格式： http://host[: port][abs_path]&lt;/p&gt;
+&lt;p&gt;例：http://localhost:1313/index.php&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;http请求头响应头&#34;&gt;http请求头响应头&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;referer、x-forwarded-for、client-ip   注入漏洞、xss问题、躲避验证&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对ip限制封锁&lt;/p&gt;
+&lt;p&gt;http: bp&lt;/p&gt;
+&lt;p&gt;tcp：modify client-ip&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;iis put漏洞(严重)&lt;/p&gt;
+&lt;p&gt;jsp、tomcat 7.0.1-7&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;http响应码&#34;&gt;HTTP响应码&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;200&lt;/li&gt;
+&lt;li&gt;302&lt;/li&gt;
+&lt;li&gt;404&lt;/li&gt;
+&lt;li&gt;400&lt;/li&gt;
+&lt;li&gt;401&lt;/li&gt;
+&lt;li&gt;403&lt;/li&gt;
+&lt;li&gt;500&lt;/li&gt;
+&lt;li&gt;503&lt;/li&gt;
+&lt;li&gt;waf拦截菜刀也可能导致50x&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;安全测试环境配置&#34;&gt;安全测试环境配置&lt;/h3&gt;
 &lt;h4 id=&#34;配置虚拟机&#34;&gt;配置虚拟机&lt;/h4&gt;
 &lt;h5 id=&#34;安装wmware&#34;&gt;安装wmware&lt;/h5&gt;
@@ -1626,6 +1664,40 @@
 	
 	
 &gt;&lt;/p&gt;
+&lt;h3 id=&#34;课后作业&#34;&gt;课后作业&lt;/h3&gt;
+&lt;h4 id=&#34;asp&#34;&gt;.asp&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;cms&lt;/th&gt;
+&lt;th&gt;默认索引文件&lt;/th&gt;
+&lt;th&gt;后台登陆地址&lt;/th&gt;
+&lt;th&gt;默认账号/密码&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;aspcms&lt;/td&gt;
+&lt;td&gt;index.asp&lt;/td&gt;
+&lt;td&gt;http://IP/admin_aspcms/login.asp&lt;/td&gt;
+&lt;td&gt;admin/123456&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;apcms、南方、xdcms&lt;/p&gt;
+&lt;p&gt;dedecms、phpweb、dz、帝国&lt;/p&gt;
 </description>
         </item>
         <item>

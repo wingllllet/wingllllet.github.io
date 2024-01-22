@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='基础知识 渗透测试介绍 渗透测试注意事项（补充） 不能进行恶意攻击 没有获得书面授权时，不能攻击任何目标 遵守国家安全法法规 渗透测试流程 确定目标，信息'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='一、渗透基础知识 渗透测试介绍 渗透测试注意事项（补充） 不能进行恶意攻击 没有获得书面授权时，不能攻击任何目标 遵守国家安全法法规 渗透测试流程 确定目'>
 <title>Craser渗透测试笔记[更新中]</title>
 
 <link rel='canonical' href='https://blog.winglet.com/p/craser%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0%E6%9B%B4%E6%96%B0%E4%B8%AD/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Craser渗透测试笔记[更新中]'>
-<meta property='og:description' content='基础知识 渗透测试介绍 渗透测试注意事项（补充） 不能进行恶意攻击 没有获得书面授权时，不能攻击任何目标 遵守国家安全法法规 渗透测试流程 确定目标，信息'>
+<meta property='og:description' content='一、渗透基础知识 渗透测试介绍 渗透测试注意事项（补充） 不能进行恶意攻击 没有获得书面授权时，不能攻击任何目标 遵守国家安全法法规 渗透测试流程 确定目'>
 <meta property='og:url' content='https://blog.winglet.com/p/craser%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0%E6%9B%B4%E6%96%B0%E4%B8%AD/'>
 <meta property='og:site_name' content='Winglet&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-01-18T17:02:45&#43;08:00'/><meta property='article:modified_time' content='2024-01-21T17:02:45&#43;08:00'/><meta property='og:image' content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240121_165102.gif' />
 <meta name="twitter:title" content="Craser渗透测试笔记[更新中]">
-<meta name="twitter:description" content="基础知识 渗透测试介绍 渗透测试注意事项（补充） 不能进行恶意攻击 没有获得书面授权时，不能攻击任何目标 遵守国家安全法法规 渗透测试流程 确定目标，信息"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="一、渗透基础知识 渗透测试介绍 渗透测试注意事项（补充） 不能进行恶意攻击 没有获得书面授权时，不能攻击任何目标 遵守国家安全法法规 渗透测试流程 确定目"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240121_165102.gif' />
     <link rel="shortcut icon" href="img/favicon.ico" />
 
@@ -241,12 +241,22 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#基础知识">基础知识</a>
+    <li><a href="#一渗透基础知识">一、渗透基础知识</a>
       <ol>
-        <li><a href="#渗透测试介绍">渗透测试介绍</a></li>
-        <li><a href="#渗透测试注意事项补充">渗透测试注意事项（补充）</a></li>
-        <li><a href="#渗透测试流程">渗透测试流程</a></li>
-        <li><a href="#安全术语了解">安全术语（了解）</a></li>
+        <li><a href="#渗透测试介绍">渗透测试介绍</a>
+          <ol>
+            <li><a href="#渗透测试注意事项补充">渗透测试注意事项（补充）</a></li>
+            <li><a href="#渗透测试流程">渗透测试流程</a></li>
+            <li><a href="#安全术语了解">安全术语（了解）</a></li>
+          </ol>
+        </li>
+        <li><a href="#httphttps协议">HTTP/HTTPS协议</a>
+          <ol>
+            <li><a href="#http-url">HTTP URL</a></li>
+            <li><a href="#http请求头响应头">http请求头响应头</a></li>
+            <li><a href="#http响应码">HTTP响应码</a></li>
+          </ol>
+        </li>
         <li><a href="#安全测试环境配置">安全测试环境配置</a>
           <ol>
             <li><a href="#配置虚拟机">配置虚拟机</a></li>
@@ -257,6 +267,11 @@
           <ol>
             <li><a href="#搭建网站asp">搭建网站(.asp)</a></li>
             <li><a href="#搭建网站php">搭建网站(.php)</a></li>
+          </ol>
+        </li>
+        <li><a href="#课后作业">课后作业</a>
+          <ol>
+            <li><a href="#asp">.asp</a></li>
           </ol>
         </li>
       </ol>
@@ -348,22 +363,22 @@
     <section class="article-content">
     
     
-    <h2 id="基础知识">基础知识</h2>
+    <h2 id="一渗透基础知识">一、渗透基础知识</h2>
 <h3 id="渗透测试介绍">渗透测试介绍</h3>
-<h3 id="渗透测试注意事项补充">渗透测试注意事项（补充）</h3>
+<h4 id="渗透测试注意事项补充">渗透测试注意事项（补充）</h4>
 <ol>
 <li>不能进行恶意攻击</li>
 <li>没有获得书面授权时，不能攻击任何目标</li>
 <li>遵守国家安全法法规</li>
 </ol>
-<h3 id="渗透测试流程">渗透测试流程</h3>
+<h4 id="渗透测试流程">渗透测试流程</h4>
 <ul>
 <li>确定目标，信息收集</li>
 <li>漏洞探测，漏洞验证</li>
 <li>获取所需，信息分析</li>
 <li>编写报告，信息整理</li>
 </ul>
-<h3 id="安全术语了解">安全术语（了解）</h3>
+<h4 id="安全术语了解">安全术语（了解）</h4>
 <ol>
 <li>脚本 (asp、php、jsp)</li>
 <li>html (xml、js、css)</li>
@@ -379,6 +394,44 @@
 <li>MD5/加盐 (salt)</li>
 <li>源码打包、脱库、爆库</li>
 </ol>
+<h3 id="httphttps协议">HTTP/HTTPS协议</h3>
+<h4 id="http-url">HTTP URL</h4>
+<ul>
+<li>
+<p>统一资源定位符(URL时一种特殊类型的URI，包含了用于查找某个资源足够的信息)</p>
+</li>
+<li>
+<p>格式： http://host[: port][abs_path]</p>
+<p>例：http://localhost:1313/index.php</p>
+</li>
+</ul>
+<h4 id="http请求头响应头">http请求头响应头</h4>
+<ul>
+<li>
+<p>referer、x-forwarded-for、client-ip   注入漏洞、xss问题、躲避验证</p>
+</li>
+<li>
+<p>对ip限制封锁</p>
+<p>http: bp</p>
+<p>tcp：modify client-ip</p>
+</li>
+<li>
+<p>iis put漏洞(严重)</p>
+<p>jsp、tomcat 7.0.1-7</p>
+</li>
+</ul>
+<h4 id="http响应码">HTTP响应码</h4>
+<ul>
+<li>200</li>
+<li>302</li>
+<li>404</li>
+<li>400</li>
+<li>401</li>
+<li>403</li>
+<li>500</li>
+<li>503</li>
+<li>waf拦截菜刀也可能导致50x</li>
+</ul>
 <h3 id="安全测试环境配置">安全测试环境配置</h3>
 <h4 id="配置虚拟机">配置虚拟机</h4>
 <h5 id="安装wmware">安装wmware</h5>
@@ -620,6 +673,40 @@
 	
 	
 ></p>
+<h3 id="课后作业">课后作业</h3>
+<h4 id="asp">.asp</h4>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>cms</th>
+<th>默认索引文件</th>
+<th>后台登陆地址</th>
+<th>默认账号/密码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aspcms</td>
+<td>index.asp</td>
+<td>http://IP/admin_aspcms/login.asp</td>
+<td>admin/123456</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>apcms、南方、xdcms</p>
+<p>dedecms、phpweb、dz、帝国</p>
 
 </section>
 
