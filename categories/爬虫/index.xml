@@ -13,7 +13,7 @@
         <pubDate>Fri, 02 Feb 2024 17:46:38 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/web%E5%9F%BA%E7%A1%80%E6%9B%B4%E6%96%B0%E4%B8%AD/</guid>
-        <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/13.png" alt="Featured image of post Web基础（更新中）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;​	在我成功部署好我这个博客的时候，就发过一个爬虫代码的文章，并且说过以后写写爬虫基础的文章，那么如今就开始写相关的文章。说到爬虫，我去学习的原因只是因为当时面试实验室的时候（一个月后被实验室踢了，成自由人了），学长问了一句，当时我确实不会。后面就去学了一下，还爬了几个壁纸网站，但后面就没再深入学习了。但是在学习爬虫的过程中，得到的知识却在后面经常起到很大的作用，尤其是一年多后爬图书管理信息的时候，我又一次意识到它的作用，所以从现在开始我决定去深入学习一下爬虫。&lt;/p&gt;
 &lt;h2 id=&#34;http基础&#34;&gt;HTTP基础&lt;/h2&gt;
 &lt;p&gt;爬虫是一直和web打招呼的，所以我们先从web基础知识讲起。&lt;/p&gt;
