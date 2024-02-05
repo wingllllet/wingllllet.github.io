@@ -15,6 +15,7 @@
         <guid>https://blog.winglet.com/p/craser%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0%E6%9B%B4%E6%96%B0%E4%B8%AD/</guid>
         <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240121_165102.gif" alt="Featured image of post Craser渗透测试笔记[更新中]" /&gt;&lt;h2 id=&#34;一渗透基础知识&#34;&gt;一、渗透基础知识&lt;/h2&gt;
 &lt;h3 id=&#34;渗透测试介绍&#34;&gt;渗透测试介绍&lt;/h3&gt;
+&lt;p&gt;渗透测试或渗透测试是一种道德驱动的尝试，旨在测试和分析安全防御以保护这些资产和信息。渗透测试涉及使用与恶意意图相同的工具、技术和方法，并且类似于审计。&lt;/p&gt;
 &lt;h4 id=&#34;渗透测试注意事项补充&#34;&gt;渗透测试注意事项（补充）&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;不能进行恶意攻击&lt;/li&gt;
@@ -45,6 +46,10 @@
 &lt;li&gt;源码打包、脱库、爆库&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;httphttps协议&#34;&gt;HTTP/HTTPS协议&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP: 是互联网上应用最为广泛的一种网络协议，是一个客户端和服务端请求和应答的标准(TCP)，用于从&lt;code&gt;www&lt;/code&gt;服务器传输超文本到本地浏览器的传输协议。它可以使浏览器更加高效，使网络传输减少。默认端口:80&lt;/li&gt;
+&lt;li&gt;HTTPS：是以安全为目标的HTTP通道，简单来说就是HTTP的安全版，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。&lt;code&gt;HTTP + 加密 + 认证 + 完整性保护 = HTTPS&lt;/code&gt;。默认端口:443&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h4 id=&#34;http-url&#34;&gt;HTTP URL&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -58,7 +63,7 @@
 &lt;h4 id=&#34;http请求头响应头&#34;&gt;http请求头响应头&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;referer、x-forwarded-for、client-ip   注入漏洞、xss问题、躲避验证&lt;/p&gt;
+&lt;p&gt;referer、x-forwarded-for、client-ip  注入漏洞、xss问题、躲避验证&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;对ip限制封锁&lt;/p&gt;
@@ -72,14 +77,14 @@
 &lt;/ul&gt;
 &lt;h4 id=&#34;http响应码&#34;&gt;HTTP响应码&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;200&lt;/li&gt;
-&lt;li&gt;302&lt;/li&gt;
-&lt;li&gt;404&lt;/li&gt;
-&lt;li&gt;400&lt;/li&gt;
-&lt;li&gt;401&lt;/li&gt;
-&lt;li&gt;403&lt;/li&gt;
-&lt;li&gt;500&lt;/li&gt;
-&lt;li&gt;503&lt;/li&gt;
+&lt;li&gt;200：请求成功&lt;/li&gt;
+&lt;li&gt;302：所请求的页面已经临时转移至新的URL&lt;/li&gt;
+&lt;li&gt;404：服务器无法找到被请求的页面&lt;/li&gt;
+&lt;li&gt;400：因为语法错误，服务器未能理解请求&lt;/li&gt;
+&lt;li&gt;401：合法请求，但对被请求页面的访问被禁止。因为被请求的页面需要身份验证，客户端没有提供或者身份验证失败&lt;/li&gt;
+&lt;li&gt;403：合法请求，但对被请求页面的访问被禁止&lt;/li&gt;
+&lt;li&gt;500：请求未完成。服务器遇到不可预知的情况&lt;/li&gt;
+&lt;li&gt;503：服务器当前不可用&lt;/li&gt;
 &lt;li&gt;waf拦截菜刀也可能导致50x&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;安全测试环境配置&#34;&gt;安全测试环境配置&lt;/h3&gt;
@@ -355,7 +360,6 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;、南方、phpweb、dz&lt;/p&gt;
 &lt;h4 id=&#34;php&#34;&gt;.php&lt;/h4&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -393,6 +397,111 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h2 id=&#34;二windows基础&#34;&gt;二、windows基础&lt;/h2&gt;
+&lt;h3 id=&#34;系统目录&#34;&gt;系统目录&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;windows -- system32     储存常用命令(如：cmd)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				  |
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				   -- config -- sam    存储账号密码(清空可直接登录)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;有system32(x86)说明一定64位系统&lt;/li&gt;
+&lt;li&gt;services,msc打开服务  定义计算机默写功能的开启    DHCP自动分发ip&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;net stop/start [服务名称]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;驱动和程序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sc config &amp;quot;safedog center guarder&amp;quot; start=disable &lt;/code&gt; 将该服务设为禁用，重启服务后相当于关闭&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;计算机端口&#34;&gt;计算机端口&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;端口就是用来区分服务的&lt;/li&gt;
+&lt;li&gt;端口不可复用 (在渗透时，可以尝试将3389端口与80端口进行复用，从而访问80端口时获得远程桌面权限)&lt;/li&gt;
+&lt;li&gt;端口范围1-65535&lt;/li&gt;
+&lt;li&gt;1-1024 分给了系统自带的一些服务&lt;/li&gt;
+&lt;li&gt;木马病毒一般使用高位端口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ps：http隧道技术，端口转发&lt;/p&gt;
+&lt;h3 id=&#34;常见端口及服务&#34;&gt;常见端口及服务&lt;/h3&gt;
+&lt;h3 id=&#34;注册表及其结构&#34;&gt;注册表及其结构&lt;/h3&gt;
+&lt;p&gt;打开注册表&lt;code&gt;win+R   regedit&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HKEY_CLASSES_ROOT: 文件扩展名与应用的关联及OLE信息
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HKEY_CURRENT_USER: 当前用户控制面板选项和桌面等设置，以及映射的网络驱动器
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HKEY_LOCAL_MACHINE: 计算机硬件与应用程序信息
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HKEY_USERS: 所有登录用户的信息
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HKEY_CURRENT_CONFIG: 计算机硬件配置信息
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;克隆账号&lt;code&gt;HKEY_LOCAL_MACHINE   SAM&lt;/code&gt;可以把管理员权限赋予来宾账号&lt;/li&gt;
+&lt;li&gt;开机启动项注册表&lt;code&gt;算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run&lt;/code&gt;    &lt;code&gt;计算机\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\LenovoDisabled&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;h3 id=&#34;常用dos命令&#34;&gt;常用DOS命令&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;color&lt;/li&gt;
+&lt;li&gt;ping&lt;/li&gt;
+&lt;li&gt;ipconfig&lt;/li&gt;
+&lt;li&gt;ipconfig /release&lt;/li&gt;
+&lt;li&gt;ipconfig /renew&lt;/li&gt;
+&lt;li&gt;systeminfo&lt;/li&gt;
+&lt;li&gt;arp -a&lt;/li&gt;
+&lt;li&gt;net view&lt;/li&gt;
+&lt;li&gt;shutdown -s -t 180 -c&lt;/li&gt;
+&lt;li&gt;dir&lt;/li&gt;
+&lt;li&gt;cd&lt;/li&gt;
+&lt;li&gt;start &lt;a class=&#34;link&#34; href=&#34;https://www.baidu.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;www.baidu.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;start 123.txt&lt;/li&gt;
+&lt;li&gt;copy con c:\123.txt&lt;/li&gt;
+&lt;li&gt;hello winglet&lt;/li&gt;
+&lt;li&gt;ctrl+z&lt;/li&gt;
+&lt;li&gt;md&lt;/li&gt;
+&lt;li&gt;rd 123&lt;/li&gt;
+&lt;li&gt;ren&lt;/li&gt;
+&lt;li&gt;del&lt;/li&gt;
+&lt;li&gt;type 123.txt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;补丁安全要300+&lt;/p&gt;
+&lt;p&gt;net use K: \192.168.80.128\c$ 磁盘映射    smb协议(443)&lt;/p&gt;
+&lt;p&gt;windows 远程桌面&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;net user     /    net localgroup     隐藏账号   &lt;code&gt;aa$&lt;/code&gt;只适用shell&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;tasklist&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;tsklkill&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;tracert&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;echo&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;query user&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;msg user&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;whoami&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;hostname&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;wmic product get name, version&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;netstat -an&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;c段&lt;/p&gt;
+&lt;h3 id=&#34;批处理&#34;&gt;批处理&lt;/h3&gt;
+&lt;p&gt;如果渗透的时候命令出现符号问题，可以尝试把命令放入批处理中，然后运行批处理从而防止符号报错问题&lt;/p&gt;
+&lt;h3 id=&#34;powershell&#34;&gt;powershell&lt;/h3&gt;
+&lt;p&gt;08开始自带&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;powershell -exec bypass .\aa.psl&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         
