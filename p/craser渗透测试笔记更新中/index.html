@@ -300,10 +300,10 @@
       <ol>
         <li><a href="#系统目录">系统目录</a></li>
         <li><a href="#计算机端口">计算机端口</a></li>
-        <li><a href="#常见端口及服务">常见端口及服务</a></li>
-        <li><a href="#注册表及其结构">注册表及其结构</a></li>
+        <li><a href="#常见端口及服务补充">常见端口及服务（补充）</a></li>
+        <li><a href="#注册表及其结构补充">注册表及其结构(补充)</a></li>
         <li><a href="#常用dos命令">常用DOS命令</a></li>
-        <li><a href="#批处理">批处理</a></li>
+        <li><a href="#批处理-bat">批处理 (.bat)</a></li>
         <li><a href="#powershell">powershell</a></li>
       </ol>
     </li>
@@ -379,7 +379,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 6 分钟
+                    阅读时长: 8 分钟
                 </time>
             </div>
         
@@ -785,7 +785,7 @@
 </span></span><span class="line"><span class="cl">				   -- config -- sam    存储账号密码(清空可直接登录)
 </span></span></code></pre></div><ul>
 <li>有system32(x86)说明一定64位系统</li>
-<li>services,msc打开服务  定义计算机默写功能的开启    DHCP自动分发ip</li>
+<li><code>services.msc</code>打开服务  定义计算机默认功能的开启    DHCP自动分发ip</li>
 <li><code>net stop/start [服务名称]</code></li>
 <li>驱动和程序</li>
 <li><code>sc config &quot;safedog center guarder&quot; start=disable </code> 将该服务设为禁用，重启服务后相当于关闭</li>
@@ -799,8 +799,8 @@
 <li>木马病毒一般使用高位端口</li>
 </ul>
 <p>ps：http隧道技术，端口转发</p>
-<h3 id="常见端口及服务">常见端口及服务</h3>
-<h3 id="注册表及其结构">注册表及其结构</h3>
+<h3 id="常见端口及服务补充">常见端口及服务（补充）</h3>
+<h3 id="注册表及其结构补充">注册表及其结构(补充)</h3>
 <p>打开注册表<code>win+R   regedit</code></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HKEY_CLASSES_ROOT: 文件扩展名与应用的关联及OLE信息
 </span></span><span class="line"><span class="cl">HKEY_CURRENT_USER: 当前用户控制面板选项和桌面等设置，以及映射的网络驱动器
@@ -808,82 +808,53 @@
 </span></span><span class="line"><span class="cl">HKEY_USERS: 所有登录用户的信息
 </span></span><span class="line"><span class="cl">HKEY_CURRENT_CONFIG: 计算机硬件配置信息
 </span></span></code></pre></div><ul>
-<li>克隆账号<code>HKEY_LOCAL_MACHINE   SAM</code>可以把管理员权限赋予来宾账号</li>
-<li>开机启动项注册表<code>算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code>    <code>计算机\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\LenovoDisabled</code></li>
+<li>克隆账号<code>HKEY_LOCAL_MACHINE/SAM</code>可以把管理员权限赋予来宾账号 <strong>(如何操作)</strong></li>
+<li>开机启动项注册表<code>\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code> 或<code>\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\</code></li>
 </ul>
-<p>​</p>
 <h3 id="常用dos命令">常用DOS命令</h3>
-<ul>
-<li>color</li>
-<li>ping</li>
-<li>ipconfig</li>
-<li>ipconfig /release</li>
-<li>ipconfig /renew</li>
-<li>systeminfo</li>
-<li>arp -a</li>
-<li>net view</li>
-<li>shutdown -s -t 180 -c</li>
-<li>dir</li>
-<li>cd</li>
-<li>start <a class="link" href="https://www.baidu.com"  target="_blank" rel="noopener"
-    >www.baidu.com</a></li>
-<li>start 123.txt</li>
-<li>copy con c:\123.txt</li>
-<li>hello winglet</li>
-<li>ctrl+z</li>
-<li>md</li>
-<li>rd 123</li>
-<li>ren</li>
-<li>del</li>
-<li>type 123.txt</li>
-</ul>
-<p>补丁安全要300+</p>
-<p>net use K: \192.168.80.128\c$ 磁盘映射    smb协议(443)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">color: 这个命令用于改变命令提示符窗口的前景色和背景色。
+</span></span><span class="line"><span class="cl">ping: 用于测试与特定网络地址之间的连接。它发送一个网络数据包到目标地址，并等待接收响应，从而评估网络的可达性和延迟。
+</span></span><span class="line"><span class="cl">ipconfig: 命令用于显示计算机的网络配置信息，包括IP地址、子网掩码、默认网关和DNS服务器等。
+</span></span><span class="line"><span class="cl">ipconfig /release: 这个命令用于释放计算机当前使用的IP地址，这样计算机就可以申请新的IP地址。
+</span></span><span class="line"><span class="cl">ipconfig /renew: 这个命令用于向网络中的DHCP服务器请求更新IP地址，以获得一个新的IP地址配置。
+</span></span><span class="line"><span class="cl">systeminfo: systeminfo命令用于显示计算机的详细系统信息，包括操作系统版本、安装的补丁程序、硬件配置和网络信息等。
+</span></span><span class="line"><span class="cl">arp -a: arp命令用于显示计算机的ARP缓存表，其中包含与本地计算机通信的其他设备的MAC地址和IP地址的映射关系。
+</span></span><span class="line"><span class="cl">net view: net view命令用于列出网络上可见的计算机和共享资源。
+</span></span><span class="line"><span class="cl">shutdown -s -t 180 -c: 这个命令用于在计算机上执行关机操作。参数-s表示关机，-t表示等待时间（以秒为单位），-c表示添加一条注释/说明。
+</span></span><span class="line"><span class="cl">dir: dir命令用于显示当前目录中的文件和子目录的列表。
+</span></span><span class="line"><span class="cl">cd: cd命令用于更改当前目录。通过提供目录路径，您可以切换到不同的目录。
+</span></span><span class="line"><span class="cl">start www.baidu.com: 这个命令用于在默认浏览器中打开指定的网址。
+</span></span><span class="line"><span class="cl">start 123.txt: 这个命令用于在关联的应用程序中打开指定的文件
+</span></span><span class="line"><span class="cl">copy con c:\123.txt: 这个命令用于创建一个新文件，并将用户输入的文本内容写入该文件。
+</span></span><span class="line"><span class="cl">hello winglet: 这不是一个命令，而是一个简单的问候语。
+</span></span><span class="line"><span class="cl">ctrl+z: 这不是一个命令，而是在Windows命令提示符中的组合键，用于结束当前正在运行的命令。
+</span></span><span class="line"><span class="cl">md: md命令用于在当前目录中创建一个新的子目录。
+</span></span><span class="line"><span class="cl">rd 123: rd命令用于删除指定的目录。
+</span></span><span class="line"><span class="cl">ren: ren命令用于重命名文件或目录。
+</span></span><span class="line"><span class="cl">del: del命令用于删除文件。
+</span></span><span class="line"><span class="cl">type 123.txt: type命令用于显示文本文件的内容。
+</span></span><span class="line"><span class="cl">net use K:\\192.168.80.128\c$ : 将在本地计算机上创建一个虚拟驱动器（在这个例子中是驱动器K:），它将与远程计算机上的共享文件夹建立连接。磁盘映射，用的是443端口smb协议
+</span></span></code></pre></div><p>补丁安全要300+</p>
 <p>windows 远程桌面</p>
-<ul>
-<li>
-<p>net user     /    net localgroup     隐藏账号   <code>aa$</code>只适用shell</p>
-</li>
-<li>
-<p>tasklist</p>
-</li>
-<li>
-<p>tsklkill</p>
-</li>
-<li>
-<p>tracert</p>
-</li>
-<li>
-<p>echo</p>
-</li>
-<li>
-<p>query user</p>
-</li>
-<li>
-<p>msg user</p>
-</li>
-<li>
-<p>whoami</p>
-</li>
-<li>
-<p>hostname</p>
-</li>
-<li>
-<p>wmic product get name, version</p>
-</li>
-<li>
-<p>netstat -an</p>
-</li>
-</ul>
-<p>c段</p>
-<h3 id="批处理">批处理</h3>
-<p>如果渗透的时候命令出现符号问题，可以尝试把命令放入批处理中，然后运行批处理从而防止符号报错问题</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">net user: 这个命令用于管理本地用户账户。它可以列出用户账户信息、创建新用户、更改密码等。
+</span></span><span class="line"><span class="cl">net localgroup: 这个命令用于管理本地用户组。它可以列出用户组信息、添加或删除用户组成员等。
+</span></span><span class="line"><span class="cl">隐藏账号: &#34;aa$&#34; 是一个命名约定，当您创建一个以 &#34;$&#34; 结尾的用户账号时，它会被视为隐藏账号，无法在登录屏幕上直接显示。
+</span></span><span class="line"><span class="cl">tasklist: 这个命令用于列出当前正在运行的进程的信息，包括进程ID、进程名称、内存占用等。
+</span></span><span class="line"><span class="cl">taskkill: taskkill命令用于终止或结束正在运行的进程。
+</span></span><span class="line"><span class="cl">tracert: tracert命令用于跟踪数据包从源地址到目标地址经过的路由路径。它可以显示每个路由器的IP地址和跳跃时间。
+</span></span><span class="line"><span class="cl">echo: echo命令用于在命令提示符窗口上显示文本或启用/禁用命令回显。
+</span></span><span class="line"><span class="cl">query user: 这个命令用于显示当前登录到计算机上的用户列表和会话信息。
+</span></span><span class="line"><span class="cl">msg user: 这个命令用于向其他计算机上的用户发送消息。
+</span></span><span class="line"><span class="cl">whoami: whoami命令用于显示当前登录用户的用户名。
+</span></span><span class="line"><span class="cl">hostname: hostname命令用于显示计算机的主机名。
+</span></span><span class="line"><span class="cl">wmic product get name, version: 这个命令使用 Windows Management Instrumentation Command-line (WMIC) 工具，用于列出安装在计算机上的软件产品的名称和版本信息。
+</span></span><span class="line"><span class="cl">netstat -an: netstat命令用于显示网络连接和网络统计信息。通过添加参数&#34;-an&#34;，它会显示所有活动连接的详细信息，包括本地地址、远程地址、连接状态等。
+</span></span></code></pre></div><h3 id="批处理-bat">批处理 (.bat)</h3>
+<p>如果渗透的时候命令出现符号问题，可以尝试把命令放入批处理中，然后运行批处理来防止符号报错。</p>
 <h3 id="powershell">powershell</h3>
 <p>08开始自带</p>
-<ul>
-<li>powershell -exec bypass .\aa.psl</li>
-</ul>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">powershell -exec bypass .\aa.psl : 启用powershell并执行aa.psl文件
+</span></span></code></pre></div>
 </section>
 
 
