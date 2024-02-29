@@ -10,9 +10,10 @@
 <meta property='og:description' content='urllib 这个库目前只提一嘴，因为还有和它一样且功能更强大的库。这个库我在写爬虫的时候也是不常使用。如果在以后遇到必须使用该库才能解决的问题时再去详'>
 <meta property='og:url' content='https://blog.winglet.com/p/python%E5%9F%BA%E6%9C%AC%E5%BA%93%E4%BD%BF%E7%94%A8%E6%9B%B4%E6%96%B0%E4%B8%AD/'>
 <meta property='og:site_name' content='Winglet&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-02-16T20:51:43&#43;08:00'/><meta property='article:modified_time' content='2024-02-16T20:51:43&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-02-16T20:51:43&#43;08:00'/><meta property='article:modified_time' content='2024-02-16T20:51:43&#43;08:00'/><meta property='og:image' content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402262226.jpg' />
 <meta name="twitter:title" content="Python基本库使用[更新中]">
-<meta name="twitter:description" content="urllib 这个库目前只提一嘴，因为还有和它一样且功能更强大的库。这个库我在写爬虫的时候也是不常使用。如果在以后遇到必须使用该库才能解决的问题时再去详">
+<meta name="twitter:description" content="urllib 这个库目前只提一嘴，因为还有和它一样且功能更强大的库。这个库我在写爬虫的时候也是不常使用。如果在以后遇到必须使用该库才能解决的问题时再去详"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402262226.jpg' />
     <link rel="shortcut icon" href="img/favicon.ico" />
 
     </head>
@@ -273,6 +274,17 @@
           </ol>
         </li>
         <li><a href="#post请求">POST请求</a></li>
+        <li><a href="#响应">响应</a></li>
+        <li><a href="#高级用法">高级用法</a>
+          <ol>
+            <li><a href="#文件上传">文件上传</a></li>
+            <li><a href="#cookie设置">Cookie设置</a></li>
+            <li><a href="#session维持">Session维持</a></li>
+            <li><a href="#ssl证书验证">SSL证书验证</a></li>
+            <li><a href="#超时设置">超时设置</a></li>
+            <li><a href="#身份认证-oauth未">身份认证 （OAUTH未）</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -286,8 +298,16 @@
 
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/python%E5%9F%BA%E6%9C%AC%E5%BA%93%E4%BD%BF%E7%94%A8%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402262226.jpg" loading="lazy" alt="Featured image of post Python基本库使用[更新中]" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
     
@@ -339,7 +359,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 8 分钟
                 </time>
             </div>
         
@@ -529,7 +549,290 @@
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://www.httpbin.org/post&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>有返回结果说明是POST请求。</p>
-
+<p>如果要提交表单的话，需要使用data参数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">import</span> <span class="err">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">url</span> <span class="err">=</span> <span class="s2">&#34;https://www.httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">data</span> <span class="err">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;winglet&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">resp</span> <span class="err">=</span> <span class="err">requests.post(url,</span> <span class="err">data=data)</span>
+</span></span><span class="line"><span class="cl"><span class="err">print(resp.text)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;files&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;form&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;winglet&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="s2">&#34;*/*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;gzip, deflate&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Length&#34;</span><span class="p">:</span> <span class="s2">&#34;12&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;application/x-www-form-urlencoded&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;www.httpbin.org&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;python-requests/2.28.1&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;X-Amzn-Trace-Id&#34;</span><span class="p">:</span> <span class="s2">&#34;Root=1-65dca076-47c67045141f47526b668509&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;json&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;194.99.79.246&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://www.httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>可以看见我们提交的表单数据就被放在了<code>form</code>参数中</p>
+<h3 id="响应">响应</h3>
+<p>发送了请求后，自然能得到响应，我们上述的结果中只是展示了响应的一部分，之前我们讲到过，响应里面是有响应体，状态码，cookie等信息的。所以我们也可以通过其他方法函数将它们展示出来</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://ssr1.scrape.center&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">),</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">),</span> <span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">cookies</span><span class="p">),</span> <span class="n">resp</span><span class="o">.</span><span class="n">cookies</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">),</span> <span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">history</span><span class="p">),</span> <span class="n">resp</span><span class="o">.</span><span class="n">history</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;int&#39;&gt;</span> <span class="mi">200</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;requests.structures.CaseInsensitiveDict&#39;&gt;</span> <span class="p">{</span><span class="err">&#39;Date&#39;:</span> <span class="err">&#39;Mon,</span> <span class="err">26</span> <span class="err">Feb</span> <span class="err">2024</span> <span class="err">14:36:24</span> <span class="err">GMT&#39;,</span> <span class="err">&#39;Content-Type&#39;:</span> <span class="err">&#39;text/html;</span> <span class="err">charset=utf-8&#39;,</span> <span class="err">&#39;X-Frame-Options&#39;:</span> <span class="err">&#39;DENY&#39;,</span> <span class="err">&#39;X-Content-Type-Options&#39;:</span> <span class="err">&#39;nosniff&#39;,</span> <span class="err">&#39;Expires&#39;:</span> <span class="err">&#39;Mon,</span> <span class="err">26</span> <span class="err">Feb</span> <span class="err">2024</span> <span class="err">14:38:47</span> <span class="err">GMT&#39;,</span> <span class="err">&#39;Strict-Transport-Security&#39;:</span> <span class="err">&#39;max-age=15724800;</span> <span class="err">includeSubDomains&#39;,</span> <span class="err">&#39;Server&#39;:</span> <span class="err">&#39;E0MID&#39;,</span> <span class="err">&#39;X-Cache-Lookup&#39;:</span> <span class="err">&#39;Cache</span> <span class="err">Miss,</span> <span class="err">Cache</span> <span class="err">Miss,</span> <span class="err">Cache</span> <span class="err">Miss,</span> <span class="err">Cache</span> <span class="err">Miss&#39;,</span> <span class="err">&#39;Cache-Control&#39;:</span> <span class="err">&#39;max-age=600&#39;,</span> <span class="err">&#39;Age&#39;:</span> <span class="err">&#39;0&#39;,</span> <span class="err">&#39;Content-Length&#39;:</span> <span class="err">&#39;41667&#39;,</span> <span class="err">&#39;X-NWS-LOG-UUID&#39;:</span> <span class="err">&#39;17190695892387289445&#39;,</span> <span class="err">&#39;Connection&#39;:</span> <span class="err">&#39;keep-alive&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;requests.cookies.RequestsCookieJar&#39;&gt;</span> <span class="err">&lt;RequestsCookieJar</span><span class="p">[]</span><span class="err">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;str&#39;&gt;</span> <span class="err">https:</span><span class="c1">//ssr1.scrape.center/
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">&lt;class</span> <span class="err">&#39;list&#39;&gt;</span> <span class="p">[]</span>
+</span></span></code></pre></div><p>基</p>
+<p>本信息便如此。</p>
+<p>可以看见状态码是200，表示网站正常访问。不过在<code>requests</code>模块中，还存在内置函数来表示某种状态。比如<code>requests.codes.ok</code>就表示<code>200</code>，当然还有很多状态表示函数，不过个人感觉没必要去记，做个了解即可。</p>
+<h3 id="高级用法">高级用法</h3>
+<h4 id="文件上传">文件上传</h4>
+<p>直接实例展示</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">file</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;file&#34;</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;1.ico&#34;</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&#34;http://httpbin.org/post&#34;</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;files&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;file&#34;</span><span class="p">:</span> <span class="s2">&#34;data:application/octet-stream;base64,AAABAAEAI......&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;form&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="s2">&#34;*/*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;gzip, deflate&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Length&#34;</span><span class="p">:</span> <span class="s2">&#34;4427&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;multipart/form-data; boundary=3f1d8575b6590aa87284daeaf1ebab4a&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;httpbin.org&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;python-requests/2.28.1&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;X-Amzn-Trace-Id&#34;</span><span class="p">:</span> <span class="s2">&#34;Root=1-65dca3f0-7485d19b3a37ce032285cfc5&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;json&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;194.99.79.246&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>利用<code>files</code>我们就成功通过POST请求上传了一个文件。</p>
+<h4 id="cookie设置">Cookie设置</h4>
+<p>我们先尝试获取cookie</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.baidu.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">cookies</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s2">&#34;=&#34;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;RequestsCookieJar</span><span class="p">[</span><span class="err">&lt;Cookie</span> <span class="err">BDORZ=</span><span class="mi">27315</span> <span class="err">for</span> <span class="err">.baidu.com/&gt;</span><span class="p">]</span><span class="err">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">BDORZ=</span><span class="mi">27315</span>
+</span></span></code></pre></div><p>那么现在就可以看到这就是我们截获到的<code>Cookie</code>了，还记得之前讲的<code>Cookie</code>就像是通行证，所以我们先登录一个网站然后用生成的<code>Cookie</code>来替换<code>headers</code>参数看看是否可以登录访问</p>
+<p>首先登录我的126邮箱，然后找到它的Cookie</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240227230422686.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240227230422686"
+	
+	
+></p>
+<p>接着复制并添加到<code>headers</code>参数里面</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://mail.126.com/js6/main.jsp?sid=SFxzVLEEsGskZribnYEEzCuuiOescwUt&amp;df=webmail126#module=welcome.WelcomeModule%7C%7B%7D&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Cookie&#34;</span><span class="p">:</span> <span class="s1">&#39;nts_mail_user=w1121293707@126.com:-1:1; MAIL_SDID=874273342558449664; locale=; face=js6; MAIL_LOCATION=gz; NTES_SESS=VK5sD5z7nl9YqEkNzX0aaCCq7XSU27vS_b.8k1DWElVGxaw1xYbLveT2wf2_R0Vbz.rvYIKJwo.8mWXUnz.FbeYBS_lfIRdiurUwSQfcyK7DQjl0LfBZoaE8GME9deTNM_sKVZtSL9hkhZxq4YM7OfHAmhxcUUSXO8MRPD9q7V.ucDKWsdmD0H6KOpTc564bWXG2brXGvoOSfcNZqodIxStAW; S_INFO=1709045762|0|#3&amp;80#|w1121293707@126.com; P_INFO=w1121293707@126.com|1709045762|0|mail126|00&amp;99|sxi&amp;1708854921&amp;mail126#sxi&amp;610100#10#0#0|&amp;0|mail126|w1121293707@126.com; mail_idc=&#34;&#34;; Coremail=7e63eb7de5574%SFxzVLEEsGskZribnYEEzCuuiOescwUt%wmsvr-41-106.mail.126.com; MAIL_ENTRY_INFO=1|0|mail126|webmail126|124.89.2.73|2fd8275d91a844e31dcc47f615d9df3b_v1||874273342558449664|1709045763|0; MAIL_ENTRY_CS=4013070295d8ed2148c0900b8bd1e7c6; mixmailTokens=1E1StjlbA-RsybFpsvpXmtOyfRGomvqnWPmwQQZz1N_0Co3MVdUHWlLjvlUgHo2flCGcsF73ZG4eh1rF9fGYegI2Gy0PzxGZLwKjGJMF13PjrCLVEI6eeWBnYFOpdp07vYMl1h49M23HAS4ZnL-eaQMVg; MAIL_MISC=&#34;w1121293707@126.com&#34;; cm_last_info=dT13MTEyMTI5MzcwNyU0MDEyNi5jb20mZD1odHRwcyUzQSUyRiUyRm1haWwuMTI2LmNvbSUyRmpzNiUyRm1haW4uanNwJTNGc2lkJTNEU0Z4elZMRUVzR3NrWnJpYm5ZRUV6Q3V1aU9lc2N3VXQmcz1TRnh6VkxFRXNHc2tacmlibllFRXpDdXVpT2VzY3dVdCZoPWh0dHBzJTNBJTJGJTJGbWFpbC4xMjYuY29tJTJGanM2JTJGbWFpbi5qc3AlM0ZzaWQlM0RTRnh6VkxFRXNHc2tacmlibllFRXpDdXVpT2VzY3dVdCZ3PWh0dHBzJTNBJTJGJTJGbWFpbC4xMjYuY29tJmw9LTEmdD0tMSZhcz10cnVl; MAIL_SESS=VK5sD5z7nl9YqEkNzX0aaCCq7XSU27vS_b.8k1DWElVGxaw1xYbLveT2wf2_R0Vbz.rvYIKJwo.8mWXUnz.FbeYBS_lfIRdiurUwSQfcyK7DQjl0LfBZoaE8GME9deTNM_sKVZtSL9hkhZxq4YM7OfHAmhxcUUSXO8MRPD9q7V.ucDKWsdmD0H6KOpTc564bWXG2brXGvoOSfcNZqodIxStAW; MAIL_SINFO=&#34;1709045762|0|#3&amp;80#|w1121293707@126.com&#34;; MAIL_PINFO=&#34;w1121293707@126.com|1709045762|0|mail126|00&amp;99|sxi&amp;1708854921&amp;mail126#sxi&amp;610100#10#0#0|&amp;0|mail126|w1121293707@126.com&#34;; secu_info=1; mail_entry_sess=0859964f9866bb8c26b8fb64bff6baf1ee1cbbe3527f054da14400f1a9bf1cfaf8d12c4f89f9f4c1566860bbab761a5056fa151a418041eb884f4c80ef24a6d9dfb5dc3e2dd1cc19edc67c72bffc666073f8920566b6444b98eb0d8f14e5986b58173ad7ba751674d600f8ac802f320cc96a28d33200651300cdd96817b6713f71d5559e9d5c1b6b0eb9e063aee25969ed8278858b298bdc143de44d3296d56e5e52e0fd3ceb24a633d8a1756d4c8d6459358118b3a5745f2a91dad340c4d430; JSESSIONID=E357320184AF7ACB567AE3CEE389544C; Coremail.sid=SFxzVLEEsGskZribnYEEzCuuiOescwUt; mail_style=js6; mail_uid=w1121293707@126.com; mail_host=mail.126.com; stats_session_id=32bf5635-1d0e-4200-a853-3b279a557c3b&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240227230541983.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240227230541983"
+	
+	
+></p>
+<p>这就表明我们通过设置Cookie的信息，成功模拟了登录状态。、</p>
+<p>除了设置headers参数外，也可以设置cookies参数。在前面实例中看到了我们截获的cookie是<code>RequestsCookieJar对象</code>类型，所以我们可以新建一个<code>RequestsCookieJar对象</code> ，然后赋值给<code>cookies</code>参数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://mail.126.com/js6/main.jsp?sid=SFxzVLEEsGskZribnYEEzCuuiOescwUt&amp;df=webmail126#module=welcome.WelcomeModule%7C%7B%7D&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cookies</span> <span class="o">=</span> <span class="s1">&#39;nts_mail_user=w1121293707@126.com:-1:1; MAIL_SDID=874273342558449664; locale=; face=js6; MAIL_LOCATION=gz; NTES_SESS=VK5sD5z7nl9YqEkNzX0aaCCq7XSU27vS_b.8k1DWElVGxaw1xYbLveT2wf2_R0Vbz.rvYIKJwo.8mWXUnz.FbeYBS_lfIRdiurUwSQfcyK7DQjl0LfBZoaE8GME9deTNM_sKVZtSL9hkhZxq4YM7OfHAmhxcUUSXO8MRPD9q7V.ucDKWsdmD0H6KOpTc564bWXG2brXGvoOSfcNZqodIxStAW; S_INFO=1709045762|0|#3&amp;80#|w1121293707@126.com; P_INFO=w1121293707@126.com|1709045762|0|mail126|00&amp;99|sxi&amp;1708854921&amp;mail126#sxi&amp;610100#10#0#0|&amp;0|mail126|w1121293707@126.com; mail_idc=&#34;&#34;; Coremail=7e63eb7de5574%SFxzVLEEsGskZribnYEEzCuuiOescwUt%wmsvr-41-106.mail.126.com; MAIL_ENTRY_INFO=1|0|mail126|webmail126|124.89.2.73|2fd8275d91a844e31dcc47f615d9df3b_v1||874273342558449664|1709045763|0; MAIL_ENTRY_CS=4013070295d8ed2148c0900b8bd1e7c6; mixmailTokens=1E1StjlbA-RsybFpsvpXmtOyfRGomvqnWPmwQQZz1N_0Co3MVdUHWlLjvlUgHo2flCGcsF73ZG4eh1rF9fGYegI2Gy0PzxGZLwKjGJMF13PjrCLVEI6eeWBnYFOpdp07vYMl1h49M23HAS4ZnL-eaQMVg; MAIL_MISC=&#34;w1121293707@126.com&#34;; cm_last_info=dT13MTEyMTI5MzcwNyU0MDEyNi5jb20mZD1odHRwcyUzQSUyRiUyRm1haWwuMTI2LmNvbSUyRmpzNiUyRm1haW4uanNwJTNGc2lkJTNEU0Z4elZMRUVzR3NrWnJpYm5ZRUV6Q3V1aU9lc2N3VXQmcz1TRnh6VkxFRXNHc2tacmlibllFRXpDdXVpT2VzY3dVdCZoPWh0dHBzJTNBJTJGJTJGbWFpbC4xMjYuY29tJTJGanM2JTJGbWFpbi5qc3AlM0ZzaWQlM0RTRnh6VkxFRXNHc2tacmlibllFRXpDdXVpT2VzY3dVdCZ3PWh0dHBzJTNBJTJGJTJGbWFpbC4xMjYuY29tJmw9LTEmdD0tMSZhcz10cnVl; MAIL_SESS=VK5sD5z7nl9YqEkNzX0aaCCq7XSU27vS_b.8k1DWElVGxaw1xYbLveT2wf2_R0Vbz.rvYIKJwo.8mWXUnz.FbeYBS_lfIRdiurUwSQfcyK7DQjl0LfBZoaE8GME9deTNM_sKVZtSL9hkhZxq4YM7OfHAmhxcUUSXO8MRPD9q7V.ucDKWsdmD0H6KOpTc564bWXG2brXGvoOSfcNZqodIxStAW; MAIL_SINFO=&#34;1709045762|0|#3&amp;80#|w1121293707@126.com&#34;; MAIL_PINFO=&#34;w1121293707@126.com|1709045762|0|mail126|00&amp;99|sxi&amp;1708854921&amp;mail126#sxi&amp;610100#10#0#0|&amp;0|mail126|w1121293707@126.com&#34;; secu_info=1; mail_entry_sess=0859964f9866bb8c26b8fb64bff6baf1ee1cbbe3527f054da14400f1a9bf1cfaf8d12c4f89f9f4c1566860bbab761a5056fa151a418041eb884f4c80ef24a6d9dfb5dc3e2dd1cc19edc67c72bffc666073f8920566b6444b98eb0d8f14e5986b58173ad7ba751674d600f8ac802f320cc96a28d33200651300cdd96817b6713f71d5559e9d5c1b6b0eb9e063aee25969ed8278858b298bdc143de44d3296d56e5e52e0fd3ceb24a633d8a1756d4c8d6459358118b3a5745f2a91dad340c4d430; JSESSIONID=E357320184AF7ACB567AE3CEE389544C; Coremail.sid=SFxzVLEEsGskZribnYEEzCuuiOescwUt; mail_style=js6; mail_uid=w1121293707@126.com; mail_host=mail.126.com; stats_session_id=32bf5635-1d0e-4200-a853-3b279a557c3b&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">jar</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">RequestsCookieJar</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">cookie</span> <span class="ow">in</span> <span class="n">cookies</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">cookie</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">jar</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">jar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果<img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240227231829663.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240227231829663"
+	
+	
+></p>
+<p>测试发现，依然可以正常登录</p>
+<h4 id="session维持">Session维持</h4>
+<p>在利用<code>requests</code>库时，我们无论使用<code>GET</code>还是<code>POST</code>请求，都是当作开启了一个新的浏览器，然后去访问网站的。比如你先用<code>POST</code>请求输入了你的登录信息，之后你再使用<code>GET</code>请求还是会无法访问。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.httpbin.org/cookies/set/number/123456789&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.httpbin.org/cookies&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;cookies&#34;</span><span class="p">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>所以一个解决办法就是像上面一节的例子，设置<code>cookie</code>参数即可，但这样比较麻烦。因为你需要先去浏览器上登录网站，然后再复制cookie头的内容。</p>
+<p>那么如果不想重复复制粘贴cookie内容的话，我们可以利用session对象，只要维护好一个session对象，cookie也就不成问题了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.httpbin.org/cookies/set/number/123456789&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.httpbin.org/cookies&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;cookies&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;number&#34;</span><span class="p">:</span> <span class="s2">&#34;123456789&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="ssl证书验证">SSL证书验证</h4>
+<p>现在很多网站都用的https协议，但是有些网站没有安装HTTPS证书或者HTTPS证书不被ca机构认可，这就导致我们在访问的时候可能会出现SSL证书错误的提示。</p>
+<p>比如我们现在访问<code>https://ssr2.scrape.center</code></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240228221757520.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240228221757520"
+	
+	
+></p>
+<p>但是我们用<code>requests</code>库的话，就会无法访问</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr2.scrape.center&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果如下</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240228222432050.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240228222432050"
+	
+	
+></p>
+<p>可以看见它抛出了SSLError错误</p>
+<p>那么如果我们一定要访问该网站呢，可以使用<code>verify</code>参数，这个参数使用来控制证书的，默认为true，如果将它设置为false，那么在请求时就不会再验证证书。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr2.scrape.center/&#34;</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">D:\python\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host &#39;ssr2.scrape.center&#39;. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+</span></span><span class="line"><span class="cl">  warnings.warn(
+</span></span><span class="line"><span class="cl">200
+</span></span></code></pre></div><p>状态码为200，这就是表示我们已经访问成功了。</p>
+<p>不过呢，上面还是有一段警告，它是建议我们给他指定证书。如果我们想要忽略它的话可以通过设置忽略警告的方式来屏蔽这个警告。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">requests.packages</span> <span class="kn">import</span> <span class="n">urllib3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr2.scrape.center&#34;</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">200
+</span></span></code></pre></div><p>可以看到那段长长的警告不见了</p>
+<p>还有两种方法可以忽略警告</p>
+<p>捕获警告到日志的方式忽略警告：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">logging</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">logging</span><span class="o">.</span><span class="n">captureWarnings</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr2.scrape.center&#34;</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">200
+</span></span></code></pre></div><p>或者我们可以直接指定一个本地证书作为客户端证书</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr2.scrape.center&#34;</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;/path/server.crt&#39;</span><span class="p">,</span> <span class="s1">&#39;/path/server.key&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">200
+</span></span></code></pre></div><h4 id="超时设置">超时设置</h4>
+<p>平常在上网的时候就可能会因为网络状况不好或者服务器网络响应太慢导致需要等待一段时间网站才能加载出来，甚至最后因为接收不到响应而报错。</p>
+<p>所以我们可以通过设置超时时间，就是如果加载到一定时间还是没有响应，就直接跳过。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;http://www.httpbin.org&#34;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>但是这里的<code>timeout</code>参数是连接和读取的时间总和，如果想要分别设置连接和读取的时间，可以用元组类型</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;http://www.httpbin.org&#34;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><h4 id="身份认证-oauth未">身份认证 （OAUTH未）</h4>
+<p>在访问某些网站的时候，通常会弹出登录弹窗，进行身份认证，比如访问<code>https://ssr3.scrape.center</code>时，就会出现一个登录弹窗</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240229183300080.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240229183300080"
+	
+	
+></p>
+<p>怎么解决这个问题呢，要知道<code>requests</code>模块是一个强大的库，它里面可以通过设置auth参数来通过身份认证。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">requests.auth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr3.scrape.center&#34;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="s2">&#34;admin&#34;</span><span class="p">,</span> <span class="s2">&#34;admin&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">200
+</span></span></code></pre></div><p>除此之外，<code>requests</code>库还提供其他认证方式，比如<code>OAuth</code>认证</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">requests_oauthlib</span> <span class="kn">import</span> <span class="n">OAuth1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://api.twitter.com/1.1/account/verify_credentials.json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">auth</span> <span class="o">=</span> <span class="n">OAuth1</span><span class="p">(</span><span class="s2">&#34;YOUR_APP_KEY&#34;</span><span class="p">,</span> <span class="s2">&#34;YOUR_APP_SECRET&#34;</span><span class="p">,</span> <span class="s2">&#34;USER_OAUTH_TOKEN&#34;</span><span class="p">,</span> <span class="s2">&#34;USER_OAUTH_TOKEN_SECRET&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="mi">200</span>
+</span></span></code></pre></div>
 </section>
 
 
@@ -613,7 +916,7 @@
         
             <div class="article-image">
                 
-                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/640.jpg" loading="lazy" data-key="" data-hash="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/640.jpg"/>
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402281848.jpg" loading="lazy" data-key="" data-hash="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402281848.jpg"/>
                 
             </div>
         
