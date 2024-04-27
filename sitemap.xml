@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.winglet.com/</loc>
-    <lastmod>2024-02-20T19:15:41+08:00</lastmod>
+    <lastmod>2024-04-27T18:46:43+08:00</lastmod>
   </url><url>
     <loc>https://blog.winglet.com/post/</loc>
-    <lastmod>2024-02-20T19:15:41+08:00</lastmod>
+    <lastmod>2024-04-27T18:46:43+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winglet.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2024-04-14T20:45:11+08:00</lastmod>
   </url><url>
     <loc>https://blog.winglet.com/categories/</loc>
     <lastmod>2024-02-16T20:51:43+08:00</lastmod>
@@ -61,6 +64,8 @@
     <loc>https://blog.winglet.com/search/</loc>
   </url><url>
     <loc>https://blog.winglet.com/categories/test/</loc>
+  </url><url>
+    <loc>https://blog.winglet.com/p/upload-labs%E9%9D%B6%E5%9C%BA/</loc>
   </url><url>
     <loc>https://blog.winglet.com/%E5%85%B3%E4%BA%8E/</loc>
   </url>

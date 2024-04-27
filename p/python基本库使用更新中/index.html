@@ -286,8 +286,26 @@
             <li><a href="#ssl证书验证">SSL证书验证</a></li>
             <li><a href="#超时设置">超时设置</a></li>
             <li><a href="#身份认证-oauth未">身份认证 （OAUTH未）</a></li>
+            <li><a href="#代理设置">代理设置</a></li>
+            <li><a href="#prepare-request">Prepare Request</a></li>
           </ol>
         </li>
+      </ol>
+    </li>
+    <li><a href="#正则表达式re">正则表达式（re）</a>
+      <ol>
+        <li><a href="#简单介绍">简单介绍</a></li>
+        <li><a href="#match">match</a>
+          <ol>
+            <li><a href="#匹配目标">匹配目标</a></li>
+            <li><a href="#通用匹配">通用匹配</a></li>
+            <li><a href="#贪婪与非贪婪">贪婪与非贪婪</a></li>
+            <li><a href="#修饰符">修饰符</a></li>
+            <li><a href="#转义匹配">转义匹配</a></li>
+          </ol>
+        </li>
+        <li><a href="#search">search</a></li>
+        <li><a href="#findall">findall</a></li>
       </ol>
     </li>
   </ol>
@@ -362,7 +380,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 8 分钟
+                    阅读时长: 12 分钟
                 </time>
             </div>
         
@@ -835,7 +853,249 @@
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
 </span></span></code></pre></div><p>运行结果</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="mi">200</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><h4 id="代理设置">代理设置</h4>
+<p>经常对某个网站进行爬虫时，前几次可以好好访问，但后面就会出现访问失败的情况。这就是网站的反爬技术，它们如果检测到某个IP在进行不正常访问时，就会判断其为爬虫，然后就会将该IP加入黑名单，这样就无法继续访问了。</p>
+<p>如何解决这个问题呢，既然不允许一个IP多次访问的话，那么我们用多个IP依次去访问时，不就可以通过时间差使之IP在正常访问。</p>
+<p>这时我们就要用到<code>proxies</code>参数。下面展示例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">proxies</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;http&#34;</span><span class="p">:</span> <span class="s2">&#34;http://10.10.10.10:1080&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https&#34;</span><span class="p">:</span> <span class="s2">&#34;http://10.10.10.10:1080&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://httpbin.org/get&#34;</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">)</span>
+</span></span></code></pre></div><p>这个例子无法执行，如果要利用的话还是要去搜索有效的代理IP。</p>
+<p>同时requests模块还支持<code>SOCK</code>协议</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import requests
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">proxies = {
+</span></span><span class="line"><span class="cl">    &#34;http&#34;: &#34;sock5://10.10.10.10:1080&#34;,
+</span></span><span class="line"><span class="cl">    &#34;https&#34;: &#34;sock5://10.10.10.10:1080&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">requests.get(&#34;https://httpbin.org/get&#34;, proxies=proxies)
+</span></span></code></pre></div><h4 id="prepare-request">Prepare Request</h4>
+<p>我们知道使用get、post方法就可以实现向其他网站的请求动作，那么它们在requests模块的内部是怎么实现的呢？</p>
+<p>在发送请求之前，requests模块构造一个Request对象，然后将url、header、data等信息添加进去，最终将这个Request对象发送出去，在请求成功后就会获取Response对象，接下来就是对Response对象进行解析。Request对象的类型就是Prepare Request</p>
+<p>接下来我们尝试不使用get方法发送一条请求</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Request</span><span class="p">,</span> <span class="n">Session</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;winglet&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 80.0.3987.122  Safari / 537.36&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">prepped</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">prepare_request</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prepped</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;files&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;form&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;winglet&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="s2">&#34;*/*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;gzip, deflate&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Length&#34;</span><span class="p">:</span> <span class="s2">&#34;12&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;application/x-www-form-urlencoded&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;httpbin.org&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 80.0.3987.122  Safari / 537.36&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;X-Amzn-Trace-Id&#34;</span><span class="p">:</span> <span class="s2">&#34;Root=1-65f2cab2-1df53d590a48a2df49f2fa16&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;json&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;92.223.121.116&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>可以看到，达到了和POST请求一样的效果。而这个Request对象已经成为一个独立的对象了，所以我们可以直接操作它。</p>
+<h2 id="正则表达式re">正则表达式（re）</h2>
+<h3 id="简单介绍">简单介绍</h3>
+<p>现在给出一条数据</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">my phone number is 010-86432100
+</span></span></code></pre></div><p>如果我们现在只想要电话号码的话，就需要编写一条正则表达式</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240314200515989.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240314200515989"
+	
+	
+></p>
+<p>当然这个只是一个比较简单的正则匹配，但效果大家都看见了，我们可以通过一条正则表达式，来匹配一段数据中我们关注的部分。</p>
+<h3 id="match">match</h3>
+<p>这里先介绍第一个常用的匹配方法——match，我们只需要像它传入要匹配的字符串以及正则表达式，他就可以检测这个正则表达式是否与字符串相匹配。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Hello 123 4567 world_This is a Regex Demo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;^Hello\s\d\d\d\s\d</span><span class="si">{4}</span><span class="s1">\s\w</span><span class="si">{10}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>       <span class="o">//</span> <span class="n">输出匹配到的内容</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>        <span class="o">//</span> <span class="n">输出匹配的范围</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="mi">41</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">25</span><span class="err">),</span> <span class="err">match=&#39;Hello</span> <span class="mi">123</span> <span class="mi">4567</span> <span class="err">world_This&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Hello</span> <span class="mi">123</span> <span class="mi">4567</span> <span class="err">world_This</span>
+</span></span><span class="line"><span class="cl"><span class="err">(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">25</span><span class="err">)</span>
+</span></span></code></pre></div><h4 id="匹配目标">匹配目标</h4>
+<p>我们在上面实现了用match匹配内容，那么现在我们要的就是只取出字符串的一部分。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Hello 1234567 World_This is a Regex Demo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;^Hello\s+(\d+)\s+World&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="o">//</span> <span class="n">会输出完整的匹配结果</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="mi">40</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">19</span><span class="err">),</span> <span class="err">match=&#39;Hello</span> <span class="mi">1234567</span> <span class="err">World&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Hello</span> <span class="mi">1234567</span> <span class="err">World</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1234567</span>
+</span></span><span class="line"><span class="cl"><span class="err">(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">19</span><span class="err">)</span>
+</span></span></code></pre></div><h4 id="通用匹配">通用匹配</h4>
+<p>通过上面例子可以发现我们匹配时总是要写很多<code>\d \s</code>之类的，其实在正则表达式中式存在能全部匹配的表达式的。就是即将介绍的<code>.*</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.  可以匹配任意字符
+</span></span><span class="line"><span class="cl">*  可以匹配前面的字符无限次
+</span></span><span class="line"><span class="cl">但是当它们组合到一起时，就能够实现匹配任意字符了
+</span></span></code></pre></div><p>我们现在稍微修改一下之前的代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Hello 1234567 World_This is a Regex Demo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;^Hello.*Demo&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="mi">40</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">40</span><span class="err">),</span> <span class="err">match=&#39;Hello</span> <span class="mi">1234567</span> <span class="err">World_This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">Regex</span> <span class="err">Demo&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Hello</span> <span class="mi">1234567</span> <span class="err">World_This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">Regex</span> <span class="err">Demo</span>
+</span></span><span class="line"><span class="cl"><span class="err">(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">40</span><span class="err">)</span>
+</span></span></code></pre></div><h4 id="贪婪与非贪婪">贪婪与非贪婪</h4>
+<p>我们有时在使用<code>.*</code>时常常得不到我们想要的结果。比如现在我们想要匹配中间的所有数字</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Hello 1234567 World_This is a Regex Demo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s2">&#34;^He.*(\d+).*Demo$&#34;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">40</span><span class="err">),</span> <span class="err">match=&#39;Hello</span> <span class="mi">1234567</span> <span class="err">World_This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">Regex</span> <span class="err">Demo&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="mi">7</span>
+</span></span></code></pre></div><p>我们只匹配到了一个<code>7</code>数字，这显然不是我们想要的结果。</p>
+<p>这里就要涉及贪婪和非贪婪匹配机制了。在贪婪匹配下,<code>.*</code>会尽可能匹配多的字符。以上面的表达式为例<code>.*</code>后面的是<code>\d+</code>，它至少会匹配一个数字。所以在我们没有指定几个数字的情况下，<code>.*</code>就会尽可能地匹配多的字符，这就导致<code>123456</code>都被匹配了，只留了<code>7</code>给<code>\d+</code>去匹配，所以我们最后得到的只有一个<code>7</code>，那么这时我们就要用到非贪婪模式了，它的写法就是<code>?</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Hello 1234567 World_This is a Regex Demo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s2">&#34;^He.*?(\d+).*Demo$&#34;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">40</span><span class="err">),</span> <span class="err">match=&#39;Hello</span> <span class="mi">1234567</span> <span class="err">World_This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">Regex</span> <span class="err">Demo&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1234567</span>
+</span></span></code></pre></div><p>可以看见我们只是在<code>.*</code>后面加了一个<code>?</code>，就可以使它只匹配到<code>1</code>之前。在非贪婪模式下，<code>.*?</code>会尽可能匹配少的字符，所以当它匹配到<code>1</code>前面的空格符后，就会把数字全交给<code>\d+</code>去进行匹配，自己就歇着去了。<code>.*?</code>经常会被用在中间进行匹配。</p>
+<p>要注意的一点就是<code>.*?</code>如果放在字符串的结尾，就有可能匹配不到任何内容了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;http://weibo.com/comment/kEraCN&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s2">&#34;http.*?comment/(.*?)&#34;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">result2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s2">&#34;http.*?comment/(.*)&#34;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result1</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result2</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://weibo.com/comment/
+</span></span><span class="line"><span class="cl">http://weibo.com/comment/kEraCN
+</span></span></code></pre></div><h4 id="修饰符">修饰符</h4>
+<p>先举个例子</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;Hello 1234567 World_this
+</span></span></span><span class="line"><span class="cl"><span class="s1">is a Winglet Demo
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;^He.*?(\d+).*?Demo$&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Traceback (most recent call last):
+</span></span><span class="line"><span class="cl">  File &#34;D:\pyproject\爬虫\测试.py&#34;, line 7, in &lt;module&gt;
+</span></span><span class="line"><span class="cl">    print(result.group(1))
+</span></span><span class="line"><span class="cl">AttributeError: &#39;NoneType&#39; object has no attribute &#39;group&#39;
+</span></span></code></pre></div><p>这里因为字符串中出现了换行符导致无法匹配，但是只要我们在后面加上一个<code>re.S</code>，就可以解决这个错误。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;Hello 1234567 World_this
+</span></span></span><span class="line"><span class="cl"><span class="s1">is a Winglet Demo
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;^He.*?(\d+).*?Demo$&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">Hello</span> <span class="mi">1234567</span> <span class="err">World_this</span>
+</span></span><span class="line"><span class="cl"><span class="err">is</span> <span class="err">a</span> <span class="err">Winglet</span> <span class="err">Demo</span>
+</span></span></code></pre></div><p>除此之外还有一些别的修饰符</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>re.I</td>
+<td>使匹配对大小写不敏感</td>
+</tr>
+<tr>
+<td>re.M</td>
+<td>多行匹配，影响 ^ 和 $</td>
+</tr>
+<tr>
+<td>re.L</td>
+<td>实现本地化识别 (locale-aware) 匹配</td>
+</tr>
+<tr>
+<td>re.S</td>
+<td>使匹配内容包括换行符在内的所有字符</td>
+</tr>
+<tr>
+<td>re.U</td>
+<td>根据Unicode字符集解析字符。这个标志会影响\w、\W、\b和\B</td>
+</tr>
+<tr>
+<td>re.X</td>
+<td>该标志能给予你更灵活的格式，以便将正则变大时</td>
+</tr>
+</tbody>
+</table></div>
+<p>常用的就是<code>re.S</code>和<code>re.I</code></p>
+<h4 id="转义匹配">转义匹配</h4>
+<p>举个例子</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;(百度) www.baidu.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;\(百度\) www\.baidu\.com&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">18</span><span class="err">),</span> <span class="err">match=&#39;(百度)</span> <span class="err">www.baidu.com&#39;&gt;</span>
+</span></span></code></pre></div><p>可以看见我们如果想要匹配一些符号的话就可以在前面加上<code>\</code>，进行字符转义</p>
+<h3 id="search">search</h3>
+<p><code>match</code>方法是从字符串的第一个字符开始匹配的，所以如果一旦第一个字符就匹配失败了，那么这整个字符串就无法匹配。而我们一般都是会匹配中间部分重要的信息，所以这里就要介绍到一个新的方法<code>search</code></p>
+<p>这个方法会先扫描整个字符串，然后会从第一个匹配到的字符开始匹配</p>
+<p>例子如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Extra string Hello 1234567 World_This is a Regex Demo Extra       stings&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Hello.*?(\d+).*?Demo&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span></code></pre></div><p>运行如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">Hello</span> <span class="mi">1234567</span> <span class="err">World_This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">Regex</span> <span class="err">Demo</span>
+</span></span></code></pre></div><h3 id="findall">findall</h3>
+
 </section>
 
 
