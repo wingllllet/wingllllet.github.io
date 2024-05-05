@@ -329,6 +329,22 @@
         <li><a href="#解决方法-8">解决方法</a></li>
       </ol>
     </li>
+    <li><a href="#upload-12-move_uploaded_file缺陷">upload-12 [move_uploaded_file缺陷]</a>
+      <ol>
+        <li><a href="#漏洞分析-10">漏洞分析</a></li>
+        <li><a href="#解决方法-9">解决方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#upload-13-代码审计">upload-13 [代码审计]</a>
+      <ol>
+        <li><a href="#漏洞分析-11">漏洞分析</a>
+          <ol>
+            <li><a href="#注">注</a></li>
+          </ol>
+        </li>
+        <li><a href="#解决方法-10">解决方法</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -372,7 +388,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 8 分钟
+                    阅读时长: 10 分钟
                 </time>
             </div>
         
@@ -449,17 +465,7 @@
 	
 ></p>
 <p>这个就是我们上传的文件了，然后我们右键它复制链接</p>
-<p><img src="C:%5cUsers%5cwinglet%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240401224531992.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240401224531992"
-	
-	
-></p>
-<p>这个就是我们上传的地址了，接下来用蚁剑连接</p>
+<p>找到上传的地址了，接下来用蚁剑连接</p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404012248818.png"
 	
 	
@@ -775,7 +781,7 @@
 ></p>
 <p>连接成功</p>
 <h2 id="upload-10-条件竞争">upload-10 [条件竞争]</h2>
-<p><img src="D:%5cmyblog%5chugoblog%5ccontent%5cpost%5c2024%5cupload-labs%e9%9d%b6%e5%9c%ba.assets%5cimage-20240416214311775.png"
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052323010.png"
 	
 	
 	
@@ -899,7 +905,7 @@
 <h3 id="解决方法-8">解决方法</h3>
 <p>上面的方法是我们如何将payload成功填入文件，并上传，但上传后该怎么使用呢。其实可以注意到这关的网址和之前是有一点区别的</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://ip:30011/?file=hint.html
-</span></span></code></pre></div><p>多了一个<code>file</code>参数，在没有看源码时能想到，这里可能存在文件包含漏洞，我们传入<code>/etc/passwd</code></p>
+</span></span></code></pre></div><p>多了一个<code>file</code>参数，在没有看源码时可以猜测，这里可能存在文件包含漏洞，我们传入<code>/etc/passwd</code></p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171321855.png"
 	
 	
@@ -918,6 +924,144 @@
 	loading="lazy"
 	
 		alt="image-20240417132943523"
+	
+	
+></p>
+<h2 id="upload-12-move_uploaded_file缺陷">upload-12 [move_uploaded_file缺陷]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405042013577.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240504201309426"
+	
+	
+></p>
+<h3 id="漏洞分析-10">漏洞分析</h3>
+<p>这里要用到<code>move_uploaded_file</code>函数的一个缺陷。当我们能能控制<code>$img_path</code>的值时，如果我们输入<code>1.php/.</code>，该函数会将其判断为<code>1.php</code>，但是由于我们在上传时文件名是<code>1.php/.</code>，所以可以绕过黑名单</p>
+<h3 id="解决方法-9">解决方法</h3>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405042228585.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240504222802519"
+	
+	
+></p>
+<p>然后访问</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405042228071.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240504222822988"
+	
+	
+></p>
+<p>可以看到文件成功上传</p>
+<h2 id="upload-13-代码审计">upload-13 [代码审计]</h2>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052234676.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240505223402538"
+	
+	
+></p>
+<h3 id="漏洞分析-11">漏洞分析</h3>
+<p>既然这里说到了要代码审计，那就直接查看代码，这就是关键代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">    <span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">header</span><span class="p">(</span><span class="s2">&#34;Content-type: text/html;charset=utf-8&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//设置上传目录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">define</span><span class="p">(</span><span class="s2">&#34;UPLOAD_PATH&#34;</span><span class="p">,</span> <span class="nx">dirname</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&#34;/upload/&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">define</span><span class="p">(</span><span class="s2">&#34;UPLOAD_URL_PATH&#34;</span><span class="p">,</span> <span class="nx">str_replace</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;DOCUMENT_ROOT&#39;</span><span class="p">],</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nx">UPLOAD_PATH</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">file_exists</span><span class="p">(</span><span class="nx">UPLOAD_PATH</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">mkdir</span><span class="p">(</span><span class="nx">UPLOAD_PATH</span><span class="p">,</span> <span class="mo">0755</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$is_upload</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;submit&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$allow_type</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;image/jpeg&#39;</span><span class="p">,</span><span class="s1">&#39;image/png&#39;</span><span class="p">,</span><span class="s1">&#39;image/gif&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">in_array</span><span class="p">(</span><span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;upload_file&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">],</span><span class="nv">$allow_type</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">echo</span> <span class="s2">&#34;&lt;script&gt;black();&lt;/script&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">$file</span> <span class="o">=</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;save_name&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;upload_file&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;save_name&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">is_array</span><span class="p">(</span><span class="nv">$file</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">explode</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="nx">strtolower</span><span class="p">(</span><span class="nv">$file</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="nv">$ext</span> <span class="o">=</span> <span class="nx">end</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">$allow_suffix</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;jpg&#39;</span><span class="p">,</span><span class="s1">&#39;png&#39;</span><span class="p">,</span><span class="s1">&#39;gif&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">in_array</span><span class="p">(</span><span class="nv">$ext</span><span class="p">,</span> <span class="nv">$allow_suffix</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">echo</span> <span class="s2">&#34;&lt;script&gt;black();&lt;/script&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nv">$file_name</span> <span class="o">=</span> <span class="nx">reset</span><span class="p">(</span><span class="nv">$file</span><span class="p">)</span> <span class="o">.</span> <span class="s1">&#39;.&#39;</span> <span class="o">.</span> <span class="nv">$file</span><span class="p">[</span><span class="nx">count</span><span class="p">(</span><span class="nv">$file</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                    <span class="nv">$temp_file</span> <span class="o">=</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;upload_file&#39;</span><span class="p">][</span><span class="s1">&#39;tmp_name&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                    <span class="nv">$img_path</span> <span class="o">=</span> <span class="nx">UPLOAD_PATH</span> <span class="o">.</span> <span class="s1">&#39;/&#39;</span> <span class="o">.</span><span class="nv">$file_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="nx">move_uploaded_file</span><span class="p">(</span><span class="nv">$temp_file</span><span class="p">,</span> <span class="nv">$img_path</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nv">$is_upload</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">echo</span> <span class="s2">&#34;&lt;script&gt;error();&lt;/script&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;submit&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$allow_type</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;image/jpeg&#39;</span><span class="p">,</span><span class="s1">&#39;image/png&#39;</span><span class="p">,</span><span class="s1">&#39;image/gif&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">in_array</span><span class="p">(</span><span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;upload_file&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">],</span><span class="nv">$allow_type</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">echo</span> <span class="s2">&#34;&lt;script&gt;black();&lt;/script&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span></code></pre></div><p>这里就是检测你的文件类型，文件类型需要符合这个白名单才能进行下一步。绕过方法之前也用到过</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">                <span class="nv">$file</span> <span class="o">=</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;save_name&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;upload_file&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;save_name&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">is_array</span><span class="p">(</span><span class="nv">$file</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">explode</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="nx">strtolower</span><span class="p">(</span><span class="nv">$file</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span></code></pre></div><p>这里就是获取上传文件名，如果参数<code>save_name</code>里面有值，就会把它的值赋给<code>$file</code>，可以发现在上传文件的时候<code>save_name</code>是可控的，这里就是这关的突破口。接下来是判断<code>$file</code>是不是数组类型，不是就会以<code>.</code>为分界创建数组。比如上传的是<code>1.jpg</code>经过这段语句就会变成<code>array[&quot;1&quot;,&quot;jpg&quot;]</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">                <span class="nv">$ext</span> <span class="o">=</span> <span class="nx">end</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">$allow_suffix</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;jpg&#39;</span><span class="p">,</span><span class="s1">&#39;png&#39;</span><span class="p">,</span><span class="s1">&#39;gif&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">in_array</span><span class="p">(</span><span class="nv">$ext</span><span class="p">,</span> <span class="nv">$allow_suffix</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">echo</span> <span class="s2">&#34;&lt;script&gt;black();&lt;/script&gt;&#34;</span><span class="p">;</span>
+</span></span></code></pre></div><p>取数组<code>$file</code> 的最后一位，也就是后缀名，进行判断查看是否在白名单之内</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nv">$file_name</span> <span class="o">=</span> <span class="nx">reset</span><span class="p">(</span><span class="nv">$file</span><span class="p">)</span> <span class="o">.</span> <span class="s1">&#39;.&#39;</span> <span class="o">.</span> <span class="nv">$file</span><span class="p">[</span><span class="nx">count</span><span class="p">(</span><span class="nv">$file</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                    <span class="nv">$temp_file</span> <span class="o">=</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;upload_file&#39;</span><span class="p">][</span><span class="s1">&#39;tmp_name&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                    <span class="nv">$img_path</span> <span class="o">=</span> <span class="nx">UPLOAD_PATH</span> <span class="o">.</span> <span class="s1">&#39;/&#39;</span> <span class="o">.</span><span class="nv">$file_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="nx">move_uploaded_file</span><span class="p">(</span><span class="nv">$temp_file</span><span class="p">,</span> <span class="nv">$img_path</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nv">$is_upload</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">echo</span> <span class="s2">&#34;&lt;script&gt;error();&lt;/script&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span></code></pre></div><p>这里定义就是文件上传后的命名以及存储位置。比如<code>$file=array['1','jpg']</code> ，上传后的文件名就是<code>1.jpg</code></p>
+<p>接下来就是该如何通过这关，我们的突破口就在<code>save_name</code>中，我们传入<code>save_name[0]=shell.php/      save_name[2]=png</code>在检测后缀时，因为该数组最后一位是<code>png</code>所以可以绕过。在存储文件时我们存储文件名就会变成<code>shell.php/.</code>，因为用到了<code>move_uploaded_file</code>函数缺陷，我们仍然上传了<code>shell.php</code>。</p>
+<h4 id="注">注</h4>
+<p>这里为什么要传<code>save_name[2]</code>,因为<code>$file[count($file) - 1]  ==   $file[2-1]</code>而我们<code>$file[1]</code>是一个空值。</p>
+<h3 id="解决方法-10">解决方法</h3>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052304172.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240505230447057"
+	
+	
+></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052305389.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240505230529319"
 	
 	
 ></p>
