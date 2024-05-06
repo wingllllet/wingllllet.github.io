@@ -3,16 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.winglet.com/</loc>
-    <lastmod>2024-05-05T23:14:55+08:00</lastmod>
+    <lastmod>2024-05-06T22:39:37+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winglet.com/categories/</loc>
+    <lastmod>2024-05-06T22:39:37+08:00</lastmod>
   </url><url>
     <loc>https://blog.winglet.com/post/</loc>
-    <lastmod>2024-05-05T23:14:55+08:00</lastmod>
+    <lastmod>2024-05-06T22:39:37+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winglet.com/p/upload-labs/</loc>
+    <lastmod>2024-05-06T22:39:37+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winglet.com/categories/%E9%9D%B6%E5%9C%BA/</loc>
+    <lastmod>2024-05-06T22:39:37+08:00</lastmod>
   </url><url>
     <loc>https://blog.winglet.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</loc>
     <lastmod>2024-04-14T20:45:11+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.winglet.com/categories/</loc>
-    <lastmod>2024-02-16T20:51:43+08:00</lastmod>
   </url><url>
     <loc>https://blog.winglet.com/p/python%E5%9F%BA%E6%9C%AC%E5%BA%93%E4%BD%BF%E7%94%A8%E6%9B%B4%E6%96%B0%E4%B8%AD/</loc>
     <lastmod>2024-02-16T20:51:43+08:00</lastmod>
@@ -36,9 +42,6 @@
     <lastmod>2024-01-18T20:13:41+08:00</lastmod>
   </url><url>
     <loc>https://blog.winglet.com/tags/</loc>
-    <lastmod>2024-01-18T20:13:41+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.winglet.com/categories/%E9%9D%B6%E5%9C%BA/</loc>
     <lastmod>2024-01-18T20:13:41+08:00</lastmod>
   </url><url>
     <loc>https://blog.winglet.com/p/craser%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0%E6%9B%B4%E6%96%B0%E4%B8%AD/</loc>
