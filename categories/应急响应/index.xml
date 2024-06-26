@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>应急响应 on Winglet&#39;s Blog</title>
+        <link>https://blog.winglet.com/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</link>
+        <description>Recent content in 应急响应 on Winglet&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Winglet</copyright>
+        <lastBuildDate>Fri, 07 Jun 2024 21:49:24 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>应急响应实战笔记</title>
+        <link>https://blog.winglet.com/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Fri, 07 Jun 2024 21:49:24 +0800</pubDate>
+        
+        <guid>https://blog.winglet.com/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;h2 id=&#34;q前言&#34;&gt;q前言&lt;/h2&gt;
+&lt;p&gt;原文https://bypass007.github.io/Emergency-Response-Notes/&lt;/p&gt;
+&lt;h2 id=&#34;第一章应急响应&#34;&gt;第一章：应急响应&lt;/h2&gt;
+&lt;h3 id=&#34;windows入侵排查&#34;&gt;windows入侵排查&lt;/h3&gt;
+&lt;h4 id=&#34;前言&#34;&gt;前言&lt;/h4&gt;
+&lt;p&gt;常见的应急响应事件：&lt;/p&gt;
+&lt;p&gt;web入侵：网页挂马、主页篡改、webshell&lt;/p&gt;
+&lt;p&gt;系统入侵：病毒木马、勒索软件、远控后门&lt;/p&gt;
+&lt;p&gt;网络攻击：DDOS攻击、DNS劫持、ARP欺骗&lt;/p&gt;
+&lt;h4 id=&#34;入侵排查思路&#34;&gt;入侵排查思路&lt;/h4&gt;
+&lt;h5 id=&#34;1-检查系统账号安全&#34;&gt;1. 检查系统账号安全&lt;/h5&gt;
+&lt;p&gt;1、检查服务器是否有弱口令，远程管理端口是否对公网开放&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;检查方法：据实际情况咨询相关服务器管理员&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2、查看服务器是否存在可疑账号、新增账号&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;检查方法：打开cmd窗口，输入&lt;code&gt;lusrmgr.msc&lt;/code&gt;命令，查看是否存在可疑/新增账号，如有管理员群组的里面有新增账户，需尽快删除或禁用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3、查看服务器是否存在可以隐藏账号、克隆账号&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;检查方法：
+&lt;ul&gt;
+&lt;li&gt;打开注册表，查看管理员对应键值&lt;/li&gt;
+&lt;li&gt;使用d盾_web查杀工具，它集成了对克隆账号检测的功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406072210170.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;4、结合日志，查看管理员登录时间、用户名是否存在异常&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;检查方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;win+R打开运行，输入&amp;quot;eventvwr.msc&amp;quot;，回车运行，打开“事件查看器”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406072225823.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240607222544715&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;导出windows日志&amp;ndash;安全，利用Log Parse进行分析&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2-检查异常端口进程&#34;&gt;2. 检查异常端口、进程&lt;/h5&gt;
+&lt;p&gt;1、检查端口连接情况，是否有远程连接、可疑连接&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;检查方法：&lt;/p&gt;
+&lt;p&gt;a、&lt;code&gt;netstat -ano&lt;/code&gt;查看目前的网络连接，定位可疑的&lt;code&gt;ESTABLISHED&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ESTABLISHED状态表示以表示TCP连接已经被成功建立，并且数据可以在两个端点之间自由传输。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;b、根据&lt;code&gt;netstat&lt;/code&gt;定位出的&lt;code&gt;pid&lt;/code&gt;，在通过&lt;code&gt;tasklist&lt;/code&gt;命令进行进程定位&lt;code&gt;tasklist | findstr &amp;quot;PID&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406072237781.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240607223708744&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406072245402.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240607224506375&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;2、进程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;检查方法：&lt;/p&gt;
+&lt;p&gt;a、开始&amp;ndash;运行&amp;ndash;输入&lt;code&gt;msinfo32&lt;/code&gt;，依次点击“软件环境-&amp;gt;正在运行任务”即可查看进行的详细信息，比如进程路径、进程ID、文件创建日期、启动时间等。&lt;/p&gt;
+&lt;p&gt;b、打开d盾_web查杀工具，进程查看，关注没有签名信息的进程&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406072251504.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240607225149444&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;c、通过微软官方提供的&lt;code&gt;Process Explorer&lt;/code&gt;等工具进行排查&lt;/p&gt;
+&lt;p&gt;d、查看可以进程及其子程序。可通过关注以下内容：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;没有签名验证信息的进程
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;没有描述信息的进程
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;进程的属主
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;进程的路径是否合法
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CPU或内存资源占用长时间过高的进程
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3、小技巧：&lt;/p&gt;
+&lt;p&gt;​	a、查看端口对应的PID：&lt;code&gt;netstat -ano | findstr &amp;quot;port&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;​	b、查看进程对应的PID：任务管理器&amp;ndash;查看&amp;ndash;选择列&amp;ndash;PID 或者 tasklist | findstr “PID”&lt;/p&gt;
+&lt;p&gt;​	c、查看进程对应的程序位置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;任务管理器--选择对应程序--右键打开文件位置
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;运行输入 wmic，cmd界面 输入 process
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;​	d、&lt;code&gt;tasklist /svc&lt;/code&gt;进程&amp;ndash;PID&amp;ndash;服务&lt;/p&gt;
+&lt;p&gt;​	e、查看windows服务对应的端口：&lt;code&gt;%system%/system32/drivers/etc/services&lt;/code&gt;（&lt;code&gt;%system%&lt;/code&gt;一般指&lt;code&gt;C:\\Windows&lt;/code&gt;）&lt;/p&gt;
+&lt;h5 id=&#34;3-检查启动项计划任务服务&#34;&gt;3. 检查启动项、计划任务、服务&lt;/h5&gt;
+&lt;p&gt;1、检查服务器是否有异常的启动项&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;检查方法：&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
