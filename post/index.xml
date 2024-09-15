@@ -13,7 +13,7 @@
         <pubDate>Sun, 15 Sep 2024 23:35:57 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/cloudflare-piclist%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/</guid>
-        <description>&lt;img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160012294.lnk https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160012295.png" alt="Featured image of post Cloudflare&#43;piclist搭建图床" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160012295.png" alt="Featured image of post Cloudflare&#43;piclist搭建图床" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;换个图床&lt;/p&gt;
 &lt;h2 id=&#34;cloudflare创建存储库&#34;&gt;cloudflare创建存储库&lt;/h2&gt;
 &lt;p&gt;左边栏选择&lt;code&gt;R2-概述&lt;/code&gt;，然后点击&lt;code&gt;创建存储桶&lt;/code&gt;&lt;/p&gt;
