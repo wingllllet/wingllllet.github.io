@@ -13,12 +13,12 @@
         <pubDate>Fri, 16 Feb 2024 20:51:43 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/python%E5%9F%BA%E6%9C%AC%E5%BA%93%E4%BD%BF%E7%94%A8%E6%9B%B4%E6%96%B0%E4%B8%AD/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402262226.jpg" alt="Featured image of post Python基本库使用[更新中]" /&gt;&lt;h2 id=&#34;urllib&#34;&gt;urllib&lt;/h2&gt;
-&lt;p&gt;这个库目前只提一嘴，因为还有和它一样且功能更强大的库。这个库我在写爬虫的时候也是不常使用。如果在以后遇到必须使用该库才能解决的问题时再去详细介绍这个库的功能。&lt;/p&gt;
-&lt;h2 id=&#34;requests&#34;&gt;requests&lt;/h2&gt;
-&lt;p&gt;这个库就是我提到了功能更加强大的库。&lt;/p&gt;
-&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip3 install requests
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402262226.jpg" alt="Featured image of post Python基本库使用[更新中]" /&gt;&lt;h2 id=&#34;urllib&#34;&gt;urllib
+&lt;/h2&gt;&lt;p&gt;这个库目前只提一嘴，因为还有和它一样且功能更强大的库。这个库我在写爬虫的时候也是不常使用。如果在以后遇到必须使用该库才能解决的问题时再去详细介绍这个库的功能。&lt;/p&gt;
+&lt;h2 id=&#34;requests&#34;&gt;requests
+&lt;/h2&gt;&lt;p&gt;这个库就是我提到了功能更加强大的库。&lt;/p&gt;
+&lt;h3 id=&#34;安装&#34;&gt;安装
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip3 install requests
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果有pycharm可在这个进行添加&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240224111542944.png&#34;
 	
@@ -30,8 +30,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;实例&#34;&gt;实例&lt;/h3&gt;
-&lt;p&gt;运行下面代码&lt;/p&gt;
+&lt;h3 id=&#34;实例&#34;&gt;实例
+&lt;/h3&gt;&lt;p&gt;运行下面代码&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;resp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;requests&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://www.baidu.com&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
@@ -55,8 +55,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;requests&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;delete&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;requests&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;patch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里只是粗略的介绍，后面再详细介绍。&lt;/p&gt;
-&lt;h3 id=&#34;get请求&#34;&gt;GET请求&lt;/h3&gt;
-&lt;p&gt;构造一个简单的get请求，链接是https://www.httpbin.org/get，这个网站可以判断客户端是不是进行了GET请求，并会返回响应包&lt;/p&gt;
+&lt;h3 id=&#34;get请求&#34;&gt;GET请求
+&lt;/h3&gt;&lt;p&gt;构造一个简单的get请求，链接是https://www.httpbin.org/get，这个网站可以判断客户端是不是进行了GET请求，并会返回响应包&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;import requests
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;resp = requests.get(&amp;#34;https://www.httpbin.org/get&amp;#34;)
@@ -75,8 +75,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://www.httpbin.org/get&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回结果中有请求头、url、ip等信息，这就说明我们成功发起了GET请求&lt;/p&gt;
-&lt;h4 id=&#34;添加额外信息&#34;&gt;添加额外信息&lt;/h4&gt;
-&lt;p&gt;如果要在GET请求中添加额外信息，在正常请求时通常是写成 &lt;code&gt;http://www.temple.com/?name=winglet &lt;/code&gt;所以在用模块进行请求时也可以写成这样。&lt;/p&gt;
+&lt;h4 id=&#34;添加额外信息&#34;&gt;添加额外信息
+&lt;/h4&gt;&lt;p&gt;如果要在GET请求中添加额外信息，在正常请求时通常是写成 &lt;code&gt;http://www.temple.com/?name=winglet &lt;/code&gt;所以在用模块进行请求时也可以写成这样。&lt;/p&gt;
 &lt;p&gt;但是在requests模块中我们也可以通过&lt;code&gt;params&lt;/code&gt;参数进行添加，例&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -114,8 +114,8 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&amp;lt;class&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;str&amp;#39;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;args&amp;#39;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;headers&amp;#39;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;Accept&amp;#39;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;*/*&amp;#39;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;Accept-Encoding&amp;#39;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;gzip,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;deflate&amp;#39;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;Host&amp;#39;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;www.httpbin.org&amp;#39;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;User-Agent&amp;#39;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;python-requests/2.28.1&amp;#39;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;X-Amzn-Trace-Id&amp;#39;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;Root=1-65d9b0c4-7caba3c72eecb41d635c8987&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;origin&amp;#39;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;194.99&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;79.246&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;url&amp;#39;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;http:&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//www.httpbin.org/get&amp;#39;}
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;lt;class&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;dict&amp;#39;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;抓取网页&#34;&gt;抓取网页&lt;/h4&gt;
-&lt;p&gt;就以上面抓取结果来说，我们通常抓出来的就是这么一大串信息，但需要在这些信息里面提取有效信息，这里我们就以&lt;code&gt;https://ssr1.scrape.center/&lt;/code&gt;为例&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;抓取网页&#34;&gt;抓取网页
+&lt;/h4&gt;&lt;p&gt;就以上面抓取结果来说，我们通常抓出来的就是这么一大串信息，但需要在这些信息里面提取有效信息，这里我们就以&lt;code&gt;https://ssr1.scrape.center/&lt;/code&gt;为例&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -126,8 +126,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行结果&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;霸王别姬&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Farewell&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;My&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Concubine&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;这个杀手不太冷&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Léon&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;肖申克的救赎&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;The&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Shawshank&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Redemption&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;泰坦尼克号&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Titanic&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;罗马假日&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Roman&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Holiday&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;唐伯虎点秋香&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Flirting&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Scholar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;乱世佳人&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Gone&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;the&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Wind&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;喜剧之王&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;The&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;King&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Comedy&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;楚门的世界&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;The&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Truman&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Show&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;狮子王&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;The&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Lion&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;King&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在提取有效信息时就需要用到re模块，就是用正则表达式来匹配有效信息，这块后面再讲。&lt;/p&gt;
-&lt;h4 id=&#34;抓取二进制数据&#34;&gt;抓取二进制数据&lt;/h4&gt;
-&lt;p&gt;我们常见抓取的二进制数据就是图片了。像博客上传图片就是生成一个图片链接，所以我们直接访问其链接就能获取到这个图片的二进制内容，然后浏览器就会解析并将该图片展现出来。&lt;/p&gt;
+&lt;h4 id=&#34;抓取二进制数据&#34;&gt;抓取二进制数据
+&lt;/h4&gt;&lt;p&gt;我们常见抓取的二进制数据就是图片了。像博客上传图片就是生成一个图片链接，所以我们直接访问其链接就能获取到这个图片的二进制内容，然后浏览器就会解析并将该图片展现出来。&lt;/p&gt;
 &lt;p&gt;现在随便抓取一个图片&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -152,8 +152,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;1.ico&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;wb&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;write&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;resp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样我们就在当前目录下生成了一个&lt;code&gt;1.ico&lt;/code&gt;文件&lt;/p&gt;
-&lt;h4 id=&#34;添加请求头&#34;&gt;添加请求头&lt;/h4&gt;
-&lt;p&gt;现在很多网站都有一些反爬机制，我们在之前的请求中是没有设置请求头的，有一些网站检测你的请求头时发现&lt;code&gt;user-agent&lt;/code&gt;字段没有数据，就会认为该请求不是来自一个正常的浏览器，就会返回异常结果阻止爬取。&lt;/p&gt;
+&lt;h4 id=&#34;添加请求头&#34;&gt;添加请求头
+&lt;/h4&gt;&lt;p&gt;现在很多网站都有一些反爬机制，我们在之前的请求中是没有设置请求头的，有一些网站检测你的请求头时发现&lt;code&gt;user-agent&lt;/code&gt;字段没有数据，就会认为该请求不是来自一个正常的浏览器，就会返回异常结果阻止爬取。&lt;/p&gt;
 &lt;p&gt;那么我们就需要自己去设置请求头，在&lt;code&gt;requests&lt;/code&gt;模块中我们用&lt;code&gt;headers&lt;/code&gt;参数来设置请求头内容&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -162,8 +162,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;resp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;requests&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://scrape.center/favicon.ico&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;headers&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;headers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过此方法便可以传送请求头&lt;/p&gt;
-&lt;h3 id=&#34;post请求&#34;&gt;POST请求&lt;/h3&gt;
-&lt;p&gt;检测是否进行了POST请求&lt;/p&gt;
+&lt;h3 id=&#34;post请求&#34;&gt;POST请求
+&lt;/h3&gt;&lt;p&gt;检测是否进行了POST请求&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://www.httpbin.org/post&amp;#34;&lt;/span&gt;
@@ -219,8 +219,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://www.httpbin.org/post&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看见我们提交的表单数据就被放在了&lt;code&gt;form&lt;/code&gt;参数中&lt;/p&gt;
-&lt;h3 id=&#34;响应&#34;&gt;响应&lt;/h3&gt;
-&lt;p&gt;发送了请求后，自然能得到响应，我们上述的结果中只是展示了响应的一部分，之前我们讲到过，响应里面是有响应体，状态码，cookie等信息的。所以我们也可以通过其他方法函数将它们展示出来&lt;/p&gt;
+&lt;h3 id=&#34;响应&#34;&gt;响应
+&lt;/h3&gt;&lt;p&gt;发送了请求后，自然能得到响应，我们上述的结果中只是展示了响应的一部分，之前我们讲到过，响应里面是有响应体，状态码，cookie等信息的。所以我们也可以通过其他方法函数将它们展示出来&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://ssr1.scrape.center&amp;#34;&lt;/span&gt;
@@ -239,9 +239,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;基&lt;/p&gt;
 &lt;p&gt;本信息便如此。&lt;/p&gt;
 &lt;p&gt;可以看见状态码是200，表示网站正常访问。不过在&lt;code&gt;requests&lt;/code&gt;模块中，还存在内置函数来表示某种状态。比如&lt;code&gt;requests.codes.ok&lt;/code&gt;就表示&lt;code&gt;200&lt;/code&gt;，当然还有很多状态表示函数，不过个人感觉没必要去记，做个了解即可。&lt;/p&gt;
-&lt;h3 id=&#34;高级用法&#34;&gt;高级用法&lt;/h3&gt;
-&lt;h4 id=&#34;文件上传&#34;&gt;文件上传&lt;/h4&gt;
-&lt;p&gt;直接实例展示&lt;/p&gt;
+&lt;h3 id=&#34;高级用法&#34;&gt;高级用法
+&lt;/h3&gt;&lt;h4 id=&#34;文件上传&#34;&gt;文件上传
+&lt;/h4&gt;&lt;p&gt;直接实例展示&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -271,8 +271,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;http://httpbin.org/post&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;利用&lt;code&gt;files&lt;/code&gt;我们就成功通过POST请求上传了一个文件。&lt;/p&gt;
-&lt;h4 id=&#34;cookie设置&#34;&gt;Cookie设置&lt;/h4&gt;
-&lt;p&gt;我们先尝试获取cookie&lt;/p&gt;
+&lt;h4 id=&#34;cookie设置&#34;&gt;Cookie设置
+&lt;/h4&gt;&lt;p&gt;我们先尝试获取cookie&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;requests&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://www.baidu.com&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
@@ -337,8 +337,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;测试发现，依然可以正常登录&lt;/p&gt;
-&lt;h4 id=&#34;session维持&#34;&gt;Session维持&lt;/h4&gt;
-&lt;p&gt;在利用&lt;code&gt;requests&lt;/code&gt;库时，我们无论使用&lt;code&gt;GET&lt;/code&gt;还是&lt;code&gt;POST&lt;/code&gt;请求，都是当作开启了一个新的浏览器，然后去访问网站的。比如你先用&lt;code&gt;POST&lt;/code&gt;请求输入了你的登录信息，之后你再使用&lt;code&gt;GET&lt;/code&gt;请求还是会无法访问。&lt;/p&gt;
+&lt;h4 id=&#34;session维持&#34;&gt;Session维持
+&lt;/h4&gt;&lt;p&gt;在利用&lt;code&gt;requests&lt;/code&gt;库时，我们无论使用&lt;code&gt;GET&lt;/code&gt;还是&lt;code&gt;POST&lt;/code&gt;请求，都是当作开启了一个新的浏览器，然后去访问网站的。比如你先用&lt;code&gt;POST&lt;/code&gt;请求输入了你的登录信息，之后你再使用&lt;code&gt;GET&lt;/code&gt;请求还是会无法访问。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;requests&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://www.httpbin.org/cookies/set/number/123456789&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
@@ -362,8 +362,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;number&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;123456789&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;ssl证书验证&#34;&gt;SSL证书验证&lt;/h4&gt;
-&lt;p&gt;现在很多网站都用的https协议，但是有些网站没有安装HTTPS证书或者HTTPS证书不被ca机构认可，这就导致我们在访问的时候可能会出现SSL证书错误的提示。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;ssl证书验证&#34;&gt;SSL证书验证
+&lt;/h4&gt;&lt;p&gt;现在很多网站都用的https协议，但是有些网站没有安装HTTPS证书或者HTTPS证书不被ca机构认可，这就导致我们在访问的时候可能会出现SSL证书错误的提示。&lt;/p&gt;
 &lt;p&gt;比如我们现在访问&lt;code&gt;https://ssr2.scrape.center&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240228221757520.png&#34;
 	
@@ -429,8 +429,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;resp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status_code&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行结果&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;200
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;超时设置&#34;&gt;超时设置&lt;/h4&gt;
-&lt;p&gt;平常在上网的时候就可能会因为网络状况不好或者服务器网络响应太慢导致需要等待一段时间网站才能加载出来，甚至最后因为接收不到响应而报错。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;超时设置&#34;&gt;超时设置
+&lt;/h4&gt;&lt;p&gt;平常在上网的时候就可能会因为网络状况不好或者服务器网络响应太慢导致需要等待一段时间网站才能加载出来，甚至最后因为接收不到响应而报错。&lt;/p&gt;
 &lt;p&gt;所以我们可以通过设置超时时间，就是如果加载到一定时间还是没有响应，就直接跳过。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -441,8 +441,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;resp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;requests&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;http://www.httpbin.org&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;timeout&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;resp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;身份认证-oauth未&#34;&gt;身份认证 （OAUTH未）&lt;/h4&gt;
-&lt;p&gt;在访问某些网站的时候，通常会弹出登录弹窗，进行身份认证，比如访问&lt;code&gt;https://ssr3.scrape.center&lt;/code&gt;时，就会出现一个登录弹窗&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;身份认证-oauth未&#34;&gt;身份认证 （OAUTH未）
+&lt;/h4&gt;&lt;p&gt;在访问某些网站的时候，通常会弹出登录弹窗，进行身份认证，比如访问&lt;code&gt;https://ssr3.scrape.center&lt;/code&gt;时，就会出现一个登录弹窗&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240229183300080.png&#34;
 	
 	
@@ -471,8 +471,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;resp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status_code&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行结果&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;200&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;代理设置&#34;&gt;代理设置&lt;/h4&gt;
-&lt;p&gt;经常对某个网站进行爬虫时，前几次可以好好访问，但后面就会出现访问失败的情况。这就是网站的反爬技术，它们如果检测到某个IP在进行不正常访问时，就会判断其为爬虫，然后就会将该IP加入黑名单，这样就无法继续访问了。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;代理设置&#34;&gt;代理设置
+&lt;/h4&gt;&lt;p&gt;经常对某个网站进行爬虫时，前几次可以好好访问，但后面就会出现访问失败的情况。这就是网站的反爬技术，它们如果检测到某个IP在进行不正常访问时，就会判断其为爬虫，然后就会将该IP加入黑名单，这样就无法继续访问了。&lt;/p&gt;
 &lt;p&gt;如何解决这个问题呢，既然不允许一个IP多次访问的话，那么我们用多个IP依次去访问时，不就可以通过时间差使之IP在正常访问。&lt;/p&gt;
 &lt;p&gt;这时我们就要用到&lt;code&gt;proxies&lt;/code&gt;参数。下面展示例子：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
@@ -491,8 +491,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;#34;https&amp;#34;: &amp;#34;sock5://10.10.10.10:1080&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;requests.get(&amp;#34;https://httpbin.org/get&amp;#34;, proxies=proxies)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;prepare-request&#34;&gt;Prepare Request&lt;/h4&gt;
-&lt;p&gt;我们知道使用get、post方法就可以实现向其他网站的请求动作，那么它们在requests模块的内部是怎么实现的呢？&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;prepare-request&#34;&gt;Prepare Request
+&lt;/h4&gt;&lt;p&gt;我们知道使用get、post方法就可以实现向其他网站的请求动作，那么它们在requests模块的内部是怎么实现的呢？&lt;/p&gt;
 &lt;p&gt;在发送请求之前，requests模块构造一个Request对象，然后将url、header、data等信息添加进去，最终将这个Request对象发送出去，在请求成功后就会获取Response对象，接下来就是对Response对象进行解析。Request对象的类型就是Prepare Request&lt;/p&gt;
 &lt;p&gt;接下来我们尝试不使用get方法发送一条请求&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Session&lt;/span&gt;
@@ -529,9 +529,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://httpbin.org/post&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看到，达到了和POST请求一样的效果。而这个Request对象已经成为一个独立的对象了，所以我们可以直接操作它。&lt;/p&gt;
-&lt;h2 id=&#34;正则表达式re&#34;&gt;正则表达式（re）&lt;/h2&gt;
-&lt;h3 id=&#34;简单介绍&#34;&gt;简单介绍&lt;/h3&gt;
-&lt;p&gt;现在给出一条数据&lt;/p&gt;
+&lt;h2 id=&#34;正则表达式re&#34;&gt;正则表达式（re）
+&lt;/h2&gt;&lt;h3 id=&#34;简单介绍&#34;&gt;简单介绍
+&lt;/h3&gt;&lt;p&gt;现在给出一条数据&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;my phone number is 010-86432100
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果我们现在只想要电话号码的话，就需要编写一条正则表达式&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240314200515989.png&#34;
@@ -545,8 +545,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;当然这个只是一个比较简单的正则匹配，但效果大家都看见了，我们可以通过一条正则表达式，来匹配一段数据中我们关注的部分。&lt;/p&gt;
-&lt;h3 id=&#34;match&#34;&gt;match&lt;/h3&gt;
-&lt;p&gt;这里先介绍第一个常用的匹配方法——match，我们只需要像它传入要匹配的字符串以及正则表达式，他就可以检测这个正则表达式是否与字符串相匹配。&lt;/p&gt;
+&lt;h3 id=&#34;match&#34;&gt;match
+&lt;/h3&gt;&lt;p&gt;这里先介绍第一个常用的匹配方法——match，我们只需要像它传入要匹配的字符串以及正则表达式，他就可以检测这个正则表达式是否与字符串相匹配。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Hello 123 4567 world_This is a Regex Demo&amp;#34;&lt;/span&gt;
@@ -560,8 +560,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&amp;lt;re.Match&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;object;&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;span=(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;25&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;match=&amp;#39;Hello&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;123&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4567&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;world_This&amp;#39;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;Hello&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;123&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4567&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;world_This&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;25&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;匹配目标&#34;&gt;匹配目标&lt;/h4&gt;
-&lt;p&gt;我们在上面实现了用match匹配内容，那么现在我们要的就是只取出字符串的一部分。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;匹配目标&#34;&gt;匹配目标
+&lt;/h4&gt;&lt;p&gt;我们在上面实现了用match匹配内容，那么现在我们要的就是只取出字符串的一部分。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Hello 1234567 World_This is a Regex Demo&amp;#34;&lt;/span&gt;
@@ -577,8 +577,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;Hello&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1234567&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;World&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;1234567&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;19&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;通用匹配&#34;&gt;通用匹配&lt;/h4&gt;
-&lt;p&gt;通过上面例子可以发现我们匹配时总是要写很多&lt;code&gt;\d \s&lt;/code&gt;之类的，其实在正则表达式中式存在能全部匹配的表达式的。就是即将介绍的&lt;code&gt;.*&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;通用匹配&#34;&gt;通用匹配
+&lt;/h4&gt;&lt;p&gt;通过上面例子可以发现我们匹配时总是要写很多&lt;code&gt;\d \s&lt;/code&gt;之类的，其实在正则表达式中式存在能全部匹配的表达式的。就是即将介绍的&lt;code&gt;.*&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.  可以匹配任意字符
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*  可以匹配前面的字符无限次
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;但是当它们组合到一起时，就能够实现匹配任意字符了
@@ -596,8 +596,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&amp;lt;re.Match&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;object;&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;span=(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;40&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;match=&amp;#39;Hello&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1234567&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;World_This&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Regex&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Demo&amp;#39;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;Hello&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1234567&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;World_This&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Regex&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Demo&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;40&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;贪婪与非贪婪&#34;&gt;贪婪与非贪婪&lt;/h4&gt;
-&lt;p&gt;我们有时在使用&lt;code&gt;.*&lt;/code&gt;时常常得不到我们想要的结果。比如现在我们想要匹配中间的所有数字&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;贪婪与非贪婪&#34;&gt;贪婪与非贪婪
+&lt;/h4&gt;&lt;p&gt;我们有时在使用&lt;code&gt;.*&lt;/code&gt;时常常得不到我们想要的结果。比如现在我们想要匹配中间的所有数字&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Hello 1234567 World_This is a Regex Demo&amp;#34;&lt;/span&gt;
@@ -630,8 +630,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行结果&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://weibo.com/comment/
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://weibo.com/comment/kEraCN
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;修饰符&#34;&gt;修饰符&lt;/h4&gt;
-&lt;p&gt;先举个例子&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;修饰符&#34;&gt;修饰符
+&lt;/h4&gt;&lt;p&gt;先举个例子&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&amp;#39;Hello 1234567 World_this
@@ -659,40 +659,40 @@
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;修饰符&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;描述&lt;/th&gt;
+          &lt;th&gt;修饰符&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;re.I&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;使匹配对大小写不敏感&lt;/td&gt;
+          &lt;td&gt;re.I&lt;/td&gt;
+          &lt;td&gt;使匹配对大小写不敏感&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;re.M&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;多行匹配，影响 ^ 和 $&lt;/td&gt;
+          &lt;td&gt;re.M&lt;/td&gt;
+          &lt;td&gt;多行匹配，影响 ^ 和 $&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;re.L&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;实现本地化识别 (locale-aware) 匹配&lt;/td&gt;
+          &lt;td&gt;re.L&lt;/td&gt;
+          &lt;td&gt;实现本地化识别 (locale-aware) 匹配&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;re.S&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;使匹配内容包括换行符在内的所有字符&lt;/td&gt;
+          &lt;td&gt;re.S&lt;/td&gt;
+          &lt;td&gt;使匹配内容包括换行符在内的所有字符&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;re.U&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;根据Unicode字符集解析字符。这个标志会影响\w、\W、\b和\B&lt;/td&gt;
+          &lt;td&gt;re.U&lt;/td&gt;
+          &lt;td&gt;根据Unicode字符集解析字符。这个标志会影响\w、\W、\b和\B&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;re.X&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;该标志能给予你更灵活的格式，以便将正则变大时&lt;/td&gt;
+          &lt;td&gt;re.X&lt;/td&gt;
+          &lt;td&gt;该标志能给予你更灵活的格式，以便将正则变大时&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;常用的就是&lt;code&gt;re.S&lt;/code&gt;和&lt;code&gt;re.I&lt;/code&gt;&lt;/p&gt;
-&lt;h4 id=&#34;转义匹配&#34;&gt;转义匹配&lt;/h4&gt;
-&lt;p&gt;举个例子&lt;/p&gt;
+&lt;h4 id=&#34;转义匹配&#34;&gt;转义匹配
+&lt;/h4&gt;&lt;p&gt;举个例子&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;(百度) www.baidu.com&amp;#34;&lt;/span&gt;
@@ -701,8 +701,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行结果&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&amp;lt;re.Match&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;object;&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;span=(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;match=&amp;#39;(百度)&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;www.baidu.com&amp;#39;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看见我们如果想要匹配一些符号的话就可以在前面加上&lt;code&gt;\&lt;/code&gt;，进行字符转义&lt;/p&gt;
-&lt;h3 id=&#34;search&#34;&gt;search&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;match&lt;/code&gt;方法是从字符串的第一个字符开始匹配的，所以如果一旦第一个字符就匹配失败了，那么这整个字符串就无法匹配。而我们一般都是会匹配中间部分重要的信息，所以这里就要介绍到一个新的方法&lt;code&gt;search&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;search&#34;&gt;search
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;match&lt;/code&gt;方法是从字符串的第一个字符开始匹配的，所以如果一旦第一个字符就匹配失败了，那么这整个字符串就无法匹配。而我们一般都是会匹配中间部分重要的信息，所以这里就要介绍到一个新的方法&lt;code&gt;search&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;这个方法会先扫描整个字符串，然后会从第一个匹配到的字符开始匹配&lt;/p&gt;
 &lt;p&gt;例子如下&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
@@ -712,8 +712,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行如下&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;Hello&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1234567&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;World_This&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Regex&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Demo&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;findall&#34;&gt;findall&lt;/h3&gt;
-</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;findall&#34;&gt;findall
+&lt;/h3&gt;</description>
         </item>
         <item>
         <title>Web基础</title>
@@ -721,16 +721,16 @@
         <pubDate>Fri, 02 Feb 2024 17:46:38 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/web%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/13.png" alt="Featured image of post Web基础" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;​	在我成功部署好我这个博客的时候，就发过一个爬虫代码的文章，并且说过以后写写爬虫基础的文章，那么如今就开始写相关的文章。说到爬虫，我去学习的原因只是因为当时面试实验室的时候（一个月后被实验室踢了，成自由人了），学长问了一句，当时我确实不会。后面就去学了一下，还爬了几个壁纸网站，但后面就没再深入学习了。但是在学习爬虫的过程中，得到的知识却在后面经常起到很大的作用，尤其是一年多后爬图书管理信息的时候，我又一次意识到它的作用，所以从现在开始我决定去深入学习一下爬虫。&lt;/p&gt;
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/13.png" alt="Featured image of post Web基础" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;​	在我成功部署好我这个博客的时候，就发过一个爬虫代码的文章，并且说过以后写写爬虫基础的文章，那么如今就开始写相关的文章。说到爬虫，我去学习的原因只是因为当时面试实验室的时候（一个月后被实验室踢了，成自由人了），学长问了一句，当时我确实不会。后面就去学了一下，还爬了几个壁纸网站，但后面就没再深入学习了。但是在学习爬虫的过程中，得到的知识却在后面经常起到很大的作用，尤其是一年多后爬图书管理信息的时候，我又一次意识到它的作用，所以从现在开始我决定去深入学习一下爬虫。&lt;/p&gt;
 &lt;p&gt;参考资料&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;《python3网络爬虫开发实战》第二版&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;http基础&#34;&gt;HTTP基础&lt;/h2&gt;
-&lt;p&gt;爬虫是一直和web打招呼的，所以我们先从web基础知识讲起。&lt;/p&gt;
-&lt;h3 id=&#34;url和uri&#34;&gt;URL和URI&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;URI：&lt;/strong&gt; 全称&lt;code&gt;Uniform Resource Identifier（统一资源标志符）&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;http基础&#34;&gt;HTTP基础
+&lt;/h2&gt;&lt;p&gt;爬虫是一直和web打招呼的，所以我们先从web基础知识讲起。&lt;/p&gt;
+&lt;h3 id=&#34;url和uri&#34;&gt;URL和URI
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;URI：&lt;/strong&gt; 全称&lt;code&gt;Uniform Resource Identifier（统一资源标志符）&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;URL：&lt;/strong&gt; 全称&lt;code&gt;Uniform Resource Locator（统一资源定位符）&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;例如&lt;code&gt;http://github.com/favicon.ico&lt;/code&gt;这个既是URL也是URI，它的作用就是准确定位到&lt;code&gt;favicon.ico&lt;/code&gt;文件的位置，我们要通过它去访问或获取这个文件，这个能准确访问指定文件的链接就是URL/URI。一条访问链接它需要包括了HTTP协议、访问路径(根目录)和资源名称。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;URL&lt;/strong&gt;和&lt;strong&gt;URI&lt;/strong&gt;的关系是包含关系，也就是说&lt;strong&gt;URL&lt;/strong&gt;一定是&lt;strong&gt;URI&lt;/strong&gt;, 但&lt;strong&gt;URI&lt;/strong&gt;不一定是&lt;strong&gt;URL&lt;/strong&gt;。因为&lt;strong&gt;URI&lt;/strong&gt;中还包含&lt;strong&gt;URN&lt;/strong&gt;。&lt;strong&gt;URN&lt;/strong&gt;的作用只是为资源命名但不具有指定资源位置的功能，比如它可以指定一本书为&lt;code&gt;urn:isbn:014235454&lt;/code&gt;,但它并没有指定我们去哪里去找到这个本书。它们的关系如下图&lt;/p&gt;
@@ -754,15 +754,15 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;parameters: 参数。访问网络资源的附加信息，很少见现在都以?query作为参数。https://8.8.8.8:12345/hello;user
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;query: 查询。用来查询某类资源，有多个查询时用&amp;amp;隔开。http://localhost:8080/1.php?s=wwww
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fragment: 片段。对资源描述的描述补充。通常是作为路由管理或者翻页下滑滚动到特定位置。
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;http和https&#34;&gt;HTTP和HTTPS&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;HTTP：&lt;/strong&gt; 全称是&lt;code&gt;Hypertext Transfer Protocol&lt;/code&gt;，即超文本传输协议，作用是把超文本数据从网络传输到本地浏览器，能够确保高效而准确地传输超文本文档。目前常用的是&lt;code&gt;HTTP 1.1&lt;/code&gt;版本， 不过目前也有不少网站有使用&lt;code&gt;HTTP 2.0&lt;/code&gt;版本趋势。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;http和https&#34;&gt;HTTP和HTTPS
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;HTTP：&lt;/strong&gt; 全称是&lt;code&gt;Hypertext Transfer Protocol&lt;/code&gt;，即超文本传输协议，作用是把超文本数据从网络传输到本地浏览器，能够确保高效而准确地传输超文本文档。目前常用的是&lt;code&gt;HTTP 1.1&lt;/code&gt;版本， 不过目前也有不少网站有使用&lt;code&gt;HTTP 2.0&lt;/code&gt;版本趋势。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;HTTPS: ** 全称是&lt;code&gt;Hypertext Transfer Protocol over Secure Socket Layer&lt;/code&gt;，说白了就是&lt;/strong&gt;HTTP&lt;strong&gt;的安全版本。它的安全基础是&lt;/strong&gt;SSL**,因此通过该协议的数据都必须经过&lt;strong&gt;SSL&lt;/strong&gt;的加密。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SSL的作用：1. 建立一个信息安全通道，确保数据传输的安全性。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		  2. 确认网络的真实性。现在用HTTPS协议的网站，都可以查询到它的认证真实信息，并且都有ca机构办法的安全签章。
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在很多网站用的都是&lt;strong&gt;HTTPS&lt;/strong&gt;协议，毕竟一个有安全保障，一个无安全保障，都知道应该选择哪个。&lt;strong&gt;HTTP&lt;/strong&gt;经常会在我们建立本地网站的时候使用。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HTTP和HTTPS协议都属于计算机网络中的应用层协议，其下层是基于TCP协议实现的。而TCP协议属于计算机网络的传输层协议，它建立了连接时的三次握手和四次挥手。
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;http请求过程&#34;&gt;HTTP请求过程&lt;/h3&gt;
-&lt;p&gt;我们通常通过在浏览器的地址栏上输入&lt;strong&gt;URL&lt;/strong&gt;，就成功访问到了指定网页。但其实是浏览器先将我们的&lt;strong&gt;URL&lt;/strong&gt;请求发送给对应的服务器，然后服务器接受请求并进行处理和解析后，返回给对应的响应，接着传回给浏览器。由于响应包中包含着页面的源代码，浏览器便将它们解析执行，并最终将网页呈现出来。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;http请求过程&#34;&gt;HTTP请求过程
+&lt;/h3&gt;&lt;p&gt;我们通常通过在浏览器的地址栏上输入&lt;strong&gt;URL&lt;/strong&gt;，就成功访问到了指定网页。但其实是浏览器先将我们的&lt;strong&gt;URL&lt;/strong&gt;请求发送给对应的服务器，然后服务器接受请求并进行处理和解析后，返回给对应的响应，接着传回给浏览器。由于响应包中包含着页面的源代码，浏览器便将它们解析执行，并最终将网页呈现出来。&lt;/p&gt;
 &lt;p&gt;为了更好理解我们使用chrome浏览器，并访问&lt;code&gt;www.baidu.com&lt;/code&gt;。访问成功后，按下&lt;code&gt;F12&lt;/code&gt;然后看&lt;code&gt;network（网络）&lt;/code&gt;面板&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240203125653637.png&#34;
 	
@@ -794,9 +794,9 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这里分有&lt;code&gt;常规、响应标头、请求标头&lt;/code&gt;这三个类型。&lt;/p&gt;
-&lt;h4 id=&#34;请求&#34;&gt;请求&lt;/h4&gt;
-&lt;h5 id=&#34;请求方法&#34;&gt;请求方法&lt;/h5&gt;
-&lt;p&gt;我们常见的请求方法就是&lt;code&gt;GET&lt;/code&gt;和&lt;code&gt;POST&lt;/code&gt;这两种请求方法。&lt;code&gt;GET&lt;/code&gt;方法的格式就是 &lt;code&gt;www.baidu.com/?wd=ddd&lt;/code&gt; 这个&lt;strong&gt;URL&lt;/strong&gt;包含了&lt;code&gt;query&lt;/code&gt;信息，通常用于我们查询某些数据或提交某些信息。&lt;code&gt;POST&lt;/code&gt;请求方法是提交一个表单，这个方法通常是我们提交登录信息的时候使用。&lt;/p&gt;
+&lt;h4 id=&#34;请求&#34;&gt;请求
+&lt;/h4&gt;&lt;h5 id=&#34;请求方法&#34;&gt;请求方法
+&lt;/h5&gt;&lt;p&gt;我们常见的请求方法就是&lt;code&gt;GET&lt;/code&gt;和&lt;code&gt;POST&lt;/code&gt;这两种请求方法。&lt;code&gt;GET&lt;/code&gt;方法的格式就是 &lt;code&gt;www.baidu.com/?wd=ddd&lt;/code&gt; 这个&lt;strong&gt;URL&lt;/strong&gt;包含了&lt;code&gt;query&lt;/code&gt;信息，通常用于我们查询某些数据或提交某些信息。&lt;code&gt;POST&lt;/code&gt;请求方法是提交一个表单，这个方法通常是我们提交登录信息的时候使用。&lt;/p&gt;
 &lt;p&gt;它们的区分有以下特点：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;GET&lt;/code&gt;方法提交的数据我们可以直接在&lt;strong&gt;URL&lt;/strong&gt;上看见，&lt;code&gt;POST&lt;/code&gt;方法提交的数据我们看不见，只能使用一些抓包软件才能看见其内容&lt;/li&gt;
@@ -806,49 +806,49 @@
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;方法&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;描述&lt;/th&gt;
+          &lt;th&gt;方法&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;GET&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;请求页面，并返回页面内容&lt;/td&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;请求页面，并返回页面内容&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;POST&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;大多用于提交表单或者上传文件，数据包含在请求体中。&lt;/td&gt;
+          &lt;td&gt;POST&lt;/td&gt;
+          &lt;td&gt;大多用于提交表单或者上传文件，数据包含在请求体中。&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;PUT&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;用客户端传向服务器的数据取代指定文档中的内容&lt;/td&gt;
+          &lt;td&gt;PUT&lt;/td&gt;
+          &lt;td&gt;用客户端传向服务器的数据取代指定文档中的内容&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;HEAD&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;类似GET请求方法，不过返回的响应种没有具体内容。用于获取报头&lt;/td&gt;
+          &lt;td&gt;HEAD&lt;/td&gt;
+          &lt;td&gt;类似GET请求方法，不过返回的响应种没有具体内容。用于获取报头&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;DELETE&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;请求服务器删除指定的页面&lt;/td&gt;
+          &lt;td&gt;DELETE&lt;/td&gt;
+          &lt;td&gt;请求服务器删除指定的页面&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;CONNECT&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;把服务器当作跳板，让服务器代替客户端访问其他页面&lt;/td&gt;
+          &lt;td&gt;CONNECT&lt;/td&gt;
+          &lt;td&gt;把服务器当作跳板，让服务器代替客户端访问其他页面&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;OPTIONS&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;允许客户端查看服务器的性能&lt;/td&gt;
+          &lt;td&gt;OPTIONS&lt;/td&gt;
+          &lt;td&gt;允许客户端查看服务器的性能&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;TRACE&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;回显服务器收到的请求。主要用于诊断或测试&lt;/td&gt;
+          &lt;td&gt;TRACE&lt;/td&gt;
+          &lt;td&gt;回显服务器收到的请求。主要用于诊断或测试&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h5 id=&#34;请求的网址&#34;&gt;请求的网址&lt;/h5&gt;
-&lt;p&gt;请求的网址，它可以确定唯一的客户端想请求的资源。其实就是&lt;strong&gt;URL&lt;/strong&gt;&lt;/p&gt;
-&lt;h5 id=&#34;请求头&#34;&gt;请求头&lt;/h5&gt;
-&lt;p&gt;请求头，用来说明服务器的附加信息，其中有几个很重要。&lt;/p&gt;
+&lt;h5 id=&#34;请求的网址&#34;&gt;请求的网址
+&lt;/h5&gt;&lt;p&gt;请求的网址，它可以确定唯一的客户端想请求的资源。其实就是&lt;strong&gt;URL&lt;/strong&gt;&lt;/p&gt;
+&lt;h5 id=&#34;请求头&#34;&gt;请求头
+&lt;/h5&gt;&lt;p&gt;请求头，用来说明服务器的附加信息，其中有几个很重要。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Accept: 请求报头域，用于指定客户端可接受哪些类型的信息
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Accept-Language: 用于指定客户端可接受的语言类型
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Accept-Encoding: 用于指定客户端可接受的内容编码
@@ -857,36 +857,36 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Referer: 用于标识请求时从哪个页面发送过来的
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;User-Agent: 可以使服务器识别客户端使用的操作系统及版本，浏览器及版本等信息。写爬虫时用上这个可以伪装成浏览器
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Type: 互联网媒体类型或者MIME类型，在HTTP协议消息头中用来表示具体请求中的媒体类型信息。
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;请求体&#34;&gt;请求体&lt;/h5&gt;
-&lt;p&gt;请求体一般都是&lt;strong&gt;POST&lt;/strong&gt;请求中表单的内容。对于&lt;strong&gt;GET&lt;/strong&gt;请求则没有请求体。而在我们进行提交&lt;strong&gt;POST&lt;/strong&gt;请求时，需要注意把请求头的&lt;code&gt;Content-Type&lt;/code&gt;设为&lt;code&gt;application/x-www-from-urlencode&lt;/code&gt;。只有这样内容才能以表单数据的形式进行提交。也可以将&lt;code&gt;Content-Type&lt;/code&gt;设置为&lt;code&gt;application/json&lt;/code&gt;来提交&lt;strong&gt;JSON&lt;/strong&gt;数据。其他&lt;code&gt;Content-Type&lt;/code&gt;类型与&lt;strong&gt;POST&lt;/strong&gt;的关系如下表。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;请求体&#34;&gt;请求体
+&lt;/h5&gt;&lt;p&gt;请求体一般都是&lt;strong&gt;POST&lt;/strong&gt;请求中表单的内容。对于&lt;strong&gt;GET&lt;/strong&gt;请求则没有请求体。而在我们进行提交&lt;strong&gt;POST&lt;/strong&gt;请求时，需要注意把请求头的&lt;code&gt;Content-Type&lt;/code&gt;设为&lt;code&gt;application/x-www-from-urlencode&lt;/code&gt;。只有这样内容才能以表单数据的形式进行提交。也可以将&lt;code&gt;Content-Type&lt;/code&gt;设置为&lt;code&gt;application/json&lt;/code&gt;来提交&lt;strong&gt;JSON&lt;/strong&gt;数据。其他&lt;code&gt;Content-Type&lt;/code&gt;类型与&lt;strong&gt;POST&lt;/strong&gt;的关系如下表。&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Content-Type&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;POST提交数据的方式&lt;/th&gt;
+          &lt;th&gt;Content-Type&lt;/th&gt;
+          &lt;th&gt;POST提交数据的方式&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;application/x-www-from-urlencode&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;表单数据&lt;/td&gt;
+          &lt;td&gt;application/x-www-from-urlencode&lt;/td&gt;
+          &lt;td&gt;表单数据&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;multipart/from-data&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;表单文件上传&lt;/td&gt;
+          &lt;td&gt;multipart/from-data&lt;/td&gt;
+          &lt;td&gt;表单文件上传&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;application/json&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;序列化 JSON 数据&lt;/td&gt;
+          &lt;td&gt;application/json&lt;/td&gt;
+          &lt;td&gt;序列化 JSON 数据&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;text/xml&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;XML数据&lt;/td&gt;
+          &lt;td&gt;text/xml&lt;/td&gt;
+          &lt;td&gt;XML数据&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h4 id=&#34;响应&#34;&gt;响应&lt;/h4&gt;
-&lt;p&gt;Response，由服务器返回给客户端。响应可以分为三部分：响应状态码、响应头、响应体&lt;/p&gt;
+&lt;h4 id=&#34;响应&#34;&gt;响应
+&lt;/h4&gt;&lt;p&gt;Response，由服务器返回给客户端。响应可以分为三部分：响应状态码、响应头、响应体&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;响应状态码&lt;/li&gt;
 &lt;/ul&gt;
@@ -906,12 +906,11 @@
 &lt;li&gt;响应体&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;最为关键的部分，我们看到的网页它的源代码其实就在响应体中。而我们写爬虫时就是要爬取这部分的内容。这部分可以通过鼠标右键-查看源代码进行查看。&lt;/p&gt;
-&lt;h3 id=&#34;http-20&#34;&gt;HTTP 2.0&lt;/h3&gt;
-&lt;h2 id=&#34;web网页基础&#34;&gt;web网页基础&lt;/h2&gt;
-&lt;h3 id=&#34;网页的组成&#34;&gt;网页的组成&lt;/h3&gt;
-&lt;p&gt;一个web网页基本是由&lt;strong&gt;HTML&lt;/strong&gt;、&lt;strong&gt;javascript&lt;/strong&gt;、&lt;strong&gt;css&lt;/strong&gt;这三大部分组成。如果我们把网页比作人，那么&lt;strong&gt;HTML&lt;/strong&gt;就是骨架，&lt;strong&gt;javascript&lt;/strong&gt;就是肌肉，&lt;strong&gt;css&lt;/strong&gt;就是皮肤。&lt;/p&gt;
-&lt;h4 id=&#34;html&#34;&gt;HTML&lt;/h4&gt;
-&lt;p&gt;超文本标记语言。一种用来描述网页的语言。&lt;/p&gt;
+&lt;h2 id=&#34;web网页基础&#34;&gt;web网页基础
+&lt;/h2&gt;&lt;h3 id=&#34;网页的组成&#34;&gt;网页的组成
+&lt;/h3&gt;&lt;p&gt;一个web网页基本是由&lt;strong&gt;HTML&lt;/strong&gt;、&lt;strong&gt;javascript&lt;/strong&gt;、&lt;strong&gt;css&lt;/strong&gt;这三大部分组成。如果我们把网页比作人，那么&lt;strong&gt;HTML&lt;/strong&gt;就是骨架，&lt;strong&gt;javascript&lt;/strong&gt;就是肌肉，&lt;strong&gt;css&lt;/strong&gt;就是皮肤。&lt;/p&gt;
+&lt;h4 id=&#34;html&#34;&gt;HTML
+&lt;/h4&gt;&lt;p&gt;超文本标记语言。一种用来描述网页的语言。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240206180533822.png&#34;
 	
 	
@@ -923,12 +922,12 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这部分就是&lt;strong&gt;HTML&lt;/strong&gt;语言，它包含了一系列的标签，同时这些标签也起着不同的作用。&lt;/p&gt;
-&lt;h4 id=&#34;javascript&#34;&gt;javascript&lt;/h4&gt;
-&lt;p&gt;简称JS，是一种脚本语言。可以与&lt;strong&gt;HTML&lt;/strong&gt;和&lt;strong&gt;CSS&lt;/strong&gt;组合使用，它能给用户提供一种静态信息缺乏交互性。我们在下载或加载时出现的加载符号就是由JS实现的。&lt;/p&gt;
-&lt;h4 id=&#34;css&#34;&gt;css&lt;/h4&gt;
-&lt;p&gt;由&lt;strong&gt;HTML&lt;/strong&gt;语言写出来的只是网页的框架，所以看起来就并不美观，所以&lt;strong&gt;CSS&lt;/strong&gt;就是起到网页美化的作用。&lt;/p&gt;
-&lt;h3 id=&#34;节点树及节点间的关系&#34;&gt;节点树及节点间的关系&lt;/h3&gt;
-&lt;p&gt;在&lt;strong&gt;HTML&lt;/strong&gt;中，所有标签定义的内容都是节点，而这些节点构成一个&lt;strong&gt;HTML&lt;/strong&gt;节点树，也就叫&lt;strong&gt;HTML&lt;/strong&gt; &lt;strong&gt;DOM&lt;/strong&gt;树。它们是有标准的。&lt;/p&gt;
+&lt;h4 id=&#34;javascript&#34;&gt;javascript
+&lt;/h4&gt;&lt;p&gt;简称JS，是一种脚本语言。可以与&lt;strong&gt;HTML&lt;/strong&gt;和&lt;strong&gt;CSS&lt;/strong&gt;组合使用，它能给用户提供一种静态信息缺乏交互性。我们在下载或加载时出现的加载符号就是由JS实现的。&lt;/p&gt;
+&lt;h4 id=&#34;css&#34;&gt;css
+&lt;/h4&gt;&lt;p&gt;由&lt;strong&gt;HTML&lt;/strong&gt;语言写出来的只是网页的框架，所以看起来就并不美观，所以&lt;strong&gt;CSS&lt;/strong&gt;就是起到网页美化的作用。&lt;/p&gt;
+&lt;h3 id=&#34;节点树及节点间的关系&#34;&gt;节点树及节点间的关系
+&lt;/h3&gt;&lt;p&gt;在&lt;strong&gt;HTML&lt;/strong&gt;中，所有标签定义的内容都是节点，而这些节点构成一个&lt;strong&gt;HTML&lt;/strong&gt;节点树，也就叫&lt;strong&gt;HTML&lt;/strong&gt; &lt;strong&gt;DOM&lt;/strong&gt;树。它们是有标准的。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1.整个网站文档是一个文档节点
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2.每个HTML标签对应一个根节点，比如html标签，他就属于一个根节点 &amp;lt;html&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3.节点内的文本是文本节点，如a节点代表一个超链接，它内部的文本也被认为是一个文本节点 &amp;lt;a&amp;gt;
@@ -956,14 +955,14 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;选择器&#34;&gt;选择器&lt;/h3&gt;
-&lt;p&gt;这部分是css的一些语法和格式，暂时不讲那么多。&lt;/p&gt;
-&lt;h2 id=&#34;爬虫的原理&#34;&gt;爬虫的原理&lt;/h2&gt;
-&lt;p&gt;讲了那么多网络知识，现在终于要讲讲爬虫是什么了。如果我们把互联网比作一张蜘蛛网，那么爬虫就是要在这张蜘蛛网上爬行，它每爬到一个节点就是访问了一个页面，一直爬到末端才是找到了想要的资源。我们就是要通过爬虫访问页面然后获取我们想要的信息。&lt;/p&gt;
-&lt;h3 id=&#34;爬虫概述&#34;&gt;爬虫概述&lt;/h3&gt;
-&lt;p&gt;简单而言就是获取网页并提取和保存信息的自动化程序。&lt;/p&gt;
-&lt;h4 id=&#34;获取网页&#34;&gt;获取网页&lt;/h4&gt;
-&lt;p&gt;爬虫的首要目的就是获取网页的源代码，这个源代码就是服务器接受请求后发送过来的响应体。所以关键的点就是要模拟客户端向服务器发送请求，然后让服务器把源代码发过来。这里我们可以通过利用python的&lt;code&gt;urllib、requests&lt;/code&gt;等模块来实现。&lt;/p&gt;
+&lt;h3 id=&#34;选择器&#34;&gt;选择器
+&lt;/h3&gt;&lt;p&gt;这部分是css的一些语法和格式，暂时不讲那么多。&lt;/p&gt;
+&lt;h2 id=&#34;爬虫的原理&#34;&gt;爬虫的原理
+&lt;/h2&gt;&lt;p&gt;讲了那么多网络知识，现在终于要讲讲爬虫是什么了。如果我们把互联网比作一张蜘蛛网，那么爬虫就是要在这张蜘蛛网上爬行，它每爬到一个节点就是访问了一个页面，一直爬到末端才是找到了想要的资源。我们就是要通过爬虫访问页面然后获取我们想要的信息。&lt;/p&gt;
+&lt;h3 id=&#34;爬虫概述&#34;&gt;爬虫概述
+&lt;/h3&gt;&lt;p&gt;简单而言就是获取网页并提取和保存信息的自动化程序。&lt;/p&gt;
+&lt;h4 id=&#34;获取网页&#34;&gt;获取网页
+&lt;/h4&gt;&lt;p&gt;爬虫的首要目的就是获取网页的源代码，这个源代码就是服务器接受请求后发送过来的响应体。所以关键的点就是要模拟客户端向服务器发送请求，然后让服务器把源代码发过来。这里我们可以通过利用python的&lt;code&gt;urllib、requests&lt;/code&gt;等模块来实现。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://www.baidu.com&amp;#34;&lt;/span&gt;
@@ -980,39 +979,39 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h4 id=&#34;提取信息&#34;&gt;提取信息&lt;/h4&gt;
-&lt;p&gt;当我们获取了网页源代码后，要做的就是找到需要的数据。在提取信息时通常用的方法是用正则表达式，这需要构造好正则表达式，这是一个复杂且容易出错的过程，但只要构造完成就能实现信息的精准提取。&lt;/p&gt;
-&lt;h4 id=&#34;保存数据&#34;&gt;保存数据&lt;/h4&gt;
-&lt;p&gt;提取到的的数据很多的时候就需要保存起来，可以把数据以表单的形式保存到数据库，excle等里面，这样在便于以后更好的利用这些数据。&lt;/p&gt;
-&lt;h4 id=&#34;自动化程序&#34;&gt;自动化程序&lt;/h4&gt;
-&lt;p&gt;在爬取数据的时候常常是要在不同的网页上，如果我们一个网页一个网页的获取源代码然后再在里面找会耗费很多时间。这就需要自己去设计程序，让它能够自动化进行以上操作。&lt;/p&gt;
-&lt;h3 id=&#34;能爬怎样的数据&#34;&gt;能爬怎样的数据&lt;/h3&gt;
-&lt;p&gt;网页中存在着各种各样的数据，最为常见的就是网页的&lt;strong&gt;html&lt;/strong&gt;代码，有时也会有&lt;strong&gt;json&lt;/strong&gt;格式的数据，还有一些二进制文件、图片等。这些都是我们可以爬取的数据，只是它们的储存方式会有不同，这在之后爬取相关数据时再详细说明。&lt;strong&gt;简单来说只要浏览器能够访问到的数据，我们都可以爬取。&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&#34;javascript渲染的页面&#34;&gt;javascript渲染的页面&lt;/h3&gt;
-&lt;p&gt;在使用&lt;strong&gt;requests&lt;/strong&gt;等模块抓取网页源代码，可能会遇到抓取的源代码和网页源代码不同的情况。这是一个常见的问题，现在很多网页采用的是&lt;strong&gt;Ajax&lt;/strong&gt;前端工业化模块，所以它的网页可能是由&lt;strong&gt;javascript&lt;/strong&gt;代码渲染出来的。&lt;/p&gt;
+&lt;h4 id=&#34;提取信息&#34;&gt;提取信息
+&lt;/h4&gt;&lt;p&gt;当我们获取了网页源代码后，要做的就是找到需要的数据。在提取信息时通常用的方法是用正则表达式，这需要构造好正则表达式，这是一个复杂且容易出错的过程，但只要构造完成就能实现信息的精准提取。&lt;/p&gt;
+&lt;h4 id=&#34;保存数据&#34;&gt;保存数据
+&lt;/h4&gt;&lt;p&gt;提取到的的数据很多的时候就需要保存起来，可以把数据以表单的形式保存到数据库，excle等里面，这样在便于以后更好的利用这些数据。&lt;/p&gt;
+&lt;h4 id=&#34;自动化程序&#34;&gt;自动化程序
+&lt;/h4&gt;&lt;p&gt;在爬取数据的时候常常是要在不同的网页上，如果我们一个网页一个网页的获取源代码然后再在里面找会耗费很多时间。这就需要自己去设计程序，让它能够自动化进行以上操作。&lt;/p&gt;
+&lt;h3 id=&#34;能爬怎样的数据&#34;&gt;能爬怎样的数据
+&lt;/h3&gt;&lt;p&gt;网页中存在着各种各样的数据，最为常见的就是网页的&lt;strong&gt;html&lt;/strong&gt;代码，有时也会有&lt;strong&gt;json&lt;/strong&gt;格式的数据，还有一些二进制文件、图片等。这些都是我们可以爬取的数据，只是它们的储存方式会有不同，这在之后爬取相关数据时再详细说明。&lt;strong&gt;简单来说只要浏览器能够访问到的数据，我们都可以爬取。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;javascript渲染的页面&#34;&gt;javascript渲染的页面
+&lt;/h3&gt;&lt;p&gt;在使用&lt;strong&gt;requests&lt;/strong&gt;等模块抓取网页源代码，可能会遇到抓取的源代码和网页源代码不同的情况。这是一个常见的问题，现在很多网页采用的是&lt;strong&gt;Ajax&lt;/strong&gt;前端工业化模块，所以它的网页可能是由&lt;strong&gt;javascript&lt;/strong&gt;代码渲染出来的。&lt;/p&gt;
 &lt;p&gt;我们在使用&lt;strong&gt;requests&lt;/strong&gt;模块抓取网页的时候只能得到html代码，所以如果该网页是由&lt;strong&gt;javascript&lt;/strong&gt;渲染出来的，我们是抓取不到&lt;strong&gt;js&lt;/strong&gt;代码的，他也不会去加载&lt;strong&gt;js&lt;/strong&gt;代码，这就导致无法抓取完整的源代码。&lt;/p&gt;
 &lt;p&gt;不过也有解决办法，可以直接分析源代码后台&lt;strong&gt;Ajax&lt;/strong&gt;接口，或者使用&lt;strong&gt;selenium&lt;/strong&gt;、&lt;strong&gt;Splash&lt;/strong&gt;、&lt;strong&gt;Pyppeteer&lt;/strong&gt;、Playweight等模块来模拟&lt;strong&gt;javascript&lt;/strong&gt;的渲染。&lt;/p&gt;
-&lt;h2 id=&#34;session和cookie&#34;&gt;Session和Cookie&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;session&lt;/strong&gt;和&lt;strong&gt;cookie&lt;/strong&gt;之间的区别可以说是很常见的问题了。我们上网的时候也常常用到他们，通常一个需要登录的网站，我们登录之后就可以访问到其他页面。有的网站在登录一次之后，一段时间内再次访问就可以免登录直接访问，等等情况都是&lt;strong&gt;cookie&lt;/strong&gt;和&lt;strong&gt;session&lt;/strong&gt;共同实现的。那么接下来就要解开它们的面纱。&lt;/p&gt;
-&lt;h3 id=&#34;静态网页和动态网页&#34;&gt;静态网页和动态网页&lt;/h3&gt;
-&lt;p&gt;静态网页的网页内容是由&lt;strong&gt;HTML&lt;/strong&gt;代码编写的，它里面的各种内容、图片均是由已经写好的&lt;strong&gt;HTML&lt;/strong&gt;代码指定的。静态网页优点就是加载快、编写简单。但问题也显而易见，如可维护性差，不能根据url的变化灵活改变网页内容。也就是说我们如果在通过url传一个name参数，网页时无法将其展示出来的。&lt;/p&gt;
+&lt;h2 id=&#34;session和cookie&#34;&gt;Session和Cookie
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;session&lt;/strong&gt;和&lt;strong&gt;cookie&lt;/strong&gt;之间的区别可以说是很常见的问题了。我们上网的时候也常常用到他们，通常一个需要登录的网站，我们登录之后就可以访问到其他页面。有的网站在登录一次之后，一段时间内再次访问就可以免登录直接访问，等等情况都是&lt;strong&gt;cookie&lt;/strong&gt;和&lt;strong&gt;session&lt;/strong&gt;共同实现的。那么接下来就要解开它们的面纱。&lt;/p&gt;
+&lt;h3 id=&#34;静态网页和动态网页&#34;&gt;静态网页和动态网页
+&lt;/h3&gt;&lt;p&gt;静态网页的网页内容是由&lt;strong&gt;HTML&lt;/strong&gt;代码编写的，它里面的各种内容、图片均是由已经写好的&lt;strong&gt;HTML&lt;/strong&gt;代码指定的。静态网页优点就是加载快、编写简单。但问题也显而易见，如可维护性差，不能根据url的变化灵活改变网页内容。也就是说我们如果在通过url传一个name参数，网页时无法将其展示出来的。&lt;/p&gt;
 &lt;p&gt;动态网页便可以解决以上问题，它可以根据url的变化，关联数据库对网页进行不同的展示。可以说如今很多网站都是动态网站，它们不再仅仅使用&lt;strong&gt;HTML&lt;/strong&gt;代码还会用&lt;strong&gt;php&lt;/strong&gt;，&lt;strong&gt;java&lt;/strong&gt;等代码编写。动态网页也可以实现网页的登录和注册等功能。&lt;/p&gt;
 &lt;p&gt;谈到登录功能，我们在输入并提交正确的账号和密码后，肯定使获得了服务器发送过来的某种凭证才能去访问其他页面，就像你进入大学得到学生卡一样。而这种凭证就是cookie和session共同实现的结果。&lt;/p&gt;
-&lt;h3 id=&#34;无状态http&#34;&gt;无状态HTTP&lt;/h3&gt;
-&lt;p&gt;这里还要了解一个HTTP特点，就是无状态。HTTP的无状态就是HTTP协议对于事物的处理是没有记忆的，或者说服务器它并不知道客户端当前处于一个什么状态。举个例子就是你成功登录后只能访问了当前页面，如果想要访问其他页面还要继续登录，即使登录信息是一致的。这就是服务器无法判断你当前状态导致的结果。因为服务器只是做到给客户端发送响应包这个过程，而这个过程是完全独立的。所以服务器是不会记录浏览器前后的状态变化也就是没有状态记录。这就导致客户端可能要发送重复的数据包。&lt;/p&gt;
+&lt;h3 id=&#34;无状态http&#34;&gt;无状态HTTP
+&lt;/h3&gt;&lt;p&gt;这里还要了解一个HTTP特点，就是无状态。HTTP的无状态就是HTTP协议对于事物的处理是没有记忆的，或者说服务器它并不知道客户端当前处于一个什么状态。举个例子就是你成功登录后只能访问了当前页面，如果想要访问其他页面还要继续登录，即使登录信息是一致的。这就是服务器无法判断你当前状态导致的结果。因为服务器只是做到给客户端发送响应包这个过程，而这个过程是完全独立的。所以服务器是不会记录浏览器前后的状态变化也就是没有状态记录。这就导致客户端可能要发送重复的数据包。&lt;/p&gt;
 &lt;p&gt;为了保持HTTP连接状态，session和cookie技术就出现了。session在服务端，用于保存用户的session信息；而cookie则在客户端，有了cookie在下次访问网页的时候，客户端就会把cookie里面的内容一起发送给服务器，而服务器就可以通过识别cookie里面的内容来判断用户信息，然后判断用户的登录状态情况，并发送对应的响应包。&lt;/p&gt;
 &lt;p&gt;简单理解就是，cookie中保存着用户的凭证信息，下次访问网站时，客户端在发送请求包时就会把它捎带上一起发给服务器。&lt;/p&gt;
 &lt;p&gt;所以在爬取需要登录的网页时，需要先登录进去，然后有了cookie才能继续爬取其他网页。&lt;/p&gt;
-&lt;h3 id=&#34;session&#34;&gt;Session&lt;/h3&gt;
-&lt;p&gt;中文称为&lt;strong&gt;会话&lt;/strong&gt;，其本义就是有始有终的一系列动作，就像打电话一样，从接起电话开始这个行为会一直持续到挂断电话结束。&lt;/p&gt;
+&lt;h3 id=&#34;session&#34;&gt;Session
+&lt;/h3&gt;&lt;p&gt;中文称为&lt;strong&gt;会话&lt;/strong&gt;，其本义就是有始有终的一系列动作，就像打电话一样，从接起电话开始这个行为会一直持续到挂断电话结束。&lt;/p&gt;
 &lt;p&gt;在web中，session对象用来存储特定用户的session所需的属性即配置信息。这样用户在应用程序不同页面之间跳转的时，session对象里的变量将不会丢失，会在整个用户session中保存。如果该用户没有session，那么web服务器就会自动创建一个session对象。只有当session过期或被放弃的时候，服务器才会终止该session。&lt;/p&gt;
-&lt;h3 id=&#34;cookie&#34;&gt;Cookie&lt;/h3&gt;
-&lt;p&gt;指的是网站为了鉴定用户身份，进行session跟踪而存储在用户本地终端上的数据。&lt;/p&gt;
-&lt;h4 id=&#34;session维持&#34;&gt;session维持&lt;/h4&gt;
-&lt;p&gt;我们知道session是保存在服务器的，那么我们要如何访问其他页面的时候去找session核对信息呢。在我们第一次发送登录信息给服务器的时候，服务器返回的响应头中会带有&lt;code&gt;Set-Cookie&lt;/code&gt;字段的相应给客户端，这个字段就是用来标记用户的，所以客户端会把cookie保存起来，并在下次向相同网站发送请求时会将cookie带上一起发个服务器，服务器就会识别cookie中携带的&lt;code&gt;Seesion ID&lt;/code&gt;信息，并在session对象中查找是否有对应的session并判断session的用户状态。如果这个session是有效的，就说明用户处于登录状态，这时服务器就会发送带有网页源代码的响应包给客户端。&lt;/p&gt;
+&lt;h3 id=&#34;cookie&#34;&gt;Cookie
+&lt;/h3&gt;&lt;p&gt;指的是网站为了鉴定用户身份，进行session跟踪而存储在用户本地终端上的数据。&lt;/p&gt;
+&lt;h4 id=&#34;session维持&#34;&gt;session维持
+&lt;/h4&gt;&lt;p&gt;我们知道session是保存在服务器的，那么我们要如何访问其他页面的时候去找session核对信息呢。在我们第一次发送登录信息给服务器的时候，服务器返回的响应头中会带有&lt;code&gt;Set-Cookie&lt;/code&gt;字段的相应给客户端，这个字段就是用来标记用户的，所以客户端会把cookie保存起来，并在下次向相同网站发送请求时会将cookie带上一起发个服务器，服务器就会识别cookie中携带的&lt;code&gt;Seesion ID&lt;/code&gt;信息，并在session对象中查找是否有对应的session并判断session的用户状态。如果这个session是有效的，就说明用户处于登录状态，这时服务器就会发送带有网页源代码的响应包给客户端。&lt;/p&gt;
 &lt;p&gt;那反过来说，如果cookie无效或者session过期了，那就要重新登录了。cookie和session相互配合就能实现登录控制。不过它们也可以独立使用。&lt;/p&gt;
-&lt;h4 id=&#34;属性结构&#34;&gt;属性结构&lt;/h4&gt;
-&lt;p&gt;我们可以通过开发者工具查看cookie&lt;/p&gt;
+&lt;h4 id=&#34;属性结构&#34;&gt;属性结构
+&lt;/h4&gt;&lt;p&gt;我们可以通过开发者工具查看cookie&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240207204612053.png&#34;
 	
 	
@@ -1032,27 +1031,27 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Size字段: Cookie的大小。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HTTP字段: Cookie的httponly属性。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Secure: 是否仅允许使用安全协议传输Cookie。
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;会话cookie和持久cookie&#34;&gt;会话Cookie和持久Cookie&lt;/h4&gt;
-&lt;p&gt;会话Cookie就是把Cookie放在浏览器内存里，关闭浏览器后，Cookie即失效；持久Cookie会把Cookie保存在客户端的硬盘里，下次可以继续使用。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;会话cookie和持久cookie&#34;&gt;会话Cookie和持久Cookie
+&lt;/h4&gt;&lt;p&gt;会话Cookie就是把Cookie放在浏览器内存里，关闭浏览器后，Cookie即失效；持久Cookie会把Cookie保存在客户端的硬盘里，下次可以继续使用。&lt;/p&gt;
 &lt;p&gt;其实说白了，它们都是由Max-Age或Expires字段来决定其失效时间。&lt;/p&gt;
-&lt;h3 id=&#34;常见误区&#34;&gt;常见误区&lt;/h3&gt;
-&lt;p&gt;大部分人会认为浏览器关闭了，session也就消失了，但这种想法是错误的。在浏览器关闭的时候，服务器是不会立即知道浏览器关闭的，服务器只会通过它们之间的tcp连接状态等信息，判断浏览器是否断开，可以说服务器是不可能直接知道浏览器是否关闭的。 而session是由服务器创建且存在其中的，浏览器关闭只是会让session会话过期或者终端，但是并不代表它被删除了，就像是你去超市办会员卡，你随时可以过来用，并不是说你今天出了超市这张卡就没用了，它们会一直记录你的会员信息，只有当你自己去注销了，你的会员信息才会被删除。session也是这样的。&lt;/p&gt;
-&lt;h2 id=&#34;代理的基本原理&#34;&gt;代理的基本原理&lt;/h2&gt;
-&lt;p&gt;我们在爬虫是通常会遇到一种状况，就是正在爬的时候，出现403错误。之前用爬取豆瓣图书信息的爬虫代码就出现多次403。这是因为网站会采取一些反爬措施，比如它发现某一ip在单位时间内频繁访问网页，而在超过访问次数阈值的时候，就会直接拒绝提供服务并提供错误信息，这种情况一般而言就是被封IP了。&lt;/p&gt;
-&lt;h3 id=&#34;基本原理&#34;&gt;基本原理&lt;/h3&gt;
-&lt;p&gt;代理指的就是代理服务器，代网络用户取得网络信息。说白了就是信息中转站，本来我们与服务器是两点一线的，有了代理服务器，我们就会先把请求发给代理服务器，然后由代理服务器发送给目的服务器，而目的服务器也要先发给代理服务器，然后由代理服务器发给我们。&lt;/p&gt;
-&lt;h3 id=&#34;代理的作用&#34;&gt;代理的作用&lt;/h3&gt;
-&lt;ul&gt;
+&lt;h3 id=&#34;常见误区&#34;&gt;常见误区
+&lt;/h3&gt;&lt;p&gt;大部分人会认为浏览器关闭了，session也就消失了，但这种想法是错误的。在浏览器关闭的时候，服务器是不会立即知道浏览器关闭的，服务器只会通过它们之间的tcp连接状态等信息，判断浏览器是否断开，可以说服务器是不可能直接知道浏览器是否关闭的。 而session是由服务器创建且存在其中的，浏览器关闭只是会让session会话过期或者终端，但是并不代表它被删除了，就像是你去超市办会员卡，你随时可以过来用，并不是说你今天出了超市这张卡就没用了，它们会一直记录你的会员信息，只有当你自己去注销了，你的会员信息才会被删除。session也是这样的。&lt;/p&gt;
+&lt;h2 id=&#34;代理的基本原理&#34;&gt;代理的基本原理
+&lt;/h2&gt;&lt;p&gt;我们在爬虫是通常会遇到一种状况，就是正在爬的时候，出现403错误。之前用爬取豆瓣图书信息的爬虫代码就出现多次403。这是因为网站会采取一些反爬措施，比如它发现某一ip在单位时间内频繁访问网页，而在超过访问次数阈值的时候，就会直接拒绝提供服务并提供错误信息，这种情况一般而言就是被封IP了。&lt;/p&gt;
+&lt;h3 id=&#34;基本原理&#34;&gt;基本原理
+&lt;/h3&gt;&lt;p&gt;代理指的就是代理服务器，代网络用户取得网络信息。说白了就是信息中转站，本来我们与服务器是两点一线的，有了代理服务器，我们就会先把请求发给代理服务器，然后由代理服务器发送给目的服务器，而目的服务器也要先发给代理服务器，然后由代理服务器发给我们。&lt;/p&gt;
+&lt;h3 id=&#34;代理的作用&#34;&gt;代理的作用
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;突破自身IP限制，简单来说就是可以上外网&lt;/li&gt;
 &lt;li&gt;访问一些单位或团体的内部资源。&lt;/li&gt;
 &lt;li&gt;提高访问速度&lt;/li&gt;
 &lt;li&gt;隐藏真实IP。你也不想被别人溯源吧&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;爬虫代理&#34;&gt;爬虫代理&lt;/h3&gt;
-&lt;p&gt;爬虫速度不够快能叫爬虫吗，为了避免同一IP多次访问而被ban，就需要使用其他IP代理。&lt;/p&gt;
-&lt;h3 id=&#34;代理分类&#34;&gt;代理分类&lt;/h3&gt;
-&lt;h4 id=&#34;根据协议分类&#34;&gt;根据协议分类&lt;/h4&gt;
-&lt;ul&gt;
+&lt;h3 id=&#34;爬虫代理&#34;&gt;爬虫代理
+&lt;/h3&gt;&lt;p&gt;爬虫速度不够快能叫爬虫吗，为了避免同一IP多次访问而被ban，就需要使用其他IP代理。&lt;/p&gt;
+&lt;h3 id=&#34;代理分类&#34;&gt;代理分类
+&lt;/h3&gt;&lt;h4 id=&#34;根据协议分类&#34;&gt;根据协议分类
+&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;FTP代理服务器：主要访问FTP服务器，一般有上传、下载及缓存等功能，端口21、2121等&lt;/li&gt;
 &lt;li&gt;HTTP代理服务器：主要访问网页，一般有内容过滤和缓存功能，端口80、8080、3128等&lt;/li&gt;
 &lt;li&gt;SSL/TLS代理：主要访问加密网页，一般有SSl、TLS加密功能，端口443&lt;/li&gt;
@@ -1061,38 +1060,38 @@
 &lt;li&gt;POP3/SMTP代理：主要用于POP3/SMTP方式发邮件，一般有缓存功能，端口110/25&lt;/li&gt;
 &lt;li&gt;SOCK3代理：单纯传递数据包，速度快不关心协议和用法，一般有缓存功能，端口1080&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;根据匿名程度区分&#34;&gt;根据匿名程度区分&lt;/h4&gt;
-&lt;ul&gt;
+&lt;h4 id=&#34;根据匿名程度区分&#34;&gt;根据匿名程度区分
+&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;高度匿名代理：将数据包原封不动的发给服务器，服务器基本上会认为其就是一个正真的客户端。&lt;/li&gt;
 &lt;li&gt;普通匿名代理：对数据包有一些修改，服务器容易判断这是来自一个代理服务器&lt;/li&gt;
 &lt;li&gt;透明代理：会告诉服务器真实IP，提高浏览速度。&lt;/li&gt;
 &lt;li&gt;间谍代理：会记录用户传输的数据，并进行记录，监控，分析等&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;常见代理设置&#34;&gt;常见代理设置&lt;/h4&gt;
-&lt;ul&gt;
+&lt;h4 id=&#34;常见代理设置&#34;&gt;常见代理设置
+&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;网上有些免费代理&lt;/li&gt;
 &lt;li&gt;有些付费代理&lt;/li&gt;
 &lt;li&gt;ADSL拨号&lt;/li&gt;
 &lt;li&gt;蜂窝代理&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;后面慢慢介绍&lt;/p&gt;
-&lt;h2 id=&#34;多线程和多进程的基本原理&#34;&gt;多线程和多进程的基本原理&lt;/h2&gt;
-&lt;p&gt;简单来说，为了提高爬虫效率，我们可能会同时运行多个爬虫任务，而其中涉及多线程和多进程的概念。&lt;/p&gt;
-&lt;h3 id=&#34;多线程的含义&#34;&gt;多线程的含义&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;进程&lt;/strong&gt;可以理解为一个可以独立运行的而程序单位。比如我们打开了一个浏览器，就可以称之为打开了一个浏览器进程；打开了LOL，就是打开了LOL进程。而我们可以在浏览器里做很多事，比如我们一个页面看视频，一个网页看小说，每打开一个网页就可以说是一个线程。并且它们互不干扰，我们可以同时看视频和看小说。&lt;/p&gt;
+&lt;h2 id=&#34;多线程和多进程的基本原理&#34;&gt;多线程和多进程的基本原理
+&lt;/h2&gt;&lt;p&gt;简单来说，为了提高爬虫效率，我们可能会同时运行多个爬虫任务，而其中涉及多线程和多进程的概念。&lt;/p&gt;
+&lt;h3 id=&#34;多线程的含义&#34;&gt;多线程的含义
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;进程&lt;/strong&gt;可以理解为一个可以独立运行的而程序单位。比如我们打开了一个浏览器，就可以称之为打开了一个浏览器进程；打开了LOL，就是打开了LOL进程。而我们可以在浏览器里做很多事，比如我们一个页面看视频，一个网页看小说，每打开一个网页就可以说是一个线程。并且它们互不干扰，我们可以同时看视频和看小说。&lt;/p&gt;
 &lt;p&gt;进程就是线程的集合，是由一个个线程组成的，线程是操作系统进行运算调度的最小单位，也是进程中的最小运行单位。&lt;/p&gt;
-&lt;h3 id=&#34;并发和并行&#34;&gt;并发和并行&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;并发&lt;/strong&gt;指的是多个线程对应的多条指令被快速轮换执行。举个例子就是现在有很多线程，我们线程A执行一段时间，然后线程2执行一段时间，就这样轮番执行，但每次只执行一个线程指令，因为之间的时间很短，所以我们也可以认为它们是一起执行的，但本质上还是因为速度足够快才使它们没有强烈的分离感。&lt;/p&gt;
+&lt;h3 id=&#34;并发和并行&#34;&gt;并发和并行
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;并发&lt;/strong&gt;指的是多个线程对应的多条指令被快速轮换执行。举个例子就是现在有很多线程，我们线程A执行一段时间，然后线程2执行一段时间，就这样轮番执行，但每次只执行一个线程指令，因为之间的时间很短，所以我们也可以认为它们是一起执行的，但本质上还是因为速度足够快才使它们没有强烈的分离感。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;并行&lt;/strong&gt;这个才是正真的同时进行，在同一时刻有多条指令在多个处理器上同时执行，但这也意味着必须依赖多个处理器。&lt;/p&gt;
 &lt;p&gt;如果计算机处理器只有一个核，那就不能实现并行。&lt;/p&gt;
-&lt;h3 id=&#34;多线程适用场景&#34;&gt;多线程适用场景&lt;/h3&gt;
-&lt;p&gt;可以说爬虫就是一个典型的利用场景，爬虫在向服务器发送请求后，需要一段时间等待服务器返回响应，这种就属于&lt;strong&gt;IO密集型任务&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;多线程适用场景&#34;&gt;多线程适用场景
+&lt;/h3&gt;&lt;p&gt;可以说爬虫就是一个典型的利用场景，爬虫在向服务器发送请求后，需要一段时间等待服务器返回响应，这种就属于&lt;strong&gt;IO密集型任务&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;对于这种任务，我们就可以启用多线程，在等待的时间去处理其他线程任务。&lt;/p&gt;
 &lt;p&gt;除了&lt;strong&gt;IO密集型任务&lt;/strong&gt;这个概念，还有一种叫&lt;strong&gt;计算密集型任务&lt;/strong&gt;，就是任务的运行一直需要处理器的参与&lt;/p&gt;
-&lt;h3 id=&#34;多进程含义&#34;&gt;多进程含义&lt;/h3&gt;
-&lt;p&gt;多进程就是多个进程，我们已经知道了进程就是线程的集合，所以多进程意味着有大于或等于进程数量的线程在同时运行。&lt;/p&gt;
-&lt;h3 id=&#34;python中的多线程和多进程&#34;&gt;Python中的多线程和多进程&lt;/h3&gt;
-&lt;p&gt;在python中进行多线程的话会有GIL限制。全程是&lt;code&gt;Global Interpreter Lock&lt;/code&gt;,即全局解释器。&lt;/p&gt;
+&lt;h3 id=&#34;多进程含义&#34;&gt;多进程含义
+&lt;/h3&gt;&lt;p&gt;多进程就是多个进程，我们已经知道了进程就是线程的集合，所以多进程意味着有大于或等于进程数量的线程在同时运行。&lt;/p&gt;
+&lt;h3 id=&#34;python中的多线程和多进程&#34;&gt;Python中的多线程和多进程
+&lt;/h3&gt;&lt;p&gt;在python中进行多线程的话会有GIL限制。全程是&lt;code&gt;Global Interpreter Lock&lt;/code&gt;,即全局解释器。&lt;/p&gt;
 &lt;p&gt;在python中每个线程执行分以下三步进行：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;获取GIL&lt;/li&gt;
@@ -1113,16 +1112,16 @@
         <pubDate>Tue, 16 Jan 2024 17:48:22 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E5%9B%BE%E4%B9%A6%E4%BF%A1%E6%81%AF/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402281848.jpg" alt="Featured image of post 爬取豆瓣图书信息" /&gt;&lt;h3 id=&#34;简述&#34;&gt;简述&lt;/h3&gt;
-&lt;p&gt;​	就以我交实验作业的爬虫代码作为2024年的第一篇博客，也作为我更新博客的开端。其实这个爬虫并不是实验要求的，而是我舍友要我写的，因为我们写的是图书管理系统，所以就把爬数据的任务交给我了。如果想要代码可直接翻到最下面。&lt;/p&gt;
-&lt;h3 id=&#34;思路&#34;&gt;思路&lt;/h3&gt;
-&lt;ul&gt;
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402281848.jpg" alt="Featured image of post 爬取豆瓣图书信息" /&gt;&lt;h3 id=&#34;简述&#34;&gt;简述
+&lt;/h3&gt;&lt;p&gt;​	就以我交实验作业的爬虫代码作为2024年的第一篇博客，也作为我更新博客的开端。其实这个爬虫并不是实验要求的，而是我舍友要我写的，因为我们写的是图书管理系统，所以就把爬数据的任务交给我了。如果想要代码可直接翻到最下面。&lt;/p&gt;
+&lt;h3 id=&#34;思路&#34;&gt;思路
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;要爬取的页面&lt;/li&gt;
 &lt;li&gt;要爬取的数据格式&lt;/li&gt;
 &lt;li&gt;存储数据&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;代码&#34;&gt;代码&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
+&lt;h3 id=&#34;代码&#34;&gt;代码
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;time&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;requests&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;openpyxl&lt;/span&gt;

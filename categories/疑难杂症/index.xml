@@ -13,10 +13,10 @@
         <pubDate>Mon, 22 Jan 2024 17:45:52 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</guid>
-        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/640.png" alt="Featured image of post 疑难杂症" /&gt;&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
-&lt;p&gt;决定写这么一个分类，主要是记录一下我平时在做些东西时遇到的各种奇奇怪怪的问题，以及我是怎么用莫名方法解决的。然后以后我再遇到同样问题的时候也可能有办法解决。&lt;/p&gt;
-&lt;h2 id=&#34;部署aspcms之数据库错误解决方法&#34;&gt;部署aspcms之数据库错误解决方法&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/d558ef4a47d5352366a617e42a36b57.png&#34;
+        <description>&lt;img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/640.png" alt="Featured image of post 疑难杂症" /&gt;&lt;h3 id=&#34;前言&#34;&gt;前言
+&lt;/h3&gt;&lt;p&gt;决定写这么一个分类，主要是记录一下我平时在做些东西时遇到的各种奇奇怪怪的问题，以及我是怎么用莫名方法解决的。然后以后我再遇到同样问题的时候也可能有办法解决。&lt;/p&gt;
+&lt;h2 id=&#34;部署aspcms之数据库错误解决方法&#34;&gt;部署aspcms之数据库错误解决方法
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/d558ef4a47d5352366a617e42a36b57.png&#34;
 	
 	
 	
@@ -26,8 +26,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;解决方法&#34;&gt;解决方法&lt;/h3&gt;
-&lt;p&gt;可能不适用所有人&lt;/p&gt;
+&lt;h3 id=&#34;解决方法&#34;&gt;解决方法
+&lt;/h3&gt;&lt;p&gt;可能不适用所有人&lt;/p&gt;
 &lt;p&gt;找到mysql目录,位置在&lt;code&gt;C:\Program Files\MySQL&lt;/code&gt;，然后右键&lt;code&gt;MySQL&lt;/code&gt;选择属性，修改用户权限&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240122182854107.png&#34;
 	
@@ -40,8 +40,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;具体修改哪个不清楚，反正你开个虚拟机然后赋予所有用户所有权限就行。&lt;/p&gt;
-&lt;h2 id=&#34;windows-10-家庭版没有hyper-v服务&#34;&gt;windows 10 家庭版没有hyper-V服务&lt;/h2&gt;
-&lt;p&gt;新建一个记事本&lt;/p&gt;
+&lt;h2 id=&#34;windows-10-家庭版没有hyper-v服务&#34;&gt;windows 10 家庭版没有hyper-V服务
+&lt;/h2&gt;&lt;p&gt;新建一个记事本&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;pushd&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;%~dp0&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;dir&lt;/span&gt; /b &lt;span class=&#34;nv&#34;&gt;%SystemRoot%&lt;/span&gt;\servicing\Packages\*Hyper-V*.mum &lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;hyper-v.txt
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;/f&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;%%&lt;/span&gt;i &lt;span class=&#34;k&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;findstr /i . hyper-v.txt 2^&amp;gt;nul&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; dism /online /norestart /add-package:&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;%SystemRoot%&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\servicing\Packages\&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;%%&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;i&amp;#34;&lt;/span&gt;

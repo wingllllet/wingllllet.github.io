@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='前言 ​	搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。
-'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 \u200b\t搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。\n">
 <title>Bandit0-33关</title>
 
 <link rel='canonical' href='https://blog.winglet.com/p/bandit0-33%E5%85%B3/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Bandit0-33关'>
-<meta property='og:description' content='前言 ​	搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。
-'>
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Bandit0-33关">
+<meta property='og:description' content="前言 \u200b\t搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。\n">
 <meta property='og:url' content='https://blog.winglet.com/p/bandit0-33%E5%85%B3/'>
 <meta property='og:site_name' content='Winglet&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' />
 <meta name="twitter:title" content="Bandit0-33关">
-<meta name="twitter:description" content="前言 ​	搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。
-">
-    <link rel="shortcut icon" href="img/favicon.ico" />
+<meta name="twitter:description" content="前言 \u200b\t搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。\n">
+    <link rel="shortcut icon" href="/img/favicon.ico" />
 
     </head>
     <body class="
@@ -71,7 +68,7 @@
             <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
             <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -193,31 +190,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://blog.winglet.com/" selected>中文</option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -225,7 +203,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -233,10 +211,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -530,17 +509,17 @@
     <section class="article-content">
     
     
-    <h2 id="前言">前言</h2>
-<p>​	搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。</p>
-<h2 id="介绍">介绍</h2>
-<p>​	bandit是<strong>over the wire</strong>推出的一个为提升linux基础的系统靶场，目前共有33关，适合小白学习和增强linux命令操作。靶场网址：https://overthewire.org/wargames/bandit/</p>
-<h2 id="wp">wp</h2>
-<h3 id="level-0">level 0</h3>
-<h4 id="题目描述">题目描述</h4>
-<p>此级别的目标是让您使用 SSH 登录游戏。您需要连接的主机是 <strong>bandit.labs.overthewire.org</strong>，端口为 2220。用户名是<strong>bandit0</strong>，密码是<strong>bandit0</strong>。登录后，转到<a class="link" href="https://overthewire.org/wargames/bandit/bandit1.html"  target="_blank" rel="noopener"
+    <h2 id="前言">前言
+</h2><p>​	搬运一下我自己写的笔记给我的博客，让我的博客充实些，不能建完就甩到一边了。不得不说个人博客让我有一种什么都想往上写的感觉，之前也在csdn写过东西，后面不写主要是感觉麻烦，自己的笔记上传过去图片经常加载不出来，所以在csdn写的话图片少还好说，图片多了真就望而却步了。</p>
+<h2 id="介绍">介绍
+</h2><p>​	bandit是<strong>over the wire</strong>推出的一个为提升linux基础的系统靶场，目前共有33关，适合小白学习和增强linux命令操作。靶场网址：https://overthewire.org/wargames/bandit/</p>
+<h2 id="wp">wp
+</h2><h3 id="level-0">level 0
+</h3><h4 id="题目描述">题目描述
+</h4><p>此级别的目标是让您使用 SSH 登录游戏。您需要连接的主机是 <strong>bandit.labs.overthewire.org</strong>，端口为 2220。用户名是<strong>bandit0</strong>，密码是<strong>bandit0</strong>。登录后，转到<a class="link" href="https://overthewire.org/wargames/bandit/bandit1.html"  target="_blank" rel="noopener"
     >第 1 级</a>页面，了解如何通过第 1 级。</p>
-<h4 id="解决方法">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh bandit0@bandit.labs.overthewire.org -p <span class="m">2220</span>
+<h4 id="解决方法">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh bandit0@bandit.labs.overthewire.org -p <span class="m">2220</span>
 </span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231122204334321.png"
 	
 	
@@ -551,11 +530,11 @@
 	
 	
 ></p>
-<h3 id="level-0-1">level 0</h3>
-<h4 id="题目描述-1">题目描述</h4>
-<p>下一级的密码存储在 主目录中名为<strong>readme的文件中</strong>。使用此密码通过 SSH 登录 bandit1。每当您找到某个关卡的密码时，请使用 SSH（在端口 2220 上）登录该关卡并继续游戏。</p>
-<h4 id="解决方法-1">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
+<h3 id="level-0-1">level 0
+</h3><h4 id="题目描述-1">题目描述
+</h4><p>下一级的密码存储在 主目录中名为<strong>readme的文件中</strong>。使用此密码通过 SSH 登录 bandit1。每当您找到某个关卡的密码时，请使用 SSH（在端口 2220 上）登录该关卡并继续游戏。</p>
+<h4 id="解决方法-1">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
 </span></span><span class="line"><span class="cl">cat readme
 </span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231122204458642.png"
 	
@@ -569,11 +548,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
-</span></span></code></pre></div><h3 id="level-1">level 1</h3>
-<h4 id="题目描述-2">题目描述</h4>
-<p>下一级的密码存储在 主目录中名为<b>-的文件</b></p>
-<h4 id="解决方法-2">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
+</span></span></code></pre></div><h3 id="level-1">level 1
+</h3><h4 id="题目描述-2">题目描述
+</h4><p>下一级的密码存储在 主目录中名为<b>-的文件</b></p>
+<h4 id="解决方法-2">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
 </span></span><span class="line"><span class="cl">cat ./-
 </span></span></code></pre></div><p>因为<code>-</code>在shell中是一个特殊字符，如果我们想要它只把它看作为一个字符，我们需要在前面加上<code>./</code>这就是告诉bash shell不需要解释为特殊字符</p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231122210433226.png"
@@ -588,11 +567,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
-</span></span></code></pre></div><h3 id="level-2">level 2</h3>
-<h4 id="题目描述-3">题目描述</h4>
-<p>下一级的密码存储在主目录中名为<strong>space的文件中</strong></p>
-<h4 id="解决方法-3">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls -al
+</span></span></code></pre></div><h3 id="level-2">level 2
+</h3><h4 id="题目描述-3">题目描述
+</h4><p>下一级的密码存储在主目录中名为<strong>space的文件中</strong></p>
+<h4 id="解决方法-3">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls -al
 </span></span><span class="line"><span class="cl">cat <span class="s2">&#34;spaces in this filename&#34;</span>
 </span></span><span class="line"><span class="cl">cat spaces/ in/ this/ filename
 </span></span></code></pre></div><p>在bash shell中空格会将命令隔开，也就将文件名不会视为一个整体</p>
@@ -609,11 +588,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">readme：
 </span></span><span class="line"><span class="cl">	aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
-</span></span></code></pre></div><h3 id="level-3">level 3</h3>
-<h4 id="题目描述-4">题目描述</h4>
-<p>下一级的密码存储在 <strong>inhere</strong>目录中的隐藏文件中。</p>
-<h4 id="解决方法-4">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
+</span></span></code></pre></div><h3 id="level-3">level 3
+</h3><h4 id="题目描述-4">题目描述
+</h4><p>下一级的密码存储在 <strong>inhere</strong>目录中的隐藏文件中。</p>
+<h4 id="解决方法-4">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> inhere
 </span></span><span class="line"><span class="cl">ls -al
 </span></span><span class="line"><span class="cl">cat .hidden
@@ -630,11 +609,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
-</span></span></code></pre></div><h3 id="level-4">level 4</h3>
-<h4 id="题目描述-5">题目描述</h4>
-<p>下一级的密码存储在<strong>inhere</strong>目录中唯一人类可读的文件中。提示：如果您的终端出现问题，请尝试“重置”命令。</p>
-<h4 id="解决方法-5">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> inhere
+</span></span></code></pre></div><h3 id="level-4">level 4
+</h3><h4 id="题目描述-5">题目描述
+</h4><p>下一级的密码存储在<strong>inhere</strong>目录中唯一人类可读的文件中。提示：如果您的终端出现问题，请尝试“重置”命令。</p>
+<h4 id="解决方法-5">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> inhere
 </span></span><span class="line"><span class="cl">file ./*
 </span></span><span class="line"><span class="cl">cat ./-file07
 </span></span></code></pre></div><p>在inhere目录下，有很多文件，这些文件里面只有<code>file07</code>里面才有真正的内容，我们可以一个一个打开文件，查看里面的内容，或者使用<code>file ./*</code> ， 对当前目录下的所有文件进行文件类型的检测。</p>
@@ -651,16 +630,16 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
-</span></span></code></pre></div><h3 id="level-5">level 5</h3>
-<h4 id="题目描述-6">题目描述</h4>
-<p>下一级的密码存储在<strong>inhere</strong>目录下的某个文件中，并具有以下所有属性：</p>
+</span></span></code></pre></div><h3 id="level-5">level 5
+</h3><h4 id="题目描述-6">题目描述
+</h4><p>下一级的密码存储在<strong>inhere</strong>目录下的某个文件中，并具有以下所有属性：</p>
 <ul>
 <li>人类可读的</li>
 <li>大小为 1033 字节</li>
 <li>不可执行</li>
 </ul>
-<h4 id="解决方法-6">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> inhere
+<h4 id="解决方法-6">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> inhere
 </span></span><span class="line"><span class="cl">find . -type f -size 1033c
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> maybehere07
 </span></span><span class="line"><span class="cl">ls
@@ -692,16 +671,16 @@
 	
 	
 ></p>
-<h3 id="level-6">level 6</h3>
-<h4 id="题目描述-7">题目描述</h4>
-<p>下一级的密码存储<strong>在服务器上的某个位置</strong>，并具有以下所有属性：</p>
+<h3 id="level-6">level 6
+</h3><h4 id="题目描述-7">题目描述
+</h4><p>下一级的密码存储<strong>在服务器上的某个位置</strong>，并具有以下所有属性：</p>
 <ul>
 <li>由用户 bandit7 拥有</li>
 <li>归强盗6集团所有</li>
 <li>大小为 33 字节</li>
 </ul>
-<h4 id="解决方法-7">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">find / -user bandit7 -group bandit6 -size 33c
+<h4 id="解决方法-7">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">find / -user bandit7 -group bandit6 -size 33c
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">/:  从根目录找起
 </span></span><span class="line"><span class="cl">-user:  文件由用户uname所有（允许使用数字用户 ID）
@@ -719,11 +698,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
-</span></span></code></pre></div><h3 id="level-7">level 7</h3>
-<h4 id="题目描述-8">题目描述</h4>
-<p>下一级的密码存储在文件<strong>data.txt中</strong> <strong>millionth</strong> 单词旁边</p>
-<h4 id="解决方法-8">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">grep millionth data.txt
+</span></span></code></pre></div><h3 id="level-7">level 7
+</h3><h4 id="题目描述-8">题目描述
+</h4><p>下一级的密码存储在文件<strong>data.txt中</strong> <strong>millionth</strong> 单词旁边</p>
+<h4 id="解决方法-8">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">grep millionth data.txt
 </span></span></code></pre></div><p>执行命令 &ldquo;grep millionth data.txt&rdquo; 会在 &ldquo;data.txt&rdquo; 文件中搜索包含 &ldquo;millionth&rdquo; 的文本行，并将匹配到的行输出到终端。</p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231123213253471.png"
 	
@@ -737,11 +716,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	 TESKZC0XvTetK0S9xNwm25STk5iWrBvP
-</span></span></code></pre></div><h3 id="level-8">level 8</h3>
-<h4 id="题目描述-9">题目描述</h4>
-<p>下一级的密码存储在文件<strong>data.txt</strong>中 ，并且是唯一只出现一次的文本行</p>
-<h4 id="解决方法-9">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sort data.txt <span class="p">|</span> uniq -u 
+</span></span></code></pre></div><h3 id="level-8">level 8
+</h3><h4 id="题目描述-9">题目描述
+</h4><p>下一级的密码存储在文件<strong>data.txt</strong>中 ，并且是唯一只出现一次的文本行</p>
+<h4 id="解决方法-9">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sort data.txt <span class="p">|</span> uniq -u 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">sort -- 是一个命令行工具，用于对文本文件进行排序。
 </span></span><span class="line"><span class="cl"><span class="p">|</span> --  是管道符号，用于将前一个命令的输出作为后一个命令的输入。
@@ -759,11 +738,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	EN632PlfYiZbn3PhVK3XOGSlNInNE00t
-</span></span></code></pre></div><h3 id="level-9">level 9</h3>
-<h4 id="题目描述-10">题目描述</h4>
-<p>下一级的密码存储在文件<strong>data.txt</strong>中 ，位于少数几个人类可读的字符串之一中，前面有几个“=”字符。</p>
-<h4 id="解决方法-10">解决方法</h4>
-<p>这里的data.txt是一个二进制文件，用grep是没法查找了，所以我们要把这个文件里的数据转为可打印字符。</p>
+</span></span></code></pre></div><h3 id="level-9">level 9
+</h3><h4 id="题目描述-10">题目描述
+</h4><p>下一级的密码存储在文件<strong>data.txt</strong>中 ，位于少数几个人类可读的字符串之一中，前面有几个“=”字符。</p>
+<h4 id="解决方法-10">解决方法
+</h4><p>这里的data.txt是一个二进制文件，用grep是没法查找了，所以我们要把这个文件里的数据转为可打印字符。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">strings data.txt <span class="p">|</span> <span class="nv">grep</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">strings -- 是一个命令行工具，用于从二进制文件中提取可打印的字符串。
@@ -780,11 +759,11 @@
 <p>这里我们还有别的办法，我们也可以用<code>xxd</code>命令，它可以把该文件内容作为16进制输出，这样我们也可以用<code>grep</code>命令查找</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
-</span></span></code></pre></div><h3 id="level-10">level 10</h3>
-<h4 id="题目描述-11">题目描述</h4>
-<p>下一级的密码存储在文件<strong>data.txt</strong>中，其中包含base64编码的数据</p>
-<h4 id="解决方法-11">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat data.txt <span class="p">|</span> base64 -d
+</span></span></code></pre></div><h3 id="level-10">level 10
+</h3><h4 id="题目描述-11">题目描述
+</h4><p>下一级的密码存储在文件<strong>data.txt</strong>中，其中包含base64编码的数据</p>
+<h4 id="解决方法-11">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat data.txt <span class="p">|</span> base64 -d
 </span></span><span class="line"><span class="cl">base -d data.txt
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">-d -- base64的命令选项，可以把base64编码解密并输出
@@ -800,11 +779,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
-</span></span></code></pre></div><h3 id="level-11">level 11</h3>
-<h4 id="题目描述-12">题目描述</h4>
-<p>下一级的密码存储在文件<strong>data.txt</strong>中，其中所有小写 (az) 和大写 (AZ) 字母均已旋转 13 个位置</p>
-<h4 id="解决方法-12">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat data.txt <span class="p">|</span> tr <span class="s2">&#34;a-zA-Z&#34;</span> <span class="s2">&#34;n-za-mN-ZA-M&#34;</span>
+</span></span></code></pre></div><h3 id="level-11">level 11
+</h3><h4 id="题目描述-12">题目描述
+</h4><p>下一级的密码存储在文件<strong>data.txt</strong>中，其中所有小写 (az) 和大写 (AZ) 字母均已旋转 13 个位置</p>
+<h4 id="解决方法-12">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat data.txt <span class="p">|</span> tr <span class="s2">&#34;a-zA-Z&#34;</span> <span class="s2">&#34;n-za-mN-ZA-M&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">tr -- 字符替换操作
 </span></span><span class="line"><span class="cl">a-zA-Z -- 表示要替换的字符范围
@@ -832,11 +811,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
-</span></span></code></pre></div><h3 id="level-12">level 12</h3>
-<h4 id="题目描述-13">题目描述</h4>
-<p>下一级的密码存储在文件<strong>data.txt</strong>中，该文件是经过反复压缩的文件的十六进制转储。对于此级别，在 /tmp 下创建一个目录可能会很有用，您可以在其中使用 mkdir 进行工作。例如：mkdir /tmp/myname123。然后使用 cp 复制数据文件，并使用 mv 重命名它（阅读手册页！）</p>
-<h4 id="解决方法-13">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/winglet
+</span></span></code></pre></div><h3 id="level-12">level 12
+</h3><h4 id="题目描述-13">题目描述
+</h4><p>下一级的密码存储在文件<strong>data.txt</strong>中，该文件是经过反复压缩的文件的十六进制转储。对于此级别，在 /tmp 下创建一个目录可能会很有用，您可以在其中使用 mkdir 进行工作。例如：mkdir /tmp/myname123。然后使用 cp 复制数据文件，并使用 mv 重命名它（阅读手册页！）</p>
+<h4 id="解决方法-13">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/winglet
 </span></span><span class="line"><span class="cl">cp data.txt /tmp/winglet
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/winglet
 </span></span><span class="line"><span class="cl">xxd -r data.txt &gt; data.bin
@@ -890,11 +869,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
-</span></span></code></pre></div><h3 id="level-13">level 13</h3>
-<h4 id="题目描述-14">题目描述</h4>
-<p>下一级的密码存储在 <strong>/etc/bandit_pass/bandit14 中，并且只能由用户 bandit14 读取</strong>。对于此级别，您不会获得下一个密码，但您会获得可用于登录下一个级别的 SSH 私钥。 <strong>注意：</strong> <strong>localhost</strong>是指您正在使用的计算机的主机名</p>
-<h4 id="解决方法-14">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
+</span></span></code></pre></div><h3 id="level-13">level 13
+</h3><h4 id="题目描述-14">题目描述
+</h4><p>下一级的密码存储在 <strong>/etc/bandit_pass/bandit14 中，并且只能由用户 bandit14 读取</strong>。对于此级别，您不会获得下一个密码，但您会获得可用于登录下一个级别的 SSH 私钥。 <strong>注意：</strong> <strong>localhost</strong>是指您正在使用的计算机的主机名</p>
+<h4 id="解决方法-14">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls
 </span></span><span class="line"><span class="cl">cat sshkey.private
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sshkey.private: 
 </span></span><span class="line"><span class="cl">-----BEGIN RSA PRIVATE KEY-----
@@ -930,11 +909,11 @@
 </span></span><span class="line"><span class="cl">cat /etc/bandit_pass/bamdit14
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
-</span></span></code></pre></div><h3 id="level-14">level 14</h3>
-<h4 id="题目描述-15">题目描述</h4>
-<p>将当前级别的密码提交到<strong>localhost 的 30000 端口</strong>即可获取下一级的密码。</p>
-<h4 id="解决方法-15">解决方法</h4>
-<ol>
+</span></span></code></pre></div><h3 id="level-14">level 14
+</h3><h4 id="题目描述-15">题目描述
+</h4><p>将当前级别的密码提交到<strong>localhost 的 30000 端口</strong>即可获取下一级的密码。</p>
+<h4 id="解决方法-15">解决方法
+</h4><ol>
 <li>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nc localhost <span class="m">30000</span>
 </span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231125141022189.png"
@@ -980,12 +959,12 @@
 </span></span><span class="line"><span class="cl">telnet  --  一种用于远程登录和网络通信的协议和工具
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
-</span></span></code></pre></div><h3 id="level-15">level 15</h3>
-<h4 id="题目描述-16">题目描述</h4>
-<p>通过使用 SSL 加密将当前级别的密码提交到<strong>localhost 的 30001 端口，可以检索下一级的密码。</strong></p>
+</span></span></code></pre></div><h3 id="level-15">level 15
+</h3><h4 id="题目描述-16">题目描述
+</h4><p>通过使用 SSL 加密将当前级别的密码提交到<strong>localhost 的 30001 端口，可以检索下一级的密码。</strong></p>
 <p><strong>有用的注释：获得“HEARTBEATING”和“Read R BLOCK”？使用 -ign_eof 并阅读联机帮助页中的“连接命令”部分。除了“R”和“Q”之外，“B”命令也适用于该命令的此版本&hellip;&hellip;</strong></p>
-<h4 id="解决方法-16">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">openssl s_client -connect localhost:30001
+<h4 id="解决方法-16">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">openssl s_client -connect localhost:30001
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
@@ -1006,11 +985,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	JQttfApK4SeyHwDlI9SXGR50qclOAil1
-</span></span></code></pre></div><h3 id="level-16">level 16</h3>
-<h4 id="题目描述-17">题目描述</h4>
-<p>可以通过将当前级别的密码提交到<strong>本地主机上 31000 到 32000 范围内的端口来</strong>检索下一个级别的凭据。首先找出服务器正在监听哪些端口。然后找出哪些使用 SSL，哪些不使用 SSL。只有一台服务器会提供下一个凭据，其他服务器只会将您发送给它的任何内容发送回给您。</p>
-<h4 id="解决方法-17">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nmap -sV -T4 lcoalhost -p 31000-32000
+</span></span></code></pre></div><h3 id="level-16">level 16
+</h3><h4 id="题目描述-17">题目描述
+</h4><p>可以通过将当前级别的密码提交到<strong>本地主机上 31000 到 32000 范围内的端口来</strong>检索下一个级别的凭据。首先找出服务器正在监听哪些端口。然后找出哪些使用 SSL，哪些不使用 SSL。只有一台服务器会提供下一个凭据，其他服务器只会将您发送给它的任何内容发送回给您。</p>
+<h4 id="解决方法-17">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nmap -sV -T4 lcoalhost -p 31000-32000
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">-sV  --  使用版本探测功能，尝试确定目标主机上运行的服务和其版本信息。
 </span></span><span class="line"><span class="cl">-T4  --  设置扫描速度为“快速”模式，以更高的速度执行扫描。
@@ -1040,12 +1019,12 @@
 </span></span><span class="line"><span class="cl">cat /etc/bandit_pass/bandit14
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
-</span></span></code></pre></div><h3 id="level-17">level 17</h3>
-<h4 id="题目描述-18">题目描述</h4>
-<p>主目录中有2个文件：<strong>passwords.old和passwords.new</strong>。下一级的密码位于 <strong>passwords.new中，并且是</strong> <strong>passwords.old和password.new</strong>之间唯一已更改的行</p>
+</span></span></code></pre></div><h3 id="level-17">level 17
+</h3><h4 id="题目描述-18">题目描述
+</h4><p>主目录中有2个文件：<strong>passwords.old和passwords.new</strong>。下一级的密码位于 <strong>passwords.new中，并且是</strong> <strong>passwords.old和password.new</strong>之间唯一已更改的行</p>
 <p><strong>注意：如果您已解决此级别并看到“再见！” 当尝试登录 bandit18 时，这与下一个级别 bandit19 有关</strong></p>
-<h4 id="解决方法-18">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">diff passwords.new password.old
+<h4 id="解决方法-18">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">diff passwords.new password.old
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">diff  --  用于比较文件和目录之间的差异
 </span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126165620713.png"
@@ -1060,11 +1039,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
-</span></span></code></pre></div><h3 id="level-18">level 18</h3>
-<h4 id="题目描述-19">题目描述</h4>
-<p>下一级的密码存储在主目录中的自述<strong>文件中。<strong>不幸的是，有人修改了</strong>.bashrc</strong> ，以便在您使用 SSH 登录时将您注销。</p>
-<h4 id="解决方法-19">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /etc/shells
+</span></span></code></pre></div><h3 id="level-18">level 18
+</h3><h4 id="题目描述-19">题目描述
+</h4><p>下一级的密码存储在主目录中的自述<strong>文件中。<strong>不幸的是，有人修改了</strong>.bashrc</strong> ，以便在您使用 SSH 登录时将您注销。</p>
+<h4 id="解决方法-19">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /etc/shells
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">/etc/shells  --   是一个位于 Unix/Linux 系统中的文件路径，它包含了系统中可用的登录 shell 列表。这个文件用于指定哪些用户 shell 可以用于登录系统。
 </span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126171429224.png"
@@ -1094,11 +1073,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	awhqfNnAbc1naukrpqDYcF95h7HoMTrC
-</span></span></code></pre></div><h3 id="level-19">level 19</h3>
-<h4 id="题目描述-20">题目描述</h4>
-<p>要访问下一个级别，您应该使用主目录中的 setuid 二进制文件。不带参数执行它以了解如何使用它。使用 setuid 二进制文件后，可以在通常的位置 (/etc/bandit_pass) 找到此级别的密码。</p>
-<h4 id="解决方法-20">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">./bandit20-do cat /etc/bandit_pass/bandit20
+</span></span></code></pre></div><h3 id="level-19">level 19
+</h3><h4 id="题目描述-20">题目描述
+</h4><p>要访问下一个级别，您应该使用主目录中的 setuid 二进制文件。不带参数执行它以了解如何使用它。使用 setuid 二进制文件后，可以在通常的位置 (/etc/bandit_pass) 找到此级别的密码。</p>
+<h4 id="解决方法-20">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">./bandit20-do cat /etc/bandit_pass/bandit20
 </span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126172303647.png"
 	
 	
@@ -1125,12 +1104,12 @@
 <p>而这个二进制文件的功能是自定义的。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	VxCazJaVykI6W36BkBU0mJTCM8rR95XT
-</span></span></code></pre></div><h3 id="level-20">level 20</h3>
-<h4 id="题目描述-21">题目描述</h4>
-<p>主目录中有一个 setuid 二进制文件，它执行以下操作：它在您指定为命令行参数的端口上建立到本地主机的连接。然后，它从连接中读取一行文本，并将其与上一级别 (bandit20) 中的密码进行比较。如果密码正确，则会传送下一级（bandit21）的密码。</p>
+</span></span></code></pre></div><h3 id="level-20">level 20
+</h3><h4 id="题目描述-21">题目描述
+</h4><p>主目录中有一个 setuid 二进制文件，它执行以下操作：它在您指定为命令行参数的端口上建立到本地主机的连接。然后，它从连接中读取一行文本，并将其与上一级别 (bandit20) 中的密码进行比较。如果密码正确，则会传送下一级（bandit21）的密码。</p>
 <p><b>注意：</b>尝试连接到您自己的网络守护程序，看看它是否按您的想法工作</p>
-<h4 id="解决方法-21">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nc -lv -p <span class="m">0</span> &lt; /etc/bandit_pass/bandit20 <span class="p">&amp;</span>
+<h4 id="解决方法-21">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nc -lv -p <span class="m">0</span> &lt; /etc/bandit_pass/bandit20 <span class="p">&amp;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">nc  --  它是一个网络工具，用于在不同主机之间进行数据传输和网络连接
 </span></span><span class="line"><span class="cl">-lv  --  参数用于指定 nc 命令以监听模式运行，并打印接收到的数据。
@@ -1160,11 +1139,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
-</span></span></code></pre></div><h3 id="level-21">level 21</h3>
-<h4 id="题目描述-22">题目描述</h4>
-<p>程序从 基于时间的作业调度程序<b>cron定期自动运行。</b>查看 <b>/etc/cron.d/</b>中的配置并查看正在执行什么命令。</p>
-<h4 id="解决方法-22">解决方法</h4>
-<p><strong>cron</strong> 是一个在 Unix/Linux 系统上用于执行预定任务的定时任务调度器。它允许用户创建和管理定期执行的任务，这些任务可以是脚本、命令或任何可执行程序。Cron 基于 crontab（cron table）文件来定义和配置这些任务。</p>
+</span></span></code></pre></div><h3 id="level-21">level 21
+</h3><h4 id="题目描述-22">题目描述
+</h4><p>程序从 基于时间的作业调度程序<b>cron定期自动运行。</b>查看 <b>/etc/cron.d/</b>中的配置并查看正在执行什么命令。</p>
+<h4 id="解决方法-22">解决方法
+</h4><p><strong>cron</strong> 是一个在 Unix/Linux 系统上用于执行预定任务的定时任务调度器。它允许用户创建和管理定期执行的任务，这些任务可以是脚本、命令或任何可执行程序。Cron 基于 crontab（cron table）文件来定义和配置这些任务。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /etc/cron.d
 </span></span><span class="line"><span class="cl">ls 
 </span></span><span class="line"><span class="cl">cat cronjob_bandit22
@@ -1204,12 +1183,12 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
-</span></span></code></pre></div><h3 id="level-22">level 22</h3>
-<h4 id="题目描述-23">题目描述</h4>
-<p>程序从 基于时间的作业调度程序<b>cron定期自动运行。</b>查看<b>/etc/cron.d/</b>中的配置并查看正在执行什么命令。</p>
+</span></span></code></pre></div><h3 id="level-22">level 22
+</h3><h4 id="题目描述-23">题目描述
+</h4><p>程序从 基于时间的作业调度程序<b>cron定期自动运行。</b>查看<b>/etc/cron.d/</b>中的配置并查看正在执行什么命令。</p>
 <p><b>注意：</b>查看其他人编写的 shell 脚本是一项非常有用的技能。此级别的脚本有意使之易于阅读。如果您在理解它的作用时遇到问题，请尝试执行它以查看它打印的调试信息。</p>
-<h4 id="解决方法-23">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /etc/cron.d/cronjob_bandit23
+<h4 id="解决方法-23">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat /etc/cron.d/cronjob_bandit23
 </span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231126182920239.png"
 	
 	
@@ -1255,13 +1234,13 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
-</span></span></code></pre></div><h3 id="level-23">level 23</h3>
-<h4 id="题目描述-24">题目描述</h4>
-<p>程序从 基于时间的作业调度程序<b>cron定期自动运行。</b>查看<b>/etc/cron.d/</b>中的配置并查看正在执行什么命令。</p>
+</span></span></code></pre></div><h3 id="level-23">level 23
+</h3><h4 id="题目描述-24">题目描述
+</h4><p>程序从 基于时间的作业调度程序<b>cron定期自动运行。</b>查看<b>/etc/cron.d/</b>中的配置并查看正在执行什么命令。</p>
 <p><b>注意：</b>此级别要求您创建自己的第一个 shell 脚本。这是非常大的一步，当你通过这个关卡时，你应该为自己感到自豪！</p>
 <p><b>注意 2：</b>请记住，您的 shell 脚本一旦执行就会被删除，因此您可能需要保留一份副本&hellip;&hellip;</p>
-<h4 id="解决方法-24">解决方法</h4>
-<p>根据描述先查看<code>/etc/cron.d</code>文件</p>
+<h4 id="解决方法-24">解决方法
+</h4><p>根据描述先查看<code>/etc/cron.d</code>文件</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /etc/cron.d
 </span></span><span class="line"><span class="cl">ls
 </span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240103213309803.png"
@@ -1362,12 +1341,12 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
-</span></span></code></pre></div><h3 id="level-24">level 24</h3>
-<h4 id="题目描述-25">题目描述</h4>
-<p>守护程序正在侦听端口 30002，如果给定 bandit24 的密码和秘密数字 4 位 pincode，它将为您提供 bandit25 的密码。除非通过所有 10000 个组合（称为暴力破解），否则无法检索 pin 码。
+</span></span></code></pre></div><h3 id="level-24">level 24
+</h3><h4 id="题目描述-25">题目描述
+</h4><p>守护程序正在侦听端口 30002，如果给定 bandit24 的密码和秘密数字 4 位 pincode，它将为您提供 bandit25 的密码。除非通过所有 10000 个组合（称为暴力破解），否则无法检索 pin 码。
 您不需要每次都创建新连接</p>
-<h4 id="解决方法-25">解决方法</h4>
-<p>根据描述可以知道我们这次要进行爆破了，脚本内容如下：</p>
+<h4 id="解决方法-25">解决方法
+</h4><p>根据描述可以知道我们这次要进行爆破了，脚本内容如下：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> i in <span class="o">{</span>5000..9999<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
@@ -1389,11 +1368,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
-</span></span></code></pre></div><h3 id="level-25">level 25</h3>
-<h4 id="题目描述-26">题目描述</h4>
-<p>从 bandit25 登录 bandit26 应该相当容易……用户 bandit26 的 shell 不是<b>/bin/bash</b>，而是其他东西。了解它是什么、它是如何工作的以及如何摆脱它。</p>
-<h4 id="解决方法-26">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls 
+</span></span></code></pre></div><h3 id="level-25">level 25
+</h3><h4 id="题目描述-26">题目描述
+</h4><p>从 bandit25 登录 bandit26 应该相当容易……用户 bandit26 的 shell 不是<b>/bin/bash</b>，而是其他东西。了解它是什么、它是如何工作的以及如何摆脱它。</p>
+<h4 id="解决方法-26">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls 
 </span></span><span class="line"><span class="cl">cat bandit26
 </span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231201194445758.png"
 	
@@ -1503,11 +1482,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
-</span></span></code></pre></div><h3 id="level-26">level 26</h3>
-<h4 id="题目描述-27">题目描述</h4>
-<p>干得好，得到一个外壳！现在赶快获取 bandit27 的密码吧！</p>
-<h4 id="解决方法-27">解决方法</h4>
-<p>在<code>bandit26</code>中有一个<code>bandit27-do</code>的二进制文件，查看属性</p>
+</span></span></code></pre></div><h3 id="level-26">level 26
+</h3><h4 id="题目描述-27">题目描述
+</h4><p>干得好，得到一个外壳！现在赶快获取 bandit27 的密码吧！</p>
+<h4 id="解决方法-27">解决方法
+</h4><p>在<code>bandit26</code>中有一个<code>bandit27-do</code>的二进制文件，查看属性</p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202102736782.png"
 	
 	
@@ -1532,12 +1511,12 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS 
-</span></span></code></pre></div><h3 id="level-27">level 27</h3>
-<h4 id="题目描述-28">题目描述</h4>
-<p><code>ssh://bandit27-git@localhost/home/bandit27-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit27-git</code>与用户的密码相同<code>bandit27</code>。</p>
+</span></span></code></pre></div><h3 id="level-27">level 27
+</h3><h4 id="题目描述-28">题目描述
+</h4><p><code>ssh://bandit27-git@localhost/home/bandit27-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit27-git</code>与用户的密码相同<code>bandit27</code>。</p>
 <p>克隆存储库并找到下一级的密码。</p>
-<h4 id="解决方法-28">解决方法</h4>
-<p>在<code>/home</code>目录下有一个<code>bandit27-git</code>文件，但是我们没有访问权限，所以我们可以在<code>tmp</code>目录下新建一个文件夹，然后克隆仓库</p>
+<h4 id="解决方法-28">解决方法
+</h4><p>在<code>/home</code>目录下有一个<code>bandit27-git</code>文件，但是我们没有访问权限，所以我们可以在<code>tmp</code>目录下新建一个文件夹，然后克隆仓库</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit27-git
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/bandit27-git
 </span></span><span class="line"><span class="cl">git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo
@@ -1567,12 +1546,12 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	AVanL161y9rsbcJIsFHuw35rjaOM19nR
-</span></span></code></pre></div><h3 id="level-28">level 28</h3>
-<h4 id="题目描述-29">题目描述</h4>
-<p><code>ssh://bandit28-git@localhost/home/bandit28-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit28-git</code>与用户的密码相同<code>bandit28</code>。</p>
+</span></span></code></pre></div><h3 id="level-28">level 28
+</h3><h4 id="题目描述-29">题目描述
+</h4><p><code>ssh://bandit28-git@localhost/home/bandit28-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit28-git</code>与用户的密码相同<code>bandit28</code>。</p>
 <p>克隆存储库并找到下一级的密码。</p>
-<h4 id="解决方法-29">解决方法</h4>
-<p>前面的方法一样</p>
+<h4 id="解决方法-29">解决方法
+</h4><p>前面的方法一样</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit28
 </span></span><span class="line"><span class="cl">git clone ssh://bandit-git@localhost:2220/home/bandit28-git/repo
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> repo
@@ -1624,12 +1603,12 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S
-</span></span></code></pre></div><h3 id="level-29">level 29</h3>
-<h4 id="题目描述-30">题目描述</h4>
-<p><code>ssh://bandit29-git@localhost/home/bandit29-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit29-git</code>与用户的密码相同<code>bandit29</code>。</p>
+</span></span></code></pre></div><h3 id="level-29">level 29
+</h3><h4 id="题目描述-30">题目描述
+</h4><p><code>ssh://bandit29-git@localhost/home/bandit29-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit29-git</code>与用户的密码相同<code>bandit29</code>。</p>
 <p>克隆存储库并找到下一级的密码。</p>
-<h4 id="解决方法-30">解决方法</h4>
-<p>前面方法一致</p>
+<h4 id="解决方法-30">解决方法
+</h4><p>前面方法一致</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit29
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/bandit29
 </span></span><span class="line"><span class="cl">git clone ssh://bandit29-git@localhost:2220/home/bandit29-git/repo
@@ -1673,12 +1652,12 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme：
 </span></span><span class="line"><span class="cl">	xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
-</span></span></code></pre></div><h3 id="level-30">level 30</h3>
-<h4 id="题目描述-31">题目描述</h4>
-<p><code>ssh://bandit30-git@localhost/home/bandit30-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit30-git</code>与用户的密码相同<code>bandit30</code>。</p>
+</span></span></code></pre></div><h3 id="level-30">level 30
+</h3><h4 id="题目描述-31">题目描述
+</h4><p><code>ssh://bandit30-git@localhost/home/bandit30-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit30-git</code>与用户的密码相同<code>bandit30</code>。</p>
 <p>克隆存储库并找到下一级的密码。</p>
-<h4 id="解决方法-31">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit30
+<h4 id="解决方法-31">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit30
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/bandit30
 </span></span><span class="line"><span class="cl">git clone ssh://bandit30-git@localhost:2220/home/bandit30-git/repo
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> repo
@@ -1723,12 +1702,12 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt
-</span></span></code></pre></div><h3 id="level-31">level 31</h3>
-<h4 id="题目描述-32">题目描述</h4>
-<p><code>ssh://bandit31-git@localhost/home/bandit31-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit31-git</code>与用户的密码相同<code>bandit31</code>。</p>
+</span></span></code></pre></div><h3 id="level-31">level 31
+</h3><h4 id="题目描述-32">题目描述
+</h4><p><code>ssh://bandit31-git@localhost/home/bandit31-git/repo</code>通过 port有一个 git 存储库<code>2220</code>。用户的密码<code>bandit31-git</code>与用户的密码相同<code>bandit31</code>。</p>
 <p>克隆存储库并找到下一级的密码。</p>
-<h4 id="解决方法-32">解决方法</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit31
+<h4 id="解决方法-32">解决方法
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /tmp/bandit31
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/bandit31
 </span></span><span class="line"><span class="cl">git clone ssh://bandit31-git@localhost:2220/home/bandit31-git/repo
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> repo
@@ -1789,11 +1768,11 @@
 ></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">readme:
 </span></span><span class="line"><span class="cl">	rmCBvG56y58BXzv98yZGdO7ATVL5dW8y
-</span></span></code></pre></div><h3 id="level-32">level 32</h3>
-<h4 id="题目描述-33">题目描述</h4>
-<p>经历了所有这些<code>git</code>事情之后，是时候进行另一次逃脱了。<strong>祝你好运</strong></p>
-<h4 id="解决方法-33">解决方法</h4>
-<p>登录进去后</p>
+</span></span></code></pre></div><h3 id="level-32">level 32
+</h3><h4 id="题目描述-33">题目描述
+</h4><p>经历了所有这些<code>git</code>事情之后，是时候进行另一次逃脱了。<strong>祝你好运</strong></p>
+<h4 id="解决方法-33">解决方法
+</h4><p>登录进去后</p>
 <p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20231202134021451.png"
 	
 	
@@ -1888,18 +1867,19 @@
     
         <link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
             ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
                 defer
                 >
             </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
                 defer
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
             delimiters: [
                 { left: "$$", right: "$$", display: true },
                 { left: "$", right: "$", display: false },
@@ -1909,6 +1889,7 @@
             ignoredClasses: ["gist"]
         });})
 </script>
+
     
 </article>
 
@@ -1944,12 +1925,14 @@
     <section class="copyright">
         &copy; 
         
-        2024 Winglet
+            2024 - 
+        
+        2025 Winglet
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -2038,7 +2021,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
