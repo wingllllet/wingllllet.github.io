@@ -6,6 +6,15 @@
         <description>Recent content in Tags on Winglet&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>Winglet</copyright><atom:link href="https://blog.winglet.com/tags/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>Winglet</copyright>
+        <lastBuildDate>Fri, 11 Jul 2025 21:55:09 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>C&#43;&#43;</title>
+        <link>https://blog.winglet.com/tags/c&#43;&#43;/</link>
+        <pubDate>Fri, 11 Jul 2025 21:55:09 +0800</pubDate>
+        
+        <guid>https://blog.winglet.com/tags/c&#43;&#43;/</guid>
+        <description></description>
+        </item>
+        
     </channel>
 </rss>

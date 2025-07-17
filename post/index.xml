@@ -7,49 +7,234 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Winglet</copyright>
-        <lastBuildDate>Sun, 29 Jun 2025 08:39:28 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 11 Jul 2025 21:55:09 +0800</lastBuildDate><atom:link href="https://blog.winglet.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Trae配置c&#43;&#43;环境</title>
+        <link>https://blog.winglet.com/p/trae%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/</link>
+        <pubDate>Fri, 11 Jul 2025 21:55:09 +0800</pubDate>
+        
+        <guid>https://blog.winglet.com/p/trae%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/</guid>
+        <description>&lt;img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250713134437415.png" alt="Featured image of post Trae配置c&#43;&#43;环境" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;​	最近想学C++做个小项目，原本想是用visual studio来写C++的，但是看到桌面有个trae还没怎么用过，而且后面我只想做些小项目，就打算用trae了，不好用再换。不过发现trae配置C++环境没有visual studio容易，所以写这篇文章来记录一下如何配置。&lt;/p&gt;
+&lt;h2 id=&#34;前期准备&#34;&gt;前期准备
+&lt;/h2&gt;&lt;h3 id=&#34;msvc&#34;&gt;MSVC
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;在visual studio下载界面，下载&lt;strong&gt;Visual Studio 2022 生成工具&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712210705122.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250712210705038&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;下载后打开&lt;strong&gt;Visual Studio Installer&lt;/strong&gt;，在&lt;strong&gt;安装位置&lt;/strong&gt;可以修改安装路径，在&lt;strong&gt;单个组件&lt;/strong&gt;中选择&lt;code&gt;Windows 1 SDK&lt;/code&gt;和&lt;code&gt;MSVC v143 -VS 2022 C++ x64/x86 生成工具&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250711222428017.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;QQ20250711-222411&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;cmake&#34;&gt;CMake
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;官网：&lt;a class=&#34;link&#34; href=&#34;https://cmake.org/download/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Download CMake&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;选择合适的版本点击下载，之后双击安装。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250711222338002.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;QQ20250711-222320&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;最后在终端输入&lt;code&gt;cmake --version&lt;/code&gt;查看是否安装成功。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;clang-format&#34;&gt;Clang-Format
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250711222546874.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;QQ20250711-222508&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250711222555371.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;QQ20250711-222534&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;新建项目&#34;&gt;新建项目
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;新建一个项目文件夹&lt;code&gt;Project1&lt;/code&gt;，再生成&lt;code&gt;main.cpp&lt;/code&gt;和&lt;code&gt;CMakeLists.txt&lt;/code&gt;文件，内容如下。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// main.cpp
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;using&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;namespace&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Hello, World!&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmake&#34; data-lang=&#34;cmake&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# CMakeLists.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;cmake_minimum_required&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;VERSION&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;4.0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;# 该项目所需的CMake最低版本
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;project&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;Project1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;                      &lt;span class=&#34;c&#34;&gt;# 项目名称
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;CMAKE_CXX_STANDARD&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;26&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;         &lt;span class=&#34;c&#34;&gt;# 使用的C++标准
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;add_executable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;test&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;main.cpp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;      &lt;span class=&#34;c&#34;&gt;# 生成可执行文件: &amp;#34;test.exe&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;用trae打开这个文件夹，接着CMake插件会自动弹出让你选择工具包，选择64位的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712222843686.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;QQ20250712-214705&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;运行文件&#34;&gt;运行文件
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;后续运行文件就只需要点击左下角的按钮。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712224616794.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;wechat_2025-07-12_224603_680&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712224632684.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250712224632621&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;补充&#34;&gt;补充
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;通常不会只运行一个文件，还有不同的源文件和头文件，所以可以对CMakeLists.txt添加以下内容。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmake&#34; data-lang=&#34;cmake&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;GLOB&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;HEADERS&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;*.h&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;GLOB&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;SOURCES&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;*.cpp&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;add_executable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;my_program&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;SOURCES&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;HEADERS&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;参考文章&#34;&gt;参考文章
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://trrw.tech/p/windows11%E4%B8%8A%E9%85%8D%E7%BD%AEcc-%E7%8E%AF%E5%A2%83/#cmake&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Windows11上配置C、C++环境&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;可能遇到的问题&#34;&gt;可能遇到的问题
+&lt;/h2&gt;&lt;h3 id=&#34;问题一&#34;&gt;问题一
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712222952509.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250712222952439&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这个问题可能是vscode没有识别到CMake的安装路径，需要在setting.json加入以下内容。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;cmake.cmakePath&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;D:/CMake/bin/cmake.exe&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;问题二&#34;&gt;问题二
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;在编译代码时可能出现中文字符乱码的情况，这个可能是因为编码不同一导致的，CMake默认使用GBK编码，所以需要在trae界面右下角设置编码格式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250716141726847.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250716141719732&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>考公笔记</title>
         <link>https://blog.winglet.com/p/%E8%80%83%E5%85%AC%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Sun, 29 Jun 2025 08:39:28 +0800</pubDate>
         
         <guid>https://blog.winglet.com/p/%E8%80%83%E5%85%AC%E7%AC%94%E8%AE%B0/</guid>
-        <description>&lt;img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160012295.png" alt="Featured image of post 考公笔记" /&gt;&lt;h2 id=&#34;言语理解和表达&#34;&gt;言语理解和表达
-&lt;/h2&gt;&lt;h2 id=&#34;判断推理&#34;&gt;判断推理
-&lt;/h2&gt;&lt;h3 id=&#34;一逻辑论证之归因论证&#34;&gt;一、逻辑论证之归因论证
+        <description>&lt;img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160012295.png" alt="Featured image of post 考公笔记" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;考公&lt;/p&gt;
+&lt;h2 id=&#34;言语理解和表达&#34;&gt;言语理解和表达
+&lt;/h2&gt;&lt;p&gt;讲师：花生十三&lt;/p&gt;
+&lt;h2 id=&#34;判断推理&#34;&gt;判断推理
+&lt;/h2&gt;&lt;p&gt;讲师：花生十三&lt;/p&gt;
+&lt;h3 id=&#34;一逻辑论证之归因论证&#34;&gt;一、逻辑论证之归因论证
 &lt;/h3&gt;&lt;h4 id=&#34;概述&#34;&gt;概述
 &lt;/h4&gt;&lt;p&gt;归因介绍：指人们对他人或自己行为的原因的一轮过程。具体的说，就是观察者对他人的行为过程或自己的行为过程所进行的因果解释和推论。（一般由对比实验以及原因分析所组成）&lt;/p&gt;
 &lt;p&gt;题型分类：归因论证分为实验对比论证、时间对比论证、直接根本原因三类&lt;/p&gt;
 &lt;p&gt;质疑方式：另有他因（注意回归实验）、因果倒置（注意时间先后）、否定此因&lt;/p&gt;
-&lt;h3 id=&#34;实验对比归因&#34;&gt;实验对比归因
-&lt;/h3&gt;&lt;h4 id=&#34;另有他因&#34;&gt;另有他因
-&lt;/h4&gt;&lt;p&gt;特征：回归实验，找到实验组和对照组的另一可能影响结果的不同点。&lt;/p&gt;
+&lt;h4 id=&#34;实验对比归因&#34;&gt;实验对比归因
+&lt;/h4&gt;&lt;h5 id=&#34;另有他因&#34;&gt;另有他因
+&lt;/h5&gt;&lt;p&gt;特征：回归实验，找到实验组和对照组的另一可能影响结果的不同点。&lt;/p&gt;
 &lt;p&gt;常见错误选项：为谈论原因，未分组的典型伪他因、“有些”类选项、实验瑕疵类选项。&lt;/p&gt;
 &lt;p&gt;当题目中有多种实验分组方式时，根据最终的结论来确定实验组与对照组&lt;/p&gt;
-&lt;h4 id=&#34;因果倒置&#34;&gt;因果倒置
-&lt;/h4&gt;&lt;p&gt;因果倒置是一种在相对确定的条件下把原因和结果相互颠倒，视结果为原因和视原因为结果而引起的谬误&lt;/p&gt;
+&lt;h5 id=&#34;因果倒置&#34;&gt;因果倒置
+&lt;/h5&gt;&lt;p&gt;因果倒置是一种在相对确定的条件下把原因和结果相互颠倒，视结果为原因和视原因为结果而引起的谬误&lt;/p&gt;
 &lt;p&gt;【例】所有的迈阿密电力公司的高级官员都拥有大的游艇，因此如果你想成为迈阿密电力公司的高级官员的话，你最好有一艘大一点的游艇。&lt;/p&gt;
 &lt;p&gt;因果倒置的质疑效果大于另有他因的质疑效果&lt;/p&gt;
-&lt;h4 id=&#34;否定此因&#34;&gt;否定此因
-&lt;/h4&gt;&lt;p&gt;否定此因并不探讨题干中某结果的原因是什么，只是否定题干汇总认定的原因。&lt;/p&gt;
+&lt;h5 id=&#34;否定此因&#34;&gt;否定此因
+&lt;/h5&gt;&lt;p&gt;否定此因并不探讨题干中某结果的原因是什么，只是否定题干汇总认定的原因。&lt;/p&gt;
 &lt;p&gt;可以理解为如果a导致b，质疑的话就是c导致了a和b&lt;/p&gt;
-&lt;h4 id=&#34;排除他因支持&#34;&gt;排除他因支持
-&lt;/h4&gt;&lt;p&gt;排除他因支持是指排除其他可能影响结果的原因可能性，让题干中认定的原因成为唯一的可能原因。&lt;/p&gt;
-&lt;h4 id=&#34;解释说明支持&#34;&gt;解释说明支持
-&lt;/h4&gt;&lt;h3 id=&#34;时间对比归因&#34;&gt;时间对比归因
-&lt;/h3&gt;&lt;p&gt;时间对比归因指的是当前与以往相比出现某种变化，并找到此种变化的可能原因。此时，可通过找到当前与过去的另一点不同，来进行他因削弱。&lt;/p&gt;
+&lt;h5 id=&#34;排除他因支持&#34;&gt;排除他因支持
+&lt;/h5&gt;&lt;p&gt;排除他因支持是指排除其他可能影响结果的原因可能性，让题干中认定的原因成为唯一的可能原因。&lt;/p&gt;
+&lt;h5 id=&#34;解释说明支持&#34;&gt;解释说明支持
+&lt;/h5&gt;&lt;h4 id=&#34;时间对比归因&#34;&gt;时间对比归因
+&lt;/h4&gt;&lt;p&gt;时间对比归因指的是当前与以往相比出现某种变化，并找到此种变化的可能原因。此时，可通过找到当前与过去的另一点不同，来进行他因削弱。&lt;/p&gt;
 &lt;p&gt;一直存在且无变化的事实不会是某种变化的原因，“变化”才是“变化”的原因。&lt;/p&gt;
-&lt;h3 id=&#34;直接根本归因&#34;&gt;直接根本归因
-&lt;/h3&gt;&lt;p&gt;【例】原观点：A是C的原因。 反对者：B是C的原因。 如果要质疑反对者（支持原观点）&lt;/p&gt;
+&lt;h4 id=&#34;直接根本归因&#34;&gt;直接根本归因
+&lt;/h4&gt;&lt;p&gt;【例】原观点：A是C的原因。 反对者：B是C的原因。 如果要质疑反对者（支持原观点）&lt;/p&gt;
 &lt;p&gt;原观点A导致反对者B导致C结果&lt;/p&gt;
 &lt;p&gt;直接根本原因是一种固定题型，一般由原观点、反对者观点组成，多数设问为质疑反对者。正确答案一般为根本原因导致了直接原因。&lt;/p&gt;
-&lt;h3 id=&#34;构成对比实验题干中找不到对比&#34;&gt;构成对比实验（题干中找不到对比）
-&lt;/h3&gt;&lt;p&gt;**条件：**缺少对照组；只有纵向对比（和自己比），补充横向对比（和别人比）&lt;/p&gt;
+&lt;h4 id=&#34;构成对比实验题干中找不到对比&#34;&gt;构成对比实验（题干中找不到对比）
+&lt;/h4&gt;&lt;p&gt;**条件：**缺少对照组；只有纵向对比（和自己比），补充横向对比（和别人比）&lt;/p&gt;
 &lt;p&gt;**效果：**质疑：同因异果、异因同果；支持：异因异果&lt;/p&gt;
 &lt;p&gt;构成对比试验是指选项与题干分别为实验组和对照组，通过“异因异果”进行支持或通过“异因同果/同因异果”进行质疑。&lt;/p&gt;
-&lt;h3 id=&#34;补充对比实验&#34;&gt;补充对比实验
-&lt;/h3&gt;&lt;p&gt;补充对比实验是指选项本身即是一个对比实验，通过对比实验结果进行支持或削弱。&lt;/p&gt;
-&lt;h3 id=&#34;归因论证有悖常识结论的质疑&#34;&gt;归因论证有悖常识结论的质疑
-&lt;/h3&gt;&lt;p&gt;【例】通过统计习俗不抽烟的民族，他们的寿命要比经常抽烟喝酒的民族短命。因此学者推测，抽烟喝酒不一定影响人的寿命。&lt;/p&gt;
+&lt;h4 id=&#34;补充对比实验&#34;&gt;补充对比实验
+&lt;/h4&gt;&lt;p&gt;补充对比实验是指选项本身即是一个对比实验，通过对比实验结果进行支持或削弱。&lt;/p&gt;
+&lt;h4 id=&#34;归因论证有悖常识结论的质疑&#34;&gt;归因论证有悖常识结论的质疑
+&lt;/h4&gt;&lt;p&gt;【例】通过统计习俗不抽烟的民族，他们的寿命要比经常抽烟喝酒的民族短命。因此学者推测，抽烟喝酒不一定影响人的寿命。&lt;/p&gt;
 &lt;p&gt;质疑：（找实验的错误）那些因习俗而杜绝吸烟喝酒的民族饮食单一且热量较高。&lt;/p&gt;
 &lt;h3 id=&#34;二逻辑论证之一般质疑&#34;&gt;二、逻辑论证之一般质疑
 &lt;/h3&gt;&lt;p&gt;一般质疑：有一些论据得出可能发生的结论、做出一定的判断&lt;/p&gt;
@@ -73,7 +258,96 @@
 &lt;h3 id=&#34;四逻辑论证之数量论证&#34;&gt;四、逻辑论证之数量论证
 &lt;/h3&gt;&lt;h4 id=&#34;比例类论证可秒&#34;&gt;比例类论证（可秒）
 &lt;/h4&gt;&lt;p&gt;此类问题常犯的逻辑错误使用&amp;quot;分子的多少&amp;quot;代替“分子/分母的比例”得出结论，题干往往包含数字&lt;/p&gt;
-&lt;h2 id=&#34;申论&#34;&gt;申论
+&lt;h3 id=&#34;五逻辑论证之严谨逻辑关系&#34;&gt;五、逻辑论证之严谨逻辑关系
+&lt;/h3&gt;&lt;h4 id=&#34;且关系&#34;&gt;且关系
+&lt;/h4&gt;&lt;p&gt;同时、并且、A并且B、A且B&lt;/p&gt;
+&lt;h4 id=&#34;或关系&#34;&gt;或关系
+&lt;/h4&gt;&lt;p&gt;或者、至少、A或者B、A或B&lt;/p&gt;
+&lt;h4 id=&#34;a-b&#34;&gt;A-&amp;gt;B
+&lt;/h4&gt;&lt;p&gt;如果A那么B、只要A就B、一A就B、若A就B、&lt;/p&gt;
+&lt;h4 id=&#34;b-a&#34;&gt;B-&amp;gt;A
+&lt;/h4&gt;&lt;p&gt;只有A才B、必须A才B、&lt;/p&gt;
+&lt;h4 id=&#34;非a-b&#34;&gt;非A-&amp;gt;B
+&lt;/h4&gt;&lt;p&gt;除非否则、必须否则&lt;/p&gt;
+&lt;h4 id=&#34;a且非b-质疑-a---b&#34;&gt;“A且非B“ 质疑 A -&amp;gt; B
+&lt;/h4&gt;&lt;h4 id=&#34;a-非b质疑a-b&#34;&gt;“A-&amp;gt;非B”质疑A-&amp;gt;B
+&lt;/h4&gt;&lt;h4 id=&#34;严谨逻辑关系的支持与前提假设&#34;&gt;严谨逻辑关系的支持与前提假设
+&lt;/h4&gt;&lt;h5 id=&#34;a-b搭桥a和b&#34;&gt;“A-&amp;gt;B”搭桥A和B
+&lt;/h5&gt;&lt;h4 id=&#34;三段论的必要前提&#34;&gt;三段论的必要前提
+&lt;/h4&gt;&lt;p&gt;它包含：一个一般性原则（大前提），一个附属于前面大前提的特殊化陈述（小前提），以及由此引申出的特殊化陈述符合一般性原则的结论。&lt;/p&gt;
+&lt;p&gt;解题技巧：1. 所有+有些=有些 2.是+是=是  3.是+否=否&lt;/p&gt;
+&lt;h4 id=&#34;必要条件&#34;&gt;必要条件
+&lt;/h4&gt;&lt;p&gt;基础、关键、前提、离不开、必须、需要、必不可少、不可或缺&lt;/p&gt;
+&lt;h3 id=&#34;六翻译推理&#34;&gt;六、翻译推理
+&lt;/h3&gt;&lt;h4 id=&#34;等价推出&#34;&gt;等价推出
+&lt;/h4&gt;&lt;p&gt;由命题找命题&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712142952723.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;QQ.lnk&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;答案是A
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A、B-&amp;gt;A
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B、A-&amp;gt;B
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C、A-&amp;gt;B
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D、非A-&amp;gt;非B
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712150603194.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;QQ20250712-150527&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;答案是A
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;题干中根据关键词看出是充分必要的关系，所以选项中也要选择相同的关系。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A：充分必要关系
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B：比较关系
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C：因果关系
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D：因果关系
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;和题干不等价&#34;&gt;和题干不等价
+&lt;/h4&gt;&lt;p&gt;技巧&lt;/p&gt;
+&lt;h4 id=&#34;根据已知事实正推&#34;&gt;根据已知事实正推
+&lt;/h4&gt;&lt;p&gt;技巧：无需将题干中的多个命题联立，根据已知事实，按照逻辑传递规则推出即可。&lt;/p&gt;
+&lt;h4 id=&#34;根据所需结果逆推&#34;&gt;根据所需结果逆推
+&lt;/h4&gt;&lt;p&gt;思路：要想得到C&lt;/p&gt;
+&lt;h4 id=&#34;两难推理&#34;&gt;两难推理
+&lt;/h4&gt;&lt;p&gt;方法：A-&amp;gt;B、非&lt;/p&gt;
+&lt;p&gt;无论A不A，都B		A/非A-&amp;gt;B&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;所有、有些、特指
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;否定/矛盾		两词互换后面加不			非所有 = 有些不    非(有些)=所有不
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;推出关系		所有-&amp;gt;有些  所有-&amp;gt;特指	特指-&amp;gt;有些
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;有些 推出 推不出		有些是 推不出 有些不是		有些A是B 能推出 有些B是A
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;分析推理&#34;&gt;分析推理
+&lt;/h3&gt;&lt;h4 id=&#34;真假话推理&#34;&gt;真假话推理
+&lt;/h4&gt;&lt;h5 id=&#34;矛盾法&#34;&gt;矛盾法
+&lt;/h5&gt;&lt;p&gt;三种矛盾关系：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A和非A、A且B和非A或非B、A或B和非A且非B&lt;/li&gt;
+&lt;li&gt;所有和有些不、有些和所有不、可能和必然不、必然和可能不&lt;/li&gt;
+&lt;li&gt;A-&amp;gt;B和A且非B&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250713143008831.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250713143008536&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;方法
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1和2相互矛盾，然后提问要求两假一真，所以3一定为假，因此选择A选项。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;申论&#34;&gt;申论
 &lt;/h2&gt;&lt;h2 id=&#34;小总结&#34;&gt;小总结
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
@@ -96,7 +370,7 @@
         
         <guid>https://blog.winglet.com/p/%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
         <description>&lt;img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250710214000244.png" alt="Featured image of post 创建个人博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
-&lt;/h2&gt;&lt;p&gt;​	以前的电脑出问题了，现在换了一个新电脑，所以以前装的软件和配置都要重新配置，我的博客也需要重新配置参数。所以顺便写这样一篇部署博客的文章。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;​	以前的电脑出现了问题，现在换了一台新的，因此之前安装的软件和配置都需要重新部署，我的博客也需要重新配置。借此机会，我决定写下这篇文章，记录博客部署的过程。&lt;/p&gt;
 &lt;h2 id=&#34;环境配置&#34;&gt;环境配置
 &lt;/h2&gt;&lt;h3 id=&#34;下载hugo&#34;&gt;下载hugo
 &lt;/h3&gt;&lt;ul&gt;
@@ -330,9 +604,15 @@
 &gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;自定义节点就是编辑api令牌中的地址
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;自定义域名就是之前存储库生成的url
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;可能遇到的问题&#34;&gt;可能遇到的问题
-&lt;/h2&gt;&lt;h3 id=&#34;一&#34;&gt;一、
-&lt;/h3&gt;&lt;ul&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;参考文章&#34;&gt;参考文章
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://sazerac-kk.github.io/p/%e6%95%99%e7%a8%8bhugo-github%e5%8d%9a%e5%ae%a2%e9%83%a8%e7%bd%b2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;【教程】Hugo+Github博客部署&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhajiman.github.io/post/rebuild_blog/#%e5%8f%91%e5%b8%83%e5%88%b0-github-%e4%b8%8a&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;用 Hugo 重新搭建博客 - 炸鸡人博客&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;可能遇到的问题&#34;&gt;可能遇到的问题
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;在输入&lt;code&gt;hugo server&lt;/code&gt;进行本地部署时可能出下图中的问题&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/image-20250709202724853.png&#34;
@@ -361,6 +641,41 @@
 &lt;ul&gt;
 &lt;li&gt;这些都可以删了，基本用不上。&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>赛螃蟹</title>
+        <link>https://blog.winglet.com/p/%E8%B5%9B%E8%9E%83%E8%9F%B9/</link>
+        <pubDate>Tue, 10 Dec 2024 14:02:18 +0800</pubDate>
+        
+        <guid>https://blog.winglet.com/p/%E8%B5%9B%E8%9E%83%E8%9F%B9/</guid>
+        <description>&lt;img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20241210142857898.jpg" alt="Featured image of post 赛螃蟹" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;开始学做饭， 这篇文章就用来记录未来学会的菜&lt;/p&gt;
+&lt;h3 id=&#34;赛螃蟹&#34;&gt;赛螃蟹
+&lt;/h3&gt;&lt;h4 id=&#34;食材&#34;&gt;食材
+&lt;/h4&gt;&lt;p&gt;生姜、大蒜、葱、鸡蛋&lt;/p&gt;
+&lt;h4 id=&#34;做法&#34;&gt;做法
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;生姜大蒜切碎，接着生姜大蒜葱按 2：1：1比例调合&lt;/li&gt;
+&lt;li&gt;放入食盐、糖、醋、胡椒粉、黄酒等调味料&lt;/li&gt;
+&lt;li&gt;将若干鸡蛋打到碗里，不进行搅拌&lt;/li&gt;
+&lt;li&gt;烧油，等油烧开放入鸡蛋，这里需要等待鸡蛋清成型后再用锅铲将蛋黄打烂&lt;/li&gt;
+&lt;li&gt;鸡蛋炒开后，放入准备的调料，继续炒&lt;/li&gt;
+&lt;li&gt;炒熟可以再加点香油&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;成品&#34;&gt;成品
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20241210142857898.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;微信图片_20241210142648&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;总结&#34;&gt;总结
+&lt;/h4&gt;&lt;p&gt;​	个人觉得这次没做好，首次做菜也出了不少问题。首先烧油前先将锅里的水烧干，不然油就会到处飞溅，当时把我吓的赶紧把火关了。然后需要等油烧开再倒鸡蛋，不然油会漂浮在蛋清上，还要等待更久时间才能使蛋清成型。第一次做菜也不确定调料的多少，所以都放的比较少，对我而言觉得醋可以多放一点，生姜少些，油也少些。&lt;/p&gt;
 </description>
         </item>
         <item>

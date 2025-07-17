@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 \u200b\t以前的电脑出现了问题，现在换了一台新的，因此之前安装的软件和配置都需要重新部署，我的博客也需要重新配置。借此机会，我决定写下这篇文章，记录博客部署的过程。\n">
-<title>创建个人博客</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 \u200b\t最近想学C++做个小项目，原本想是用visual studio来写C++的，但是看到桌面有个trae还没怎么用过，而且后面我只想做些小项目，就打算用trae了，不好用再换。不过发现trae配置C++环境没有visual studio容易，所以写这篇文章来记录一下如何配置。\n">
+<title>Trae配置c&#43;&#43;环境</title>
 
-<link rel='canonical' href='https://blog.winglet.com/p/%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/'>
+<link rel='canonical' href='https://blog.winglet.com/p/trae%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="创建个人博客">
-<meta property='og:description' content="前言 \u200b\t以前的电脑出现了问题，现在换了一台新的，因此之前安装的软件和配置都需要重新部署，我的博客也需要重新配置。借此机会，我决定写下这篇文章，记录博客部署的过程。\n">
-<meta property='og:url' content='https://blog.winglet.com/p/%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/'>
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Trae配置c++环境">
+<meta property='og:description' content="前言 \u200b\t最近想学C++做个小项目，原本想是用visual studio来写C++的，但是看到桌面有个trae还没怎么用过，而且后面我只想做些小项目，就打算用trae了，不好用再换。不过发现trae配置C++环境没有visual studio容易，所以写这篇文章来记录一下如何配置。\n">
+<meta property='og:url' content='https://blog.winglet.com/p/trae%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/'>
 <meta property='og:site_name' content='Winglet&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-06-26T18:00:40&#43;08:00'/><meta property='article:modified_time' content='2025-06-26T18:00:40&#43;08:00'/><meta property='og:image' content='https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250710214000244.png' />
-<meta name="twitter:title" content="创建个人博客">
-<meta name="twitter:description" content="前言 \u200b\t以前的电脑出现了问题，现在换了一台新的，因此之前安装的软件和配置都需要重新部署，我的博客也需要重新配置。借此机会，我决定写下这篇文章，记录博客部署的过程。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250710214000244.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2025-07-11T21:55:09&#43;08:00'/><meta property='article:modified_time' content='2025-07-11T21:55:09&#43;08:00'/><meta property='og:image' content='https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250713134437415.png' />
+<meta name="twitter:title" content="Trae配置c++环境">
+<meta name="twitter:description" content="前言 \u200b\t最近想学C++做个小项目，原本想是用visual studio来写C++的，但是看到桌面有个trae还没怎么用过，而且后面我只想做些小项目，就打算用trae了，不好用再换。不过发现trae配置C++环境没有visual studio容易，所以写这篇文章来记录一下如何配置。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250713134437415.png' />
     <link rel="shortcut icon" href="/img/favicon.ico" />
 
     </head>
@@ -243,31 +243,23 @@
             <nav id="TableOfContents">
   <ol>
     <li><a href="#前言">前言</a></li>
-    <li><a href="#环境配置">环境配置</a>
+    <li><a href="#前期准备">前期准备</a>
       <ol>
-        <li><a href="#下载hugo">下载hugo</a>
-          <ol>
-            <li><a href="#配置环境变量">配置环境变量</a></li>
-          </ol>
-        </li>
-        <li><a href="#下载git">下载git</a></li>
+        <li><a href="#msvc">MSVC</a></li>
+        <li><a href="#cmake">CMake</a></li>
+        <li><a href="#clang-format">Clang-Format</a></li>
       </ol>
     </li>
-    <li><a href="#博客部署">博客部署</a>
-      <ol>
-        <li><a href="#创建blog">创建blog</a></li>
-        <li><a href="#拉取hugo主题模板">拉取hugo主题模板</a></li>
-      </ol>
-    </li>
-    <li><a href="#github部署">GitHub部署</a></li>
-    <li><a href="#搭建图床">搭建图床</a>
-      <ol>
-        <li><a href="#cloudflare创建存储库">cloudflare创建存储库</a></li>
-        <li><a href="#piclist配置">piclist配置</a></li>
-      </ol>
-    </li>
+    <li><a href="#新建项目">新建项目</a></li>
+    <li><a href="#运行文件">运行文件</a></li>
+    <li><a href="#补充">补充</a></li>
     <li><a href="#参考文章">参考文章</a></li>
-    <li><a href="#可能遇到的问题">可能遇到的问题</a></li>
+    <li><a href="#可能遇到的问题">可能遇到的问题</a>
+      <ol>
+        <li><a href="#问题一">问题一</a></li>
+        <li><a href="#问题二">问题二</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -282,9 +274,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+            <a href="/p/trae%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/">
                 
-                    <img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250710214000244.png" loading="lazy" alt="Featured image of post 创建个人博客" />
+                    <img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250713134437415.png" loading="lazy" alt="Featured image of post Trae配置c&#43;&#43;环境" />
                 
             </a>
         </div>
@@ -295,7 +287,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">创建个人博客</a>
+            <a href="/p/trae%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/">Trae配置c&#43;&#43;环境</a>
         </h2>
     
         
@@ -317,7 +309,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jun 26, 2025</time>
+                <time class="article-time--published">Jul 11, 2025</time>
             </div>
         
 
@@ -332,7 +324,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -348,283 +340,190 @@
     
     
     <h2 id="前言">前言
-</h2><p>​	以前的电脑出现了问题，现在换了一台新的，因此之前安装的软件和配置都需要重新部署，我的博客也需要重新配置。借此机会，我决定写下这篇文章，记录博客部署的过程。</p>
-<h2 id="环境配置">环境配置
-</h2><h3 id="下载hugo">下载hugo
+</h2><p>​	最近想学C++做个小项目，原本想是用visual studio来写C++的，但是看到桌面有个trae还没怎么用过，而且后面我只想做些小项目，就打算用trae了，不好用再换。不过发现trae配置C++环境没有visual studio容易，所以写这篇文章来记录一下如何配置。</p>
+<h2 id="前期准备">前期准备
+</h2><h3 id="msvc">MSVC
 </h3><ul>
-<li><strong>官方地址：</strong><a class="link" href="https://gohugo.io/"  target="_blank" rel="noopener"
-    >Hugo官网</a></li>
-<li><strong>Github地址:</strong><a class="link" href="https://github.com/gohugoio/hugo"  target="_blank" rel="noopener"
-    >gohugoio/hugo</a></li>
+<li>在visual studio下载界面，下载<strong>Visual Studio 2022 生成工具</strong>。</li>
 </ul>
-<h4 id="配置环境变量">配置环境变量
-</h4><ul>
-<li>下载完后会有一个<code>hugo.exe</code> 文件，将它随便放置一个文件夹内，然后将该文件夹的路径输入到环境变量配置中。像这里我就是把<code>hugo.exe</code>放在<code>hugo</code>目录内，之后将该目录路径输入进环境变量配置中，接着重启电脑。</li>
-</ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/image-20250626210544419.png"
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712210705122.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20250626210544419"
+		alt="image-20250712210705038"
 	
 	
 ></p>
 <ul>
-<li>打开cmd命令框，出现下面的情况则说明hugo部署成功。</li>
+<li>下载后打开<strong>Visual Studio Installer</strong>，在<strong>安装位置</strong>可以修改安装路径，在<strong>单个组件</strong>中选择<code>Windows 1 SDK</code>和<code>MSVC v143 -VS 2022 C++ x64/x86 生成工具</code>。</li>
 </ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/image-20250626212849305.png"
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250711222428017.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20250626212849305"
+		alt="QQ20250711-222411"
 	
 	
 ></p>
-<h3 id="下载git">下载git
+<h3 id="cmake">CMake
 </h3><ul>
-<li><strong>官方地址：</strong><a class="link" href="https://git-scm.com/book/zh/v2/%e8%b5%b7%e6%ad%a5-%e5%ae%89%e8%a3%85-Git"  target="_blank" rel="noopener"
-    >Git - 安装 Git</a></li>
+<li>官网：<a class="link" href="https://cmake.org/download/"  target="_blank" rel="noopener"
+    >Download CMake</a></li>
+<li>选择合适的版本点击下载，之后双击安装。</li>
 </ul>
-<h2 id="博客部署">博客部署
-</h2><h3 id="创建blog">创建blog
-</h3><ul>
-<li>创建一个用于部署博客的文件夹，然后在该目录下打开命令提示符（CMD），输入 <code>hugo new site xxxx</code>，其中 <code>xxxx</code> 是你自定义的名称，我这里使用的是 <code>hugo-blog</code>。执行后将会生成你的博客目录。接着输入 <code>hugo server</code> 命令，Hugo 将会在本地启动服务器，通过访问 <code>localhost:1313</code> 即可查看博客的运行效果。不过由于当前博客目录中尚未添加主题模板，因此页面会显示“Page not found”。</li>
-</ul>
-<h3 id="拉取hugo主题模板">拉取hugo主题模板
-</h3><ul>
-<li>首先在在创建的blog目录中，右键选择<code>git bash</code>。然后输入<code>git init</code>，进行git仓库初始化。</li>
-</ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/image-20250626214809812.png"
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250711222338002.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20250626214809812"
+		alt="QQ20250711-222320"
 	
 	
 ></p>
 <ul>
-<li>这里我选择的主题模板是<code>hugo-theme-stack</code>，可以输入以下命令获取或是去github网站下载压缩包。</li>
+<li>最后在终端输入<code>cmake --version</code>查看是否安装成功。</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack
-</span></span></code></pre></div><ul>
-<li>
-<p>接着将<code>themes/hugo-theme-stack</code>文件夹下的<code>exampleSite/content</code>和<code>exampleSite/hugo.yaml</code>复制到主文件夹中，并删除根目录的<code>hugo.toml</code></p>
-</li>
-<li>
-<p>之后修改themes文件夹下的主题文件夹的名称，保证和<code>hugo.yaml</code>中的主题名一样</p>
-</li>
-</ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/image-20250709173331142.png"
+<h3 id="clang-format">Clang-Format
+</h3><p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250711222546874.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20250709173331142"
+		alt="QQ20250711-222508"
 	
 	
 ></p>
-<ul>
-<li>接着输入命令<code>hugo server</code>，再访问<code>localhost:1313</code>就可以看到有主题的博客。</li>
-</ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/image-20250709204930528.png"
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250711222555371.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20250709204930528"
+		alt="QQ20250711-222534"
 	
 	
 ></p>
-<h2 id="github部署">GitHub部署
+<h2 id="新建项目">新建项目
 </h2><ul>
-<li>注册一个github账号。</li>
-<li>新建仓库，命名使用<code>{用户名}.github.io</code>。</li>
+<li>新建一个项目文件夹<code>Project1</code>，再生成<code>main.cpp</code>和<code>CMakeLists.txt</code>文件，内容如下。</li>
 </ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/image-20250710211251589.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20250710211251589"
-	
-	
-></p>
-<ul>
-<li>接下来参考这篇文章<a class="link" href="https://zhajiman.github.io/post/rebuild_blog/#%e5%8f%91%e5%b8%83%e5%88%b0-github-%e4%b8%8a"  target="_blank" rel="noopener"
-    >用 Hugo 重新搭建博客 - 炸鸡人博客</a></li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">这里用 Github Pages 来部署博客。首先在 config.yaml 里指定
-</span></span><span class="line"><span class="cl">	publishDir: docs
-</span></span><span class="line"><span class="cl">然后再一个 hugo 命令，这样就把静态页面输出到 docs 目录下了。
-</span></span><span class="line"><span class="cl">接着在 Github 上以 ZhaJiMan.github.io 的名字（根据自己的用户名而定）新建一个空仓库，进行下面的 Git 命令
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// main.cpp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">git add .
-</span></span><span class="line"><span class="cl">git commit -m &#34;first commit&#34;
-</span></span><span class="line"><span class="cl">git branch -M main
-</span></span><span class="line"><span class="cl">git remote add origin https://github.com/ZhaJiMan/ZhaJiMan.github.io.git
-</span></span><span class="line"><span class="cl">git push -u origin main
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">这段改编自空仓库页面出现的提示，大意是：
-</span></span><span class="line"><span class="cl">    将网站目录下的所有内容暂存。
-</span></span><span class="line"><span class="cl">    把暂存的内容提交给版本库。
-</span></span><span class="line"><span class="cl">    把主分支的名字从 master 改为 main。
-</span></span><span class="line"><span class="cl">    添加远程仓库。
-</span></span><span class="line"><span class="cl">    把本地内容推送到远程仓库里。
-</span></span><span class="line"><span class="cl">推送成功后，进入仓库的设置页面，点击侧栏的 Pages，再把 Source 选项改为 main 分支下的 docs 目录，这样 Github Pages 就会根据我们推送上去的 docs 目录里的静态页面来显示网站。这里指定 docs 的好处是还可以把网站的所有文件都备份到仓库里（不包含以 submodule 形式添加主题，详见参考链接）。最后在与仓库同名的网站 https://zhajiman.github.io/ 上看看自己的博客吧！
-</span></span></code></pre></div><h2 id="搭建图床">搭建图床
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello, World!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cmake" data-lang="cmake"><span class="line"><span class="cl"><span class="c"># CMakeLists.txt
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">4.0</span><span class="p">)</span> <span class="c"># 该项目所需的CMake最低版本
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">project</span><span class="p">(</span><span class="s">Project1</span><span class="p">)</span>                      <span class="c"># 项目名称
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span> <span class="s">26</span><span class="p">)</span>         <span class="c"># 使用的C++标准
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">test</span> <span class="s">main.cpp</span><span class="p">)</span>      <span class="c"># 生成可执行文件: &#34;test.exe&#34;
+</span></span></span></code></pre></div><ul>
+<li>用trae打开这个文件夹，接着CMake插件会自动弹出让你选择工具包，选择64位的。</li>
+</ul>
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712222843686.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="QQ20250712-214705"
+	
+	
+></p>
+<h2 id="运行文件">运行文件
 </h2><ul>
-<li>cloudfare和piclist</li>
+<li>后续运行文件就只需要点击左下角的按钮。</li>
 </ul>
-<h3 id="cloudflare创建存储库">cloudflare创建存储库
-</h3><ul>
-<li>左边栏选择<code>R2-概述</code>，然后点击<code>创建存储桶</code></li>
-</ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152350828.png"
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712224616794.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20240915235034622"
+		alt="wechat_2025-07-12_224603_680"
 	
 	
 ></p>
-<ul>
-<li>接下来自定义存储桶的名称，这样就创建好了自己的存储桶</li>
-</ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152354343.png"
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712224632684.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20240915235442221"
+		alt="image-20250712224632621"
 	
 	
 ></p>
-<ul>
-<li>进入存储桶的设置界面</li>
-</ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152358882.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240915235802764"
-	
-	
-></p>
-<ul>
-<li>允许访问子域名，然后就会生成一个可以公共访问的url</li>
-</ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152359319.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240915235920226"
-	
-	
-></p>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152359553.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240915235935485"
-	
-	
-></p>
-<p>可以在这两个中选择一个</p>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409152359215.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240915235958106"
-	
-	
-></p>
-<p>之后会有密钥等重要信息，需要保存下来</p>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160001204.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240916000121147"
-	
-	
-></p>
-<h3 id="piclist配置">piclist配置
-</h3><p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/202409160002481.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240916000216319"
-	
-	
-></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">自定义节点就是编辑api令牌中的地址
-</span></span><span class="line"><span class="cl">自定义域名就是之前存储库生成的url
-</span></span></code></pre></div><h2 id="参考文章">参考文章
+<h2 id="补充">补充
 </h2><ul>
-<li><a class="link" href="https://sazerac-kk.github.io/p/%e6%95%99%e7%a8%8bhugo-github%e5%8d%9a%e5%ae%a2%e9%83%a8%e7%bd%b2/"  target="_blank" rel="noopener"
-    >【教程】Hugo+Github博客部署</a></li>
-<li><a class="link" href="https://zhajiman.github.io/post/rebuild_blog/#%e5%8f%91%e5%b8%83%e5%88%b0-github-%e4%b8%8a"  target="_blank" rel="noopener"
-    >用 Hugo 重新搭建博客 - 炸鸡人博客</a></li>
+<li>通常不会只运行一个文件，还有不同的源文件和头文件，所以可以对CMakeLists.txt添加以下内容。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cmake" data-lang="cmake"><span class="line"><span class="cl"><span class="nb">file</span><span class="p">(</span><span class="s">GLOB</span> <span class="s">HEADERS</span> <span class="s2">&#34;*.h&#34;</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nb">file</span><span class="p">(</span><span class="s">GLOB</span> <span class="s">SOURCES</span> <span class="s2">&#34;*.cpp&#34;</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">my_program</span> <span class="o">${</span><span class="nv">SOURCES</span><span class="o">}</span> <span class="o">${</span><span class="nv">HEADERS</span><span class="o">}</span><span class="p">)</span><span class="err">
+</span></span></span></code></pre></div><h2 id="参考文章">参考文章
+</h2><ul>
+<li><a class="link" href="http://trrw.tech/p/windows11%E4%B8%8A%E9%85%8D%E7%BD%AEcc-%E7%8E%AF%E5%A2%83/#cmake"  target="_blank" rel="noopener"
+    >Windows11上配置C、C++环境</a></li>
 </ul>
 <h2 id="可能遇到的问题">可能遇到的问题
-</h2><ul>
-<li>在输入<code>hugo server</code>进行本地部署时可能出下图中的问题</li>
-</ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/image-20250709202724853.png"
+</h2><h3 id="问题一">问题一
+</h3><p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250712222952509.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20250709202724853"
+		alt="image-20250712222952439"
 	
 	
 ></p>
 <ul>
-<li>出现这种问题是因为<code>hugo-theme-stack</code>中有一篇文章使用了twitter api的短代码，而你的电脑无法访问twitter网站就会出现这种报错信息，解决的办法也简单，删除这段短代码就行。</li>
+<li>这个问题可能是vscode没有识别到CMake的安装路径，需要在setting.json加入以下内容。</li>
 </ul>
-<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/image-20250709204619135.png"
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;cmake.cmakePath&#34;</span><span class="p">:</span> <span class="s2">&#34;D:/CMake/bin/cmake.exe&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="问题二">问题二
+</h3><ul>
+<li>在编译代码时可能出现中文字符乱码的情况，这个可能是因为编码不同一导致的，CMake默认使用GBK编码，所以需要在trae界面右下角设置编码格式。</li>
+</ul>
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/20250716141726847.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20250709204619135"
+		alt="image-20250716141719732"
 	
 	
 ></p>
-<ul>
-<li>这些都可以删了，基本用不上。</li>
-</ul>
 
 </section>
 
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
