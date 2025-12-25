@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://blog.winglet.com/p/trae%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Trae配置c++环境">
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="Trae配置c++环境">
 <meta property='og:description' content="前言 \u200b\t最近想学C++做个小项目，原本想是用visual studio来写C++的，但是看到桌面有个trae还没怎么用过，而且后面我只想做些小项目，就打算用trae了，不好用再换。不过发现trae配置C++环境没有visual studio容易，所以写这篇文章来记录一下如何配置。\n">
 <meta property='og:url' content='https://blog.winglet.com/p/trae%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/'>
 <meta property='og:site_name' content='Winglet&#39;s Blog'>
@@ -414,22 +414,22 @@
 <li>新建一个项目文件夹<code>Project1</code>，再生成<code>main.cpp</code>和<code>CMakeLists.txt</code>文件，内容如下。</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// main.cpp
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello, World!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cmake" data-lang="cmake"><span class="line"><span class="cl"><span class="c"># CMakeLists.txt
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">4.0</span><span class="p">)</span> <span class="c"># 该项目所需的CMake最低版本
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">project</span><span class="p">(</span><span class="s">Project1</span><span class="p">)</span>                      <span class="c"># 项目名称
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span> <span class="s">26</span><span class="p">)</span>         <span class="c"># 使用的C++标准
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">test</span> <span class="s">main.cpp</span><span class="p">)</span>      <span class="c"># 生成可执行文件: &#34;test.exe&#34;
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">4.0</span><span class="p">)</span> <span class="c"># 该项目所需的CMake最低版本
+</span></span></span><span class="line"><span class="cl"><span class="nb">project</span><span class="p">(</span><span class="s">Project1</span><span class="p">)</span>                      <span class="c"># 项目名称
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span> <span class="s">26</span><span class="p">)</span>         <span class="c"># 使用的C++标准
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">add_executable</span><span class="p">(</span><span class="s">test</span> <span class="s">main.cpp</span><span class="p">)</span>      <span class="c"># 生成可执行文件: &#34;test.exe&#34;
 </span></span></span></code></pre></div><ul>
 <li>用trae打开这个文件夹，接着CMake插件会自动弹出让你选择工具包，选择64位的。</li>
 </ul>
@@ -472,9 +472,9 @@
 <li>通常不会只运行一个文件，还有不同的源文件和头文件，所以可以对CMakeLists.txt添加以下内容。</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cmake" data-lang="cmake"><span class="line"><span class="cl"><span class="nb">file</span><span class="p">(</span><span class="s">GLOB</span> <span class="s">HEADERS</span> <span class="s2">&#34;*.h&#34;</span><span class="p">)</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nb">file</span><span class="p">(</span><span class="s">GLOB</span> <span class="s">SOURCES</span> <span class="s2">&#34;*.cpp&#34;</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">file</span><span class="p">(</span><span class="s">GLOB</span> <span class="s">SOURCES</span> <span class="s2">&#34;*.cpp&#34;</span><span class="p">)</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">my_program</span> <span class="o">${</span><span class="nv">SOURCES</span><span class="o">}</span> <span class="o">${</span><span class="nv">HEADERS</span><span class="o">}</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">add_executable</span><span class="p">(</span><span class="s">my_program</span> <span class="o">${</span><span class="nv">SOURCES</span><span class="o">}</span> <span class="o">${</span><span class="nv">HEADERS</span><span class="o">}</span><span class="p">)</span><span class="err">
 </span></span></span></code></pre></div><h2 id="参考文章">参考文章
 </h2><ul>
 <li><a class="link" href="http://trrw.tech/p/windows11%E4%B8%8A%E9%85%8D%E7%BD%AEcc-%E7%8E%AF%E5%A2%83/#cmake"  target="_blank" rel="noopener"
