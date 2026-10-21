@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\r\u200b\t好久没有在电脑上做事情了，这次部署ai-goat让我重温大学期间做事的感觉了。就是明明给出的方法非常简单，可能就几行命令，但是由于该项目比较老或者自己电脑缺少某些环境导致无法一键解决，需要自己不断解决出现的问题，仔细一想跟打游戏一样，要达成好结局要不断的过关。\n">
+<title>部署ai-Goat靶场</title>
+
+<link rel='canonical' href='http://localhost:1313/p/%E9%83%A8%E7%BD%B2ai-goat%E9%9D%B6%E5%9C%BA/'>
+
+<link rel="stylesheet" href="/scss/style.min.cfa5b1b0e78d61c00a14173992a1f3fa3b5c1b9fa34d023de959af564e7b19dd.css"><meta property='og:title' content="部署ai-Goat靶场">
+<meta property='og:description' content="前言\r\u200b\t好久没有在电脑上做事情了，这次部署ai-goat让我重温大学期间做事的感觉了。就是明明给出的方法非常简单，可能就几行命令，但是由于该项目比较老或者自己电脑缺少某些环境导致无法一键解决，需要自己不断解决出现的问题，仔细一想跟打游戏一样，要达成好结局要不断的过关。\n">
+<meta property='og:url' content='http://localhost:1313/p/%E9%83%A8%E7%BD%B2ai-goat%E9%9D%B6%E5%9C%BA/'>
+<meta property='og:site_name' content='Winglet&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-08-15T19:34:28&#43;08:00'/><meta property='article:modified_time' content='2026-08-15T19:34:28&#43;08:00'/><meta property='og:image' content='https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/{fullName}/20260816163839279.jpg' />
+<meta name="twitter:title" content="部署ai-Goat靶场">
+<meta name="twitter:description" content="前言\r\u200b\t好久没有在电脑上做事情了，这次部署ai-goat让我重温大学期间做事的感觉了。就是明明给出的方法非常简单，可能就几行命令，但是由于该项目比较老或者自己电脑缺少某些环境导致无法一键解决，需要自己不断解决出现的问题，仔细一想跟打游戏一样，要达成好结局要不断的过关。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/{fullName}/20260816163839279.jpg' />
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/2.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
+            <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/wingllllet'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#ai-goat介绍">ai-goat介绍</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#呈现">呈现</a></li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E9%83%A8%E7%BD%B2ai-goat%E9%9D%B6%E5%9C%BA/">
+                
+                    <img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/%7bfullName%7d/20260816163839279.jpg" loading="lazy" alt="Featured image of post 部署ai-Goat靶场" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E9%83%A8%E7%BD%B2ai-goat%E9%9D%B6%E5%9C%BA/">部署ai-Goat靶场</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 15, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言
+</h2><p>​	好久没有在电脑上做事情了，这次部署ai-goat让我重温大学期间做事的感觉了。就是明明给出的方法非常简单，可能就几行命令，但是由于该项目比较老或者自己电脑缺少某些环境导致无法一键解决，需要自己不断解决出现的问题，仔细一想跟打游戏一样，要达成好结局要不断的过关。</p>
+<h2 id="ai-goat介绍">ai-goat介绍
+</h2><p>​	**官方介绍：**AI Goat 使用 Vicuna LLM，它源自 Meta 的 LLaMA，并结合了 ChatGPT 的响应数据。安装 AI Goat 时，LLM 二进制文件会从 HuggingFace 下载到您的本地计算机。这个大约 8GB 的二进制文件是所有挑战的核心 AI 引擎。LLM 二进制文件本质上接收一个输入“提示”，并输出一个输出“响应”。提示由三个元素组成，它们连接成一个字符串。这三个元素分别是：1. 指令；2. 问题；3. 响应。指令元素包含 LLM 的规则描述，用于告诉 LLM 它的运行方式。问题元素是大多数系统允许用户输入的地方。例如，在聊天引擎中输入的评论就放在问题元素中。最后，响应部分规定了 LLM 对问题的响应。</p>
+<p>​	预构建的 Docker 镜像 ai-base 包含了运行 LLM 和挑战所需的所有库。该容器会在安装过程中与 LLM 二进制文件一起下载。每个挑战都对应一个 docker-compose 文件，该文件会附加 LLM 二进制文件、特定的挑战文件，并暴露完成每个挑战所需的 TCP 端口。有关入门说明，请参阅安装和设置部分。</p>
+<p>​	我们准备了一个可选的 CTFd 容器，其中包含每个挑战的描述、提示、类别和 flag 提交方式。该容器镜像托管在我们的 Docker Hub 上，与 ai-base 镜像一起命名为 ai-ctfd。您可以从 ai-goat.py 启动 ai-ctfd 容器，并使用浏览器访问它。</p>
+<p>​	**项目地址：**<a class="link" href="https://github.com/dhammon/ai-goat"  target="_blank" rel="noopener"
+    >https://github.com/dhammon/ai-goat</a></p>
+<h2 id="安装">安装
+</h2><p>​	这位作者给出的方式是输入这些命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone https://github.com/dhammon/ai-goat
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ai-goat
+</span></span><span class="line"><span class="cl">pip3 install -r requirements.txt
+</span></span><span class="line"><span class="cl">chmod +x ai-goat.py
+</span></span><span class="line"><span class="cl">./ai-goat.py --install
+</span></span></code></pre></div><p>​	看着很简单吧，可以每一行命令都有其要解决的问题。</p>
+<ul>
+<li><code>git clone https://github.com/dhammon/ai-goat</code></li>
+</ul>
+<p>​	在输入命令时可能会遇到无法访问<code>github</code>的情况。这种情况可以在网页上登录<code>github</code>然后直接下载该项目的压缩包</p>
+<ul>
+<li>
+<p><code>pip3 install -r requirements.txt</code></p>
+<p>我是想在<code>kali-linux</code>中部署该项目，但是 Kali Linux 的 <strong>PEP 668 保护机制</strong>，禁止直接向系统 Python 安装 pip 包。所以需要用虚拟环境解决：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> ai-goat
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. 创建虚拟环境</span>
+</span></span><span class="line"><span class="cl">python3 -m venv venv
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 激活虚拟环境</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> venv/bin/activate
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 安装依赖</span>
+</span></span><span class="line"><span class="cl">pip install -r requirements.txt
+</span></span></code></pre></div><p>不过在以后要运行<code>ai-goat.py</code>前需要激活虚拟环境</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">source</span> venv/bin/activate
+</span></span></code></pre></div></li>
+<li>
+<p><code>./ai-goat.py --install</code></p>
+</li>
+</ul>
+<p>​	这个命令执行后，会先下载某个文件，然后在进行docker镜像部署。但是在执行命令时大概率访问不到这个网站。所以仍需要自己去下载。这就需要自己去审代码，在<code>app/config.py</code>文件中会给出下载地址。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MODEL_PATH</span> <span class="o">=</span> <span class="s2">&#34;app/models/ggml-old-vic13b-q4_0.bin&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MODEL_URL</span> <span class="o">=</span> <span class="s2">&#34;https://huggingface.co/vicuna/ggml-vicuna-13b-1.1/resolve/main/ggml-old-vic13b-q4_0.bin&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MODEL_MD5</span> <span class="o">=</span> <span class="s2">&#34;dfe5d1e30242d63a72d06f7bee5edf80&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AI_IMAGES</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;rootcauz/ai-base:0.0.1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;rootcauz/ai-ctfd:0.0.2&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span></code></pre></div><p>​	访问该链接即可下载文件，之后需要把这个文件放到指定的位置<code>MODEL_PATH = &quot;app/models/ggml-old-vic13b-q4_0.bin&quot;</code>，之后</p>
+<p>执行安装命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./ai-goat.py --install
+</span></span></code></pre></div><p>​	就不会去下载而是直接执行<code>docker</code>拉取镜像步骤，你以为这样就完了？这远没有结束。</p>
+<ul>
+<li>使用docker命令却无法拉镜像</li>
+</ul>
+<p>​	<strong>Debian/Kali</strong> 近年来<strong>优先推荐 Podman</strong>，并且仓库中有一个 <code>podman-docker</code> 包，安装后会在 <code>/usr/bin/docker</code> 放一个软链接或脚本，所以实际调用的是 <code>podman</code>命令，<code>docker</code>命令就会被<code>podman</code>代替。但是即使使用<code>podman</code>命令也可能无法拉取镜像，大概率是无法直连<code>docker Hub</code>，所以需要配置<code>podman</code>的镜像加速，只需要输入命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo tee /etc/containers/registries.conf <span class="s">&lt;&lt;-&#39;EOF&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">unqualified-search-registries = [&#34;docker.io&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[[registry]]
+</span></span></span><span class="line"><span class="cl"><span class="s">prefix = &#34;docker.io&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">location = &#34;docker.io&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[[registry.mirror]]
+</span></span></span><span class="line"><span class="cl"><span class="s">location = &#34;docker.xuanyuan.me&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[[registry.mirror]]
+</span></span></span><span class="line"><span class="cl"><span class="s">location = &#34;docker.1ms.run&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[[registry.mirror]]
+</span></span></span><span class="line"><span class="cl"><span class="s">location = &#34;docker.m.daocloud.io&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span></code></pre></div><ul>
+<li>使用podman在创建容器</li>
+</ul>
+<p>​	<code>podman</code>命令和<code>docker</code>基本一样，只是把<code>docker</code>换成了<code>podman</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 将所有镜像都创建容器</span>
+</span></span><span class="line"><span class="cl">podman compose up -d
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定创建容器</span>
+</span></span><span class="line"><span class="cl">podman compose up <span class="o">[</span>ID<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有容器信息</span>
+</span></span><span class="line"><span class="cl">podman ps -a
+</span></span><span class="line"><span class="cl"><span class="c1"># 打印容器所有信息</span>
+</span></span><span class="line"><span class="cl">podman logs <span class="o">[</span>ID<span class="o">]</span>
+</span></span></code></pre></div><h2 id="呈现">呈现
+</h2><p>​	当真正部署成功后，就可以访问相应端口。这个是CTFD页面</p>
+<p><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/%7bfullName%7d/20260816160809378.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20260816160802204"
+	
+	
+></p>
+<p>​	这个就是第二个挑战的挑战页面，不过我目前还不知道怎么互动。</p>
+<p>​	<img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/%7bfullName%7d/20260816160837293.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20260816160837180"
+	
+	
+></p>
+<h2 id="结语">结语
+</h2><p>​	<code>ai-goat</code>项目就部署到此了，我看了下只有两个训练靶场，并且我还不知道怎么互动，网上也没找到相应<code>wp</code>，所以就到这里了。不过看起来我好像什么也没做到，但还是有不少收获的。毕竟学习就是这样不断发现问题，再寻找解决问题的方法，最终解决问题达成目标。结合最近刚看完《学习观》，我会把问题和AI联系起来，在出现问题时先询问<code>AI</code>，从这里先获取方法。kali在无法访问网站或下载文件的时候先想到它是配置镜像源的问题，也了解现在kali基本使用<code>podman</code>命令来部署镜像和容器。后续我也可能写一篇《学习观》的笔记，这本书专业性比较高需要多看几遍。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["/source/Sticker-100/"],"locale":{"admin":"👻屑博主","placeholder":"🎉留下你的脚印."},"requiredMeta":["name","email","url"]});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Winglet
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.eb0e6dd5d2a8cfab5f378dc86e1cc7255319197aef62eea04ee7bad86656cf1f.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

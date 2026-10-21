@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Crypto on Winglet&#39;s Blog</title>
+        <link>http://localhost:1313/categories/crypto/</link>
+        <description>Recent content in Crypto on Winglet&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Winglet</copyright>
+        <lastBuildDate>Fri, 16 Oct 2026 15:52:59 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/crypto/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>密码学基础之进制与编码</title>
+        <link>http://localhost:1313/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BF%9B%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81/</link>
+        <pubDate>Fri, 16 Oct 2026 15:52:59 +0800</pubDate>
+        
+        <guid>http://localhost:1313/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BF%9B%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81/</guid>
+        <description>&lt;img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/{fullName}/20261019170754424.jpg" alt="Featured image of post 密码学基础之进制与编码" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;​	开始正式学习密码学方向。&lt;/p&gt;
+&lt;h2 id=&#34;进制&#34;&gt;进制
+&lt;/h2&gt;&lt;p&gt;​	进制，我们平常生活中最常用的进制就是十进制。十进制也是我们从小学就开始学习的，可以说它已经成了我们生活的一部分，话句话说人与人之间的交流默认依靠的就是十进制。但是在计算机领域中，它们认识的进制则是010这样的二进制，进而为十六进制。那么二进制，十六进制与十进制比有什么区别吗？答案是没有区别。十进制是遇十进一，它一位中最大数字就是9，再加1就会向第二位增加。相当于&lt;code&gt;0...09+0...01=0...10&lt;/code&gt;。顾名思义二进制与十六进制一个是遇二进一，一个则是遇十六进一。&lt;/p&gt;
+&lt;p&gt;​	那么他们之间又如何转化呢。以二进制与十进制之间的转化为例，弄懂了这个像什么八进制，十六进制就能融会贯通。现在有这么一串二进制数字&lt;code&gt;100110&lt;/code&gt;，按从右到左，分别为&lt;code&gt;1, 2, 4, 8, 16, 32&lt;/code&gt;。那么只要把对应位置的数字拿过来相乘即可&lt;code&gt;1*32+0*16+0*8+4*1+2*1+0*1=38&lt;/code&gt;所以该二进制数字转化为十进制就是&lt;code&gt;38&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;​	现在有一个十六进制&lt;code&gt;6a4d&lt;/code&gt;，与二转十一样，现从右往左数以次表示&lt;code&gt;1, 16, 256, 4096&lt;/code&gt;，那么转为十进制就是&lt;code&gt;d*4096+4*256+a*16+6*1=27213&lt;/code&gt;。其实从这里我们就可以得到一个转化规则
+$$
+现在一个数N是x进制：N_x=abcde,
+用向量表示N_x=(a,b,c,d,e)\
+x进制转化为十（d）进制的规则可表示为一个函数\
+N_d=f_x(a,b,c,d)=a\cdot x^4+b\cdot x^3+c\cdot x^2+d\cdot x^1 + e
+$$
+不知道有没有发现在十六进制中超过十的数字就开始使用字母代替了，其实这也是为了方便以及可观，如果使用两位数字来表示十六进制比如&lt;code&gt;d(257)=x(16, 01)&lt;/code&gt;，不能每次表示十六进制都用向量的方式吧，并且一位数字不使用字母的情况下最大是9，两位则是99。而十六进制最多只用16，那么剩下的83就会被浪费了，所以在十六进制中我们使用字母来表示d(10)以后的数字。&lt;/p&gt;
+&lt;p&gt;​	二进制与十六进制之间转换就更简单了，大家知道&lt;code&gt;16=2^4&lt;/code&gt;那么四位二进制就可以表示一位十六进制。所以十六进制在计算机中作用也是非常大的。&lt;/p&gt;
+&lt;h2 id=&#34;编码&#34;&gt;编码
+&lt;/h2&gt;&lt;p&gt;​	进制讲完了，但我们还有一个疑惑，既然计算机只看得懂010传输也是010，那么信息和数字之间又是如何转化的呢？&lt;/p&gt;
+&lt;p&gt;​	这时候就需要编码出场了，大家可能听说过base64编码，摩斯电码，佛曰以及一些奇奇怪怪的编码，但其实性质都是一样的，它们无非是一个双射函数，能够将一个字符以某种固定规则转换成另一个字符（或图案，或奇奇怪怪的东西）。双射函数又称之为置换，置换密码又可以看作以表为密钥的编码。&lt;/p&gt;
+&lt;p&gt;​	由于这种编码规则有许许多多中，这里只讨论公认的编码规则&lt;code&gt;ASCII码&lt;/code&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/%7bfullName%7d/20261017093746123.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;img src=&#34;https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/%7bfullName%7d/20261017093743740.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;​	上图就是完整的ASCII码表一共256个字符，因为一个字节是8比特，所以一共有&lt;code&gt;2^8=256&lt;/code&gt;种可能，不过可见字符只有33-126。不过我们不用每次都对照表来找数字字符，在python里我们可以使用&lt;code&gt;chr&lt;/code&gt;和&lt;code&gt;ord&lt;/code&gt;来实现字符数字的转换。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;ord&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;f&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;chr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;102&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 102&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# f&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;​	现在我们可以把进行字符与数字的互转了，那么对一个字符串呢？既然字符串是一个字符一个字符拼接而成的，我们也可以把数字拼接起来&lt;code&gt;flag就可以转为10210897103&lt;/code&gt;。不过在十进制中有的两位有的三位，为了更好表示我们可以对不满足三位的前面添一个&lt;code&gt;0&lt;/code&gt;这样就变成了&lt;code&gt;102108097103&lt;/code&gt;可是一个三位的十进制最大是&lt;code&gt;999&lt;/code&gt;而&lt;code&gt;ASCII码&lt;/code&gt;最大只有256，就像上面讲的，这样会浪费很多空间。仔细观察256，你会发现它不就是16的二次方，所以我们就可以用两位十六进制来表示，所以&lt;code&gt;flag&lt;/code&gt;就可以表示为&lt;code&gt;666c6167&lt;/code&gt;在转成十进制&lt;code&gt;1718378855&lt;/code&gt;。现在我们就可以构造字符串和数字互相转化的代码了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;bytes_to_long&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;text&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[::&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;char_hex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;hex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;ord&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]))&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;replace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;0x&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;char_hex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;256&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;**&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;long_to_bytes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;number&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;hex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;hex_pairs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;start&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hex_pair&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hex_pairs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;chr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hex_pair&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;​	不过大家也看到了改代码十六进制转字符串时操作的是字符类型，但是十六进制是数字，那么我要如果操作数字来进行转化呢。这时就要引入密码学中常用的运算方法&lt;code&gt;整除(//)&lt;/code&gt;和&lt;code&gt;取余(%)&lt;/code&gt;。以&lt;code&gt;N = 123456&lt;/code&gt;为例，如果我们只想要得到末尾的&lt;code&gt;6&lt;/code&gt;该怎么办，只需要取余10即可&lt;code&gt;123456 // 10 = 6&lt;/code&gt;，那么取56则是取余100，可以发现我们想取末尾几位只需要取余它的进制数与位数的乘积即可。那换个想法我们只想抛弃末尾的6呢？只需要对10整除&lt;code&gt;123456 % 10 = 12345&lt;/code&gt;可以发现都是对它的进制数进行运算。那么是不是十六进制也可以这样使用？现在有一个十六进制&lt;code&gt;abcdef&lt;/code&gt;只取&lt;code&gt;f&lt;/code&gt;按之前的规律我们应该取余16。现在运算一下
+$$
+(x)abcdef = (d)11259375\
+(d)11259375 / 16 =(d)15=(x)f
+$$
+可见对仍以进制都可以这样做，那么我们的代码就可以修改一下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;long_to_bytes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;number&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;chr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;number&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;256&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;number&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;//=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;256&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[::&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;字节&#34;&gt;字节
+&lt;/h2&gt;&lt;p&gt;​	如果说字符是我们人类认识的符号，字节就是计算机认识的符号。它是计算机体系结构中用于表示数据存储、传输和寻址的基本单位，可以表示256个不同的值，是最小的数据单元。在python中&lt;code&gt;b&#39;f&#39;&lt;/code&gt;就表示一个字节。在密码学中它会非常常见，因为现代密码学算法只处理字节（八位组）&lt;/p&gt;
+&lt;h2 id=&#34;base64编码&#34;&gt;base64编码
+&lt;/h2&gt;&lt;p&gt;​	base64编码也是非常常见的编码了。之前ctf比赛中也是经常使用它，这次就来详细的解释一下它是如何怎么编码的。有没有考虑过为什么它叫base64，这个64是从何而来。之前我们提到编码说白了就是以表为密钥的置换密码，而它的表中只含有&lt;code&gt;a-z A-Z 0-9 + / =&lt;/code&gt;加起来刚好64个字符这就是64的来源。一个字节有256中也就是两个十六进制。它要如何表示每一个字节呢？仔细想想64就是2的六次方，所以我们是不是可以把字节拆开以8个二进制为一组，这样我们就能用base64表来分别表示了。这就是base64编码的原理。举个例子 &lt;code&gt;flag&lt;/code&gt;我们把它编码一下。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag = 1100110011011000110000101100111
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;110011 | 001101 | 100011 | 000010 | 110011 | 100000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;不够八位前面补0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00110011 | 00001101 | 00100011 | 00000010 | 00110011 | 00100000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;对照base64编码表就是
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;z N j C z g
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;​	好了，这些就是学习密码学前最为基础的概念了，难的还在后面。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

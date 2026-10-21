@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\r\u200b\t开始正式学习密码学方向。\n进制\r\u200b\t进制，我们平常生活中最常用的进制就是十进制。十进制也是我们从小学就开始学习的，可以说它已经成了我们生活的一部分，话句话说人与人之间的交流默认依靠的就是十进制。但是在计算机领域中，它们认识的进制则是010这样的二进制，进而为十六进制。那么二进制，十六进制与十进制比有什么区别吗？答案是没有区别。十进制是遇十进一，它一位中最大数字就是9，再加1就会向第二位增加。相当于0...09+0...01=0...10。顾名思义二进制与十六进制一个是遇二进一，一个则是遇十六进一。\n">
+<title>密码学基础之进制与编码</title>
+
+<link rel='canonical' href='http://localhost:1313/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BF%9B%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81/'>
+
+<link rel="stylesheet" href="/scss/style.min.cfa5b1b0e78d61c00a14173992a1f3fa3b5c1b9fa34d023de959af564e7b19dd.css"><meta property='og:title' content="密码学基础之进制与编码">
+<meta property='og:description' content="前言\r\u200b\t开始正式学习密码学方向。\n进制\r\u200b\t进制，我们平常生活中最常用的进制就是十进制。十进制也是我们从小学就开始学习的，可以说它已经成了我们生活的一部分，话句话说人与人之间的交流默认依靠的就是十进制。但是在计算机领域中，它们认识的进制则是010这样的二进制，进而为十六进制。那么二进制，十六进制与十进制比有什么区别吗？答案是没有区别。十进制是遇十进一，它一位中最大数字就是9，再加1就会向第二位增加。相当于0...09+0...01=0...10。顾名思义二进制与十六进制一个是遇二进一，一个则是遇十六进一。\n">
+<meta property='og:url' content='http://localhost:1313/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BF%9B%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81/'>
+<meta property='og:site_name' content='Winglet&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-10-16T15:52:59&#43;08:00'/><meta property='article:modified_time' content='2026-10-16T15:52:59&#43;08:00'/><meta property='og:image' content='https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/{fullName}/20261019170754424.jpg' />
+<meta name="twitter:title" content="密码学基础之进制与编码">
+<meta name="twitter:description" content="前言\r\u200b\t开始正式学习密码学方向。\n进制\r\u200b\t进制，我们平常生活中最常用的进制就是十进制。十进制也是我们从小学就开始学习的，可以说它已经成了我们生活的一部分，话句话说人与人之间的交流默认依靠的就是十进制。但是在计算机领域中，它们认识的进制则是010这样的二进制，进而为十六进制。那么二进制，十六进制与十进制比有什么区别吗？答案是没有区别。十进制是遇十进一，它一位中最大数字就是9，再加1就会向第二位增加。相当于0...09+0...01=0...10。顾名思义二进制与十六进制一个是遇二进一，一个则是遇十六进一。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/{fullName}/20261019170754424.jpg' />
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/2.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
+            <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/wingllllet'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#进制">进制</a></li>
+    <li><a href="#编码">编码</a></li>
+    <li><a href="#字节">字节</a></li>
+    <li><a href="#base64编码">base64编码</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BF%9B%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81/">
+                
+                    <img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/%7bfullName%7d/20261019170754424.jpg" loading="lazy" alt="Featured image of post 密码学基础之进制与编码" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/crypto/" >
+                Crypto
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BF%9B%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81/">密码学基础之进制与编码</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 16, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言
+</h2><p>​	开始正式学习密码学方向。</p>
+<h2 id="进制">进制
+</h2><p>​	进制，我们平常生活中最常用的进制就是十进制。十进制也是我们从小学就开始学习的，可以说它已经成了我们生活的一部分，话句话说人与人之间的交流默认依靠的就是十进制。但是在计算机领域中，它们认识的进制则是010这样的二进制，进而为十六进制。那么二进制，十六进制与十进制比有什么区别吗？答案是没有区别。十进制是遇十进一，它一位中最大数字就是9，再加1就会向第二位增加。相当于<code>0...09+0...01=0...10</code>。顾名思义二进制与十六进制一个是遇二进一，一个则是遇十六进一。</p>
+<p>​	那么他们之间又如何转化呢。以二进制与十进制之间的转化为例，弄懂了这个像什么八进制，十六进制就能融会贯通。现在有这么一串二进制数字<code>100110</code>，按从右到左，分别为<code>1, 2, 4, 8, 16, 32</code>。那么只要把对应位置的数字拿过来相乘即可<code>1*32+0*16+0*8+4*1+2*1+0*1=38</code>所以该二进制数字转化为十进制就是<code>38</code>。</p>
+<p>​	现在有一个十六进制<code>6a4d</code>，与二转十一样，现从右往左数以次表示<code>1, 16, 256, 4096</code>，那么转为十进制就是<code>d*4096+4*256+a*16+6*1=27213</code>。其实从这里我们就可以得到一个转化规则
+$$
+现在一个数N是x进制：N_x=abcde,
+用向量表示N_x=(a,b,c,d,e)\
+x进制转化为十（d）进制的规则可表示为一个函数\
+N_d=f_x(a,b,c,d)=a\cdot x^4+b\cdot x^3+c\cdot x^2+d\cdot x^1 + e
+$$
+不知道有没有发现在十六进制中超过十的数字就开始使用字母代替了，其实这也是为了方便以及可观，如果使用两位数字来表示十六进制比如<code>d(257)=x(16, 01)</code>，不能每次表示十六进制都用向量的方式吧，并且一位数字不使用字母的情况下最大是9，两位则是99。而十六进制最多只用16，那么剩下的83就会被浪费了，所以在十六进制中我们使用字母来表示d(10)以后的数字。</p>
+<p>​	二进制与十六进制之间转换就更简单了，大家知道<code>16=2^4</code>那么四位二进制就可以表示一位十六进制。所以十六进制在计算机中作用也是非常大的。</p>
+<h2 id="编码">编码
+</h2><p>​	进制讲完了，但我们还有一个疑惑，既然计算机只看得懂010传输也是010，那么信息和数字之间又是如何转化的呢？</p>
+<p>​	这时候就需要编码出场了，大家可能听说过base64编码，摩斯电码，佛曰以及一些奇奇怪怪的编码，但其实性质都是一样的，它们无非是一个双射函数，能够将一个字符以某种固定规则转换成另一个字符（或图案，或奇奇怪怪的东西）。双射函数又称之为置换，置换密码又可以看作以表为密钥的编码。</p>
+<p>​	由于这种编码规则有许许多多中，这里只讨论公认的编码规则<code>ASCII码</code><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/%7bfullName%7d/20261017093746123.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+><img src="https://pub-491d983cd40449fea50cff8b66683e0d.r2.dev/img/%7bfullName%7d/20261017093743740.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p>​	上图就是完整的ASCII码表一共256个字符，因为一个字节是8比特，所以一共有<code>2^8=256</code>种可能，不过可见字符只有33-126。不过我们不用每次都对照表来找数字字符，在python里我们可以使用<code>chr</code>和<code>ord</code>来实现字符数字的转换。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s2">&#34;f&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="mi">102</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 102</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># f</span>
+</span></span></code></pre></div><p>​	现在我们可以把进行字符与数字的互转了，那么对一个字符串呢？既然字符串是一个字符一个字符拼接而成的，我们也可以把数字拼接起来<code>flag就可以转为10210897103</code>。不过在十进制中有的两位有的三位，为了更好表示我们可以对不满足三位的前面添一个<code>0</code>这样就变成了<code>102108097103</code>可是一个三位的十进制最大是<code>999</code>而<code>ASCII码</code>最大只有256，就像上面讲的，这样会浪费很多空间。仔细观察256，你会发现它不就是16的二次方，所以我们就可以用两位十六进制来表示，所以<code>flag</code>就可以表示为<code>666c6167</code>在转成十进制<code>1718378855</code>。现在我们就可以构造字符串和数字互相转化的代码了</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">bytes_to_long</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">char_hex</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;0x&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">char_hex</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="o">*</span> <span class="mi">256</span> <span class="o">**</span> <span class="n">index</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">long_to_bytes</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">number</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="n">number</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hex_pairs</span> <span class="o">=</span> <span class="p">[</span><span class="n">number</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">number</span><span class="p">),</span> <span class="mi">2</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">hex_pair</span> <span class="ow">in</span> <span class="n">hex_pairs</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">hex_pair</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span>
+</span></span></code></pre></div><p>​	不过大家也看到了改代码十六进制转字符串时操作的是字符类型，但是十六进制是数字，那么我要如果操作数字来进行转化呢。这时就要引入密码学中常用的运算方法<code>整除(//)</code>和<code>取余(%)</code>。以<code>N = 123456</code>为例，如果我们只想要得到末尾的<code>6</code>该怎么办，只需要取余10即可<code>123456 // 10 = 6</code>，那么取56则是取余100，可以发现我们想取末尾几位只需要取余它的进制数与位数的乘积即可。那换个想法我们只想抛弃末尾的6呢？只需要对10整除<code>123456 % 10 = 12345</code>可以发现都是对它的进制数进行运算。那么是不是十六进制也可以这样使用？现在有一个十六进制<code>abcdef</code>只取<code>f</code>按之前的规律我们应该取余16。现在运算一下
+$$
+(x)abcdef = (d)11259375\
+(d)11259375 / 16 =(d)15=(x)f
+$$
+可见对仍以进制都可以这样做，那么我们的代码就可以修改一下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">long_to_bytes</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">number</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">number</span> <span class="o">%</span> <span class="mi">256</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">number</span> <span class="o">//=</span> <span class="mi">256</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></div><h2 id="字节">字节
+</h2><p>​	如果说字符是我们人类认识的符号，字节就是计算机认识的符号。它是计算机体系结构中用于表示数据存储、传输和寻址的基本单位，可以表示256个不同的值，是最小的数据单元。在python中<code>b'f'</code>就表示一个字节。在密码学中它会非常常见，因为现代密码学算法只处理字节（八位组）</p>
+<h2 id="base64编码">base64编码
+</h2><p>​	base64编码也是非常常见的编码了。之前ctf比赛中也是经常使用它，这次就来详细的解释一下它是如何怎么编码的。有没有考虑过为什么它叫base64，这个64是从何而来。之前我们提到编码说白了就是以表为密钥的置换密码，而它的表中只含有<code>a-z A-Z 0-9 + / =</code>加起来刚好64个字符这就是64的来源。一个字节有256中也就是两个十六进制。它要如何表示每一个字节呢？仔细想想64就是2的六次方，所以我们是不是可以把字节拆开以8个二进制为一组，这样我们就能用base64表来分别表示了。这就是base64编码的原理。举个例子 <code>flag</code>我们把它编码一下。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag = 1100110011011000110000101100111
+</span></span><span class="line"><span class="cl">110011 | 001101 | 100011 | 000010 | 110011 | 100000
+</span></span><span class="line"><span class="cl">不够八位前面补0
+</span></span><span class="line"><span class="cl">00110011 | 00001101 | 00100011 | 00000010 | 00110011 | 00100000
+</span></span><span class="line"><span class="cl">对照base64编码表就是
+</span></span><span class="line"><span class="cl">z N j C z g
+</span></span></code></pre></div><p>​	好了，这些就是学习密码学前最为基础的概念了，难的还在后面。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["/source/Sticker-100/"],"locale":{"admin":"👻屑博主","placeholder":"🎉留下你的脚印."},"requiredMeta":["name","email","url"]});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Winglet
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.eb0e6dd5d2a8cfab5f378dc86e1cc7255319197aef62eea04ee7bad86656cf1f.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

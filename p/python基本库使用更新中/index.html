@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="requests 安装 pip3 install requests 如果有pycharm可在这个进行添加\n实例 运行下面代码\nimport requests resp = requests.get(&#34;https://www.baidu.com&#34;) print(type(resp)) // 响应类型 print(resp.status_code) // 状态码 print(type(resp.text)) // 响应体类型 print(resp.text[:100]) // 响应体源码 print(resp.cookies) // cookie内容 运行结果如下\n&lt;class &#39;requests.models.Response&#39;&gt; 200 &lt;class &#39;str&#39;&gt; &lt;!DOCTYPE html&gt; &lt;!--STATUS OK--&gt;&lt;html&gt; &lt;head&gt;&lt;meta http-equiv=content-type content=text/html;charse &lt;RequestsCookieJar[&lt;Cookie BDORZ=27315 for .baidu.com/&gt;]&gt; 可以看见使用requests.get方法就相当于对该网址进行了GET请求。\n">
+<title>Python基本库使用[更新中]</title>
+
+<link rel='canonical' href='https://blog.winglet.com/p/python%E5%9F%BA%E6%9C%AC%E5%BA%93%E4%BD%BF%E7%94%A8%E6%9B%B4%E6%96%B0%E4%B8%AD/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Python基本库使用[更新中]">
+<meta property='og:description' content="requests 安装 pip3 install requests 如果有pycharm可在这个进行添加\n实例 运行下面代码\nimport requests resp = requests.get(&#34;https://www.baidu.com&#34;) print(type(resp)) // 响应类型 print(resp.status_code) // 状态码 print(type(resp.text)) // 响应体类型 print(resp.text[:100]) // 响应体源码 print(resp.cookies) // cookie内容 运行结果如下\n&lt;class &#39;requests.models.Response&#39;&gt; 200 &lt;class &#39;str&#39;&gt; &lt;!DOCTYPE html&gt; &lt;!--STATUS OK--&gt;&lt;html&gt; &lt;head&gt;&lt;meta http-equiv=content-type content=text/html;charse &lt;RequestsCookieJar[&lt;Cookie BDORZ=27315 for .baidu.com/&gt;]&gt; 可以看见使用requests.get方法就相当于对该网址进行了GET请求。\n">
+<meta property='og:url' content='https://blog.winglet.com/p/python%E5%9F%BA%E6%9C%AC%E5%BA%93%E4%BD%BF%E7%94%A8%E6%9B%B4%E6%96%B0%E4%B8%AD/'>
+<meta property='og:site_name' content='Winglet&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2024-02-16T20:51:43&#43;08:00'/><meta property='article:modified_time' content='2024-02-16T20:51:43&#43;08:00'/><meta property='og:image' content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402262226.jpg' />
+<meta name="twitter:title" content="Python基本库使用[更新中]">
+<meta name="twitter:description" content="requests 安装 pip3 install requests 如果有pycharm可在这个进行添加\n实例 运行下面代码\nimport requests resp = requests.get(&#34;https://www.baidu.com&#34;) print(type(resp)) // 响应类型 print(resp.status_code) // 状态码 print(type(resp.text)) // 响应体类型 print(resp.text[:100]) // 响应体源码 print(resp.cookies) // cookie内容 运行结果如下\n&lt;class &#39;requests.models.Response&#39;&gt; 200 &lt;class &#39;str&#39;&gt; &lt;!DOCTYPE html&gt; &lt;!--STATUS OK--&gt;&lt;html&gt; &lt;head&gt;&lt;meta http-equiv=content-type content=text/html;charse &lt;RequestsCookieJar[&lt;Cookie BDORZ=27315 for .baidu.com/&gt;]&gt; 可以看见使用requests.get方法就相当于对该网址进行了GET请求。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402262226.jpg' />
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/2.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
+            <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/wingllllet'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#requests">requests</a>
+      <ol>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#实例">实例</a></li>
+        <li><a href="#get请求">GET请求</a></li>
+        <li><a href="#post请求">POST请求</a></li>
+        <li><a href="#响应">响应</a></li>
+        <li><a href="#高级用法">高级用法</a></li>
+      </ol>
+    </li>
+    <li><a href="#正则表达式re">正则表达式（re）</a>
+      <ol>
+        <li><a href="#match">match</a></li>
+        <li><a href="#search">search</a></li>
+      </ol>
+    </li>
+    <li><a href="#操作文件">操作文件</a>
+      <ol>
+        <li><a href="#os">OS</a>
+          <ol>
+            <li><a href="#oswalk">os.walk()</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#程序打包">程序打包</a>
+      <ol>
+        <li><a href="#pyinstaller">pyinstaller</a>
+          <ol>
+            <li><a href="#安装-1">安装</a></li>
+            <li><a href="#使用方式">使用方式</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/python%E5%9F%BA%E6%9C%AC%E5%BA%93%E4%BD%BF%E7%94%A8%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402262226.jpg" loading="lazy" alt="Featured image of post Python基本库使用[更新中]" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%88%AC%E8%99%AB/" >
+                爬虫
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/python%E5%9F%BA%E6%9C%AC%E5%BA%93%E4%BD%BF%E7%94%A8%E6%9B%B4%E6%96%B0%E4%B8%AD/">Python基本库使用[更新中]</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 16, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 13 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="requests">requests
+</h2><h3 id="安装">安装
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pip3 install requests
+</span></span></code></pre></div><p>如果有pycharm可在这个进行添加</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240224111542944.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240224111542944"
+	
+	
+></p>
+<h3 id="实例">实例
+</h3><p>运行下面代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.baidu.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="p">))</span>                    <span class="o">//</span> <span class="n">响应类型</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>              <span class="o">//</span> <span class="n">状态码</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>               <span class="o">//</span> <span class="n">响应体类型</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>               <span class="o">//</span> <span class="n">响应体源码</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">cookies</span><span class="p">)</span>                  <span class="o">//</span> <span class="n">cookie内容</span>
+</span></span></code></pre></div><p>运行结果如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;class &#39;requests.models.Response&#39;&gt;
+</span></span><span class="line"><span class="cl">200
+</span></span><span class="line"><span class="cl">&lt;class &#39;str&#39;&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE html&gt;
+</span></span><span class="line"><span class="cl">&lt;!--STATUS OK--&gt;&lt;html&gt; &lt;head&gt;&lt;meta http-equiv=content-type content=text/html;charse
+</span></span><span class="line"><span class="cl">&lt;RequestsCookieJar[&lt;Cookie BDORZ=27315 for .baidu.com/&gt;]&gt;
+</span></span></code></pre></div><p>可以看见使用<code>requests.get</code>方法就相当于对该网址进行了<code>GET请求</code>。</p>
+<p><code>requests</code>作为强大的网站请求模块，它的请求方法也不止一种</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span></code></pre></div><p>这里只是粗略的介绍，后面再详细介绍。</p>
+<h3 id="get请求">GET请求
+</h3><p>构造一个简单的get请求，链接是https://www.httpbin.org/get，这个网站可以判断客户端是不是进行了GET请求，并会返回响应包</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import requests
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">resp = requests.get(&#34;https://www.httpbin.org/get&#34;)
+</span></span><span class="line"><span class="cl">print(resp.text)
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="s2">&#34;*/*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;gzip, deflate&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;www.httpbin.org&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;python-requests/2.28.1&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;X-Amzn-Trace-Id&#34;</span><span class="p">:</span> <span class="s2">&#34;Root=1-65d964ae-5eed64e46ba780af34b5b853&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;194.99.79.246&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://www.httpbin.org/get&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>返回结果中有请求头、url、ip等信息，这就说明我们成功发起了GET请求</p>
+<ul>
+<li><strong>添加额外信息</strong></li>
+</ul>
+<p>如果要在GET请求中添加额外信息，在正常请求时通常是写成 <code>http://www.temple.com/?name=winglet </code>所以在用模块进行请求时也可以写成这样。</p>
+<p>但是在requests模块中我们也可以通过<code>params</code>参数进行添加，例</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;winglet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;age&#34;</span><span class="p">:</span> <span class="s2">&#34;21&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;http://www.httpbin.org/get&#34;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="s2">&#34;21&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;winglet&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="s2">&#34;*/*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;gzip, deflate&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;www.httpbin.org&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;python-requests/2.28.1&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;X-Amzn-Trace-Id&#34;</span><span class="p">:</span> <span class="s2">&#34;Root=1-65d9ae9f-79d024cb23c6e21356632251&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;194.99.79.246&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://www.httpbin.org/get?name=winglet&amp;age=21&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>返回结果与访问<code>http://www.httpbin.org/get?name=winglet&amp;age=21</code>的返回结果一样</p>
+<p>这里我们可以发现上面实验的返回结果明显是json类型，所以我们也可以转换它们的类型</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;http://www.httpbin.org/get&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()))</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;str&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">&#39;args&#39;:</span> <span class="err">{</span><span class="p">}</span><span class="err">,</span> <span class="err">&#39;headers&#39;:</span> <span class="p">{</span><span class="err">&#39;Accept&#39;:</span> <span class="err">&#39;*/*&#39;,</span> <span class="err">&#39;Accept-Encoding&#39;:</span> <span class="err">&#39;gzip,</span> <span class="err">deflate&#39;,</span> <span class="err">&#39;Host&#39;:</span> <span class="err">&#39;www.httpbin.org&#39;,</span> <span class="err">&#39;User-Agent&#39;:</span> <span class="err">&#39;python-requests/2.28.1&#39;,</span> <span class="err">&#39;X-Amzn-Trace-Id&#39;:</span> <span class="err">&#39;Root=1-65d9b0c4-7caba3c72eecb41d635c8987&#39;</span><span class="p">}</span><span class="err">,</span> <span class="err">&#39;origin&#39;:</span> <span class="err">&#39;</span><span class="mf">194.99</span><span class="err">.</span><span class="mf">79.246</span><span class="err">&#39;,</span> <span class="err">&#39;url&#39;:</span> <span class="err">&#39;http:</span><span class="c1">//www.httpbin.org/get&#39;}
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;dict&#39;&gt;</span>
+</span></span></code></pre></div><ul>
+<li><strong>抓取网页</strong></li>
+</ul>
+<p>就以上面抓取结果来说，我们通常抓出来的就是这么一大串信息，但需要在这些信息里面提取有效信息，这里我们就以<code>https://ssr1.scrape.center/</code>为例</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr1.scrape.center/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;&lt;h2.*?&gt;(.*?)&lt;/h2&gt;&#34;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">tiltles</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">tiltles</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span><span class="err">&#39;霸王别姬</span> <span class="err">-</span> <span class="err">Farewell</span> <span class="err">My</span> <span class="err">Concubine&#39;</span><span class="p">,</span> <span class="err">&#39;这个杀手不太冷</span> <span class="err">-</span> <span class="err">Léon&#39;</span><span class="p">,</span> <span class="err">&#39;肖申克的救赎</span> <span class="err">-</span> <span class="err">The</span> <span class="err">Shawshank</span> <span class="err">Redemption&#39;</span><span class="p">,</span> <span class="err">&#39;泰坦尼克号</span> <span class="err">-</span> <span class="err">Titanic&#39;</span><span class="p">,</span> <span class="err">&#39;罗马假日</span> <span class="err">-</span> <span class="err">Roman</span> <span class="err">Holiday&#39;</span><span class="p">,</span> <span class="err">&#39;唐伯虎点秋香</span> <span class="err">-</span> <span class="err">Flirting</span> <span class="err">Scholar&#39;</span><span class="p">,</span> <span class="err">&#39;乱世佳人</span> <span class="err">-</span> <span class="err">Gone</span> <span class="err">with</span> <span class="err">the</span> <span class="err">Wind&#39;</span><span class="p">,</span> <span class="err">&#39;喜剧之王</span> <span class="err">-</span> <span class="err">The</span> <span class="err">King</span> <span class="err">of</span> <span class="err">Comedy&#39;</span><span class="p">,</span> <span class="err">&#39;楚门的世界</span> <span class="err">-</span> <span class="err">The</span> <span class="err">Truman</span> <span class="err">Show&#39;</span><span class="p">,</span> <span class="err">&#39;狮子王</span> <span class="err">-</span> <span class="err">The</span> <span class="err">Lion</span> <span class="err">King&#39;</span><span class="p">]</span>
+</span></span></code></pre></div><p>在提取有效信息时就需要用到re模块，就是用正则表达式来匹配有效信息，这块后面再讲。</p>
+<ul>
+<li><strong>抓取二进制数据</strong></li>
+</ul>
+<p>我们常见抓取的二进制数据就是图片了。像博客上传图片就是生成一个图片链接，所以我们直接访问其链接就能获取到这个图片的二进制内容，然后浏览器就会解析并将该图片展现出来。</p>
+<p>现在随便抓取一个图片</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://scrape.center/favicon.ico&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>     <span class="o">//</span> <span class="n">byte类型</span>
+</span></span></code></pre></div><p>运行结果</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240224213915508.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240224213915508"
+	
+	
+></p>
+<p>存储这么一大串字符是个麻烦的事，所以我们要把它转换成图片，图片说白了就是一个二进制文件，把它转换成文件存储起来就可以了</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://scrape.center/favicon.ico&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;1.ico&#34;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</span></span></code></pre></div><p>这样我们就在当前目录下生成了一个<code>1.ico</code>文件</p>
+<ul>
+<li><strong>添加请求头</strong></li>
+</ul>
+<p>现在很多网站都有一些反爬机制，我们在之前的请求中是没有设置请求头的，有一些网站检测你的请求头时发现<code>user-agent</code>字段没有数据，就会认为该请求不是来自一个正常的浏览器，就会返回异常结果阻止爬取。</p>
+<p>那么我们就需要自己去设置请求头，在<code>requests</code>模块中我们用<code>headers</code>参数来设置请求头内容</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;user-agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 80.0.3987.122  Safari / 537.36&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://scrape.center/favicon.ico&#34;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</span></span></code></pre></div><p>通过此方法便可以传送请求头</p>
+<h3 id="post请求">POST请求
+</h3><p>检测是否进行了POST请求</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://www.httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="n">xxxxxxxxxx</span> <span class="kn">import</span> <span class="nn">import</span> <span class="n">requestsurl</span> <span class="o">=</span> <span class="s2">&#34;https://www.httpbin.org/post&#34;</span><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;files&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;form&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="s2">&#34;*/*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;gzip, deflate&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Length&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;www.httpbin.org&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;python-requests/2.28.1&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;X-Amzn-Trace-Id&#34;</span><span class="p">:</span> <span class="s2">&#34;Root=1-65db3cc9-36d6eb4a782f3e713ca51969&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;json&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;194.99.79.246&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://www.httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>有返回结果说明是POST请求。</p>
+<p>如果要提交表单的话，需要使用data参数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">import</span> <span class="err">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">url</span> <span class="err">=</span> <span class="s2">&#34;https://www.httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">data</span> <span class="err">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;winglet&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">resp</span> <span class="err">=</span> <span class="err">requests.post(url,</span> <span class="err">data=data)</span>
+</span></span><span class="line"><span class="cl"><span class="err">print(resp.text)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;files&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;form&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;winglet&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="s2">&#34;*/*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;gzip, deflate&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Length&#34;</span><span class="p">:</span> <span class="s2">&#34;12&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;application/x-www-form-urlencoded&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;www.httpbin.org&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;python-requests/2.28.1&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;X-Amzn-Trace-Id&#34;</span><span class="p">:</span> <span class="s2">&#34;Root=1-65dca076-47c67045141f47526b668509&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;json&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;194.99.79.246&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://www.httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>可以看见我们提交的表单数据就被放在了<code>form</code>参数中</p>
+<h3 id="响应">响应
+</h3><p>发送了请求后，自然能得到响应，我们上述的结果中只是展示了响应的一部分，之前我们讲到过，响应里面是有响应体，状态码，cookie等信息的。所以我们也可以通过其他方法函数将它们展示出来</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://ssr1.scrape.center&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">),</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">),</span> <span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">cookies</span><span class="p">),</span> <span class="n">resp</span><span class="o">.</span><span class="n">cookies</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">),</span> <span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">history</span><span class="p">),</span> <span class="n">resp</span><span class="o">.</span><span class="n">history</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;int&#39;&gt;</span> <span class="mi">200</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;requests.structures.CaseInsensitiveDict&#39;&gt;</span> <span class="p">{</span><span class="err">&#39;Date&#39;:</span> <span class="err">&#39;Mon,</span> <span class="err">26</span> <span class="err">Feb</span> <span class="err">2024</span> <span class="err">14:36:24</span> <span class="err">GMT&#39;,</span> <span class="err">&#39;Content-Type&#39;:</span> <span class="err">&#39;text/html;</span> <span class="err">charset=utf-8&#39;,</span> <span class="err">&#39;X-Frame-Options&#39;:</span> <span class="err">&#39;DENY&#39;,</span> <span class="err">&#39;X-Content-Type-Options&#39;:</span> <span class="err">&#39;nosniff&#39;,</span> <span class="err">&#39;Expires&#39;:</span> <span class="err">&#39;Mon,</span> <span class="err">26</span> <span class="err">Feb</span> <span class="err">2024</span> <span class="err">14:38:47</span> <span class="err">GMT&#39;,</span> <span class="err">&#39;Strict-Transport-Security&#39;:</span> <span class="err">&#39;max-age=15724800;</span> <span class="err">includeSubDomains&#39;,</span> <span class="err">&#39;Server&#39;:</span> <span class="err">&#39;E0MID&#39;,</span> <span class="err">&#39;X-Cache-Lookup&#39;:</span> <span class="err">&#39;Cache</span> <span class="err">Miss,</span> <span class="err">Cache</span> <span class="err">Miss,</span> <span class="err">Cache</span> <span class="err">Miss,</span> <span class="err">Cache</span> <span class="err">Miss&#39;,</span> <span class="err">&#39;Cache-Control&#39;:</span> <span class="err">&#39;max-age=600&#39;,</span> <span class="err">&#39;Age&#39;:</span> <span class="err">&#39;0&#39;,</span> <span class="err">&#39;Content-Length&#39;:</span> <span class="err">&#39;41667&#39;,</span> <span class="err">&#39;X-NWS-LOG-UUID&#39;:</span> <span class="err">&#39;17190695892387289445&#39;,</span> <span class="err">&#39;Connection&#39;:</span> <span class="err">&#39;keep-alive&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;requests.cookies.RequestsCookieJar&#39;&gt;</span> <span class="err">&lt;RequestsCookieJar</span><span class="p">[]</span><span class="err">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;str&#39;&gt;</span> <span class="err">https:</span><span class="c1">//ssr1.scrape.center/
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;class</span> <span class="err">&#39;list&#39;&gt;</span> <span class="p">[]</span>
+</span></span></code></pre></div><p>基本信息便如此。</p>
+<p>可以看见状态码是200，表示网站正常访问。不过在<code>requests</code>模块中，还存在内置函数来表示某种状态。比如<code>requests.codes.ok</code>就表示<code>200</code>，当然还有很多状态表示函数，不过个人感觉没必要去记，做个了解即可。</p>
+<h3 id="高级用法">高级用法
+</h3><ul>
+<li><strong>文件上传</strong></li>
+</ul>
+<p>直接实例展示</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">file</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;file&#34;</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;1.ico&#34;</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&#34;http://httpbin.org/post&#34;</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;files&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;file&#34;</span><span class="p">:</span> <span class="s2">&#34;data:application/octet-stream;base64,AAABAAEAI......&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;form&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="s2">&#34;*/*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;gzip, deflate&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Length&#34;</span><span class="p">:</span> <span class="s2">&#34;4427&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;multipart/form-data; boundary=3f1d8575b6590aa87284daeaf1ebab4a&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;httpbin.org&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;python-requests/2.28.1&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;X-Amzn-Trace-Id&#34;</span><span class="p">:</span> <span class="s2">&#34;Root=1-65dca3f0-7485d19b3a37ce032285cfc5&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;json&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;194.99.79.246&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>利用<code>files</code>我们就成功通过POST请求上传了一个文件。</p>
+<ul>
+<li><strong>Cookie设置</strong></li>
+</ul>
+<p>我们先尝试获取cookie</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.baidu.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">cookies</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s2">&#34;=&#34;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;RequestsCookieJar</span><span class="p">[</span><span class="err">&lt;Cookie</span> <span class="err">BDORZ=</span><span class="mi">27315</span> <span class="err">for</span> <span class="err">.baidu.com/&gt;</span><span class="p">]</span><span class="err">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">BDORZ=</span><span class="mi">27315</span>
+</span></span></code></pre></div><p>那么现在就可以看到这就是我们截获到的<code>Cookie</code>了，还记得之前讲的<code>Cookie</code>就像是通行证，所以我们先登录一个网站然后用生成的<code>Cookie</code>来替换<code>headers</code>参数看看是否可以登录访问</p>
+<p>首先登录我的126邮箱，然后找到它的Cookie</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240227230422686.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240227230422686"
+	
+	
+></p>
+<p>接着复制并添加到<code>headers</code>参数里面</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://mail.126.com/js6/main.jsp?sid=SFxzVLEEsGskZribnYEEzCuuiOescwUt&amp;df=webmail126#module=welcome.WelcomeModule%7C%7B%7D&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Cookie&#34;</span><span class="p">:</span> <span class="s1">&#39;nts_mail_user=w1121293707@126.com:-1:1; MAIL_SDID=874273342558449664; locale=; face=js6; MAIL_LOCATION=gz; NTES_SESS=VK5sD5z7nl9YqEkNzX0aaCCq7XSU27vS_b.8k1DWElVGxaw1xYbLveT2wf2_R0Vbz.rvYIKJwo.8mWXUnz.FbeYBS_lfIRdiurUwSQfcyK7DQjl0LfBZoaE8GME9deTNM_sKVZtSL9hkhZxq4YM7OfHAmhxcUUSXO8MRPD9q7V.ucDKWsdmD0H6KOpTc564bWXG2brXGvoOSfcNZqodIxStAW; S_INFO=1709045762|0|#3&amp;80#|w1121293707@126.com; P_INFO=w1121293707@126.com|1709045762|0|mail126|00&amp;99|sxi&amp;1708854921&amp;mail126#sxi&amp;610100#10#0#0|&amp;0|mail126|w1121293707@126.com; mail_idc=&#34;&#34;; Coremail=7e63eb7de5574%SFxzVLEEsGskZribnYEEzCuuiOescwUt%wmsvr-41-106.mail.126.com; MAIL_ENTRY_INFO=1|0|mail126|webmail126|124.89.2.73|2fd8275d91a844e31dcc47f615d9df3b_v1||874273342558449664|1709045763|0; MAIL_ENTRY_CS=4013070295d8ed2148c0900b8bd1e7c6; mixmailTokens=1E1StjlbA-RsybFpsvpXmtOyfRGomvqnWPmwQQZz1N_0Co3MVdUHWlLjvlUgHo2flCGcsF73ZG4eh1rF9fGYegI2Gy0PzxGZLwKjGJMF13PjrCLVEI6eeWBnYFOpdp07vYMl1h49M23HAS4ZnL-eaQMVg; MAIL_MISC=&#34;w1121293707@126.com&#34;; cm_last_info=dT13MTEyMTI5MzcwNyU0MDEyNi5jb20mZD1odHRwcyUzQSUyRiUyRm1haWwuMTI2LmNvbSUyRmpzNiUyRm1haW4uanNwJTNGc2lkJTNEU0Z4elZMRUVzR3NrWnJpYm5ZRUV6Q3V1aU9lc2N3VXQmcz1TRnh6VkxFRXNHc2tacmlibllFRXpDdXVpT2VzY3dVdCZoPWh0dHBzJTNBJTJGJTJGbWFpbC4xMjYuY29tJTJGanM2JTJGbWFpbi5qc3AlM0ZzaWQlM0RTRnh6VkxFRXNHc2tacmlibllFRXpDdXVpT2VzY3dVdCZ3PWh0dHBzJTNBJTJGJTJGbWFpbC4xMjYuY29tJmw9LTEmdD0tMSZhcz10cnVl; MAIL_SESS=VK5sD5z7nl9YqEkNzX0aaCCq7XSU27vS_b.8k1DWElVGxaw1xYbLveT2wf2_R0Vbz.rvYIKJwo.8mWXUnz.FbeYBS_lfIRdiurUwSQfcyK7DQjl0LfBZoaE8GME9deTNM_sKVZtSL9hkhZxq4YM7OfHAmhxcUUSXO8MRPD9q7V.ucDKWsdmD0H6KOpTc564bWXG2brXGvoOSfcNZqodIxStAW; MAIL_SINFO=&#34;1709045762|0|#3&amp;80#|w1121293707@126.com&#34;; MAIL_PINFO=&#34;w1121293707@126.com|1709045762|0|mail126|00&amp;99|sxi&amp;1708854921&amp;mail126#sxi&amp;610100#10#0#0|&amp;0|mail126|w1121293707@126.com&#34;; secu_info=1; mail_entry_sess=0859964f9866bb8c26b8fb64bff6baf1ee1cbbe3527f054da14400f1a9bf1cfaf8d12c4f89f9f4c1566860bbab761a5056fa151a418041eb884f4c80ef24a6d9dfb5dc3e2dd1cc19edc67c72bffc666073f8920566b6444b98eb0d8f14e5986b58173ad7ba751674d600f8ac802f320cc96a28d33200651300cdd96817b6713f71d5559e9d5c1b6b0eb9e063aee25969ed8278858b298bdc143de44d3296d56e5e52e0fd3ceb24a633d8a1756d4c8d6459358118b3a5745f2a91dad340c4d430; JSESSIONID=E357320184AF7ACB567AE3CEE389544C; Coremail.sid=SFxzVLEEsGskZribnYEEzCuuiOescwUt; mail_style=js6; mail_uid=w1121293707@126.com; mail_host=mail.126.com; stats_session_id=32bf5635-1d0e-4200-a853-3b279a557c3b&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240227230541983.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240227230541983"
+	
+	
+></p>
+<p>这就表明我们通过设置Cookie的信息，成功模拟了登录状态。、</p>
+<p>除了设置headers参数外，也可以设置cookies参数。在前面实例中看到了我们截获的cookie是<code>RequestsCookieJar对象</code>类型，所以我们可以新建一个<code>RequestsCookieJar对象</code> ，然后赋值给<code>cookies</code>参数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://mail.126.com/js6/main.jsp?sid=SFxzVLEEsGskZribnYEEzCuuiOescwUt&amp;df=webmail126#module=welcome.WelcomeModule%7C%7B%7D&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cookies</span> <span class="o">=</span> <span class="s1">&#39;nts_mail_user=w1121293707@126.com:-1:1; MAIL_SDID=874273342558449664; locale=; face=js6; MAIL_LOCATION=gz; NTES_SESS=VK5sD5z7nl9YqEkNzX0aaCCq7XSU27vS_b.8k1DWElVGxaw1xYbLveT2wf2_R0Vbz.rvYIKJwo.8mWXUnz.FbeYBS_lfIRdiurUwSQfcyK7DQjl0LfBZoaE8GME9deTNM_sKVZtSL9hkhZxq4YM7OfHAmhxcUUSXO8MRPD9q7V.ucDKWsdmD0H6KOpTc564bWXG2brXGvoOSfcNZqodIxStAW; S_INFO=1709045762|0|#3&amp;80#|w1121293707@126.com; P_INFO=w1121293707@126.com|1709045762|0|mail126|00&amp;99|sxi&amp;1708854921&amp;mail126#sxi&amp;610100#10#0#0|&amp;0|mail126|w1121293707@126.com; mail_idc=&#34;&#34;; Coremail=7e63eb7de5574%SFxzVLEEsGskZribnYEEzCuuiOescwUt%wmsvr-41-106.mail.126.com; MAIL_ENTRY_INFO=1|0|mail126|webmail126|124.89.2.73|2fd8275d91a844e31dcc47f615d9df3b_v1||874273342558449664|1709045763|0; MAIL_ENTRY_CS=4013070295d8ed2148c0900b8bd1e7c6; mixmailTokens=1E1StjlbA-RsybFpsvpXmtOyfRGomvqnWPmwQQZz1N_0Co3MVdUHWlLjvlUgHo2flCGcsF73ZG4eh1rF9fGYegI2Gy0PzxGZLwKjGJMF13PjrCLVEI6eeWBnYFOpdp07vYMl1h49M23HAS4ZnL-eaQMVg; MAIL_MISC=&#34;w1121293707@126.com&#34;; cm_last_info=dT13MTEyMTI5MzcwNyU0MDEyNi5jb20mZD1odHRwcyUzQSUyRiUyRm1haWwuMTI2LmNvbSUyRmpzNiUyRm1haW4uanNwJTNGc2lkJTNEU0Z4elZMRUVzR3NrWnJpYm5ZRUV6Q3V1aU9lc2N3VXQmcz1TRnh6VkxFRXNHc2tacmlibllFRXpDdXVpT2VzY3dVdCZoPWh0dHBzJTNBJTJGJTJGbWFpbC4xMjYuY29tJTJGanM2JTJGbWFpbi5qc3AlM0ZzaWQlM0RTRnh6VkxFRXNHc2tacmlibllFRXpDdXVpT2VzY3dVdCZ3PWh0dHBzJTNBJTJGJTJGbWFpbC4xMjYuY29tJmw9LTEmdD0tMSZhcz10cnVl; MAIL_SESS=VK5sD5z7nl9YqEkNzX0aaCCq7XSU27vS_b.8k1DWElVGxaw1xYbLveT2wf2_R0Vbz.rvYIKJwo.8mWXUnz.FbeYBS_lfIRdiurUwSQfcyK7DQjl0LfBZoaE8GME9deTNM_sKVZtSL9hkhZxq4YM7OfHAmhxcUUSXO8MRPD9q7V.ucDKWsdmD0H6KOpTc564bWXG2brXGvoOSfcNZqodIxStAW; MAIL_SINFO=&#34;1709045762|0|#3&amp;80#|w1121293707@126.com&#34;; MAIL_PINFO=&#34;w1121293707@126.com|1709045762|0|mail126|00&amp;99|sxi&amp;1708854921&amp;mail126#sxi&amp;610100#10#0#0|&amp;0|mail126|w1121293707@126.com&#34;; secu_info=1; mail_entry_sess=0859964f9866bb8c26b8fb64bff6baf1ee1cbbe3527f054da14400f1a9bf1cfaf8d12c4f89f9f4c1566860bbab761a5056fa151a418041eb884f4c80ef24a6d9dfb5dc3e2dd1cc19edc67c72bffc666073f8920566b6444b98eb0d8f14e5986b58173ad7ba751674d600f8ac802f320cc96a28d33200651300cdd96817b6713f71d5559e9d5c1b6b0eb9e063aee25969ed8278858b298bdc143de44d3296d56e5e52e0fd3ceb24a633d8a1756d4c8d6459358118b3a5745f2a91dad340c4d430; JSESSIONID=E357320184AF7ACB567AE3CEE389544C; Coremail.sid=SFxzVLEEsGskZribnYEEzCuuiOescwUt; mail_style=js6; mail_uid=w1121293707@126.com; mail_host=mail.126.com; stats_session_id=32bf5635-1d0e-4200-a853-3b279a557c3b&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">jar</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">RequestsCookieJar</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">cookie</span> <span class="ow">in</span> <span class="n">cookies</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">cookie</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">jar</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">jar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果<img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240227231829663.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240227231829663"
+	
+	
+></p>
+<p>测试发现，依然可以正常登录</p>
+<ul>
+<li><strong>Session维持</strong></li>
+</ul>
+<p>在利用<code>requests</code>库时，我们无论使用<code>GET</code>还是<code>POST</code>请求，都是当作开启了一个新的浏览器，然后去访问网站的。比如你先用<code>POST</code>请求输入了你的登录信息，之后你再使用<code>GET</code>请求还是会无法访问。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.httpbin.org/cookies/set/number/123456789&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.httpbin.org/cookies&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;cookies&#34;</span><span class="p">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>所以一个解决办法就是像上面一节的例子，设置<code>cookie</code>参数即可，但这样比较麻烦。因为你需要先去浏览器上登录网站，然后再复制cookie头的内容。</p>
+<p>那么如果不想重复复制粘贴cookie内容的话，我们可以利用session对象，只要维护好一个session对象，cookie也就不成问题了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.httpbin.org/cookies/set/number/123456789&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://www.httpbin.org/cookies&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;cookies&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;number&#34;</span><span class="p">:</span> <span class="s2">&#34;123456789&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li><strong>SSL证书验证</strong></li>
+</ul>
+<p>现在很多网站都用的https协议，但是有些网站没有安装HTTPS证书或者HTTPS证书不被ca机构认可，这就导致我们在访问的时候可能会出现SSL证书错误的提示。</p>
+<p>比如我们现在访问<code>https://ssr2.scrape.center</code></p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240228221757520.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240228221757520"
+	
+	
+></p>
+<p>但是我们用<code>requests</code>库的话，就会无法访问</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr2.scrape.center&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果如下</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240228222432050.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240228222432050"
+	
+	
+></p>
+<p>可以看见它抛出了SSLError错误</p>
+<p>那么如果我们一定要访问该网站呢，可以使用<code>verify</code>参数，这个参数使用来控制证书的，默认为true，如果将它设置为false，那么在请求时就不会再验证证书。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr2.scrape.center/&#34;</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">D:\python\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host &#39;ssr2.scrape.center&#39;. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+</span></span><span class="line"><span class="cl">  warnings.warn(
+</span></span><span class="line"><span class="cl">200
+</span></span></code></pre></div><p>状态码为200，这就是表示我们已经访问成功了。</p>
+<p>不过呢，上面还是有一段警告，它是建议我们给他指定证书。如果我们想要忽略它的话可以通过设置忽略警告的方式来屏蔽这个警告。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">requests.packages</span> <span class="kn">import</span> <span class="n">urllib3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr2.scrape.center&#34;</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">200
+</span></span></code></pre></div><p>可以看到那段长长的警告不见了</p>
+<p>还有两种方法可以忽略警告</p>
+<p>捕获警告到日志的方式忽略警告：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">logging</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">logging</span><span class="o">.</span><span class="n">captureWarnings</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr2.scrape.center&#34;</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">200
+</span></span></code></pre></div><p>或者我们可以直接指定一个本地证书作为客户端证书</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr2.scrape.center&#34;</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;/path/server.crt&#39;</span><span class="p">,</span> <span class="s1">&#39;/path/server.key&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">200
+</span></span></code></pre></div><ul>
+<li><strong>超时设置</strong></li>
+</ul>
+<p>平常在上网的时候就可能会因为网络状况不好或者服务器网络响应太慢导致需要等待一段时间网站才能加载出来，甚至最后因为接收不到响应而报错。</p>
+<p>所以我们可以通过设置超时时间，就是如果加载到一定时间还是没有响应，就直接跳过。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;http://www.httpbin.org&#34;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>但是这里的<code>timeout</code>参数是连接和读取的时间总和，如果想要分别设置连接和读取的时间，可以用元组类型</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;http://www.httpbin.org&#34;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><ul>
+<li><strong>身份认证 （OAUTH未）</strong></li>
+</ul>
+<p>在访问某些网站的时候，通常会弹出登录弹窗，进行身份认证，比如访问<code>https://ssr3.scrape.center</code>时，就会出现一个登录弹窗</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240229183300080.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240229183300080"
+	
+	
+></p>
+<p>怎么解决这个问题呢，要知道<code>requests</code>模块是一个强大的库，它里面可以通过设置auth参数来通过身份认证。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">requests.auth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://ssr3.scrape.center&#34;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="s2">&#34;admin&#34;</span><span class="p">,</span> <span class="s2">&#34;admin&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">200
+</span></span></code></pre></div><p>除此之外，<code>requests</code>库还提供其他认证方式，比如<code>OAuth</code>认证</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">requests_oauthlib</span> <span class="kn">import</span> <span class="n">OAuth1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://api.twitter.com/1.1/account/verify_credentials.json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">auth</span> <span class="o">=</span> <span class="n">OAuth1</span><span class="p">(</span><span class="s2">&#34;YOUR_APP_KEY&#34;</span><span class="p">,</span> <span class="s2">&#34;YOUR_APP_SECRET&#34;</span><span class="p">,</span> <span class="s2">&#34;USER_OAUTH_TOKEN&#34;</span><span class="p">,</span> <span class="s2">&#34;USER_OAUTH_TOKEN_SECRET&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="mi">200</span>
+</span></span></code></pre></div><ul>
+<li><strong>代理设置</strong></li>
+</ul>
+<p>经常对某个网站进行爬虫时，前几次可以好好访问，但后面就会出现访问失败的情况。这就是网站的反爬技术，它们如果检测到某个IP在进行不正常访问时，就会判断其为爬虫，然后就会将该IP加入黑名单，这样就无法继续访问了。</p>
+<p>如何解决这个问题呢，既然不允许一个IP多次访问的话，那么我们用多个IP依次去访问时，不就可以通过时间差使之IP在正常访问。</p>
+<p>这时我们就要用到<code>proxies</code>参数。下面展示例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">proxies</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;http&#34;</span><span class="p">:</span> <span class="s2">&#34;http://10.10.10.10:1080&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https&#34;</span><span class="p">:</span> <span class="s2">&#34;http://10.10.10.10:1080&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;https://httpbin.org/get&#34;</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">)</span>
+</span></span></code></pre></div><p>这个例子无法执行，如果要利用的话还是要去搜索有效的代理IP。</p>
+<p>同时requests模块还支持<code>SOCK</code>协议</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import requests
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">proxies = {
+</span></span><span class="line"><span class="cl">    &#34;http&#34;: &#34;sock5://10.10.10.10:1080&#34;,
+</span></span><span class="line"><span class="cl">    &#34;https&#34;: &#34;sock5://10.10.10.10:1080&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">requests.get(&#34;https://httpbin.org/get&#34;, proxies=proxies)
+</span></span></code></pre></div><ul>
+<li><strong>Prepare Request</strong></li>
+</ul>
+<p>我们知道使用get、post方法就可以实现向其他网站的请求动作，那么它们在requests模块的内部是怎么实现的呢？</p>
+<p>在发送请求之前，requests模块构造一个Request对象，然后将url、header、data等信息添加进去，最终将这个Request对象发送出去，在请求成功后就会获取Response对象，接下来就是对Response对象进行解析。Request对象的类型就是Prepare Request</p>
+<p>接下来我们尝试不使用get方法发送一条请求</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Request</span><span class="p">,</span> <span class="n">Session</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;winglet&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 80.0.3987.122  Safari / 537.36&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">prepped</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">prepare_request</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prepped</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;files&#34;</span><span class="p">:</span> <span class="p">{},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;form&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;winglet&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="s2">&#34;*/*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Accept-Encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;gzip, deflate&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Length&#34;</span><span class="p">:</span> <span class="s2">&#34;12&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;application/x-www-form-urlencoded&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;httpbin.org&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 80.0.3987.122  Safari / 537.36&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;X-Amzn-Trace-Id&#34;</span><span class="p">:</span> <span class="s2">&#34;Root=1-65f2cab2-1df53d590a48a2df49f2fa16&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;json&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;92.223.121.116&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://httpbin.org/post&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>可以看到，达到了和POST请求一样的效果。而这个Request对象已经成为一个独立的对象了，所以我们可以直接操作它。</p>
+<h2 id="正则表达式re">正则表达式（re）
+</h2><ul>
+<li><strong>简单介绍</strong></li>
+</ul>
+<p>现在给出一条数据</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">my phone number is 010-86432100
+</span></span></code></pre></div><p>如果我们现在只想要电话号码的话，就需要编写一条正则表达式</p>
+<p><img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/image-20240314200515989.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240314200515989"
+	
+	
+></p>
+<p>当然这个只是一个比较简单的正则匹配，但效果大家都看见了，我们可以通过一条正则表达式，来匹配一段数据中我们关注的部分。</p>
+<h3 id="match">match
+</h3><p>这里先介绍第一个常用的匹配方法——match，我们只需要像它传入要匹配的字符串以及正则表达式，他就可以检测这个正则表达式是否与字符串相匹配。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Hello 123 4567 world_This is a Regex Demo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;^Hello\s\d\d\d\s\d</span><span class="si">{4}</span><span class="s1">\s\w</span><span class="si">{10}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>       <span class="o">//</span> <span class="n">输出匹配到的内容</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>        <span class="o">//</span> <span class="n">输出匹配的范围</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="mi">41</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">25</span><span class="err">),</span> <span class="err">match=&#39;Hello</span> <span class="mi">123</span> <span class="mi">4567</span> <span class="err">world_This&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Hello</span> <span class="mi">123</span> <span class="mi">4567</span> <span class="err">world_This</span>
+</span></span><span class="line"><span class="cl"><span class="err">(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">25</span><span class="err">)</span>
+</span></span></code></pre></div><ul>
+<li><strong>匹配目标</strong></li>
+</ul>
+<p>我们在上面实现了用match匹配内容，那么现在我们要的就是只取出字符串的一部分。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Hello 1234567 World_This is a Regex Demo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;^Hello\s+(\d+)\s+World&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="o">//</span> <span class="n">会输出完整的匹配结果</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="mi">40</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">19</span><span class="err">),</span> <span class="err">match=&#39;Hello</span> <span class="mi">1234567</span> <span class="err">World&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Hello</span> <span class="mi">1234567</span> <span class="err">World</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1234567</span>
+</span></span><span class="line"><span class="cl"><span class="err">(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">19</span><span class="err">)</span>
+</span></span></code></pre></div><ul>
+<li><strong>通用匹配</strong></li>
+</ul>
+<p>通过上面例子可以发现我们匹配时总是要写很多<code>\d \s</code>之类的，其实在正则表达式中式存在能全部匹配的表达式的。就是即将介绍的<code>.*</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.  可以匹配任意字符
+</span></span><span class="line"><span class="cl">*  可以匹配前面的字符无限次
+</span></span><span class="line"><span class="cl">但是当它们组合到一起时，就能够实现匹配任意字符了
+</span></span></code></pre></div><p>我们现在稍微修改一下之前的代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Hello 1234567 World_This is a Regex Demo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;^Hello.*Demo&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="mi">40</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">40</span><span class="err">),</span> <span class="err">match=&#39;Hello</span> <span class="mi">1234567</span> <span class="err">World_This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">Regex</span> <span class="err">Demo&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Hello</span> <span class="mi">1234567</span> <span class="err">World_This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">Regex</span> <span class="err">Demo</span>
+</span></span><span class="line"><span class="cl"><span class="err">(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">40</span><span class="err">)</span>
+</span></span></code></pre></div><ul>
+<li><strong>贪婪与非贪婪</strong></li>
+</ul>
+<p>我们有时在使用<code>.*</code>时常常得不到我们想要的结果。比如现在我们想要匹配中间的所有数字</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Hello 1234567 World_This is a Regex Demo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s2">&#34;^He.*(\d+).*Demo$&#34;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">40</span><span class="err">),</span> <span class="err">match=&#39;Hello</span> <span class="mi">1234567</span> <span class="err">World_This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">Regex</span> <span class="err">Demo&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="mi">7</span>
+</span></span></code></pre></div><p>我们只匹配到了一个<code>7</code>数字，这显然不是我们想要的结果。</p>
+<p>这里就要涉及贪婪和非贪婪匹配机制了。在贪婪匹配下,<code>.*</code>会尽可能匹配多的字符。以上面的表达式为例<code>.*</code>后面的是<code>\d+</code>，它至少会匹配一个数字。所以在我们没有指定几个数字的情况下，<code>.*</code>就会尽可能地匹配多的字符，这就导致<code>123456</code>都被匹配了，只留了<code>7</code>给<code>\d+</code>去匹配，所以我们最后得到的只有一个<code>7</code>，那么这时我们就要用到非贪婪模式了，它的写法就是<code>?</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Hello 1234567 World_This is a Regex Demo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s2">&#34;^He.*?(\d+).*Demo$&#34;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">40</span><span class="err">),</span> <span class="err">match=&#39;Hello</span> <span class="mi">1234567</span> <span class="err">World_This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">Regex</span> <span class="err">Demo&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1234567</span>
+</span></span></code></pre></div><p>可以看见我们只是在<code>.*</code>后面加了一个<code>?</code>，就可以使它只匹配到<code>1</code>之前。在非贪婪模式下，<code>.*?</code>会尽可能匹配少的字符，所以当它匹配到<code>1</code>前面的空格符后，就会把数字全交给<code>\d+</code>去进行匹配，自己就歇着去了。<code>.*?</code>经常会被用在中间进行匹配。</p>
+<p>要注意的一点就是<code>.*?</code>如果放在字符串的结尾，就有可能匹配不到任何内容了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;http://weibo.com/comment/kEraCN&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s2">&#34;http.*?comment/(.*?)&#34;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">result2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s2">&#34;http.*?comment/(.*)&#34;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result1</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result2</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://weibo.com/comment/
+</span></span><span class="line"><span class="cl">http://weibo.com/comment/kEraCN
+</span></span></code></pre></div><ul>
+<li><strong>修饰符</strong></li>
+</ul>
+<p>先举个例子</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;Hello 1234567 World_this
+</span></span></span><span class="line"><span class="cl"><span class="s1">is a Winglet Demo
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;^He.*?(\d+).*?Demo$&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Traceback (most recent call last):
+</span></span><span class="line"><span class="cl">  File &#34;D:\pyproject\爬虫\测试.py&#34;, line 7, in &lt;module&gt;
+</span></span><span class="line"><span class="cl">    print(result.group(1))
+</span></span><span class="line"><span class="cl">AttributeError: &#39;NoneType&#39; object has no attribute &#39;group&#39;
+</span></span></code></pre></div><p>这里因为字符串中出现了换行符导致无法匹配，但是只要我们在后面加上一个<code>re.S</code>，就可以解决这个错误。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;Hello 1234567 World_this
+</span></span></span><span class="line"><span class="cl"><span class="s1">is a Winglet Demo
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;^He.*?(\d+).*?Demo$&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">Hello</span> <span class="mi">1234567</span> <span class="err">World_this</span>
+</span></span><span class="line"><span class="cl"><span class="err">is</span> <span class="err">a</span> <span class="err">Winglet</span> <span class="err">Demo</span>
+</span></span></code></pre></div><p>除此之外还有一些别的修饰符</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>修饰符</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>re.I</td>
+					<td>使匹配对大小写不敏感</td>
+			</tr>
+			<tr>
+					<td>re.M</td>
+					<td>多行匹配，影响 ^ 和 $</td>
+			</tr>
+			<tr>
+					<td>re.L</td>
+					<td>实现本地化识别 (locale-aware) 匹配</td>
+			</tr>
+			<tr>
+					<td>re.S</td>
+					<td>使匹配内容包括换行符在内的所有字符</td>
+			</tr>
+			<tr>
+					<td>re.U</td>
+					<td>根据Unicode字符集解析字符。这个标志会影响\w、\W、\b和\B</td>
+			</tr>
+			<tr>
+					<td>re.X</td>
+					<td>该标志能给予你更灵活的格式，以便将正则变大时</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>常用的就是<code>re.S</code>和<code>re.I</code></p>
+<ul>
+<li><strong>转义匹配</strong></li>
+</ul>
+<p>举个例子</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;(百度) www.baidu.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;\(百度\) www\.baidu\.com&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">&lt;re.Match</span> <span class="err">object;</span> <span class="err">span=(</span><span class="mi">0</span><span class="err">,</span> <span class="mi">18</span><span class="err">),</span> <span class="err">match=&#39;(百度)</span> <span class="err">www.baidu.com&#39;&gt;</span>
+</span></span></code></pre></div><p>可以看见我们如果想要匹配一些符号的话就可以在前面加上<code>\</code>，进行字符转义</p>
+<h3 id="search">search
+</h3><p><code>match</code>方法是从字符串的第一个字符开始匹配的，所以如果一旦第一个字符就匹配失败了，那么这整个字符串就无法匹配。而我们一般都是会匹配中间部分重要的信息，所以这里就要介绍到一个新的方法<code>search</code></p>
+<p>这个方法会先扫描整个字符串，然后会从第一个匹配到的字符开始匹配</p>
+<p>例子如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;Extra string Hello 1234567 World_This is a Regex Demo Extra       stings&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Hello.*?(\d+).*?Demo&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span></code></pre></div><p>运行如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">Hello</span> <span class="mi">1234567</span> <span class="err">World_This</span> <span class="err">is</span> <span class="err">a</span> <span class="err">Regex</span> <span class="err">Demo</span>
+</span></span></code></pre></div><h2 id="操作文件">操作文件
+</h2><h3 id="os">OS
+</h3><h4 id="oswalk">os.walk()
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">topdown</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">onerror</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">followlinks</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></div><p><strong>参数说明：</strong></p>
+<ul>
+<li><code>top</code>: 要遍历的根目录路径</li>
+<li><code>topdown</code>: <code>True</code> 时自上而下遍历，<code>False</code> 时自下而上</li>
+<li><code>onerror</code>: 错误处理函数</li>
+<li><code>followlinks</code>: 是否跟随符号链接</li>
+</ul>
+<p><strong>返回值：</strong> 生成器，每次迭代返回一个元组 <code>(dirpath, dirnames, filenames)</code></p>
+<p><strong>基本用法</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 遍历当前目录</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;当前目录: </span><span class="si">{</span><span class="n">root</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>   <span class="c1"># str</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;子目录: </span><span class="si">{</span><span class="n">dirs</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>	 <span class="c1"># list</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;文件: </span><span class="si">{</span><span class="n">files</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>	 <span class="c1"># list</span>
+</span></span></code></pre></div><h2 id="程序打包">程序打包
+</h2><h3 id="pyinstaller">pyinstaller
+</h3><h4 id="安装-1">安装
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pip install pyinstaller
+</span></span></code></pre></div><h4 id="使用方式">使用方式
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pyinstaller --onefile --windowed --name <span class="s2">&#34;WingletTools&#34;</span> winglet工具集.py 
+</span></span></code></pre></div><ul>
+<li><code>--onefile</code>：生成单个exe文件</li>
+<li><code>--windowed</code>：禁止后台控制台窗口（适合GUI程序）</li>
+<li><code>--name</code>：指定exe名称</li>
+</ul>
+<p>打包成功后，在 <code>dist</code> 文件夹中找到 <code>winglet工具集.exe</code>。<code>demo.py</code> 会自动被包含进去，无需额外操作。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pyinstaller --onefile --windowed --icon<span class="o">=</span>my.ico --add-data <span class="s2">&#34;demo.py;.&#34;</span> --name <span class="s2">&#34;winglet工具集&#34;</span> winglet工具集.py
+</span></span></code></pre></div><ul>
+<li><code>--icon</code>：设置exe图标</li>
+<li><code>--add-data &quot;demo.py;.&quot;</code>：手动把demo.py打包到根目录（一般不需要，因为导入会自动处理）</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/python/">Python</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/web%E5%9F%BA%E7%A1%80/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/13.png" loading="lazy" data-key="" data-hash="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/13.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Web基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E5%9B%BE%E4%B9%A6%E4%BF%A1%E6%81%AF/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402281848.jpg" loading="lazy" data-key="" data-hash="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img//img/2402281848.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">爬取豆瓣图书信息</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["/source/Sticker-100/"],"locale":{"admin":"👻屑博主","placeholder":"🎉留下你的脚印."},"requiredMeta":["name","email","url"]});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Winglet
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

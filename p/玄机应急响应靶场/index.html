@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\r蹲了\n应急响应-webshell查杀\r简介\r靶机账号密码 root xjwebshell 1.黑客webshell里面的flag flag{xxxxx-xxxx-xxxx-xxxx-xxxx} 2.黑客使用的什么工具的shell github地址的md5 flag{md5} 3.黑客隐藏shell的完整路径的md5 flag{md5} 注 : /xxx/xxx/xxx/xxx/xxx.xxx 4.黑客免杀马完整路径 md5 flag{md5} wp\r用ssh连接 root@ip flag1: 远程登录后，进入/var/www/html目录，用scp命令或其他工具将文件保存到本地。用D盾进行扫描发现webshell位置`/var/www/html/include/gz.php`文件里面会给出flag `flag{027ccd04-5065-48b6-a32d-77c704a5e26d}` flag2: 直接复制webshell内容去搜索，发现这是连接哥斯拉的木马文件,其github地址为`https://github.com/BeichenDream/Godzilla`转成md5值就得到flag为`flag{39392de3218c333f794befef07ac9257}` flag3: 方法同一，找到shell绝对路径在`/var/www/html/include/Db/.Mysqli.php`转为md5值得到flag为`flag{aebac0e58cd6c5fad1695ee4d1ac1919}` flag4: 查看日志`cat /var/log/apache2/access.log`,可以发现访问过一个奇怪的文件，其不死马位置在`/var/www/html/wap/top.php`转为MD5值得到flag为`flag{eeff2eabfd9b7a6d26fc1a53d3f7d1de}` 日志分析-apache日志分析\r简介\r账号密码 root apacherizhi ssh root@IP 1、提交当天访问次数最多的IP，即黑客IP： 2、黑客使用的浏览器是什么，采集指纹的md5： 3、查看index.php页面被访问的次数，提交次数： 4、查看黑客IP访问了多少次，提交次数： 5、查看2023年8月03日8时该时段内有多少IP访问，提交次数： WP\rflag1: apache的ip访问日志在 access.log.1文件中，使用命令 cut -d- -f 1 log_file|uniq -c | sort -rn | head -20 可列出当天访问次数最多的IP命令，得到结果为192.168.200.2 flag{192.168.200.2} flag2: 在日志中可以看到浏览器指纹为&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36&#39; 将其转为md5值 flag{2d6330f380f44ac20f3a02eed0958f66} flag3: grep &#34;/index.php&#34; access.log.1 |wc -l flag{27} flag4: awk &#39;{++S[$1]} END {for (a in S) print a,S[a]}&#39; access.log.1 flag{6555} flag5: cat access.log.1 | grep &#34;03/Aug/2023:08:&#34; | awk &#39;{print $1}&#39; | sort -nr| uniq -c flag{4} 流量特征分析-蚁剑流量分析\r简介\r1.木马的连接密码是多少 2.黑客执行的第一个命令是什么 3.黑客读取了哪个文件的内容，提交文件绝对路径 4.黑客上传相关文件到服务器，提交文件名 5.黑客上传的文件内容是什么 6.黑客下载了哪个文件，提交文件绝对路径 WP\rflag1： 根据蚁剑流量特征可以知道，连接密码为 1 flag{1} flag2: base64解码，第一个执行的命令为 id flag{id} flag3: 方法同2，读取的是.etc/passwd flag{/etc/passwd} flag4: 方法同2，上传文件为flag.txt flag{/var/www/html/flag.txt} flag5: 脚本解密得到 flag{write_flag} flag{write_flag} flag6: 方法同2，下载文件为config.php flag{config.php} 应急响应 - Linux 入侵排查\r简介\r账号：root 密码：linuxruqin ssh root@IP 1.web目录存在木马，请找到木马的密码提交 2.服务器疑似存在不死马，请找到不死马的密码提交 3.不死马是通过哪个文件生成的，请提交文件名 4.黑客留下了木马文件，请查找黑客的服务器ip地址 5.黑客留下了木马文件，请查找黑客服务器开启的监听端口设置 WP\rflag1: 将服务器的/var/www/html下载到本地，然后用d盾扫描,找到木马文件 1.php 连接密码是 1 flag{1} flag2: 方法同一，找到不死马文件.shell.php,将里面的md5密文解密后得到 hello flag{hello} flag3: 方法同一，找到生成不死马文件的文件为 index.php flag{index.php} flag4: html目录下有 shell(1).php 将其执行后检查开放端口 chmod 777 shell\\(1\\).elf ./shell\\(1\\).elf netstat -antlp|more flag{10.11.55.21} flag5: 方法同4 flag{3333} 流量特征分析-常见攻击事件 tomcat\r简介\r1、在web服务器上发现的可疑活动,流量分析会显示很多请求,这表明存在恶意的扫描行为,通过分析扫描的行为后提交攻击者IP flag格式：flag{ip}，如：flag{127.0.0.1} 2、找到攻击者IP后请通过技术手段确定其所在地址 flag格式: flag{城市英文小写} 3、哪一个端口提供对web服务器管理面板的访问？ flag格式：flag{2222} 4、经过前面对攻击者行为的分析后,攻击者运用的工具是？ flag格式：flag{名称} 5、攻击者拿到特定目录的线索后,想要通过暴力破解的方式登录,请通过分析流量找到攻击者登录成功的用户名和密码？ flag格式：flag{root-123} 6、攻击者登录成功后,先要建立反弹shell,请分析流量提交恶意文件的名称？ flag格式：flag{114514.txt} 7、攻击者想要维持提权成功后的登录,请分析流量后提交关键的信息？ flag提示,某种任务里的信息 WP\rflag1： 查看流量可知攻击ip为 14.0.0.120 flag{14.0.0.120} flag2: 搜索ip所在地址，查出在广州 flag{guangzhou} flag3: 分析流量,管理界面用的是http协议，文件为host-manager,找到端口号为8080 flag{8080} ">
+<title>玄机应急响应靶场</title>
+
+<link rel='canonical' href='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BA/'>
+
+<link rel="stylesheet" href="/scss/style.min.cfa5b1b0e78d61c00a14173992a1f3fa3b5c1b9fa34d023de959af564e7b19dd.css"><meta property='og:title' content="玄机应急响应靶场">
+<meta property='og:description' content="前言\r蹲了\n应急响应-webshell查杀\r简介\r靶机账号密码 root xjwebshell 1.黑客webshell里面的flag flag{xxxxx-xxxx-xxxx-xxxx-xxxx} 2.黑客使用的什么工具的shell github地址的md5 flag{md5} 3.黑客隐藏shell的完整路径的md5 flag{md5} 注 : /xxx/xxx/xxx/xxx/xxx.xxx 4.黑客免杀马完整路径 md5 flag{md5} wp\r用ssh连接 root@ip flag1: 远程登录后，进入/var/www/html目录，用scp命令或其他工具将文件保存到本地。用D盾进行扫描发现webshell位置`/var/www/html/include/gz.php`文件里面会给出flag `flag{027ccd04-5065-48b6-a32d-77c704a5e26d}` flag2: 直接复制webshell内容去搜索，发现这是连接哥斯拉的木马文件,其github地址为`https://github.com/BeichenDream/Godzilla`转成md5值就得到flag为`flag{39392de3218c333f794befef07ac9257}` flag3: 方法同一，找到shell绝对路径在`/var/www/html/include/Db/.Mysqli.php`转为md5值得到flag为`flag{aebac0e58cd6c5fad1695ee4d1ac1919}` flag4: 查看日志`cat /var/log/apache2/access.log`,可以发现访问过一个奇怪的文件，其不死马位置在`/var/www/html/wap/top.php`转为MD5值得到flag为`flag{eeff2eabfd9b7a6d26fc1a53d3f7d1de}` 日志分析-apache日志分析\r简介\r账号密码 root apacherizhi ssh root@IP 1、提交当天访问次数最多的IP，即黑客IP： 2、黑客使用的浏览器是什么，采集指纹的md5： 3、查看index.php页面被访问的次数，提交次数： 4、查看黑客IP访问了多少次，提交次数： 5、查看2023年8月03日8时该时段内有多少IP访问，提交次数： WP\rflag1: apache的ip访问日志在 access.log.1文件中，使用命令 cut -d- -f 1 log_file|uniq -c | sort -rn | head -20 可列出当天访问次数最多的IP命令，得到结果为192.168.200.2 flag{192.168.200.2} flag2: 在日志中可以看到浏览器指纹为&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36&#39; 将其转为md5值 flag{2d6330f380f44ac20f3a02eed0958f66} flag3: grep &#34;/index.php&#34; access.log.1 |wc -l flag{27} flag4: awk &#39;{++S[$1]} END {for (a in S) print a,S[a]}&#39; access.log.1 flag{6555} flag5: cat access.log.1 | grep &#34;03/Aug/2023:08:&#34; | awk &#39;{print $1}&#39; | sort -nr| uniq -c flag{4} 流量特征分析-蚁剑流量分析\r简介\r1.木马的连接密码是多少 2.黑客执行的第一个命令是什么 3.黑客读取了哪个文件的内容，提交文件绝对路径 4.黑客上传相关文件到服务器，提交文件名 5.黑客上传的文件内容是什么 6.黑客下载了哪个文件，提交文件绝对路径 WP\rflag1： 根据蚁剑流量特征可以知道，连接密码为 1 flag{1} flag2: base64解码，第一个执行的命令为 id flag{id} flag3: 方法同2，读取的是.etc/passwd flag{/etc/passwd} flag4: 方法同2，上传文件为flag.txt flag{/var/www/html/flag.txt} flag5: 脚本解密得到 flag{write_flag} flag{write_flag} flag6: 方法同2，下载文件为config.php flag{config.php} 应急响应 - Linux 入侵排查\r简介\r账号：root 密码：linuxruqin ssh root@IP 1.web目录存在木马，请找到木马的密码提交 2.服务器疑似存在不死马，请找到不死马的密码提交 3.不死马是通过哪个文件生成的，请提交文件名 4.黑客留下了木马文件，请查找黑客的服务器ip地址 5.黑客留下了木马文件，请查找黑客服务器开启的监听端口设置 WP\rflag1: 将服务器的/var/www/html下载到本地，然后用d盾扫描,找到木马文件 1.php 连接密码是 1 flag{1} flag2: 方法同一，找到不死马文件.shell.php,将里面的md5密文解密后得到 hello flag{hello} flag3: 方法同一，找到生成不死马文件的文件为 index.php flag{index.php} flag4: html目录下有 shell(1).php 将其执行后检查开放端口 chmod 777 shell\\(1\\).elf ./shell\\(1\\).elf netstat -antlp|more flag{10.11.55.21} flag5: 方法同4 flag{3333} 流量特征分析-常见攻击事件 tomcat\r简介\r1、在web服务器上发现的可疑活动,流量分析会显示很多请求,这表明存在恶意的扫描行为,通过分析扫描的行为后提交攻击者IP flag格式：flag{ip}，如：flag{127.0.0.1} 2、找到攻击者IP后请通过技术手段确定其所在地址 flag格式: flag{城市英文小写} 3、哪一个端口提供对web服务器管理面板的访问？ flag格式：flag{2222} 4、经过前面对攻击者行为的分析后,攻击者运用的工具是？ flag格式：flag{名称} 5、攻击者拿到特定目录的线索后,想要通过暴力破解的方式登录,请通过分析流量找到攻击者登录成功的用户名和密码？ flag格式：flag{root-123} 6、攻击者登录成功后,先要建立反弹shell,请分析流量提交恶意文件的名称？ flag格式：flag{114514.txt} 7、攻击者想要维持提权成功后的登录,请分析流量后提交关键的信息？ flag提示,某种任务里的信息 WP\rflag1： 查看流量可知攻击ip为 14.0.0.120 flag{14.0.0.120} flag2: 搜索ip所在地址，查出在广州 flag{guangzhou} flag3: 分析流量,管理界面用的是http协议，文件为host-manager,找到端口号为8080 flag{8080} ">
+<meta property='og:url' content='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BA/'>
+<meta property='og:site_name' content='Winglet&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-05-05T23:14:55&#43;08:00'/><meta property='article:modified_time' content='2024-05-05T23:14:55&#43;08:00'/>
+<meta name="twitter:title" content="玄机应急响应靶场">
+<meta name="twitter:description" content="前言\r蹲了\n应急响应-webshell查杀\r简介\r靶机账号密码 root xjwebshell 1.黑客webshell里面的flag flag{xxxxx-xxxx-xxxx-xxxx-xxxx} 2.黑客使用的什么工具的shell github地址的md5 flag{md5} 3.黑客隐藏shell的完整路径的md5 flag{md5} 注 : /xxx/xxx/xxx/xxx/xxx.xxx 4.黑客免杀马完整路径 md5 flag{md5} wp\r用ssh连接 root@ip flag1: 远程登录后，进入/var/www/html目录，用scp命令或其他工具将文件保存到本地。用D盾进行扫描发现webshell位置`/var/www/html/include/gz.php`文件里面会给出flag `flag{027ccd04-5065-48b6-a32d-77c704a5e26d}` flag2: 直接复制webshell内容去搜索，发现这是连接哥斯拉的木马文件,其github地址为`https://github.com/BeichenDream/Godzilla`转成md5值就得到flag为`flag{39392de3218c333f794befef07ac9257}` flag3: 方法同一，找到shell绝对路径在`/var/www/html/include/Db/.Mysqli.php`转为md5值得到flag为`flag{aebac0e58cd6c5fad1695ee4d1ac1919}` flag4: 查看日志`cat /var/log/apache2/access.log`,可以发现访问过一个奇怪的文件，其不死马位置在`/var/www/html/wap/top.php`转为MD5值得到flag为`flag{eeff2eabfd9b7a6d26fc1a53d3f7d1de}` 日志分析-apache日志分析\r简介\r账号密码 root apacherizhi ssh root@IP 1、提交当天访问次数最多的IP，即黑客IP： 2、黑客使用的浏览器是什么，采集指纹的md5： 3、查看index.php页面被访问的次数，提交次数： 4、查看黑客IP访问了多少次，提交次数： 5、查看2023年8月03日8时该时段内有多少IP访问，提交次数： WP\rflag1: apache的ip访问日志在 access.log.1文件中，使用命令 cut -d- -f 1 log_file|uniq -c | sort -rn | head -20 可列出当天访问次数最多的IP命令，得到结果为192.168.200.2 flag{192.168.200.2} flag2: 在日志中可以看到浏览器指纹为&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36&#39; 将其转为md5值 flag{2d6330f380f44ac20f3a02eed0958f66} flag3: grep &#34;/index.php&#34; access.log.1 |wc -l flag{27} flag4: awk &#39;{++S[$1]} END {for (a in S) print a,S[a]}&#39; access.log.1 flag{6555} flag5: cat access.log.1 | grep &#34;03/Aug/2023:08:&#34; | awk &#39;{print $1}&#39; | sort -nr| uniq -c flag{4} 流量特征分析-蚁剑流量分析\r简介\r1.木马的连接密码是多少 2.黑客执行的第一个命令是什么 3.黑客读取了哪个文件的内容，提交文件绝对路径 4.黑客上传相关文件到服务器，提交文件名 5.黑客上传的文件内容是什么 6.黑客下载了哪个文件，提交文件绝对路径 WP\rflag1： 根据蚁剑流量特征可以知道，连接密码为 1 flag{1} flag2: base64解码，第一个执行的命令为 id flag{id} flag3: 方法同2，读取的是.etc/passwd flag{/etc/passwd} flag4: 方法同2，上传文件为flag.txt flag{/var/www/html/flag.txt} flag5: 脚本解密得到 flag{write_flag} flag{write_flag} flag6: 方法同2，下载文件为config.php flag{config.php} 应急响应 - Linux 入侵排查\r简介\r账号：root 密码：linuxruqin ssh root@IP 1.web目录存在木马，请找到木马的密码提交 2.服务器疑似存在不死马，请找到不死马的密码提交 3.不死马是通过哪个文件生成的，请提交文件名 4.黑客留下了木马文件，请查找黑客的服务器ip地址 5.黑客留下了木马文件，请查找黑客服务器开启的监听端口设置 WP\rflag1: 将服务器的/var/www/html下载到本地，然后用d盾扫描,找到木马文件 1.php 连接密码是 1 flag{1} flag2: 方法同一，找到不死马文件.shell.php,将里面的md5密文解密后得到 hello flag{hello} flag3: 方法同一，找到生成不死马文件的文件为 index.php flag{index.php} flag4: html目录下有 shell(1).php 将其执行后检查开放端口 chmod 777 shell\\(1\\).elf ./shell\\(1\\).elf netstat -antlp|more flag{10.11.55.21} flag5: 方法同4 flag{3333} 流量特征分析-常见攻击事件 tomcat\r简介\r1、在web服务器上发现的可疑活动,流量分析会显示很多请求,这表明存在恶意的扫描行为,通过分析扫描的行为后提交攻击者IP flag格式：flag{ip}，如：flag{127.0.0.1} 2、找到攻击者IP后请通过技术手段确定其所在地址 flag格式: flag{城市英文小写} 3、哪一个端口提供对web服务器管理面板的访问？ flag格式：flag{2222} 4、经过前面对攻击者行为的分析后,攻击者运用的工具是？ flag格式：flag{名称} 5、攻击者拿到特定目录的线索后,想要通过暴力破解的方式登录,请通过分析流量找到攻击者登录成功的用户名和密码？ flag格式：flag{root-123} 6、攻击者登录成功后,先要建立反弹shell,请分析流量提交恶意文件的名称？ flag格式：flag{114514.txt} 7、攻击者想要维持提权成功后的登录,请分析流量后提交关键的信息？ flag提示,某种任务里的信息 WP\rflag1： 查看流量可知攻击ip为 14.0.0.120 flag{14.0.0.120} flag2: 搜索ip所在地址，查出在广州 flag{guangzhou} flag3: 分析流量,管理界面用的是http协议，文件为host-manager,找到端口号为8080 flag{8080} ">
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/2.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Winglet&#39;s Blog</a></h1>
+            <h2 class="site-description">翩若惊鸿，宛若游龙。</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/wingllllet'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#应急响应-webshell查杀">应急响应-webshell查杀</a>
+      <ol>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#wp">wp</a></li>
+      </ol>
+    </li>
+    <li><a href="#日志分析-apache日志分析">日志分析-apache日志分析</a>
+      <ol>
+        <li><a href="#简介-1">简介</a></li>
+        <li><a href="#wp-1">WP</a></li>
+      </ol>
+    </li>
+    <li><a href="#流量特征分析-蚁剑流量分析">流量特征分析-蚁剑流量分析</a>
+      <ol>
+        <li><a href="#简介-2">简介</a></li>
+        <li><a href="#wp-2">WP</a></li>
+      </ol>
+    </li>
+    <li><a href="#应急响应---linux-入侵排查">应急响应 - Linux 入侵排查</a>
+      <ol>
+        <li><a href="#简介-3">简介</a></li>
+        <li><a href="#wp-3">WP</a></li>
+      </ol>
+    </li>
+    <li><a href="#流量特征分析-常见攻击事件-tomcat">流量特征分析-常见攻击事件 tomcat</a>
+      <ol>
+        <li><a href="#简介-4">简介</a></li>
+        <li><a href="#wp-4">WP</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E9%9D%B6%E5%9C%BA/" >
+                靶场
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BA/">玄机应急响应靶场</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 05, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言
+</h2><p>蹲了</p>
+<h2 id="应急响应-webshell查杀">应急响应-webshell查杀
+</h2><h3 id="简介">简介
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">靶机账号密码 root xjwebshell
+</span></span><span class="line"><span class="cl">1.黑客webshell里面的flag flag{xxxxx-xxxx-xxxx-xxxx-xxxx}
+</span></span><span class="line"><span class="cl">2.黑客使用的什么工具的shell github地址的md5 flag{md5}
+</span></span><span class="line"><span class="cl">3.黑客隐藏shell的完整路径的md5 flag{md5} 注 : /xxx/xxx/xxx/xxx/xxx.xxx
+</span></span><span class="line"><span class="cl">4.黑客免杀马完整路径 md5 flag{md5}
+</span></span></code></pre></div><h3 id="wp">wp
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">用</span><span class="n">ssh连接</span> <span class="n">root</span><span class="err">@</span><span class="n">ip</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">远程登录后，进入</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html目录</span><span class="err">，用</span><span class="n">scp命令或其他工具将文件保存到本地</span><span class="err">。用</span><span class="n">D盾进行扫描发现webshell位置</span><span class="err">`</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">gz</span><span class="o">.</span><span class="n">php</span><span class="err">`文件里面会给出</span><span class="n">flag</span> <span class="err">`</span><span class="n">flag</span><span class="p">{</span><span class="mi">027</span><span class="n">ccd04</span><span class="o">-</span><span class="mi">5065</span><span class="o">-</span><span class="mi">48</span><span class="n">b6</span><span class="o">-</span><span class="n">a32d</span><span class="o">-</span><span class="mi">77</span><span class="n">c704a5e26d</span><span class="p">}</span><span class="err">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">flag2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">直接复制</span><span class="n">webshell内容去搜索</span><span class="err">，发现这是连接哥斯拉的木马文件</span><span class="p">,</span><span class="err">其</span><span class="n">github地址为</span><span class="err">`</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">BeichenDream</span><span class="o">/</span><span class="n">Godzilla</span><span class="err">`转成</span><span class="n">md5值就得到flag为</span><span class="err">`</span><span class="n">flag</span><span class="p">{</span><span class="mi">39392</span><span class="n">de3218c333f794befef07ac9257</span><span class="p">}</span><span class="err">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">flag3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">方法同一，找到</span><span class="n">shell绝对路径在</span><span class="err">`</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">Db</span><span class="o">/.</span><span class="n">Mysqli</span><span class="o">.</span><span class="n">php</span><span class="err">`转为</span><span class="n">md5值得到flag为</span><span class="err">`</span><span class="n">flag</span><span class="p">{</span><span class="n">aebac0e58cd6c5fad1695ee4d1ac1919</span><span class="p">}</span><span class="err">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">flag4</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">查看日志`</span><span class="n">cat</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="err">`</span><span class="p">,</span><span class="err">可以发现访问过一个奇怪的文件，其不死马位置在`</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">wap</span><span class="o">/</span><span class="n">top</span><span class="o">.</span><span class="n">php</span><span class="err">`转为</span><span class="n">MD5值得到flag为</span><span class="err">`</span><span class="n">flag</span><span class="p">{</span><span class="n">eeff2eabfd9b7a6d26fc1a53d3f7d1de</span><span class="p">}</span><span class="err">`</span>
+</span></span></code></pre></div><h2 id="日志分析-apache日志分析">日志分析-apache日志分析
+</h2><h3 id="简介-1">简介
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">账号密码 root apacherizhi
+</span></span><span class="line"><span class="cl">ssh root@IP
+</span></span><span class="line"><span class="cl">1、提交当天访问次数最多的IP，即黑客IP：
+</span></span><span class="line"><span class="cl">2、黑客使用的浏览器是什么，采集指纹的md5：
+</span></span><span class="line"><span class="cl">3、查看index.php页面被访问的次数，提交次数：
+</span></span><span class="line"><span class="cl">4、查看黑客IP访问了多少次，提交次数：
+</span></span><span class="line"><span class="cl">5、查看2023年8月03日8时该时段内有多少IP访问，提交次数：
+</span></span></code></pre></div><h3 id="wp-1">WP
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag1:
+</span></span><span class="line"><span class="cl">apache的ip访问日志在 access.log.1文件中，使用命令
+</span></span><span class="line"><span class="cl">cut -d- -f 1 log_file|uniq -c | sort -rn | head -20
+</span></span><span class="line"><span class="cl">可列出当天访问次数最多的IP命令，得到结果为192.168.200.2
+</span></span><span class="line"><span class="cl">flag{192.168.200.2}
+</span></span><span class="line"><span class="cl">flag2:
+</span></span><span class="line"><span class="cl">在日志中可以看到浏览器指纹为&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36&#39; 将其转为md5值
+</span></span><span class="line"><span class="cl">flag{2d6330f380f44ac20f3a02eed0958f66}
+</span></span><span class="line"><span class="cl">flag3:
+</span></span><span class="line"><span class="cl">grep &#34;/index.php&#34; access.log.1 |wc -l
+</span></span><span class="line"><span class="cl">flag{27}
+</span></span><span class="line"><span class="cl">flag4:
+</span></span><span class="line"><span class="cl">awk &#39;{++S[$1]} END {for (a in S) print a,S[a]}&#39; access.log.1
+</span></span><span class="line"><span class="cl">flag{6555}
+</span></span><span class="line"><span class="cl">flag5:
+</span></span><span class="line"><span class="cl">cat access.log.1 | grep &#34;03/Aug/2023:08:&#34; | awk &#39;{print $1}&#39; | sort -nr| uniq -c
+</span></span><span class="line"><span class="cl">flag{4}
+</span></span></code></pre></div><h2 id="流量特征分析-蚁剑流量分析">流量特征分析-蚁剑流量分析
+</h2><h3 id="简介-2">简介
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.木马的连接密码是多少
+</span></span><span class="line"><span class="cl">2.黑客执行的第一个命令是什么
+</span></span><span class="line"><span class="cl">3.黑客读取了哪个文件的内容，提交文件绝对路径
+</span></span><span class="line"><span class="cl">4.黑客上传相关文件到服务器，提交文件名
+</span></span><span class="line"><span class="cl">5.黑客上传的文件内容是什么
+</span></span><span class="line"><span class="cl">6.黑客下载了哪个文件，提交文件绝对路径
+</span></span></code></pre></div><h3 id="wp-2">WP
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">flag1</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl"><span class="err">根据蚁剑流量特征可以知道，连接密码为</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="n">base64解码</span><span class="err">，第一个执行的命令为</span> <span class="n">id</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="n">id</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">方法同</span><span class="mi">2</span><span class="err">，读取的是</span><span class="o">.</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag4</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">方法同</span><span class="mi">2</span><span class="err">，上传文件为</span><span class="n">flag</span><span class="o">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">flag</span><span class="o">.</span><span class="n">txt</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag5</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">脚本解密得到</span> <span class="n">flag</span><span class="p">{</span><span class="n">write_flag</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="n">write_flag</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag6</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">方法同</span><span class="mi">2</span><span class="err">，下载文件为</span><span class="n">config</span><span class="o">.</span><span class="n">php</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="n">config</span><span class="o">.</span><span class="n">php</span><span class="p">}</span>
+</span></span></code></pre></div><h2 id="应急响应---linux-入侵排查">应急响应 - Linux 入侵排查
+</h2><h3 id="简介-3">简介
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">账号：root 密码：linuxruqin
+</span></span><span class="line"><span class="cl">ssh root@IP
+</span></span><span class="line"><span class="cl">1.web目录存在木马，请找到木马的密码提交
+</span></span><span class="line"><span class="cl">2.服务器疑似存在不死马，请找到不死马的密码提交
+</span></span><span class="line"><span class="cl">3.不死马是通过哪个文件生成的，请提交文件名
+</span></span><span class="line"><span class="cl">4.黑客留下了木马文件，请查找黑客的服务器ip地址
+</span></span><span class="line"><span class="cl">5.黑客留下了木马文件，请查找黑客服务器开启的监听端口设置
+</span></span></code></pre></div><h3 id="wp-3">WP
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">flag1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">将服务器的</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html下载到本地</span><span class="err">，然后用</span><span class="n">d盾扫描</span><span class="p">,</span><span class="err">找到木马文件</span> <span class="mf">1.</span><span class="n">php</span> <span class="err">连接密码是</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">方法同一，找到不死马文件</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">php</span><span class="p">,</span><span class="err">将里面的</span><span class="n">md5密文解密后得到</span> <span class="n">hello</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="n">hello</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">方法同一，找到生成不死马文件的文件为</span> <span class="n">index</span><span class="o">.</span><span class="n">php</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag4</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="n">html目录下有</span> <span class="n">shell</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">php</span> <span class="err">将其执行后检查开放端口</span>
+</span></span><span class="line"><span class="cl"><span class="n">chmod</span> <span class="mi">777</span> <span class="n">shell</span>\<span class="p">(</span><span class="mi">1</span>\<span class="p">)</span><span class="o">.</span><span class="n">elf</span>
+</span></span><span class="line"><span class="cl"><span class="o">./</span><span class="n">shell</span>\<span class="p">(</span><span class="mi">1</span>\<span class="p">)</span><span class="o">.</span><span class="n">elf</span> 
+</span></span><span class="line"><span class="cl"><span class="n">netstat</span> <span class="o">-</span><span class="n">antlp</span><span class="o">|</span><span class="n">more</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="mf">10.11</span><span class="o">.</span><span class="mf">55.21</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag5</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">方法同</span><span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="p">{</span><span class="mi">3333</span><span class="p">}</span>
+</span></span></code></pre></div><h2 id="流量特征分析-常见攻击事件-tomcat">流量特征分析-常见攻击事件 tomcat
+</h2><h3 id="简介-4">简介
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1、在web服务器上发现的可疑活动,流量分析会显示很多请求,这表明存在恶意的扫描行为,通过分析扫描的行为后提交攻击者IP  flag格式：flag{ip}，如：flag{127.0.0.1}
+</span></span><span class="line"><span class="cl">2、找到攻击者IP后请通过技术手段确定其所在地址 flag格式: flag{城市英文小写}
+</span></span><span class="line"><span class="cl">3、哪一个端口提供对web服务器管理面板的访问？ flag格式：flag{2222}
+</span></span><span class="line"><span class="cl">4、经过前面对攻击者行为的分析后,攻击者运用的工具是？ flag格式：flag{名称}
+</span></span><span class="line"><span class="cl">5、攻击者拿到特定目录的线索后,想要通过暴力破解的方式登录,请通过分析流量找到攻击者登录成功的用户名和密码？ flag格式：flag{root-123}
+</span></span><span class="line"><span class="cl">6、攻击者登录成功后,先要建立反弹shell,请分析流量提交恶意文件的名称？ flag格式：flag{114514.txt}
+</span></span><span class="line"><span class="cl">7、攻击者想要维持提权成功后的登录,请分析流量后提交关键的信息？ flag提示,某种任务里的信息
+</span></span></code></pre></div><h3 id="wp-4">WP
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag1：
+</span></span><span class="line"><span class="cl">查看流量可知攻击ip为 14.0.0.120
+</span></span><span class="line"><span class="cl">flag{14.0.0.120}
+</span></span><span class="line"><span class="cl">flag2:
+</span></span><span class="line"><span class="cl">搜索ip所在地址，查出在广州
+</span></span><span class="line"><span class="cl">flag{guangzhou}
+</span></span><span class="line"><span class="cl">flag3:
+</span></span><span class="line"><span class="cl">分析流量,管理界面用的是http协议，文件为host-manager,找到端口号为8080
+</span></span><span class="line"><span class="cl">flag{8080}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/upload-labs%E9%9D%B6%E5%9C%BA/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052319298.jpg" loading="lazy" data-key="" data-hash="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202405052319298.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Upload Labs靶场</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/sql-labs%E9%9D%B6%E5%9C%BA-%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406270744823.gif" loading="lazy" data-key="" data-hash="https://gcore.jsdelivr.net/gh/wingllllet/pic_bed@img/img/202406270744823.gif"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Sql Labs靶场 [更新中]</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["/source/Sticker-100/"],"locale":{"admin":"👻屑博主","placeholder":"🎉留下你的脚印."},"requiredMeta":["name","email","url"]});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Winglet
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.eb0e6dd5d2a8cfab5f378dc86e1cc7255319197aef62eea04ee7bad86656cf1f.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
